@@ -35,7 +35,7 @@ class PersonaService implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getDocumentoTipo()
+    public function getDocumentoTipo():?DocumentoTipo
     {
         return $this->documentoTipo;
     }
