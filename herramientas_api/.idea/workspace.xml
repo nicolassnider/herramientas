@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eed980b3-ba23-469e-8624-fee8c64cb0bc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Controller/PersonaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/PersonaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Public/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Public/Index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repository/PersonaRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/PersonaService.php" beforeDir="false" afterPath="$PROJECT_DIR$/Service/PersonaService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/respect/validation/docs/Alnum.md" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/respect/validation/docs/Alnum.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/respect/validation/library/Exceptions/NestedValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/respect/validation/library/Exceptions/NestedValidationException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/respect/validation/library/Exceptions/UrlException.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/respect/validation/library/Exceptions/UrlException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/respect/validation/library/Rules/AbstractComposite.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/respect/validation/library/Rules/AbstractComposite.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/respect/validation/library/Rules/IntVal.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/respect/validation/library/Rules/IntVal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/respect/validation/library/Rules/PostalCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/respect/validation/library/Rules/PostalCode.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/respect/validation/tests/integration/set_template_with_multiple_validators_should_use_template_as_full_message.phpt" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/respect/validation/tests/integration/set_template_with_multiple_validators_should_use_template_as_full_message.phpt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/respect/validation/tests/unit/Rules/AlnumTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/respect/validation/tests/unit/Rules/AlnumTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/respect/validation/tests/unit/Rules/IntValTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/respect/validation/tests/unit/Rules/IntValTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/respect/validation/tests/unit/Rules/PostalCodeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/respect/validation/tests/unit/Rules/PostalCodeTest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -70,7 +83,7 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="PersonaController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PersonaController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controller/PersonaController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="5390">
@@ -78,6 +91,42 @@
               <folding>
                 <element signature="e#81#137#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersonaService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Service/PersonaService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersonaRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Repository/PersonaRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Db.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Repository/Db.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Config.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/Config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="621">
+              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -93,12 +142,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Service/PersonaService.php" />
         <option value="$PROJECT_DIR$/Config/Config.php" />
         <option value="$PROJECT_DIR$/Repository/AbstractRepository.php" />
         <option value="$PROJECT_DIR$/Repository/Db.php" />
         <option value="$PROJECT_DIR$/Public/Index.php" />
         <option value="$PROJECT_DIR$/Controller/PersonaController.php" />
+        <option value="$PROJECT_DIR$/Service/PersonaService.php" />
+        <option value="$PROJECT_DIR$/Repository/PersonaRepository.php" />
       </list>
     </option>
   </component>
@@ -149,6 +199,21 @@
             <path>
               <item name="herramientas_api" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
+              <item name="Commons" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
               <item name="Dto" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -160,6 +225,11 @@
               <item name="herramientas_api" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
               <item name="Public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
+              <item name="Repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas_api" type="b2602c69:ProjectViewProjectNode" />
@@ -208,7 +278,7 @@
       <updated>1530145204638</updated>
       <workItem from="1530145211131" duration="24000" />
       <workItem from="1530145987633" duration="1098000" />
-      <workItem from="1531149234574" duration="911000" />
+      <workItem from="1531149234574" duration="1566000" />
     </task>
     <task id="LOCAL-00001" summary="commit estructura">
       <created>1530146257966</created>
@@ -224,25 +294,33 @@
       <option name="project" value="LOCAL" />
       <updated>1531149394668</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="commit varios">
+      <created>1531150227949</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1531150227949</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2060000" />
+    <option name="totallyTimeSpent" value="2715000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.254375" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4993573" weight="0.32904884" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32958803" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32958803" />
       <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.254375" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="DB Execution Console" order="7" />
@@ -254,7 +332,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4993573" visible="true" weight="0.32904884" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,7 +342,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit estructura" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit estructura" />
+    <MESSAGE value="commit varios" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit varios" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Public/Index.php">
@@ -315,7 +393,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Config/Config.php">
+    <entry file="file://$PROJECT_DIR$/config/Config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
@@ -348,7 +426,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Config/Config.php">
+    <entry file="file://$PROJECT_DIR$/config/Config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
@@ -389,31 +467,10 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/922cb7c5-ea3c-414b-81e3-da0987520b6d/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Service/PersonaService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="37" column="53" selection-start-line="37" selection-start-column="53" selection-end-line="37" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Config/Config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Repository/AbstractRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Repository/Db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
@@ -455,6 +512,34 @@
           <folding>
             <element signature="e#81#137#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Service/PersonaService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Repository/PersonaRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Repository/Db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
         </state>
       </provider>
     </entry>

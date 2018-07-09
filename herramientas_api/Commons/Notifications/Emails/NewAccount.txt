@@ -1,0 +1,9 @@
+Estimad{ao} {nombre} {apellido},
+
+Bienvenid{ao} a <b>Fleet</b>.
+
+Para activar su cuenta copie y pegue el siguiente enlace en su navegador de internet:
+{linkActivate}
+
+Un saludo,
+El equipo de Fleet.

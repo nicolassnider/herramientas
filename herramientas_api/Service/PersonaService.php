@@ -4,144 +4,80 @@
  * Date: 01/07/2018
  * Time: 12:43 AM
  */
+require_once '../Repository/PersonaRepository.php';
+require_once '../Commons/Files/FileUtil.php';
+require_once 'MailService.php';
+use Slim\Http\UploadedFile;
 
-class PersonaService implements JsonSerializable
-{
+class PersonaService {
 
-    private $id;
-    private $documentoTipo;
-    private $documentoNumero;
-    private $nombre;
-    private $apellido;
-    private $email;
-    private $telefono;
+    private $repository;
 
-    /**
-     * @return mixed
-     */
-    public function getId():?int
+    public function __construct()
     {
-        return $this->id;
+        $this->repository= new PersonaRepository();
+    }
+    public function get(int $idPersona): ?Persona {
+
+        return $this->repository->get($idPersona);
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId( $id)
-    {
-        $this->id = $id;
+    public function getAll(): array {
+        return $this->repository->getAll();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDocumentoTipo():?DocumentoTipo
-    {
-        return $this->documentoTipo;
+    public function create(Persona $persona): Persona {
+        /*if($persona->getEsUsuario()) {
+            $claveActivacionCodigo = bin2hex(openssl_random_pseudo_bytes(8));
+            $claveActivacionTimeout = Config::get('authentication.activation.timeout');
+
+            $claveActivacionExpiracion = (new DateTime())->modify("+{$claveActivacionTimeout} minutes")->format('Y-m-d H:i:s');
+
+            $persona->getUsuario()->setClaveActivacionCodigo($claveActivacionCodigo);
+            $persona->getUsuario()->setClaveActivacionExpiracion($claveActivacionExpiracion);
+        }*/
+
+        $persona = (new PersonaRepository())->create($persona);
+        /*
+                if($persona->getEsUsuario()) {
+                    $mailService = new MailService();
+                    $mailService->sendBlankPasswordLink($persona);
+                }
+        */
+        return $persona;
     }
 
-    /**
-     * @param mixed $documentoTipo
-     */
-    public function setDocumentoTipo($documentoTipo)
-    {
-        $this->documentoTipo = $documentoTipo;
+    public function update(Persona $persona): void {
+        $personaRepository = new PersonaRepository();
+        $personaRepository->update($persona);
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDocumentoNumero()
-    {
-        return $this->documentoNumero;
+    public function delete(int $idPersona): void {
+        $personaRepository = new PersonaRepository();
+        $personaRepository->delete($idPersona);
     }
 
-    /**
-     * @param mixed $documentoNumero
-     */
-    public function setDocumentoNumero($documentoNumero)
-    {
-        $this->documentoNumero = $documentoNumero;
+    public function grid(DataTablesResponse $dataTablesResponse, DataTableRequest $dataTableRequest) {
+        $personasRepository = new PersonaRepository();
+        return ($personasRepository->grid($dataTablesResponse, $dataTableRequest));
     }
 
-    /**
-     * @return mixed
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
+    public function getAllByPermiso($permiso): ?array{
+
+        return $this->repository->getAllByPermiso($permiso);
     }
 
-    /**
-     * @param mixed $nombre
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
+    public function savePhoto(UploadedFile $photoFile): string {
+        // TODO: Verificar errores.
+        $directory = Config::get('storage.personas.photo.path');
+        $photoFilename = FileUtil::moveUploadedFile($directory, $photoFile);
+        return $photoFilename;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getApellido()
-    {
-        return $this->apellido;
-    }
-
-    /**
-     * @param mixed $apellido
-     */
-    public function setApellido($apellido)
-    {
-        $this->apellido = $apellido;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTelefono()
-    {
-        return $this->telefono;
-    }
-
-    /**
-     * @param mixed $telefono
-     */
-    public function setTelefono($telefono)
-    {
-        $this->telefono = $telefono;
-    }
-
-
-
-    public function jsonSerialize()
-    {
-        return
-            [
-                'id' => $this->id,
-                'documentoTipo' => $this->documentoTipo,
-                'documentoNumero' => $this->documentoNumero,
-                'nombre'=>$this->nombre,
-                'apellido'=>$this->apellido,
-                'email'=>$this->email,
-                'telefono'=>$this->telefono
-
-            ];
+    public function getPhoto(string $photoFilename) {
+        // TODO: Verificar errores.
+        $directory = Config::get('storage.personas.photo.path');
+        $photoFile = FileUtil::readFile($directory, $photoFilename);
+        return $photoFile;
     }
 }
