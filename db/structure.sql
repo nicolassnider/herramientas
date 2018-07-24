@@ -3,12 +3,11 @@
 CREATE SCHEMA 'herramientas'
   DEFAULT CHARACTER SET utf8
   COLLATE utf8_spanish2_ci;
-
 #Creación de tablas
 #01
 CREATE TABLE herramientas.campania
 (
-  id           INT              NOT NULL AUTO_INCREMENT,
+  id           INT(30)          NOT NULL AUTO_INCREMENT,
   fecha_inicio DATE             NOT NULL,
   fecha_fin    DATE             NOT NULL,
   descripcion  VARCHAR(20)      NULL,
@@ -19,7 +18,7 @@ CREATE TABLE herramientas.campania
   DEFAULT CHARSET = utf8;
 #02
 CREATE TABLE herramientas.catalogo (
-  id            INT              NOT NULL AUTO_INCREMENT,
+  id            INT(30)          NOT NULL AUTO_INCREMENT,
   descripcion   VARCHAR(30)      NOT NULL,
   observaciones TEXT(200)        NULL,
   activo        BIT(1) DEFAULT 1 NOT NULL,
@@ -29,7 +28,7 @@ CREATE TABLE herramientas.catalogo (
   DEFAULT CHARSET = utf8;
 #03
 CREATE TABLE herramientas.categoria_producto (
-  id          INT         NOT NULL AUTO_INCREMENT,
+  id          INT(30)     NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(30) NOT NULL,
   PRIMARY KEY (id)
 )
@@ -37,7 +36,7 @@ CREATE TABLE herramientas.categoria_producto (
   DEFAULT CHARSET = utf8;
 #04
 CREATE TABLE herramientas.unidad (
-  id          INT         NOT NULL AUTO_INCREMENT,
+  id          INT(30)     NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(30) NOT NULL,
   PRIMARY KEY (id)
 )
@@ -46,7 +45,7 @@ CREATE TABLE herramientas.unidad (
 ;
 #05
 CREATE TABLE herramientas.tipo_documento (
-  id          INT         NOT NULL AUTO_INCREMENT,
+  id          INT(30)     NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(30) NOT NULL,
   PRIMARY KEY (id)
 )
@@ -54,7 +53,7 @@ CREATE TABLE herramientas.tipo_documento (
   DEFAULT CHARSET = utf8;
 #06
 CREATE TABLE herramientas.categoria_cliente (
-  id          INT         NOT NULL AUTO_INCREMENT,
+  id          INT(30)     NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(30) NOT NULL,
   PRIMARY KEY (id)
 )
@@ -62,7 +61,7 @@ CREATE TABLE herramientas.categoria_cliente (
   DEFAULT CHARSET = utf8;
 #07
 CREATE TABLE herramientas.ubicacion (
-  id        INT         NOT NULL AUTO_INCREMENT,
+  id        INT(30)     NOT NULL AUTO_INCREMENT,
   ubicacion VARCHAR(50) NOT NULL,
   PRIMARY KEY (id)
 )
@@ -70,16 +69,16 @@ CREATE TABLE herramientas.ubicacion (
   DEFAULT CHARSET = utf8;
 #08
 CREATE TABLE herramientas.pais (
-  id          INT         NOT NULL AUTO_INCREMENT,
+  id          INT(30)     NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(30) NOT NULL
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 #09
 CREATE TABLE herramientas.provincia (
-  id          INT         NOT NULL AUTO_INCREMENT,
+  id          INT(30)     NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(30) NOT NULL,
-  pais        INT         NOT NULL,
+  pais        INT(30)     NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_PAIS FOREIGN KEY (pais)
   REFERENCES herramientas.pais (id)
@@ -88,9 +87,9 @@ CREATE TABLE herramientas.provincia (
   DEFAULT CHARSET = utf8;
 #10
 CREATE TABLE herramientas.localidad (
-  id            INT         NOT NULL AUTO_INCREMENT,
+  id            INT(30)     NOT NULL AUTO_INCREMENT,
   descripcion   VARCHAR(30) NOT NULL,
-  provincia     INT         NOT NULL,
+  provincia     INT(30)     NOT NULL,
   codigo_postal VARCHAR(8)  NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_PROVINCIA FOREIGN KEY (provincia)
@@ -101,13 +100,13 @@ CREATE TABLE herramientas.localidad (
   DEFAULT CHARSET = utf8;
 #11
 CREATE TABLE herramientas.persona (
-  id                 INT              NOT NULL AUTO_INCREMENT,
-  tipo_documento     INT              NOT NULL,
+  id                 INT(30)          NOT NULL AUTO_INCREMENT,
+  tipo_documento     INT(30)          NOT NULL,
   documento          VARCHAR(10)      NOT NULL,
   telefono           VARCHAR(11)      NOT NULL,
   email              VARCHAR(15)      NULL,
   activo             BIT(1) DEFAULT 1 NOT NULL,
-  localidad          INT              NOT NULL,
+  localidad          INT(30)          NOT NULL,
   fecha_alta_persona DATE             NOT NULL,
 
   PRIMARY KEY (id),
@@ -119,7 +118,7 @@ CREATE TABLE herramientas.persona (
   DEFAULT CHARSET = utf8;
 #12
 CREATE TABLE perfil (
-  id          INT         NOT NULL AUTO_INCREMENT,
+  id          INT(30)     NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(30) NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT DESCRIPCION_PERFIL_UNICO UNIQUE (descripcion)
@@ -161,9 +160,9 @@ CREATE TABLE herramientas.categoria_revendedora (
 );
 #16
 CREATE TABLE herramientas.revendedora (
-  id                     INT  NOT NULL AUTO_INCREMENT,
-  categoria_revendedora  INT  NOT NULL,
-  fecha_alta_revendedora DATE NOT NULL,
+  id                     INT(30) NOT NULL AUTO_INCREMENT,
+  categoria_revendedora  INT(30) NOT NULL,
+  fecha_alta_revendedora DATE    NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT CATEGORIA_REVENDEDORA FOREIGN KEY (categoria_revendedora)
   REFERENCES herramientas.categoria_revendedora (id)
@@ -182,7 +181,7 @@ CREATE TABLE herramientas.cliente (
   apodo              VARCHAR(15) NULL,
   persona            INT(30)     NOT NULL,
   activo             BIT(1)      NOT NULL DEFAULT 1,
-  revendedora        INT         NOT NULL,
+  revendedora        INT(30)     NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_TIPO_CLIENTE FOREIGN KEY (categoria_cliente)
   REFERENCES herramientas.categoria_cliente (id),
@@ -217,7 +216,7 @@ CREATE TABLE herramientas.producto (
   CONSTRAINT FK_CATEGORIA_PRODUCTO FOREIGN KEY (categoria)
   REFERENCES herramientas.categoria_producto (id)
 );
-#15
+#20
 CREATE TABLE herramientas.producto_catalogo (
   id       INT(30)          NOT NULL AUTO_INCREMENT,
   producto INT(30)          NOT NULL,
@@ -230,47 +229,54 @@ CREATE TABLE herramientas.producto_catalogo (
   CONSTRAINT FK_CATALOGO_CATALOGO FOREIGN KEY (catalogo)
   REFERENCES herramientas.catalogo (id)
 );
-#16
+#21
 CREATE TABLE herramientas.pedido_avon (
-  id          INT(30)          NOT NULL AUTO_INCREMENT,
-  cliente     INT(30)          NULL,
-  revendedora INT(30)          NULL,
-  fecha_alta  DATE             NOT NULL,
-  entregado   BIT(1) DEFAULT 0 NOT NULL,
-  cobrado     BIT(1) DEFAULT 0 NOT NULL,
+  id             INT(30)          NOT NULL AUTO_INCREMENT,
+  cliente        INT(30)          NULL,
+  revendedora    INT(30)          NULL,
+  fecha_alta     DATE             NOT NULL,
+  fecha_recibido DATE             NOT NULL,
+  recibido       BIT(1) DEFAULT 0 NOT NULL,
+  entregado      BIT(1) DEFAULT 0 NOT NULL,
+  cobrado        BIT(1) DEFAULT 0 NOT NULL,
+
   PRIMARY KEY (id),
   CONSTRAINT FK_CLIENTE FOREIGN KEY (cliente)
   REFERENCES herramientas.cliente (id),
   CONSTRAINT FK_REVENDEDORA FOREIGN KEY (revendedora)
   REFERENCES herramientas.revendedora (id)
 );
-
-#18
+#22
 CREATE TABLE herramientas.pedido_producto_catalogo (
-  id INT(30) NOT NULL AUTO_INCREMENT,
-  pedido_cliente                      INT NOT NULL,
-  producto_catalogo                   INT NOT NULL,
-  cantidad                            INT NOT NULL,
+  id                INT(30)          NOT NULL AUTO_INCREMENT,
+  pedido_avon       INT(30)          NOT NULL,
+  producto_catalogo INT(30)          NOT NULL,
+  cantidad          INT(30)          NOT NULL,
+  recibido          BIT(1) DEFAULT 0 NOT NULL,
   PRIMARY KEY (id)
 );
-#19
-CREATE TABLE 'herramientas'.'factura' (
-  'id_factura' INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY ('id_factura')
+#23
+CREATE TABLE herramientas.factura (
+  id                INT(30)          NOT NULL AUTO_INCREMENT,
+  total             DECIMAL(13, 3)   NOT NULL,
+  fecha_vencimiento DATE             NOT NULL,
+  campania          INT(30)          NOT NULL,
+  cobrado           BIT(1) DEFAULT 0 NOT NULL,
+  nro_factura       VARCHAR(15)      NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT FK_FACTURA_CAMPANIA FOREIGN KEY (campania)
+  REFERENCES herramientas.campania (id)
 );
-#20
-CREATE TABLE 'herramientas'.'remito' (
-  'id' INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY ('id_remito')
+#24
+CREATE TABLE herramientas.remito (
+  id INT NOT NULL AUTO_INCREMENT,
+
+  PRIMARY KEY (id)
 );
-#21
+#25
 CREATE TABLE 'herramientas'.'remito_producto' (
   'id_remito_producto' INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY ('id_remito_producto')
 );
 
 
-CREATE TABLE 'herramientas'.'pedido_revendedora' (
-  'id_pedido_revendedora' INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY ('id_pedido_revendedora')
-);
