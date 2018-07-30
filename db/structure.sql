@@ -215,7 +215,9 @@ CREATE TABLE herramientas.producto (
   PRIMARY KEY (id),
   CONSTRAINT FK_CATEGORIA_PRODUCTO FOREIGN KEY (categoria)
   REFERENCES herramientas.categoria_producto (id)
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 #20
 CREATE TABLE herramientas.producto_catalogo (
   id       INT(30)          NOT NULL AUTO_INCREMENT,
@@ -228,7 +230,9 @@ CREATE TABLE herramientas.producto_catalogo (
   REFERENCES herramientas.producto (id),
   CONSTRAINT FK_CATALOGO_CATALOGO FOREIGN KEY (catalogo)
   REFERENCES herramientas.catalogo (id)
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 #21
 CREATE TABLE herramientas.pedido_avon (
   id             INT(30)          NOT NULL AUTO_INCREMENT,
@@ -239,13 +243,14 @@ CREATE TABLE herramientas.pedido_avon (
   recibido       BIT(1) DEFAULT 0 NOT NULL,
   entregado      BIT(1) DEFAULT 0 NOT NULL,
   cobrado        BIT(1) DEFAULT 0 NOT NULL,
-
   PRIMARY KEY (id),
   CONSTRAINT FK_CLIENTE FOREIGN KEY (cliente)
   REFERENCES herramientas.cliente (id),
   CONSTRAINT FK_REVENDEDORA FOREIGN KEY (revendedora)
   REFERENCES herramientas.revendedora (id)
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 #22
 CREATE TABLE herramientas.pedido_producto_catalogo (
   id                INT(30)          NOT NULL AUTO_INCREMENT,
@@ -254,7 +259,9 @@ CREATE TABLE herramientas.pedido_producto_catalogo (
   cantidad          INT(30)          NOT NULL,
   recibido          BIT(1) DEFAULT 0 NOT NULL,
   PRIMARY KEY (id)
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 #23
 CREATE TABLE herramientas.factura (
   id                INT(30)          NOT NULL AUTO_INCREMENT,
@@ -266,17 +273,34 @@ CREATE TABLE herramientas.factura (
   PRIMARY KEY (id),
   CONSTRAINT FK_FACTURA_CAMPANIA FOREIGN KEY (campania)
   REFERENCES herramientas.campania (id)
-);
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 #24
 CREATE TABLE herramientas.remito (
-  id INT NOT NULL AUTO_INCREMENT,
-
-  PRIMARY KEY (id)
-);
+  id INT(30) NOT NULL AUTO_INCREMENT,
+  factura INT(30) NOT NULL,
+  numero_remito INT(30) NOT NULL
+  PRIMARY KEY (id),
+  CONSTRAINT FK_REMITO_FACTURA FOREIGN KEY(factura)
+  REFERENCES herramientas.factura (id),
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 #25
-CREATE TABLE 'herramientas'.'remito_producto' (
-  'id_remito_producto' INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY ('id_remito_producto')
-);
+CREATE TABLE herramientas.remito_producto (
+  id INT(30) NOT NULL AUTO_INCREMENT,
+  remito int NOT NULL, 
+  producto_catalogo int NOT NULL,
+  cantidad int NOT NULL,
+  precio_unitario  DECIMAL(13, 3) NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT FK_REMITO_REMITO FOREIGN KEY (remito)
+  REFERENCES herramientas.remito (id),
+  CONSTRAINT FK_REMITO_PRODUCTO FOREIGN KEY (remito_catalogo)
+  REFERENCES herramientas.producto_catalogo(id)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 
