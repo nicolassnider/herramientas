@@ -1,6 +1,6 @@
 #1.0.0
 #Creación esquema
-CREATE SCHEMA 'herramientas'
+CREATE SCHEMA herramientas
   DEFAULT CHARACTER SET utf8
   COLLATE utf8_spanish2_ci;
 #Creación de tablas
@@ -70,7 +70,8 @@ CREATE TABLE herramientas.ubicacion (
 #08
 CREATE TABLE herramientas.pais (
   id          INT(30)     NOT NULL AUTO_INCREMENT,
-  descripcion VARCHAR(30) NOT NULL
+  descripcion VARCHAR(30) NOT NULL,
+  PRIMARY KEY (id)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -127,38 +128,19 @@ CREATE TABLE perfil (
   DEFAULT CHARSET = utf8;
 #13
 CREATE TABLE perfil_permiso (
-  perfil  INT(30)      NOT NULL,
+  perfil bigint(30) NOT NULL,
   permiso varchar(100) NOT NULL,
-  PRIMARY KEY (perfil, permiso),
-  KEY perfil (perfil),
-  CONSTRAINT FK_PERFILES_PERMISOS FOREIGN KEY (perfil) REFERENCES perfiles (id)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
+  PRIMARY KEY (perfil,permiso),
+  CONSTRAINT FK_PERFIL_PERMISO FOREIGN KEY (perfil)
+  REFERENCES herramientas.perfil (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 #14
-CREATE TABLE herramientas.usuario (
-  id                          INT(30)     NOT NULL AUTO_INCREMENT,
-  revendedora                 INT(30)     NOT NULL,
-  usuario                     VARCHAR(50) NOT NULL,
-  clave                       VARCHAR(100),
-  clave_activacion_codigo     VARCHAR(16) NULL,
-  clave_activacion_expiracion DATETIME    NULL,
-  perfil                      INT(30)     NOT NULL,
-  notificaciones_activas      BIT         NOT NULL DEFAULT 1,
-  PRIMARY KEY (id),
-  CONSTRAINT FK_REVENDEDORA FOREIGN KEY fkIdx_112 (revendedora) REFERENCES revendedora (id),
-  CONSTRAINT FK_PERFIL FOREIGN KEY fkIdx_470 (perfil) REFERENCES perfil (id),
-  CONSTRAINT USUARIO_UNICO UNIQUE (usuario)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-#15
 CREATE TABLE herramientas.categoria_revendedora (
   id          INT(30)     NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(30) NOT NULL,
-  PRIMARY KEY ('id')
+  PRIMARY KEY (id)
 );
-#16
+#15
 CREATE TABLE herramientas.revendedora (
   id                     INT(30) NOT NULL AUTO_INCREMENT,
   categoria_revendedora  INT(30) NOT NULL,
@@ -169,6 +151,26 @@ CREATE TABLE herramientas.revendedora (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+#16
+CREATE TABLE herramientas.usuario (
+  id                          INT(30)     NOT NULL AUTO_INCREMENT,
+  revendedora                 INT(30)     NOT NULL,
+  usuario                     VARCHAR(50) NOT NULL,
+  clave                       VARCHAR(100),
+  clave_activacion_codigo     VARCHAR(16) NULL,
+  clave_activacion_expiracion DATETIME    NULL,
+  perfil                      INT(30)     NOT NULL,
+  notificaciones_activas      BIT         NOT NULL DEFAULT 1,
+  PRIMARY KEY (id),
+  CONSTRAINT FK_USUARIO_REVENDEDORA FOREIGN KEY (revendedora)
+  REFERENCES revendedora (id),
+  CONSTRAINT FK_PERFIL_USUARIO FOREIGN KEY (perfil)
+  REFERENCES perfil (id),
+  CONSTRAINT USUARIO_UNICO UNIQUE (usuario)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 #17
 CREATE TABLE herramientas.cliente (
   id                 INT(30)     NOT NULL AUTO_INCREMENT,
@@ -225,7 +227,7 @@ CREATE TABLE herramientas.producto_catalogo (
   catalogo INT(30)          NOT NULL,
   precio   DECIMAL(13, 3)   NOT NULL,
   activo   BIT(1) DEFAULT 1 NULL,
-  PRIMARY KEY ('id'),
+  PRIMARY KEY (id),
   CONSTRAINT FK_PRODUCTO_CATALOGO FOREIGN KEY (producto)
   REFERENCES herramientas.producto (id),
   CONSTRAINT FK_CATALOGO_CATALOGO FOREIGN KEY (catalogo)
@@ -244,9 +246,9 @@ CREATE TABLE herramientas.pedido_avon (
   entregado      BIT(1) DEFAULT 0 NOT NULL,
   cobrado        BIT(1) DEFAULT 0 NOT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT FK_CLIENTE FOREIGN KEY (cliente)
+  CONSTRAINT FK_CLIENTE_PEDIDO_AVON FOREIGN KEY (cliente)
   REFERENCES herramientas.cliente (id),
-  CONSTRAINT FK_REVENDEDORA FOREIGN KEY (revendedora)
+  CONSTRAINT FK_REVENDEDORA_PEDIDO_AVON FOREIGN KEY (revendedora)
   REFERENCES herramientas.revendedora (id)
 )
   ENGINE = InnoDB
@@ -280,24 +282,24 @@ CREATE TABLE herramientas.factura (
 CREATE TABLE herramientas.remito (
   id INT(30) NOT NULL AUTO_INCREMENT,
   factura INT(30) NOT NULL,
-  numero_remito INT(30) NOT NULL
+  numero_remito INT(30) NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_REMITO_FACTURA FOREIGN KEY(factura)
-  REFERENCES herramientas.factura (id),
+  REFERENCES herramientas.factura (id)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 #25
 CREATE TABLE herramientas.remito_producto (
   id INT(30) NOT NULL AUTO_INCREMENT,
-  remito int NOT NULL, 
+  remito int NOT NULL,
   producto_catalogo int NOT NULL,
   cantidad int NOT NULL,
   precio_unitario  DECIMAL(13, 3) NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_REMITO_REMITO FOREIGN KEY (remito)
   REFERENCES herramientas.remito (id),
-  CONSTRAINT FK_REMITO_PRODUCTO FOREIGN KEY (remito_catalogo)
+  CONSTRAINT FK_REMITO_PRODUCTO FOREIGN KEY (producto_catalogo)
   REFERENCES herramientas.producto_catalogo(id)
 )
   ENGINE = InnoDB
