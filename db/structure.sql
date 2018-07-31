@@ -304,5 +304,15 @@ CREATE TABLE herramientas.remito_producto (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+#26
+CREATE TABLE herramientas.parametro (
+  id INT(30) NOT NULL AUTO_INCREMENT,
+  parametro VARCHAR(100) NOT NULL,
+  valor VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
 
 
