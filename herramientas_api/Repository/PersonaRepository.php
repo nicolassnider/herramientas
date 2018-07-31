@@ -42,5 +42,11 @@ class PersonaRepository extends AbstractRepository
         return $persona;
     }
 
+    public function get($id): ?Persona
+    {
+
+        return $item;
+    }
+
 
 }
