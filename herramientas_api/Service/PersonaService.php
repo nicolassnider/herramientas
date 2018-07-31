@@ -12,6 +12,7 @@ use Slim\Http\UploadedFile;
 class PersonaService {
 
     private $repository;
+    private $parametroRepository;
 
     public function __construct()
     {
