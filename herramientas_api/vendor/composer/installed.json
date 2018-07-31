@@ -234,17 +234,17 @@
     },
     {
         "name": "respect/validation",
-        "version": "1.1.19",
-        "version_normalized": "1.1.19.0",
+        "version": "1.1.20",
+        "version_normalized": "1.1.20.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Respect/Validation.git",
-            "reference": "667ed36b4868e785d52d815181ff00c798a61be7"
+            "reference": "4f3aa90d1f1bf5d392ae89b0738a7e10b6b98e7b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Respect/Validation/zipball/667ed36b4868e785d52d815181ff00c798a61be7",
-            "reference": "667ed36b4868e785d52d815181ff00c798a61be7",
+            "url": "https://api.github.com/repos/Respect/Validation/zipball/4f3aa90d1f1bf5d392ae89b0738a7e10b6b98e7b",
+            "reference": "4f3aa90d1f1bf5d392ae89b0738a7e10b6b98e7b",
             "shasum": ""
         },
         "require": {
@@ -266,7 +266,7 @@
             "symfony/validator": "Use Symfony validator through Respect\\Validation",
             "zendframework/zend-validator": "Use Zend Framework validator through Respect\\Validation"
         },
-        "time": "2018-07-02T06:22:41+00:00",
+        "time": "2018-07-25T10:33:08+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
