@@ -8,8 +8,8 @@ CREATE SCHEMA herramientas
 CREATE TABLE herramientas.campania
 (
   id           INT(30)          NOT NULL AUTO_INCREMENT,
-  fecha_inicio DATE             NOT NULL,
-  fecha_fin    DATE             NOT NULL,
+  fecha_inicio DATETIME            NOT NULL,
+  fecha_fin    DATETIME           NOT NULL,
   descripcion  VARCHAR(20)      NULL,
   activo       BIT(1) DEFAULT 1 NOT NULL,
   PRIMARY KEY (id)
@@ -103,12 +103,14 @@ CREATE TABLE herramientas.localidad (
 CREATE TABLE herramientas.persona (
   id                 INT(30)          NOT NULL AUTO_INCREMENT,
   tipo_documento     INT(30)          NOT NULL,
+  nombre             VARCHAR(45)      NOT NULL,
+  apellido           VARCHAR(45)      NOT NULL,
   documento          VARCHAR(10)      NOT NULL,
   telefono           VARCHAR(11)      NOT NULL,
   email              VARCHAR(15)      NULL,
   activo             BIT(1) DEFAULT 1 NOT NULL,
   localidad          INT(30)          NOT NULL,
-  fecha_alta_persona DATE             NOT NULL,
+  fecha_alta_persona DATETIME            NOT NULL,
 
   PRIMARY KEY (id),
   CONSTRAINT FK_TIPO_DOCUMENTO FOREIGN KEY (tipo_documento)
@@ -144,7 +146,7 @@ CREATE TABLE herramientas.categoria_revendedora (
 CREATE TABLE herramientas.revendedora (
   id                     INT(30) NOT NULL AUTO_INCREMENT,
   categoria_revendedora  INT(30) NOT NULL,
-  fecha_alta_revendedora DATE    NOT NULL,
+  fecha_alta_revendedora DATETIME    NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT CATEGORIA_REVENDEDORA FOREIGN KEY (categoria_revendedora)
   REFERENCES herramientas.categoria_revendedora (id)
@@ -177,8 +179,8 @@ CREATE TABLE herramientas.cliente (
   categoria_cliente  INT(30)     NOT NULL,
   direccion_entrega  VARCHAR(30) NOT NULL,
   ubicacion          INT(30)     NULL,
-  fecha_alta_cliente DATE        NOT NULL,
-  anio_nacimiento    DATE        NULL,
+  fecha_alta_cliente DATETIME        NOT NULL,
+  anio_nacimiento    DATETIME        NULL,
   madre              BIT(1)      NULL,
   apodo              VARCHAR(15) NULL,
   persona            INT(30)     NOT NULL,
@@ -240,8 +242,8 @@ CREATE TABLE herramientas.pedido_avon (
   id             INT(30)          NOT NULL AUTO_INCREMENT,
   cliente        INT(30)          NULL,
   revendedora    INT(30)          NULL,
-  fecha_alta     DATE             NOT NULL,
-  fecha_recibido DATE             NOT NULL,
+  fecha_alta     DATETIME            NOT NULL,
+  fecha_recibido DATETIME            NOT NULL,
   recibido       BIT(1) DEFAULT 0 NOT NULL,
   entregado      BIT(1) DEFAULT 0 NOT NULL,
   cobrado        BIT(1) DEFAULT 0 NOT NULL,
@@ -268,7 +270,7 @@ CREATE TABLE herramientas.pedido_producto_catalogo (
 CREATE TABLE herramientas.factura (
   id                INT(30)          NOT NULL AUTO_INCREMENT,
   total             DECIMAL(13, 3)   NOT NULL,
-  fecha_vencimiento DATE             NOT NULL,
+  fecha_vencimiento DATETIME           NOT NULL,
   campania          INT(30)          NOT NULL,
   cobrado           BIT(1) DEFAULT 0 NOT NULL,
   nro_factura       VARCHAR(15)      NOT NULL,

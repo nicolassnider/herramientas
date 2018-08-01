@@ -1,9 +1,5 @@
 <?php
-/**
- * Created by Nicolás Snider
- * Date: 30/06/2018
- * Time: 11:12 PM
- */
+
 use Respect\Validation\Exceptions\ValidationException as ValidationException;
 
 require_once '../vendor/autoload.php';
@@ -104,10 +100,18 @@ $app->options('/{routes:.+}', function ($request, $response, $args) {
     return $response;
 });
 
+require_once '../Controller/AuthController.php';
 require_once '../Controller/PersonaController.php';
+require_once '../Controller/PermisosController.php';;
+require_once '../Controller/TipoDocumentoController.php';
+require_once '../Controller/ParametroController.php';
 
-//(new AuthController($app))->init();
+
+(new AuthController($app))->init();
 (new PersonaController($app))->init();
+(new PermisosController($app))->init();
+(new TipoDocumentoController($app))->init();
+(new ParametroController($app))->init();
 
 
 
