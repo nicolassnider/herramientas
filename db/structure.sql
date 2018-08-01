@@ -8,8 +8,8 @@ CREATE SCHEMA herramientas
 CREATE TABLE herramientas.campania
 (
   id           INT(30)          NOT NULL AUTO_INCREMENT,
-  fecha_inicio DATETIME            NOT NULL,
-  fecha_fin    DATETIME           NOT NULL,
+  fecha_inicio DATETIME         NOT NULL,
+  fecha_fin    DATETIME         NOT NULL,
   descripcion  VARCHAR(20)      NULL,
   activo       BIT(1) DEFAULT 1 NOT NULL,
   PRIMARY KEY (id)
@@ -110,7 +110,7 @@ CREATE TABLE herramientas.persona (
   email              VARCHAR(15)      NULL,
   activo             BIT(1) DEFAULT 1 NOT NULL,
   localidad          INT(30)          NOT NULL,
-  fecha_alta_persona DATETIME            NOT NULL,
+  fecha_alta_persona DATETIME         NOT NULL,
 
   PRIMARY KEY (id),
   CONSTRAINT FK_TIPO_DOCUMENTO FOREIGN KEY (tipo_documento)
@@ -130,12 +130,14 @@ CREATE TABLE perfil (
   DEFAULT CHARSET = utf8;
 #13
 CREATE TABLE perfil_permiso (
-  perfil bigint(30) NOT NULL,
+  perfil  bigint(30)   NOT NULL,
   permiso varchar(100) NOT NULL,
-  PRIMARY KEY (perfil,permiso),
+  PRIMARY KEY (perfil, permiso),
   CONSTRAINT FK_PERFIL_PERMISO FOREIGN KEY (perfil)
   REFERENCES herramientas.perfil (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 #14
 CREATE TABLE herramientas.categoria_revendedora (
   id          INT(30)     NOT NULL AUTO_INCREMENT,
@@ -144,25 +146,29 @@ CREATE TABLE herramientas.categoria_revendedora (
 );
 #15
 CREATE TABLE herramientas.revendedora (
-  id                     INT(30) NOT NULL AUTO_INCREMENT,
-  categoria_revendedora  INT(30) NOT NULL,
-  fecha_alta_revendedora DATETIME    NOT NULL,
+  id                     INT(30)  NOT NULL AUTO_INCREMENT,
+  categoria_revendedora  INT(30)  NOT NULL,
+  fecha_alta_revendedora DATETIME NOT NULL,
+  persona INT(30) NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT CATEGORIA_REVENDEDORA FOREIGN KEY (categoria_revendedora)
-  REFERENCES herramientas.categoria_revendedora (id)
+  REFERENCES herramientas.categoria_revendedora (id),
+  CONSTRAINT FK_PERSONA_REVENDEDORA FOREIGN KEY (persona)
+    REFERENCES herramientas.persona(id)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 #16
 CREATE TABLE herramientas.usuario (
-  id                          INT(30)     NOT NULL AUTO_INCREMENT,
-  revendedora                 INT(30)     NOT NULL,
-  usuario                     VARCHAR(50) NOT NULL,
+  id                          INT(30)          NOT NULL AUTO_INCREMENT,
+  revendedora                 INT(30)          NOT NULL,
+  usuario                     VARCHAR(50)      NOT NULL,
   clave                       VARCHAR(100),
-  clave_activacion_codigo     VARCHAR(16) NULL,
-  clave_activacion_expiracion DATETIME    NULL,
-  perfil                      INT(30)     NOT NULL,
-  notificaciones_activas      BIT         NOT NULL DEFAULT 1,
+  clave_activacion_codigo     VARCHAR(16)      NULL,
+  clave_activacion_expiracion DATETIME         NULL,
+  perfil                      INT(30)          NOT NULL,
+  notificaciones_activas      BIT              NOT NULL DEFAULT 1,
+  activo                      BIT(1) DEFAULT 1 NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_USUARIO_REVENDEDORA FOREIGN KEY (revendedora)
   REFERENCES revendedora (id),
@@ -179,8 +185,8 @@ CREATE TABLE herramientas.cliente (
   categoria_cliente  INT(30)     NOT NULL,
   direccion_entrega  VARCHAR(30) NOT NULL,
   ubicacion          INT(30)     NULL,
-  fecha_alta_cliente DATETIME        NOT NULL,
-  anio_nacimiento    DATETIME        NULL,
+  fecha_alta_cliente DATETIME    NOT NULL,
+  anio_nacimiento    DATETIME    NULL,
   madre              BIT(1)      NULL,
   apodo              VARCHAR(15) NULL,
   persona            INT(30)     NOT NULL,
@@ -242,8 +248,8 @@ CREATE TABLE herramientas.pedido_avon (
   id             INT(30)          NOT NULL AUTO_INCREMENT,
   cliente        INT(30)          NULL,
   revendedora    INT(30)          NULL,
-  fecha_alta     DATETIME            NOT NULL,
-  fecha_recibido DATETIME            NOT NULL,
+  fecha_alta     DATETIME         NOT NULL,
+  fecha_recibido DATETIME         NOT NULL,
   recibido       BIT(1) DEFAULT 0 NOT NULL,
   entregado      BIT(1) DEFAULT 0 NOT NULL,
   cobrado        BIT(1) DEFAULT 0 NOT NULL,
@@ -270,7 +276,7 @@ CREATE TABLE herramientas.pedido_producto_catalogo (
 CREATE TABLE herramientas.factura (
   id                INT(30)          NOT NULL AUTO_INCREMENT,
   total             DECIMAL(13, 3)   NOT NULL,
-  fecha_vencimiento DATETIME           NOT NULL,
+  fecha_vencimiento DATETIME         NOT NULL,
   campania          INT(30)          NOT NULL,
   cobrado           BIT(1) DEFAULT 0 NOT NULL,
   nro_factura       VARCHAR(15)      NOT NULL,
@@ -282,35 +288,35 @@ CREATE TABLE herramientas.factura (
   DEFAULT CHARSET = utf8;
 #24
 CREATE TABLE herramientas.remito (
-  id INT(30) NOT NULL AUTO_INCREMENT,
-  factura INT(30) NOT NULL,
+  id            INT(30) NOT NULL AUTO_INCREMENT,
+  factura       INT(30) NOT NULL,
   numero_remito INT(30) NOT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT FK_REMITO_FACTURA FOREIGN KEY(factura)
+  CONSTRAINT FK_REMITO_FACTURA FOREIGN KEY (factura)
   REFERENCES herramientas.factura (id)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 #25
 CREATE TABLE herramientas.remito_producto (
-  id INT(30) NOT NULL AUTO_INCREMENT,
-  remito int NOT NULL,
-  producto_catalogo int NOT NULL,
-  cantidad int NOT NULL,
-  precio_unitario  DECIMAL(13, 3) NOT NULL,
+  id                INT(30)        NOT NULL AUTO_INCREMENT,
+  remito            int            NOT NULL,
+  producto_catalogo int            NOT NULL,
+  cantidad          int            NOT NULL,
+  precio_unitario   DECIMAL(13, 3) NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_REMITO_REMITO FOREIGN KEY (remito)
   REFERENCES herramientas.remito (id),
   CONSTRAINT FK_REMITO_PRODUCTO FOREIGN KEY (producto_catalogo)
-  REFERENCES herramientas.producto_catalogo(id)
+  REFERENCES herramientas.producto_catalogo (id)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 #26
 CREATE TABLE herramientas.parametro (
-  id INT(30) NOT NULL AUTO_INCREMENT,
+  id        INT(30)      NOT NULL AUTO_INCREMENT,
   parametro VARCHAR(100) NOT NULL,
-  valor VARCHAR(100) NOT NULL,
+  valor     VARCHAR(100) NOT NULL,
   PRIMARY KEY (id)
 )
   ENGINE = InnoDB
