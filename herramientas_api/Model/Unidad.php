@@ -6,7 +6,13 @@
  * Time: 4:15 PM
  */
 
-class Unidad
+class Unidad implements JsonSerializable
 {
+    private $id;
+    private $descripcion;
 
+    public function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
+    }
 }

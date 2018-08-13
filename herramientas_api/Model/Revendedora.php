@@ -6,7 +6,15 @@
  * Time: 4:16 PM
  */
 
-class Revendedora
+class Revendedora implements JsonSerializable
 {
+    private $id;
+    private $categoriaRevendedora;
+    private $fechaAltaRevendedora;
+    private $activo;
 
+    public function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
+    }
 }

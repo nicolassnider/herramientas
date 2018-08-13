@@ -6,7 +6,15 @@
  * Time: 4:17 PM
  */
 
-class Provincia
+class Provincia implements JsonSerializable
 {
+    private $id;
+    private $descripcion;
+    private $pais;
+
+    public function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
+    }
 
 }

@@ -6,7 +6,12 @@
  * Time: 4:16 PM
  */
 
-class Ubicacion
+class Ubicacion implements JsonSerializable
 {
-
+    private $id;
+    private $descripcion;
+    public function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
+    }
 }

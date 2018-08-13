@@ -6,7 +6,16 @@
  * Time: 4:16 PM
  */
 
-class Remito
+class Remito implements JsonSerializable
 {
+    private $id;
+    private $numeroRemito;
+    private $productos; //array de productos en remito
+
+    public function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
+    }
+
 
 }

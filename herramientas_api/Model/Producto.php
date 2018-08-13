@@ -6,7 +6,17 @@
  * Time: 4:17 PM
  */
 
-class Producto
+class Producto implements JsonSerializable
 {
+    private $id;
+    private $descripcion;
+    private $categoriaProducto;
+    private $precio;
+    private $campania;
+    private $unidad;
 
+    public function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
+    }
 }

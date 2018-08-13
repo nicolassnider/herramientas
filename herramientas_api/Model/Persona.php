@@ -5,7 +5,14 @@
  * Time: 12:42 AM
  */
 
-class Persona
+class Persona implements JsonSerializable
 {
 
+    private $id;
+    private $tipoDocumento;
+
+    public function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
+    }
 }
