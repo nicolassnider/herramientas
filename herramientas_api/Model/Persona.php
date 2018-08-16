@@ -20,7 +20,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId():?int
     {
         return $this->id;
     }
@@ -28,7 +28,7 @@ class Persona implements JsonSerializable
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -36,7 +36,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getTipoDocumento()
+    public function getTipoDocumento():?TipoDocumento
     {
         return $this->tipoDocumento;
     }
@@ -44,7 +44,7 @@ class Persona implements JsonSerializable
     /**
      * @param mixed $tipoDocumento
      */
-    public function setTipoDocumento($tipoDocumento)
+    public function setTipoDocumento(?TipoDocumento $tipoDocumento)
     {
         $this->tipoDocumento = $tipoDocumento;
     }
@@ -52,7 +52,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getDocumento()
+    public function getDocumento():?string
     {
         return $this->documento;
     }
@@ -60,7 +60,7 @@ class Persona implements JsonSerializable
     /**
      * @param mixed $documento
      */
-    public function setDocumento($documento)
+    public function setDocumento(?string $documento)
     {
         $this->documento = $documento;
     }
@@ -68,7 +68,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getTelefono()
+    public function getTelefono():?string
     {
         return $this->telefono;
     }
@@ -76,7 +76,7 @@ class Persona implements JsonSerializable
     /**
      * @param mixed $telefono
      */
-    public function setTelefono($telefono)
+    public function setTelefono(?string $telefono)
     {
         $this->telefono = $telefono;
     }
@@ -84,7 +84,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getEmail()
+    public function getEmail():?string
     {
         return $this->email;
     }
@@ -92,7 +92,7 @@ class Persona implements JsonSerializable
     /**
      * @param mixed $email
      */
-    public function setEmail($email)
+    public function setEmail(?string $email)
     {
         $this->email = $email;
     }
@@ -100,7 +100,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getActivo()
+    public function getActivo():?bool
     {
         return $this->activo;
     }
@@ -108,7 +108,7 @@ class Persona implements JsonSerializable
     /**
      * @param mixed $activo
      */
-    public function setActivo($activo)
+    public function setActivo(?bool $activo)
     {
         $this->activo = $activo;
     }
@@ -116,7 +116,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getLocalidad()
+    public function getLocalidad():?Localidad
     {
         return $this->localidad;
     }
@@ -124,7 +124,7 @@ class Persona implements JsonSerializable
     /**
      * @param mixed $localidad
      */
-    public function setLocalidad($localidad)
+    public function setLocalidad(?Localidad $localidad)
     {
         $this->localidad = $localidad;
     }
@@ -132,7 +132,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getFechaAltaPersona()
+    public function getFechaAltaPersona():?DateTime
     {
         return $this->fechaAltaPersona;
     }
@@ -140,7 +140,7 @@ class Persona implements JsonSerializable
     /**
      * @param mixed $fechaAltaPersona
      */
-    public function setFechaAltaPersona($fechaAltaPersona)
+    public function setFechaAltaPersona(?DateTime$fechaAltaPersona)
     {
         $this->fechaAltaPersona = $fechaAltaPersona;
     }
@@ -157,8 +157,12 @@ class Persona implements JsonSerializable
             'telefono'=>$this->telefono,
             'email'=>$this->email,
             'activo'=>$this->activo,
-            'localidad'=>$this->localidad,
-            'fechaAltaPersona'=>$this->fechaAltaPersona
+            'localidad' => $this->localidad == null ? null : [
+                'id' => $this->localidad->getId(),
+                'descipcion' => $this->localidad->getDescipcion(),
+                'provincia'=>$this->localidad->getProvincia()
+            ],
+            'fechaAltaPersona'=>$this->fechaAltaPersona,
         ];
 
     }
