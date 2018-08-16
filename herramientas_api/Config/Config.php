@@ -14,7 +14,10 @@ return [
     ],
     'authentication' => [
         'session'  => [
-            'timeout' => 60
+            'timeout' => 60 // minutos
+        ],
+        'activation' => [
+            'timeout' => 2880 // minutos
         ]
     ],
     'notifications' => [
@@ -24,8 +27,23 @@ return [
                 'port' => '',
                 'username' => '',
                 'password' => ''
+            ],
+            'fromEmail' => 'fleet@vec.com.ar',
+            'fromName' => 'VEC Fleet',
+            'replyToEmail' => 'noreply@vec.com.ar',
+            'replyToName' => 'VEC Fleet'
+        ]
+    ],
+    'storage' => [
+        'personas' => [
+            'photo' => [
+                'path' => ''
+            ]
+        ],
+        'productos' => [
+            'photo' => [
+                'path' => ''
             ]
         ]
     ]
-]
-    ;
+];
