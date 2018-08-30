@@ -5,48 +5,48 @@
  * Date: 01/07/2018
  * Time: 12:43 AM
  */
-class TipoDocumentoRepository extends AbstractRepository
+class TipoDocumentoRepository extends AbstractRepository {
 
-{
-
-    public function getAllSorted(): Array
-    {
+    public function getAllSorted(): Array {
         $sql = "SELECT * 
                 FROM tipo_documento 
-                ORDER BY descripcion ASC";
-
+                ORDER BY descripcion";
         $db = $this->connect();
         $result = $db->query($sql);
         $items = $result->fetchAll(PDO::FETCH_OBJ);
 
         if ($items == null) {
-            return Array();
+            return null;
         }
 
         $tiposDocumento = Array();
         foreach ($items as $item) {
-            $tipoDocumento=$this->createFromResultset($item, [], $this->db);
+            $tipoDocumento = new TipoDocumento();
+            $tipoDocumento->setId($item->id);
+            $tipoDocumento->setNombre($item->nombre);
             array_push($tiposDocumento, $tipoDocumento);
         }
+
         $this->disconnect();
         return $tiposDocumento;
     }
 
-    /**
-     * Usar esta función para crear una entidad a partir del resultado
-     * obtenido de la consulta a la base de datos.
-     * Parámetros:
-     *  $result: Resultado obtenido de la consulta a la base de datos.
-     *  $fields: Array que especifica qué entidades relacionadas se deben obtener.
-     *          Si se quieren obtener todas las entidades relacionadas se debe enviar ['*'].
-     *  $db: Conexión a la base de datos.
-     */
-    private function createFromResultset($result, array $fields, $db)
-    {
-        $item = new TipoDocumento();
-        $item->setId($result->id);
-        $item->setDescripcion($result->descripcion);
+    public function get(int $id): TipoDocumento {
+        $sql = "SELECT * FROM tipo_documento WHERE id=:id";
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetchObject();
+
+        $item = null;
+        if($result != null) {
+            $item = new TipoDocumento();
+            $item->setId((int)$result->id);
+            $item->setDescripcion($result->nombre);
+        }
+
+        $this->disconnect();
         return $item;
     }
-
 }

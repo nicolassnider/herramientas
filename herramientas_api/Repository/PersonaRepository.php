@@ -7,6 +7,8 @@
 require_once 'Db.php';
 require_once '../Model/Persona.php';
 require_once '../Repository/AbstractRepository.php';
+require_once '../Repository/LocalidadRepository.php';
+
 
 
 class PersonaRepository extends AbstractRepository
@@ -114,36 +116,22 @@ WHERE per.activo=1 and usu.usuario=:usuario";
     private function createFromResultset($result, array $fields, $db) {
         $item = new Persona();
         $item->setId((int)$result->id);
-        $item->setNombre($result->nombre);
-        $item->setApellido($result->apellido);
-        $item->setDocumentoNumero($result->documento_numero);
-        $item->setSexo($result->sexo);
-        $item->setFechaNacimiento($result->fecha_nacimiento);
-        $item->setEsActivo((bool)$result->es_activo);
-        $item->setCalle($result->calle);
-        $item->setNumero((int)$result->numero);
-        $item->setPiso($result->piso);
-        $item->setDepartamento($result->departamento);
-        $item->setTelefonoCodArea((int)$result->telefono_codigo_area);
-        $item->setTelefonoNumero((int)$result->telefono_numero);
-        $item->setCelularCodArea((int)$result->celular_codigo_area);
-        $item->setCelularNumero((int)$result->celular_numero);
+        $item->setDocumento($result->documento);
+        $item->setTelefono($result->telefono_codigo_area);
         $item->setEmail($result->email);
-        $item->setObservaciones($result->observaciones);
-        $item->setLegajoNumero($result->legajo_numero);
-        $item->setFechaIngreso($result->fecha_ingreso);
-        $item->setFechaBaja($result->fecha_baja);
-        $item->setContrato($result->contrato);
-        $item->setYpfRuta($result->ypf_ruta);
-        $item->setComentariosLaborales($result->comentarios_laborales);
-        $item->setFoto($result->foto);
-        $item->setEsUsuario((bool)$result->es_usuario);
+        $item->setActivo((bool)$result->activo);
+        $item->setFechaAltaPersona( new DateTime ($result->fecha_alta_persona));
+        $item->setNombre($result->nombre);
+        $item->setNombreSegundo($result->nombre_segundo);
+        $item->setApellido($result->apellido);
+        $item->setApellidoSegundo($result->apellido_segundo);
+
         if (in_array('*', $fields) || in_array('documentoTipo', $fields))
-            $item->setDocumentoTipo((new TipoDocumentoRepository($db))->get($result->documento_tipo));
-        if (in_array('*', $fields) || in_array('nacionalidad', $fields))
-            $item->setNacionalidad((new PaisRepository($db))->get($result->nacionalidad));
+            $item->setTipoDocumento((new TipoDocumentoRepository($db))->get($result->tipo_documento));
         if (in_array('*', $fields) || in_array('localidad', $fields))
             $item->setLocalidad((new LocalidadRepository($db))->get($result->localidad));
+        if (in_array('*', $fields) || in_array('nacionalidad', $fields))
+            $item->setNacionalidad((new PaisRepository($db))->get($result->nacionalidad));
         if (in_array('*', $fields) || in_array('provincia', $fields))
             $item->setProvincia((new ProvinciaRepository($db))->get($result->provincia));
         if (in_array('*', $fields) || in_array('pais', $fields))
