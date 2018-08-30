@@ -28,7 +28,7 @@ class LocalidadRepository extends AbstractRepository {
         foreach($items as $item) {
             $localidad = new Localidad();
             $localidad->setId($item->id);
-            $localidad->setNombre($item->nombre);
+            $localidad->setDescripcion($item->nombre);
             array_push($localidades, $localidad);
         }
 
@@ -38,7 +38,7 @@ class LocalidadRepository extends AbstractRepository {
 
     public function get(?int $id): ?Localidad {
         $sql = "SELECT * 
-                FROM localidade 
+                FROM localidad 
                 WHERE id=:id";
 
         $db = $this->connect();
@@ -52,8 +52,8 @@ class LocalidadRepository extends AbstractRepository {
         }
 
         $localidad = new Localidad();
-        $localidad->set($result->id);
-        $localidad->setNombre($result->nombre);
+        $localidad->setId($result->id);
+        $localidad->setDescripcion($result->descripcion);
         $localidad->setProvincia($result->provincia != null ? (new ProvinciaRepository($this->db))->get($result->provincia) : null);
 
         $this->disconnect();
