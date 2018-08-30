@@ -6,6 +6,7 @@
  * Time: 11:51 AM
  */
 require_once "../Model/Localidad.php";
+require_once "../Repository/ProvinciaRepository.php";
 require_once "../Repository/AbstractRepository.php";
 class LocalidadRepository extends AbstractRepository {
     public function getAllSortedByProvincia($provincia): Array {

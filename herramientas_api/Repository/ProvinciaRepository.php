@@ -6,8 +6,8 @@ require_once 'PaisRepository.php';
 class ProvinciaRepository extends AbstractRepository {
     public function getAllSortedByPais($pais): Array {
         $sql = "SELECT * 
-                FROM provincias 
-                WHERE provincias.pais =:pais 
+                FROM provincia 
+                WHERE provincia.pais =:pais 
                 ORDER BY nombre";
         
         $db = $this->connect();
@@ -24,7 +24,7 @@ class ProvinciaRepository extends AbstractRepository {
         foreach($items as $item) {
             $provincia = new Provincia();
             $provincia->setId($item->id);
-            $provincia->setDescripcion($item->nombre);
+            $provincia->setDescripcion($item->descripcion);
             array_push($provincias, $provincia);
         }
 
@@ -34,7 +34,7 @@ class ProvinciaRepository extends AbstractRepository {
 
     public function get($id) {
         $sql = "SELECT * 
-                FROM provincias 
+                FROM provincia 
                 WHERE id=:id";
 
         $db = $this->connect();
@@ -47,7 +47,7 @@ class ProvinciaRepository extends AbstractRepository {
         if ($result != null) {
             $item = new Provincia();
             $item->setId((int)$result->id);
-            $item->setDescripcion($result->nombre);
+            $item->setDescripcion($result->descripcion);
             $item->setPais($result->pais != null ? (new PaisRepository($this->db))->get($result->pais) : null);
         }
         $this->disconnect();

@@ -130,19 +130,6 @@ WHERE per.activo=1 and usu.usuario=:usuario";
             $item->setTipoDocumento((new TipoDocumentoRepository($db))->get($result->tipo_documento));
         if (in_array('*', $fields) || in_array('localidad', $fields))
             $item->setLocalidad((new LocalidadRepository($db))->get($result->localidad));
-        if (in_array('*', $fields) || in_array('nacionalidad', $fields))
-            $item->setNacionalidad((new PaisRepository($db))->get($result->nacionalidad));
-        if (in_array('*', $fields) || in_array('provincia', $fields))
-            $item->setProvincia((new ProvinciaRepository($db))->get($result->provincia));
-        if (in_array('*', $fields) || in_array('pais', $fields))
-            $item->setPais((new PaisRepository($db))->get($result->pais));
-        if (in_array('*', $fields) || in_array('categoria', $fields))
-            $item->setCategoria((new PersonaCategoriaRepository($db))->get($result->categoria));
-        if ((in_array('*', $fields) || in_array('usuario', $fields)) && $item->getEsUsuario())
-            $item->setUsuario((new UsuarioRepository($db))->get($result->usuario));
-        if ((in_array('*', $fields) || in_array('base', $fields)) && $result->base != null) {
-            $item->setBase((new BasesRepository($db))->get($result->base, false));
-        }
         return $item;
     }
 
