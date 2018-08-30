@@ -7,10 +7,12 @@ require_once '../Repository/UsuarioTokensRepository.php';
 require_once '../Commons/Exceptions/UnauthorizedException.php';
 
 class AuthService {
+
     private $personasRepository;
     private $usuariosRepository;
 
     public function __construct() {
+        die (print_r("hola") );
         $this->personasRepository = new PersonaRepository();
         $this->usuariosRepository = new UsuarioRepository();
         $this->usuarioTokensRepository = new UsuarioTokensRepository();

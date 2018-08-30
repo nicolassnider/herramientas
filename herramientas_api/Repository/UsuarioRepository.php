@@ -2,9 +2,7 @@
 require_once 'AbstractRepository.php';
 require_once '../Model/Usuario.php';
 require_once '../Model/Perfil.php';
-require_once '../Model/Gerenciador.php';
-require_once '../Repository/GerenciadoresRepository.php';
-require_once '../Repository/PerfilesRepository.php';
+require_once '../Repository/PerfilRepository.php';
 
 class UsuarioRepository extends AbstractRepository {
     public function get($id) {

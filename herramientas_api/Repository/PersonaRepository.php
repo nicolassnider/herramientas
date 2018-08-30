@@ -6,6 +6,7 @@
  */
 require_once 'Db.php';
 require_once '../Model/Persona.php';
+require_once '../Repository/AbstractRepository.php';
 
 
 class PersonaRepository extends AbstractRepository
