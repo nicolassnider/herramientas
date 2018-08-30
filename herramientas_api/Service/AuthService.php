@@ -12,7 +12,7 @@ class AuthService {
     private $usuariosRepository;
 
     public function __construct() {
-        die (print_r("hola") );
+
         $this->personasRepository = new PersonaRepository();
         $this->usuariosRepository = new UsuarioRepository();
         $this->usuarioTokensRepository = new UsuarioTokensRepository();
@@ -54,4 +54,6 @@ class AuthService {
     public function revokeToken(string $token): void {
         $this->usuarioTokensRepository->removeToken($token);
     }
+
+
 }

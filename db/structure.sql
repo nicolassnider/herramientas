@@ -147,8 +147,8 @@ CREATE TABLE herramientas.revendedora (
   id                     INT(30)          NOT NULL AUTO_INCREMENT,
   categoria_revendedora  INT(30)          NOT NULL,
   fecha_alta_revendedora DATE             NOT NULL,
-  activo               BIT(1) DEFAULT 1 NOT NULL,
-  persona               INT(30) NOT NULL,
+  activo                 BIT(1) DEFAULT 1 NOT NULL,
+  persona                INT(30)          NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT CATEGORIA_REVENDEDORA FOREIGN KEY (categoria_revendedora)
   REFERENCES herramientas.categoria_revendedora (id),
@@ -159,14 +159,14 @@ CREATE TABLE herramientas.revendedora (
   DEFAULT CHARSET = utf8;
 #16
 CREATE TABLE herramientas.usuario (
-  id                          INT(30)     NOT NULL AUTO_INCREMENT,
-  revendedora                 INT(30)     NULL,
-  usuario                     VARCHAR(50) NOT NULL,
+  id                          INT(30)      NOT NULL AUTO_INCREMENT,
+  revendedora                 INT(30)      NULL,
+  usuario                     VARCHAR(50)  NOT NULL,
   clave                       VARCHAR(100) NOT NULL,
-  clave_activacion_codigo     VARCHAR(16) NULL,
-  clave_activacion_expiracion DATETIME    NULL,
-  perfil                      INT(30)     NOT NULL,
-  notificaciones_activas      BIT         NOT NULL DEFAULT 1,
+  clave_activacion_codigo     VARCHAR(16)  NULL,
+  clave_activacion_expiracion DATETIME     NULL,
+  perfil                      INT(30)      NOT NULL,
+  notificaciones_activas      BIT(1)       NOT NULL DEFAULT 1,
   PRIMARY KEY (id),
   CONSTRAINT FK_USUARIO_REVENDEDORA FOREIGN KEY (revendedora)
   REFERENCES revendedora (id),
@@ -305,9 +305,9 @@ CREATE TABLE herramientas.remito (
 #25
 CREATE TABLE herramientas.remito_producto (
   id                INT(30)        NOT NULL AUTO_INCREMENT,
-  remito            INT            NOT NULL,
-  producto_catalogo INT            NOT NULL,
-  cantidad          INT            NOT NULL,
+  remito            INT(30)        NOT NULL,
+  producto_catalogo INT(30)        NOT NULL,
+  cantidad          INT(30)        NOT NULL,
   precio_unitario   DECIMAL(13, 3) NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_REMITO_REMITO FOREIGN KEY (remito)
@@ -327,11 +327,13 @@ CREATE TABLE herramientas.parametro (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 #27
-  CREATE TABLE usuarios_tokens (
-  token VARCHAR(16) NOT NULL,
-  usuario INT(30) NOT NULL,
+CREATE TABLE herramientas.usuarios_tokens (
+  token      VARCHAR(16) NOT NULL,
+  usuario    INT(30)     NOT NULL,
   expiracion DATETIME DEFAULT NULL,
   PRIMARY KEY (token),
   KEY usuarios_tokens_expiracion_idx (expiracion)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 

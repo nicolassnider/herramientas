@@ -75,11 +75,35 @@ class PersonaRepository extends AbstractRepository
         return $persona;
     }
 
+    public function getByUsuario(string $usuario): ?Persona {
+        $sql = "SELECT p.*, u.id as usuario
+                FROM persona p
+                LEFT JOIN usuario u on p.id = u.persona
+                WHERE p.activo = '1' 
+                AND u.usuario=:usuario";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':usuario', $usuario);
+        $stmt->execute();
+        $result = $stmt->fetchObject();
+
+        $item = null;
+        if ($result != null) {
+            $item = $this->createFromResultset($result, ['*'], $this->db);
+        }
+
+        $this->disconnect();
+        return $item;
+    }
+
     public function get($id): ?Persona
     {
 
         return $item;
     }
+
+
 
 
 }

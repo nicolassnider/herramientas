@@ -3,6 +3,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require_once '../Service/PermisosService.php';
+require_once '../Commons/Slim/ValidatePermissionsMiddleware.php';
 
 class PermisosController {
     private $app;
