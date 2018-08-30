@@ -105,7 +105,7 @@ CREATE TABLE herramientas.persona (
   tipo_documento     INT(30)          NOT NULL,
   documento          VARCHAR(10)      NOT NULL,
   telefono           VARCHAR(11)      NOT NULL,
-  email              VARCHAR(15)      NULL,
+  email              VARCHAR(50)      NOT NULL,
   activo             BIT(1) DEFAULT 1 NOT NULL,
   localidad          INT(30)          NOT NULL,
   fecha_alta_persona DATE             NOT NULL,
@@ -148,18 +148,21 @@ CREATE TABLE herramientas.revendedora (
   categoria_revendedora  INT(30)          NOT NULL,
   fecha_alta_revendedora DATE             NOT NULL,
   activo               BIT(1) DEFAULT 1 NOT NULL,
+  persona               INT(30) NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT CATEGORIA_REVENDEDORA FOREIGN KEY (categoria_revendedora)
-  REFERENCES herramientas.categoria_revendedora (id)
+  REFERENCES herramientas.categoria_revendedora (id),
+  CONSTRAINT PERSONA_REVENDEDORA FOREIGN KEY (persona)
+  REFERENCES herramientas.persona (id)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 #16
 CREATE TABLE herramientas.usuario (
   id                          INT(30)     NOT NULL AUTO_INCREMENT,
-  revendedora                 INT(30)     NOT NULL,
+  revendedora                 INT(30)     NULL,
   usuario                     VARCHAR(50) NOT NULL,
-  clave                       VARCHAR(100),
+  clave                       VARCHAR(100) NOT NULL,
   clave_activacion_codigo     VARCHAR(16) NULL,
   clave_activacion_expiracion DATETIME    NULL,
   perfil                      INT(30)     NOT NULL,
@@ -323,5 +326,6 @@ CREATE TABLE herramientas.parametro (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+--INCLUYE CONSTRAINT PERSONA EN REVENDEDORA
 
 

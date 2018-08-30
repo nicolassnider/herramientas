@@ -140,7 +140,7 @@ class Persona implements JsonSerializable
     /**
      * @param mixed $fechaAltaPersona
      */
-    public function setFechaAltaPersona(?DateTime$fechaAltaPersona)
+    public function setFechaAltaPersona(?DateTime $fechaAltaPersona)
     {
         $this->fechaAltaPersona = $fechaAltaPersona;
     }
