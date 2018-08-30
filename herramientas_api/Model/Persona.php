@@ -15,6 +15,10 @@ class Persona implements JsonSerializable
     private $email;
     private $activo;
     private $localidad;
+    private $nombre;
+    private $nombreSegundo;
+    private $apellido;
+    private $apellidoSegundo;
     private $fechaAltaPersona;
 
     /**
@@ -132,6 +136,72 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre): void
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombreSegundo():?string
+    {
+        return $this->nombreSegundo;
+    }
+
+    /**
+     * @param mixed $nombreSegundo
+     */
+    public function setNombreSegundo(?string $nombreSegundo): void
+    {
+        $this->nombreSegundo = $nombreSegundo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getApellido():?string
+    {
+        return $this->apellido;
+    }
+
+    /**
+     * @param mixed $apellido
+     */
+    public function setApellido(?string $apellido): void
+    {
+        $this->apellido = $apellido;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getApellidoSegundo():?string
+    {
+        return $this->apellidoSegundo;
+    }
+
+    /**
+     * @param mixed $apellidoSegundo
+     */
+    public function setApellidoSegundo(?string $apellidoSegundo): void
+    {
+        $this->apellidoSegundo = $apellidoSegundo;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
     public function getFechaAltaPersona():?DateTime
     {
         return $this->fechaAltaPersona;
@@ -162,6 +232,10 @@ class Persona implements JsonSerializable
                 'descipcion' => $this->localidad->getDescipcion(),
                 'provincia'=>$this->localidad->getProvincia()
             ],
+            'nombre'=>$this->nombre,
+            'nombreSegundo'=>$this->nombreSegundo,
+            'apellido'=>$this->apellido,
+            'apellidoSegundo'=>$this->apellidoSegundo,
             'fechaAltaPersona'=>$this->fechaAltaPersona,
         ];
 

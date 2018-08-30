@@ -104,12 +104,15 @@ CREATE TABLE herramientas.persona (
   id                 INT(30)          NOT NULL AUTO_INCREMENT,
   tipo_documento     INT(30)          NOT NULL,
   documento          VARCHAR(10)      NOT NULL,
+  nombre             VARCHAR(50)      NOT NULL,
+  nombre_segundo     VARCHAR(50)      NULL,
+  apellido           VARCHAR(50)      NULL,
+  apellido_segundo   VARCHAR(50)      NULL,
   telefono           VARCHAR(11)      NOT NULL,
   email              VARCHAR(50)      NOT NULL,
   activo             BIT(1) DEFAULT 1 NOT NULL,
   localidad          INT(30)          NOT NULL,
   fecha_alta_persona DATE             NOT NULL,
-
   PRIMARY KEY (id),
   CONSTRAINT FK_TIPO_DOCUMENTO FOREIGN KEY (tipo_documento)
   REFERENCES herramientas.tipo_documento (id),
