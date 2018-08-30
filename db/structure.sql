@@ -326,6 +326,12 @@ CREATE TABLE herramientas.parametro (
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
---INCLUYE CONSTRAINT PERSONA EN REVENDEDORA
-
+#27
+  CREATE TABLE usuarios_tokens (
+  token VARCHAR(16) NOT NULL,
+  usuario INT(30) NOT NULL,
+  expiracion DATETIME DEFAULT NULL,
+  PRIMARY KEY (token),
+  KEY usuarios_tokens_expiracion_idx (expiracion)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
