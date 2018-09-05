@@ -105,6 +105,16 @@ require_once '../Controller/PersonaController.php';
 require_once '../Controller/PermisosController.php';;
 require_once '../Controller/TipoDocumentoController.php';
 require_once '../Controller/ParametroController.php';
+require_once '../Controller/PerfilesController.php';
+require_once '../Controller/LocalidadController.php';
+require_once '../Controller/ProvinciaController.php';
+require_once '../Controller/PaisController.php';
+require_once '../Controller/UsuarioController.php';
+require_once '../Controller/ParametroController.php';
+require_once '../Controller/CommonsController.php';
+require_once '../Controller/MockController.php';
+require_once '../Controller/WidgetController.php';
+
 
 
 (new AuthController($app))->init();
