@@ -267,7 +267,7 @@ class Persona implements JsonSerializable
             'activo'=>$this->activo,
             'localidad' => $this->localidad == null ? null : [
                 'id' => $this->localidad->getId(),
-                'descipcion' => $this->localidad->getDescipcion(),
+                'descipcion' => $this->localidad->getDescripcion(),
                 'provincia'=>$this->localidad->getProvincia()
             ],
             'nombre'=>$this->nombre,
@@ -279,7 +279,8 @@ class Persona implements JsonSerializable
             'usuario'=>$this->usuario==null?null:
                 [
                     'usuario'=>$this->usuario->getUsuario(),
-                    'perfil'=>$this->usuario->getPerfil()->getDescripion(),
+                    'perfil'=>$this->usuario->getPerfil()->getDescripcion(),
+                    'token'=>$this->usuario->getToken(),
                 ]
 
 

@@ -10,6 +10,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require_once '../Service/TipoDocumentoService.php';
 require_once '../Model/TipoDocumento.php';
+require_once '../Model/Select/SelectOption.php';
 
 class TipoDocumentoController {
     private $app;
@@ -20,11 +21,11 @@ class TipoDocumentoController {
 
     public function init() {
         $this->app->group('/api', function () {
-            $this->group('/tipos-documento/select', function () {
+            $this->group('/tipo-documento/select', function () {
                 $this->get('', function (Request $request, Response $response) {
                     $items = (new TipoDocumentoService())->getAllSorted();
                     array_walk($items, function(&$item) {
-                        $item = new SelectOption($item->getId(), $item->getNombre());
+                        $item = new SelectOption($item->getId(), $item->getDescripcion());
                     });
                     return $response->withJson($items, 200);
                 });

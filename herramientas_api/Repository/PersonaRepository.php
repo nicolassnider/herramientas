@@ -98,6 +98,38 @@ WHERE per.activo=1 and usu.usuario=:usuario";
         return $item;
     }
 
+    public function getByToken(string $token): ?Persona {
+        $sql = "SELECT per.*, ust.usuario, ust.expiracion as expiracion
+                FROM usuarios_tokens ust
+                LEFT JOIN usuario usu ON ust.usuario = usu.id
+                LEFT JOIN revendedora rev ON usu.revendedora = rev.id
+                LEFT JOIN persona per on rev.persona = per.id
+                WHERE ust.expiracion >= :currentDatetime
+                and per.activo = '1'
+                and per.es_usuario = '1'
+                and per.fecha_baja_persona is null
+                AND ust.token = :token";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $currentDatetime = (new DateTime())->format('Y-m-d H:i:s');
+        $stmt->bindParam(':currentDatetime', $currentDatetime);
+        $stmt->bindParam(':token', $token);
+        $stmt->execute();
+        $result = $stmt->fetchObject();
+
+        $item = null;
+        if ($result != null) {
+            $item = $this->createFromResultset($result, ['usuario'], $this->db);
+            $item->getUsuario()->setToken($token);
+            $tokenExpire = $result->expiracion;
+            $item->getUsuario()->setTokenExpire($tokenExpire);
+        }
+
+        $this->disconnect();
+        return $item;
+    }
+
     public function get($id): ?Persona
     {
 
