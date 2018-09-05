@@ -47,7 +47,7 @@ class PaisRepository extends AbstractRepository {
 
         $item = new Pais();
         $item->setId((int)$result->id);
-        $item->setDescripcion($result->nombre);
+        $item->setDescripcion($result->descripcion);
 
         $this->disconnect();
         return $item;

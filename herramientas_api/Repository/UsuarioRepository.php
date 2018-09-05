@@ -6,7 +6,7 @@ require_once '../Repository/PerfilRepository.php';
 
 class UsuarioRepository extends AbstractRepository {
     public function get($id) {
-        $sql = "SELECT * FROM usuarios WHERE id=:id";
+        $sql = "SELECT * FROM usuario WHERE id=:id";
         $db = $this->connect();
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':id', $id);
@@ -20,9 +20,7 @@ class UsuarioRepository extends AbstractRepository {
             $item->setUsuario($result->usuario);
             $item->setClave($result->clave);
             $item->setNotificacionesActivas($result->notificaciones_activas);
-            $item->setMovil(null);
-            $item->setGerenciador(null);
-            $item->setPerfil((new PerfilesRepository($this->db))->get($result->perfil));
+            $item->setPerfil((new PerfilRepository($this->db))->get($result->perfil));
         }
 
         $this->disconnect();

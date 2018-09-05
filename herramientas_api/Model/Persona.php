@@ -20,6 +20,44 @@ class Persona implements JsonSerializable
     private $apellido;
     private $apellidoSegundo;
     private $fechaAltaPersona;
+    private $esUsuario;
+    private $usuario;
+
+    /**
+     * @return mixed
+     */
+    public function getEsUsuario()
+    {
+        return $this->esUsuario;
+    }
+
+    /**
+     * @param mixed $esUsuario
+     */
+    public function setEsUsuario($esUsuario): void
+    {
+        $this->esUsuario = $esUsuario;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getUsuario():?Usuario
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param mixed $usuario
+     */
+    public function setUsuario(?Usuario $usuario): void
+    {
+        $this->usuario = $usuario;
+    }
+
+
 
     /**
      * @return mixed
@@ -237,6 +275,14 @@ class Persona implements JsonSerializable
             'apellido'=>$this->apellido,
             'apellidoSegundo'=>$this->apellidoSegundo,
             'fechaAltaPersona'=>$this->fechaAltaPersona,
+
+            'usuario'=>$this->usuario==null?null:
+                [
+                    'usuario'=>$this->usuario->getUsuario(),
+                    'perfil'=>$this->usuario->getPerfil()->getDescripion(),
+                ]
+
+
         ];
 
     }

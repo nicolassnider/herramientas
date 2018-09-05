@@ -117,7 +117,7 @@ WHERE per.activo=1 and usu.usuario=:usuario";
         $item = new Persona();
         $item->setId((int)$result->id);
         $item->setDocumento($result->documento);
-        $item->setTelefono($result->telefono_codigo_area);
+        $item->setTelefono($result->telefono);
         $item->setEmail($result->email);
         $item->setActivo((bool)$result->activo);
         $item->setFechaAltaPersona( new DateTime ($result->fecha_alta_persona));
@@ -125,11 +125,15 @@ WHERE per.activo=1 and usu.usuario=:usuario";
         $item->setNombreSegundo($result->nombre_segundo);
         $item->setApellido($result->apellido);
         $item->setApellidoSegundo($result->apellido_segundo);
+        $item->setEsUsuario($result->es_usuario);
+
 
         if (in_array('*', $fields) || in_array('documentoTipo', $fields))
             $item->setTipoDocumento((new TipoDocumentoRepository($db))->get($result->tipo_documento));
         if (in_array('*', $fields) || in_array('localidad', $fields))
             $item->setLocalidad((new LocalidadRepository($db))->get($result->localidad));
+        if ((in_array('*', $fields) || in_array('usuario', $fields)) && $item->getEsUsuario())
+            $item->setUsuario((new UsuarioRepository($db))->get($result->usuario));
         return $item;
     }
 

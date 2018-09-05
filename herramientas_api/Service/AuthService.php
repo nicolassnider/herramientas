@@ -20,6 +20,7 @@ class AuthService {
 
     public function authenticate(string $usuario, string $clave): ?Persona {
         $persona = $this->personasRepository->getByUsuario($usuario);
+        die(print_r($persona));
         if($persona != null && $persona->getEsUsuario() && $persona->getUsuario() != null) {
             if($persona->getUsuario()->getClave() == $clave) {
                 $token = bin2hex(openssl_random_pseudo_bytes(8));

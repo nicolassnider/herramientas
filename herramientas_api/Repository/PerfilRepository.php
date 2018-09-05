@@ -6,7 +6,7 @@ require_once '../Commons/Exceptions/BadRequestException.php';
 class PerfilRepository  extends AbstractRepository {
     public function getAll(): array {
         $sql = "SELECT *
-                FROM perfiles p
+                FROM perfil p
                 LEFT JOIN perfil_permisos pp
                 ON p.id = pp.perfil
                 ORDER BY p.nombre ASC";
@@ -26,7 +26,7 @@ class PerfilRepository  extends AbstractRepository {
                 $permisos = array();
                 $perfil = new Perfil();
                 $perfil->setId((int)$item->id);
-                $perfil->setNombre($item->nombre);
+                $perfil->setDescripcion($item->nombre);
                 array_push($perfiles, $perfil);
             }
             if ($item->permiso != null) array_push($permisos, $item->permiso);
@@ -41,8 +41,8 @@ class PerfilRepository  extends AbstractRepository {
 
     public function getAllByPermiso($permiso):array {
         $sql = "SELECT *
-                FROM perfiles p
-                LEFT JOIN perfil_permisos pp
+                FROM perfil p
+                LEFT JOIN perfil_permiso pp
                 ON p.id = pp.perfil
                 where pp.permiso like '$permiso'
                 ORDER BY p.nombre ASC";
@@ -63,7 +63,7 @@ class PerfilRepository  extends AbstractRepository {
                 $permisos = array();
                 $perfil = new Perfil();
                 $perfil->setId((int)$item->perfil);
-                $perfil->setNombre($item->nombre);
+                $perfil->setDescripcion($item->nombre);
                 array_push($perfiles, $perfil);
             }
 
@@ -80,8 +80,8 @@ class PerfilRepository  extends AbstractRepository {
 
     public function get($id): ?Perfil {
         $sql = "SELECT *
-                FROM perfiles p
-                LEFT JOIN perfil_permisos pp
+                FROM perfil p
+                LEFT JOIN perfil_permiso pp
                 ON p.id = pp.perfil
                 WHERE p.id=:id";
 
@@ -104,7 +104,7 @@ class PerfilRepository  extends AbstractRepository {
                 $permisos = array();
                 $perfil = new Perfil();
                 $perfil->setId((int)$item->id);
-                $perfil->setNombre($item->nombre);
+                $perfil->setDescripcion($item->descripcion);
             }
             if ($item->permiso != null) array_push($permisos, $item->permiso);
             $perfil->setPermisos($permisos);
@@ -117,20 +117,20 @@ class PerfilRepository  extends AbstractRepository {
     public function create(Perfil $perfil): Perfil {
         $db = null;
         $stmt = null;
-        $nombre = $perfil->getNombre();
+        $descripcion = $perfil->getDescripcion();
         try {
             $db = $this->connect();
             $db->beginTransaction();
 
-            $sql = "INSERT INTO perfiles (nombre) 
-                    VALUES (:nombre)";
+            $sql = "INSERT INTO perfil (descripcion) 
+                    VALUES (:descripcion)";
 
             $stmt = $db->prepare($sql);
-            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':descripcion', $descripcion);
             $stmt->execute();
             $perfil->setId((int)$db->lastInsertId());
 
-            $sql = "INSERT INTO perfil_permisos (perfil,permiso) 
+            $sql = "INSERT INTO perfil_permiso (perfil,permiso) 
                     VALUES (:perfil,:permiso)";
 
             $stmt = $db->prepare($sql);
@@ -148,7 +148,7 @@ class PerfilRepository  extends AbstractRepository {
         } catch (Exception $e) {
             if ($db != null) $db->rollback();
             if($e instanceof PDOException && $stmt->errorInfo()[0] == 23000 && $stmt->errorInfo()[1] == 1062) {
-                throw new BadRequestException("Ya existe un perfil con el nombre " . $nombre . ".");
+                throw new BadRequestException("Ya existe un perfil con la descripcion " . $descripcion . ".");
             } else {
                 throw $e;
             }
@@ -165,28 +165,28 @@ class PerfilRepository  extends AbstractRepository {
         $stmt = null;
 
         $id = $perfil->getId();
-        $nombre = $perfil->getNombre();
+        $descripcion = $perfil->getDescripcion();
         try {
             $db = $this->connect();
             $db->beginTransaction();
 
-            $sql = "UPDATE perfiles 
-                    SET nombre=:nombre 
+            $sql = "UPDATE perfil
+                    SET descripcion=:descripcion 
                     WHERE id=:id";
 
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':descripcion', $descripcion);
             $stmt->execute();
 
-            $sql = "DELETE FROM perfil_permisos
+            $sql = "DELETE FROM perfil_permiso
                     WHERE perfil=:perfil";
 
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':perfil', $id);
             $stmt->execute();
 
-            $sql = "INSERT INTO perfil_permisos (perfil,permiso) 
+            $sql = "INSERT INTO perfil_permiso (perfil,permiso) 
                     VALUES (:perfil,:permiso)";
 
             $stmt = $db->prepare($sql);
@@ -203,7 +203,7 @@ class PerfilRepository  extends AbstractRepository {
         } catch (Exception $e) {
             if ($db != null) $db->rollback();
             if($e instanceof PDOException && $stmt->errorInfo()[0] == 23000 && $stmt->errorInfo()[1] == 1062) {
-                throw new BadRequestException("Ya existe un perfil con el nombre " . $nombre . ".");
+                throw new BadRequestException("Ya existe un perfil con la descripcion " . $descripcion . ".");
             } else {
                 throw $e;
             }
@@ -221,14 +221,14 @@ class PerfilRepository  extends AbstractRepository {
             $db = $this->connect();
             $db->beginTransaction();
 
-            $sql = "DELETE FROM perfil_permisos
+            $sql = "DELETE FROM perfil_permiso
                         WHERE perfil=:perfil";
 
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':perfil', $id);
             $stmt->execute();
 
-            $sql = "DELETE FROM perfiles 
+            $sql = "DELETE FROM perfil
                     WHERE id=:id";
 
             $stmt = $db->prepare($sql);

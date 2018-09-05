@@ -2,7 +2,7 @@
 
 class Perfil implements JsonSerializable {
     private $id;
-    private $nombre;
+    private $descripcion;
     private $permisos = [];
 
     public function getId(): ?int {
@@ -13,12 +13,12 @@ class Perfil implements JsonSerializable {
         $this->id = $id;
     }
 
-    public function getNombre(): string {
-        return $this->nombre;
+    public function getDescripcion(): string {
+        return $this->descripcion;
     }
 
-    public function setNombre(string $nombre) {
-        $this->nombre = $nombre;
+    public function setDescripcion(string $descripcion) {
+        $this->descripcion = $descripcion;
     }
 
     public function getPermisos(): array {
@@ -33,7 +33,7 @@ class Perfil implements JsonSerializable {
         return
             [
                 'id' => $this->id,
-                'nombre' => $this->nombre,
+                'descripcion' => $this->descripcion,
                 'permisos' => $this->permisos
             ];
     }

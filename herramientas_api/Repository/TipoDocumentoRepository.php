@@ -23,7 +23,7 @@ class TipoDocumentoRepository extends AbstractRepository {
         foreach ($items as $item) {
             $tipoDocumento = new TipoDocumento();
             $tipoDocumento->setId($item->id);
-            $tipoDocumento->setNombre($item->nombre);
+            $tipoDocumento->setDescripcion($item->descripcion);
             array_push($tiposDocumento, $tipoDocumento);
         }
 
@@ -43,7 +43,7 @@ class TipoDocumentoRepository extends AbstractRepository {
         if($result != null) {
             $item = new TipoDocumento();
             $item->setId((int)$result->id);
-            $item->setDescripcion($result->nombre);
+            $item->setDescripcion($result->descripcion);
         }
 
         $this->disconnect();
