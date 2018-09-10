@@ -114,7 +114,7 @@ CREATE TABLE herramientas.persona (
   localidad          INT(30)          NOT NULL,
   fecha_alta_persona DATE             NOT NULL,
   fecha_baja_persona DATE             NULL,
-  es_usuario         BIT(1) DEFAULT 0 NULL,
+  es_usuario         BIT(1) DEFAULT 0 NOT NULL,
 
   PRIMARY KEY (id),
   CONSTRAINT FK_TIPO_DOCUMENTO FOREIGN KEY (tipo_documento)

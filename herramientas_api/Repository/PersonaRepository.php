@@ -10,62 +10,94 @@ require_once '../Repository/AbstractRepository.php';
 require_once '../Repository/LocalidadRepository.php';
 
 
-
 class PersonaRepository extends AbstractRepository
 {
 
     public function create(Persona $persona)
     {
+        $db = $this->connect();
+        $transaction = false;
+
+        if (!$db->inTransaction()) {
+            $db->beginTransaction();
+            $transaction = true;
+        }
 
         try {
-            $tipoDocumento=$persona->getTipoDocumento();
-            $documento=$persona->getDocumento();
-            $telefono=$persona->getTelefono();
-            $email=$persona->getEmail();
-            $activo=$persona->getActivo();
-            $localidad=$persona->getLocalidad();
-            $fechaAltaPersona=date('Y-m-d H:i:s');
-
-            $sqlInsert = "INSERT INTO persona(
-                  tipo_documento, 
-                  documento, 
-                  telefono, 
-                  email, 
-                  activo, 
-                  localidad, 
-                  fecha_alta_persona) 
+            $sqlCreatePersona = "INSERT INTO persona(
+            tipo_documento,
+            documento,
+            nombre,
+            nombre_segundo,
+            apellido,
+            apellido_segundo,
+            telefono,
+            email,
+            activo,
+            localidad,
+            es_usuario,
+            fecha_alta_persona) 
                         VALUES (
-                  :tipo_documento, 
-                  :documento, 
-                  :telefono, 
-                  :email, 
-                  :activo, 
-                  :localidad, 
-                  :fecha_alta_persona
+            :tipo_documento,
+            :documento,
+            :nombre,
+            :nombre_segundo,
+            :apellido,
+            :apellido_segundo,
+            :telefono,
+            :email,
+            :activo,
+            :localidad,
+            :es_usuario,
+            :fecha_alta_persona
                         )";
 
+            $tipoDocumento = $persona->getTipoDocumento()!=null?$persona->getTipoDocumento()->getId():null;
+            $documento = $persona->getDocumento();
+            $nombre = $persona->getNombre();
+            $nombreSegundo = $persona->getNombreSegundo();
+            $apellido = $persona->getApellido();
+            $apellidoSegundo = $persona->getApellidoSegundo();
+            $telefono = $persona->getTelefono();
+            $email = $persona->getEmail();
+            $activo = $persona->getActivo();
+            $localidad = $persona->getLocalidad()!=null?$persona->getLocalidad()->getId():null;
+            $esUsuario = $persona->getEsUsuario();
+            $fechaAltaPersona = date('Y-m-d H:i:s');
 
             //prepara inserción base de datos
-            $db = $this->connect();
-            $db->beginTransaction();
-            $stmtInsert = $db->prepare($sqlInsert);
-            $stmtInsert->bindParam(':tipo_documento', $tipoDocumento,PDO::PARAM_INT);
-            $stmtInsert->bindParam(':documento',$documento);
-            $stmtInsert->bindParam(':telefono', $telefono);
-            $stmtInsert->bindParam(':email', $email);
-            $stmtInsert->bindParam(':activo', $activo);
-            $stmtInsert->bindParam(':localidad', $localidad,PDO::PARAM_INT);
-            $stmtInsert->bindParam(':fecha_alta_persona', $fechaAltaPersona);
-            $stmtInsert->execute();
+            $stmtCreatePersona = $db->prepare($sqlCreatePersona);
+            $stmtCreatePersona->bindParam(':tipo_documento', $tipoDocumento, PDO::PARAM_INT);
+            $stmtCreatePersona->bindParam(':documento', $documento);
+            $stmtCreatePersona->bindParam(':nombre', $nombre);
+            $stmtCreatePersona->bindParam(':nombre_segundo', $nombreSegundo);
+            $stmtCreatePersona->bindParam(':apellido', $apellidoSegundo);
+            $stmtCreatePersona->bindParam(':telefono', $telefono);
+            $stmtCreatePersona->bindParam(':email', $email);
+            $stmtCreatePersona->bindParam(':activo', $activo,PDO::PARAM_BOOL);
+            $stmtCreatePersona->bindParam(':localidad', $localidad, PDO::PARAM_INT);
+            $stmtCreatePersona->bindParam(':es_usuario',$esUsuario,PDO::PARAM_BOOL)
+            $stmtCreatePersona->bindParam(':fecha_alta_persona', $fechaAltaPersona);
+            $stmtCreatePersona->execute();
             $persona->setId($db->lastInsertId());
-            $db->commit();
-
+            if($transaction) $db->commit();
 
 
         } catch (Exception $e) {
-            if ($db != null) $db->rollback();
-            if ($e instanceof PDOException && $stmtInsert->errorInfo()[0] == 23000 && $stmtInsert->errorInfo()[1] == 1062) {
-                if ($db != null) $db->rollback();
+            if ($db != null && $transaction) $db->rollback();
+            if ($e instanceof PDOException && $stmtCreatePersona->errorInfo()[0] == 23000 && $stmtCreatePersona->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmtCreatePersona->errorInfo()[2]);
+                switch ($array[3]) {
+                    case 'legajo_unico':
+                        throw new BadRequestException("El legajo " . $array[1] . " ya existe.");
+                        break;
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException($nombreDocumento . ": " . $array2[1] . " ya existe");
+                        break;
+                }
             } else {
                 throw $e;
             }
@@ -77,7 +109,8 @@ class PersonaRepository extends AbstractRepository
         return $persona;
     }
 
-    public function getByUsuario(string $usuario): ?Persona {
+    public function getByUsuario(string $usuario): ?Persona
+    {
         $sql = "SELECT per.*, usu.id as usuario FROM persona per 
 INNER JOIN revendedora rev on per.id= rev.persona
 INNER JOIN usuario usu on usu.revendedora=rev.id
@@ -98,7 +131,8 @@ WHERE per.activo=1 and usu.usuario=:usuario";
         return $item;
     }
 
-    public function getByToken(string $token): ?Persona {
+    public function getByToken(string $token): ?Persona
+    {
         $sql = "SELECT per.*, ust.usuario, ust.expiracion as expiracion
                 FROM usuarios_tokens ust
                 LEFT JOIN usuario usu ON ust.usuario = usu.id
@@ -145,14 +179,15 @@ WHERE per.activo=1 and usu.usuario=:usuario";
      *          Si se quieren obtener todas las entidades relacionadas se debe enviar ['*'].
      *  $db: Conexión a la base de datos.
      */
-    private function createFromResultset($result, array $fields, $db) {
+    private function createFromResultset($result, array $fields, $db)
+    {
         $item = new Persona();
         $item->setId((int)$result->id);
         $item->setDocumento($result->documento);
         $item->setTelefono($result->telefono);
         $item->setEmail($result->email);
         $item->setActivo((bool)$result->activo);
-        $item->setFechaAltaPersona( new DateTime ($result->fecha_alta_persona));
+        $item->setFechaAltaPersona(new DateTime ($result->fecha_alta_persona));
         $item->setNombre($result->nombre);
         $item->setNombreSegundo($result->nombre_segundo);
         $item->setApellido($result->apellido);
@@ -168,8 +203,6 @@ WHERE per.activo=1 and usu.usuario=:usuario";
             $item->setUsuario((new UsuarioRepository($db))->get($result->usuario));
         return $item;
     }
-
-
 
 
 }

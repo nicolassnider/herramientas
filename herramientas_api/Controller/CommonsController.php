@@ -2,7 +2,7 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-require_once '../Commons/Config/ConfigBusiness.php';
+//require_once '../Commons/Config/ConfigBusiness.php';
 
 class CommonsController {
     private $app;
