@@ -28,7 +28,7 @@ class UsuarioRepository extends AbstractRepository {
     }
 
     public function buscar($id) {
-        $consulta = "SELECT * FROM usuarios WHERE persona=:id";
+        $consulta = "SELECT * FROM usuario WHERE persona=:id";
         $db = $this->connect();
         $stmt = $db->prepare($consulta);
         $stmt->bindParam(':id', $id);
@@ -58,7 +58,7 @@ class UsuarioRepository extends AbstractRepository {
 
     public function delete($id){
 
-        $consulta = "DELETE FROM usuarios WHERE persona=:id";
+        $consulta = "DELETE FROM usuario WHERE persona=:id";
 
         $db = new Db();
         $db = $db->connect();
@@ -70,7 +70,7 @@ class UsuarioRepository extends AbstractRepository {
 
     public function create(int $id, Usuario $usuario): Usuario {
         try {
-            $consulta = "INSERT INTO usuarios (
+            $consulta = "INSERT INTO usuario (
                 persona,
                 usuario,
                 clave_activacion_codigo,
@@ -130,7 +130,7 @@ class UsuarioRepository extends AbstractRepository {
     public function update($id, $usuario){
 
         try{
-            $consulta = "UPDATE usuarios SET usuario=:usuario, perfil=:perfil, notificaciones_activas=:notificacionesActivas, movil=:movil, gerenciador=:gerenciador WHERE persona=:persona";
+            $consulta = "UPDATE usuario SET usuario=:usuario, perfil=:perfil, notificaciones_activas=:notificacionesActivas, movil=:movil, gerenciador=:gerenciador WHERE persona=:persona";
 
             $db = new Db();
             $db = $db->connect();
@@ -170,7 +170,7 @@ class UsuarioRepository extends AbstractRepository {
     public function getByToken(string $token): ?Usuario {
         $sql = "SELECT u.*, ut.token, ut.expiracion
                 FROM usuarios_tokens ut
-                LEFT JOIN usuarios u ON ut.usuario = u.id
+                LEFT JOIN usuario u ON ut.usuario = u.id
                 WHERE ut.token = :token";
 
         $db = $this->connect();
@@ -186,8 +186,6 @@ class UsuarioRepository extends AbstractRepository {
             $item->setUsuario($result->usuario);
             $item->setClave($result->clave);
             $item->setNotificacionesActivas($result->notificaciones_activas);
-            $item->setMovil(null);
-            $item->setGerenciador(null);
             $item->setToken($result->token);
             $item->setTokenExpire($result->expiracion);
             $item->setPerfil((new PerfilesRepository())->get($result->perfil));

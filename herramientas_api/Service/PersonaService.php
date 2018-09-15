@@ -23,10 +23,26 @@ class PersonaService
         return $this->repository->get($idPersona);
     }
 
+    public function getAll(): Array
+    {
+        return $this->repository->getAll();
+    }
+
+    public function getAllActiveSorted(): Array {
+        return $this->repository->getAllActiveSorted();
+    }
+
+
     public function create(Persona $persona): Persona
     {
 
-        return $this->repository->create($idPersona);
+        return $this->repository->create($persona);
+    }
+
+    public function grid(DataTablesResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
+    {
+
+        return $this->repository->grid($dataTablesResponse, $dataTableRequest);
     }
 }
 

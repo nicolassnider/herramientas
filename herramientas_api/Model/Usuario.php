@@ -136,14 +136,19 @@ class Usuario implements JsonSerializable
 
     public function jsonSerialize(): Array
     {
-        return [
-            'id' => $this->id,
-            'usuario' => $this->usuario,
-            'perfil' => $this->perfil,
-            'notificacionesActivas' => $this->notificacionesActivas,
-            'activo' => $this->activo,
-            'token' => $this->token,
-            'tokenExpire' => $this->tokenExpire
-        ];
+        $array = Array();
+        if(isset($this->id)) $array['id'] = $this->id;
+        if(isset($this->revendedora)) $array['revendedora'] = $this->revendedora;
+        if(isset($this->usuario)) $array['usuario'] = $this->usuario;
+        if(isset($this->clave)) $array['clave'] = $this->clave;
+        if(isset($this->claveActivacionCodigo)) $array['claveActivacionCodigo'] = $this->claveActivacionCodigo;
+        if(isset($this->claveActivacionExpiracion)) $array['claveActivacionExpiracion'] = $this->claveActivacionExpiracion;
+        if(isset($this->perfil)) $array['perfil'] = $this->perfil;
+        if(isset($this->notificacionesActivas)) $array['notificacionesActivas'] = $this->notificacionesActivas;
+        if(isset($this->id)) $array['id'] = $this->id;
+        if(isset($this->id)) $array['id'] = $this->id;
+        if(isset($this->id)) $array['id'] = $this->id;
+
+        return $array;
     }
 }

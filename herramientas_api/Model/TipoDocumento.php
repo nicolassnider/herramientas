@@ -12,7 +12,7 @@ class TipoDocumento implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId():?int
     {
         return $this->id;
     }
@@ -20,7 +20,7 @@ class TipoDocumento implements JsonSerializable
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
@@ -28,7 +28,7 @@ class TipoDocumento implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getDescripcion()
+    public function getDescripcion():?string
     {
         return $this->descripcion;
     }
@@ -36,18 +36,17 @@ class TipoDocumento implements JsonSerializable
     /**
      * @param mixed $descripcion
      */
-    public function setDescripcion($descripcion)
+    public function setDescripcion(?string $descripcion)
     {
         $this->descripcion = $descripcion;
     }
 
     public function jsonSerialize()
     {
-        return
-            [
-                'id' => $this->id,
-                'descripcion' => $this->descripcion
-            ];
+        $array=Array();
+        if(isset($this->id)) $array['id'] = $this->id;
+        if(isset($this->descripcion)) $array['descripcion'] = $this->descripcion;
+        return $array;
 
     }
 

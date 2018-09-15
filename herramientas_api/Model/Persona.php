@@ -26,7 +26,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getEsUsuario()
+    public function getEsUsuario() :?bool
     {
         return $this->esUsuario;
     }
@@ -34,17 +34,16 @@ class Persona implements JsonSerializable
     /**
      * @param mixed $esUsuario
      */
-    public function setEsUsuario($esUsuario): void
+    public function setEsUsuario(?bool $esUsuario): void
     {
         $this->esUsuario = $esUsuario;
     }
 
 
-
     /**
      * @return mixed
      */
-    public function getUsuario():?Usuario
+    public function getUsuario(): ?Usuario
     {
         return $this->usuario;
     }
@@ -57,12 +56,10 @@ class Persona implements JsonSerializable
         $this->usuario = $usuario;
     }
 
-
-
     /**
      * @return mixed
      */
-    public function getId():?int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -78,7 +75,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getTipoDocumento():?TipoDocumento
+    public function getTipoDocumento(): ?TipoDocumento
     {
         return $this->tipoDocumento;
     }
@@ -94,7 +91,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getDocumento():?string
+    public function getDocumento(): ?string
     {
         return $this->documento;
     }
@@ -110,7 +107,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getTelefono():?string
+    public function getTelefono(): ?string
     {
         return $this->telefono;
     }
@@ -126,7 +123,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getEmail():?string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -142,7 +139,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getActivo():?bool
+    public function getActivo(): ?bool
     {
         return $this->activo;
     }
@@ -158,7 +155,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getLocalidad():?Localidad
+    public function getLocalidad(): ?Localidad
     {
         return $this->localidad;
     }
@@ -190,7 +187,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getNombreSegundo():?string
+    public function getNombreSegundo(): ?string
     {
         return $this->nombreSegundo;
     }
@@ -206,7 +203,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getApellido():?string
+    public function getApellido(): ?string
     {
         return $this->apellido;
     }
@@ -222,7 +219,7 @@ class Persona implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getApellidoSegundo():?string
+    public function getApellidoSegundo(): ?string
     {
         return $this->apellidoSegundo;
     }
@@ -235,12 +232,10 @@ class Persona implements JsonSerializable
         $this->apellidoSegundo = $apellidoSegundo;
     }
 
-
-
     /**
      * @return mixed
      */
-    public function getFechaAltaPersona():?DateTime
+    public function getFechaAltaPersona(): ?DateTime
     {
         return $this->fechaAltaPersona;
     }
@@ -254,37 +249,26 @@ class Persona implements JsonSerializable
     }
 
 
-
     public function jsonSerialize()
     {
-        return
-        [
-            'id'=>$this->id,
-            'tipoDocumento'=>$this->tipoDocumento,
-            'documento'=>$this->documento,
-            'telefono'=>$this->telefono,
-            'email'=>$this->email,
-            'activo'=>$this->activo,
-            'localidad' => $this->localidad == null ? null : [
-                'id' => $this->localidad->getId(),
-                'descipcion' => $this->localidad->getDescripcion(),
-                'provincia'=>$this->localidad->getProvincia()
-            ],
-            'nombre'=>$this->nombre,
-            'nombreSegundo'=>$this->nombreSegundo,
-            'apellido'=>$this->apellido,
-            'apellidoSegundo'=>$this->apellidoSegundo,
-            'fechaAltaPersona'=>$this->fechaAltaPersona,
+        $array = Array();
+        if(isset($this->id)) $array['id'] = $this->id;
+        if(isset($this->tipoDocumento)) $array['tipoDocumento'] = $this->tipoDocumento;
+        if(isset($this->documento)) $array['documento'] = $this->documento;
+        if(isset($this->nombre)) $array['nombre'] = $this->nombre;
+        if(isset($this->nombreSegundo)) $array['nombreSegundo'] = $this->nombreSegundo;
+        if(isset($this->apellido)) $array['apellido'] = $this->apellido;
+        if(isset($this->apellidoSegundo)) $array['apellidoSegundo'] = $this->apellidoSegundo;
+        if(isset($this->telefono)) $array['telefono'] = $this->telefono;
+        if(isset($this->email)) $array['email'] = $this->email;
+        if(isset($this->activo)) $array['activo'] = $this->activo;
+        if(isset($this->localidad)) $array['localidad'] = $this->localidad;
+        if(isset($this->fechaAltaPersona)) $array['fechaAltaPersona'] = $this->fechaAltaPersona;
+        if(isset($this->esUsuario)) $array['esUsuario'] = $this->esUsuario;
+        if(isset($this->fechaBajaPersona)) $array['fechaAltaPersona'] = $this->fechaBajaPersona;
+        if(isset($this->usuario)) $array['usuario'] = $this->usuario;
+        return $array;
 
-            'usuario'=>$this->usuario==null?null:
-                [
-                    'usuario'=>$this->usuario->getUsuario(),
-                    'perfil'=>$this->usuario->getPerfil()->getDescripcion(),
-                    'token'=>$this->usuario->getToken(),
-                ]
-
-
-        ];
 
     }
 }
