@@ -2,19 +2,188 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f2446b9-8818-4249-a8f3-ce3293d6607b" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ec60c5e-7bb4-48a3-b2c8-e74031c9ee3a.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7a7a06df-07af-4835-b760-687b6718738c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7a7a06df-07af-4835-b760-687b6718738c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a440792c-3e77-4779-9f96-4e49c8436e10.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Service/PersonaService.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Service/PersonaService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Controller/MockController.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Controller/MockController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Controller/PersonaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Controller/PersonaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Model/Campania.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Model/Campania.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Model/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Model/Usuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Public/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Public/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/CONTRIBUTING.md" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/CONTRIBUTING.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/LICENSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/LICENSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Age.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/AllOf.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Alnum.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Alpha.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/AlwaysInvalid.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/AlwaysValid.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/ArrayType.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/ArrayVal.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Attribute.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Bank.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/BankAccount.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Between.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Bic.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/BoolType.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/BoolVal.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Bsn.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/CONCRETE_API.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Call.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/CallableType.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Callback.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Charset.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Cnh.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Cnpj.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Cntrl.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Consonant.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Contains.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Countable.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/CountryCode.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Cpf.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/CreditCard.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/CurrencyCode.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Date.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Digit.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Directory.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Domain.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Each.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Email.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/EndsWith.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Equals.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Even.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Executable.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Exists.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Extension.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Factor.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/FalseVal.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Fibonacci.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/File.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/FilterVar.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Finite.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/FloatType.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/FloatVal.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Graph.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/HexRgbColor.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/INSTALL.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Identical.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/IdentityCard.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Image.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Imei.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/In.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Infinite.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Instance.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/IntType.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/IntVal.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Ip.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Iterable.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/IterableType.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Json.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Key.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/KeyNested.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/KeySet.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/KeyValue.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/LanguageCode.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/LeapDate.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/LeapYear.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Length.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Lowercase.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/MacAddress.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Max.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Mimetype.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Min.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/MinimumAge.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Multiple.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Negative.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/NfeAccessKey.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/No.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/NoWhitespace.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/NoneOf.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Not.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/NotBlank.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/NotEmpty.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/NotOptional.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/NullType.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Numeric.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/ObjectType.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Odd.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/OneOf.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Optional.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/PerfectSquare.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Pesel.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Phone.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/PhpLabel.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Positive.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/PostalCode.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/PrimeNumber.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Prnt.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Punct.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Readable.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Regex.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/ResourceType.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Roman.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/ScalarVal.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Sf.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Size.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Slug.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Space.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/StartsWith.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/StringType.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/SubdivisionCode.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/SymbolicLink.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Tld.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/TrueVal.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Type.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Uploaded.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Uppercase.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Url.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/VALIDATORS.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Version.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/VideoUrl.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Vowel.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/When.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Writable.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Xdigit.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Yes.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/docs/Zend.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/library/Rules/Date.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/library/Rules/Date.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/library/Rules/IntVal.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/library/Rules/IntVal.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/library/Rules/PostalCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/library/Rules/PostalCode.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/library/Rules/Tld.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/library/Rules/Tld.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/tests/unit/Rules/DateTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/tests/unit/Rules/DateTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/tests/unit/Rules/IntValTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/tests/unit/Rules/IntValTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/tests/unit/Rules/PostalCodeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/respect/validation/tests/unit/Rules/PostalCodeTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/Mbstring.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/Mbstring.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/Resources/unidata/lowerCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/Resources/unidata/lowerCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/Resources/unidata/upperCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/Resources/unidata/upperCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/bootstrap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/public/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/herramientas_api/composer.json</pharConfigPath>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="DONT_SYNCHRONIZE">
+    <pharConfigPath>C:\xampp\htdocs\herramientas\herramientas_api\composer.json</pharConfigPath>
+    <executablePath>composer</executablePath>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -48,78 +217,145 @@
         <item name="herramientas@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="herramientas: schema" type="c314c289:MysqlImplModel$Schema" />
-        <item name="perfil: table" type="98d5ac3d:MysqlImplModel$Table" />
+        <item name="campania: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="herramientas@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="herramientas: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="usuario: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1898872594">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="7" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.36" value="1" />
+          <entry key="project.open.time.37" value="2" />
+          <entry key="project.open.time.42" value="2" />
+          <entry key="project.open.time.51" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.open.time.92" value="1" />
+          <entry key="project.opened" value="13" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="69" />
+          <entry key="php" value="7408" />
+          <entry key="sql" value="119" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.php.composer.command.options" />
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="2" />
+          <entry key="js" value="1" />
+          <entry key="php" value="66" />
+          <entry key="sql" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.php.new.test" />
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="2" />
+          <entry key="JavaScript" value="1" />
+          <entry key="PHP" value="66" />
+          <entry key="SQL" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="69" />
+          <entry key="PHP" value="7375" />
+          <entry key="SQL" value="152" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.php.composer.actions" />
+      <usages-collector id="statistics.php.new.class">
+        <counts>
+          <entry key="PHP Class.type" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.php.rename.constructor" />
+    </session>
+  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Index.php" pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Campania.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="101" column="51" selection-start-line="101" selection-start-column="51" selection-end-line="101" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+              <folding>
+                <element signature="e#6#62#0#PHP" expanded="true" />
+                <element signature="e#2743#2804#1#PHP" />
+                <element signature="e#3168#3229#1#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/vendor/nikic/fast-route/src/RouteParser/Std.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Usuario.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="514">
+              <caret line="148" selection-start-line="148" selection-end-line="148" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/herramientas_api/Public/Index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
-              <caret line="109" column="21" selection-start-line="109" selection-start-column="21" selection-end-line="109" selection-end-column="21" />
-              <folding>
-                <element signature="e#6#80#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="476">
+              <caret line="125" column="35" selection-start-line="125" selection-start-column="35" selection-end-line="125" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="structure.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/structure.sql">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="912">
-              <caret line="315" selection-start-line="315" selection-end-line="315" />
+            <state relative-caret-position="608">
+              <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7a7a06df-07af-4835-b760-687b6718738c/console.sql">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PersonaController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/PersonaController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="35" column="19" lean-forward="true" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
-              <folding>
-                <element signature="e#81#137#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PersonaRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="823">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PersonaService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Service/PersonaService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Permisos.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Security/Permisos.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+            <state relative-caret-position="24">
+              <caret line="26" column="35" lean-forward="true" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -128,7 +364,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>php</find>
+      <find>usua</find>
+      <find>int</find>
+      <find>produ</find>
+      <find>bit</find>
+      <find>documentoTipos</find>
+      <find>paise</find>
+      <find>perfil_</find>
       <find>revendedora</find>
+      <find>persona</find>
+      <find>e</find>
+      <find>es_a</find>
+      <find>ACTIVO</find>
+      <find>VARCHAR</find>
+      <find>DESCRIPCION</find>
+      <find>UBICACION</find>
+      <find>up</find>
+      <find>LOCALIDAD</find>
+      <find>stmt</find>
+      <find>fleet</find>
+      <find>get</find>
+      <find>function get</find>
+      <find>activo</find>
+      <find>usuarios</find>
+      <find>getall</find>
+      <find>usuario</find>
+      <find>personas</find>
+      <find>id</find>
+      <find>[</find>
+      <find>die</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -140,11 +405,47 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a440792c-3e77-4779-9f96-4e49c8436e10/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/5ec60c5e-7bb4-48a3-b2c8-e74031c9ee3a/console.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7a7a06df-07af-4835-b760-687b6718738c/console.sql" />
-        <option value="$PROJECT_DIR$/db/structure.sql" />
-        <option value="$PROJECT_DIR$/herramientas_api/Controller/PersonaController.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Security/Permisos.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/composer.json" />
+        <option value="$PROJECT_DIR$/herramientas_api/composer.lock" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Unidad.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Ubicacion.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Revendedora.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Remito.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Producto.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Controller/PermisosController.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Localidad.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Provincia.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/LocalidadRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Pais.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/ProvinciaRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/TipoDocumentoRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/PaisRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Perfil.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/PerfilRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Service/AuthService.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Controller/TipoDocumentoController.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/PerfilesRepository.php" />
+        <option value="$PROJECT_DIR$/db/structure.sql" />
+        <option value="$PROJECT_DIR$/herramientas_api/Config/ConfigBusiness.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Controller/CommonsController.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/RevendedoraRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/Persona.php" />
+        <option value="$PROJECT_DIR$/herramientas_web/public/index.html" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/UsuarioRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Persona.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Service/PersonaService.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/TipoDocumento.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Controller/PersonaController.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Controller/MockController.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Service/CampaniaRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Public/Index.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Usuario.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Campania.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php" />
       </list>
     </option>
   </component>
@@ -165,7 +466,7 @@
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.2">
     <include_path>
       <path value="$PROJECT_DIR$/herramientas_api/vendor/psr/container" />
       <path value="$PROJECT_DIR$/herramientas_api/vendor/psr/http-message" />
@@ -176,12 +477,14 @@
       <path value="$PROJECT_DIR$/herramientas_api/vendor/pimple/pimple" />
       <path value="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/herramientas_api/vendor/composer" />
+      <path value="$PROJECT_DIR$/../../php" />
+      <path value="$PROJECT_DIR$/../../php/PEAR" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-274" />
-    <option name="y" value="74" />
-    <option name="width" value="1616" />
+    <option name="x" value="7" />
+    <option name="y" value="31" />
+    <option name="width" value="1600" />
     <option name="height" value="876" />
   </component>
   <component name="ProjectView">
@@ -189,6 +492,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -205,70 +509,35 @@
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
               <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Commons" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Dto" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
               <item name="Model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Security" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="tipodocumento&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Model/TipoDocumento.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MariaDB" />
-    <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/herramientas_api" />
+    <property name="database.console.LAST_STATE" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vecApp/vec-fleet" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Model" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Repository" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Controller" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Repository" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Model" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -293,7 +562,22 @@
       <option name="presentableId" value="Default" />
       <updated>1530410901347</updated>
       <workItem from="1530410904880" duration="214000" />
-      <workItem from="1532974128455" duration="8098000" />
+      <workItem from="1532974128455" duration="12727000" />
+      <workItem from="1533164801019" duration="2599000" />
+      <workItem from="1534182492981" duration="6348000" />
+      <workItem from="1534422151017" duration="653000" />
+      <workItem from="1534854889566" duration="867000" />
+      <workItem from="1534948902474" duration="414000" />
+      <workItem from="1534949508803" duration="4668000" />
+      <workItem from="1535634279189" duration="143000" />
+      <workItem from="1535634460296" duration="9342000" />
+      <workItem from="1536057558498" duration="767000" />
+      <workItem from="1536143749388" duration="11044000" />
+      <workItem from="1536168350925" duration="18896000" />
+      <workItem from="1536596123323" duration="307000" />
+      <workItem from="1536780624262" duration="5295000" />
+      <workItem from="1537037396372" duration="9681000" />
+      <workItem from="1537066524689" duration="21984000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1530410997261</created>
@@ -351,37 +635,175 @@
       <option name="project" value="LOCAL" />
       <updated>1533037152669</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="commit">
+      <created>1533037489891</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1533037489891</updated>
+    </task>
+    <task id="LOCAL-00010" summary="commit">
+      <created>1533125070251</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1533125070251</updated>
+    </task>
+    <task id="LOCAL-00011" summary="commit">
+      <created>1534187662695</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1534187662695</updated>
+    </task>
+    <task id="LOCAL-00012" summary="commit">
+      <created>1534188097354</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1534188097354</updated>
+    </task>
+    <task id="LOCAL-00013" summary="commit">
+      <created>1534189446790</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1534189446790</updated>
+    </task>
+    <task id="LOCAL-00014" summary="commit">
+      <created>1535630339070</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1535630339070</updated>
+    </task>
+    <task id="LOCAL-00015" summary="commit">
+      <created>1535639529772</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1535639529772</updated>
+    </task>
+    <task id="LOCAL-00016" summary="commit">
+      <created>1535655783426</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1535655783426</updated>
+    </task>
+    <task id="LOCAL-00017" summary="commit">
+      <created>1535657383506</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1535657383506</updated>
+    </task>
+    <task id="LOCAL-00018" summary="commit">
+      <created>1535657878176</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1535657878176</updated>
+    </task>
+    <task id="LOCAL-00019" summary="commit">
+      <created>1536148796590</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1536148796590</updated>
+    </task>
+    <task id="LOCAL-00020" summary="commit">
+      <created>1536171104639</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1536171104639</updated>
+    </task>
+    <task id="LOCAL-00021" summary="commit">
+      <created>1536173382642</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1536173382642</updated>
+    </task>
+    <task id="LOCAL-00022" summary="commit">
+      <created>1536176415712</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1536176415712</updated>
+    </task>
+    <task id="LOCAL-00023" summary="commit">
+      <created>1536596397520</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1536596397520</updated>
+    </task>
+    <task id="LOCAL-00024" summary="commit">
+      <created>1537048165110</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1537048165111</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8312000" />
+    <option name="totallyTimeSpent" value="105949000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" weight="0.32925585" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32904884" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32904884" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Database Console" weight="0.32925585" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32604167" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14781491" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32992327" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32925585" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Console" order="7" visible="true" weight="0.32925585" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32952183" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32904884" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.22506393" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32925585" />
+      <window_info anchor="bottom" id="PHP-CGI Server" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.1503856" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14781491" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32992327" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32925585" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Console" order="7" visible="true" weight="0.32925585" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32952183" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32904884" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.22506393" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.32925585" />
+      <window_info anchor="bottom" id="PHP-CGI Server" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.1503856" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -403,76 +825,345 @@
     <MESSAGE value="commit" />
     <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand>
+      <path>
+        <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+        <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/998f19f2-03c9-4906-bc62-3eee30f20c9e/console.sql">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Catalogo.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a440792c-3e77-4779-9f96-4e49c8436e10/console.sql">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Unidad.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        <state relative-caret-position="242">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5ec60c5e-7bb4-48a3-b2c8-e74031c9ee3a/console.sql">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Remito.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="134" column="26" selection-start-line="134" selection-start-column="26" selection-end-line="134" selection-end-column="26" />
+        <state relative-caret-position="264">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7a7a06df-07af-4835-b760-687b6718738c/console.sql">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Ubicacion.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+        <state relative-caret-position="220">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Producto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/PermisosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Commons/Slim/ValidatePermissionsMiddleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/ProvinciaRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1100">
+          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Pais.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Provincia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Localidad.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/LocalidadRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PaisRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/AuthService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="45" column="56" selection-start-line="45" selection-start-column="46" selection-end-line="45" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/TipoDocumentoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/ProvinciaService.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/UsuariosService.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/LocalidadService.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Widget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1298" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PerfilesRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-580">
+          <caret line="161" column="20" selection-start-line="161" selection-start-column="20" selection-end-line="161" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/PerfilesService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Config/ConfigBusiness.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/WidgetService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/CommonsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/Persona.php" />
     <entry file="file://$PROJECT_DIR$/db/structure.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="315" selection-start-line="315" selection-end-line="315" />
+        <state relative-caret-position="6578">
+          <caret line="299" column="3" selection-start-line="299" selection-start-column="3" selection-end-line="299" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Public/Index.php">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="109" column="21" selection-start-line="109" selection-start-column="21" selection-end-line="109" selection-end-column="21" />
+        <state relative-caret-position="440">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PerfilRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Revendedora.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Perfil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/RevendedoraRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/UsuarioController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Persona.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5500">
+          <caret line="254" column="54" selection-start-line="254" selection-start-column="8" selection-end-line="254" selection-end-column="54" />
           <folding>
             <element signature="e#6#80#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Security/Permisos.php">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/TipoDocumento.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/PersonaService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+        <state relative-caret-position="836">
+          <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="823">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        <state relative-caret-position="4642">
+          <caret line="211" column="78" selection-start-line="211" selection-start-column="78" selection-end-line="211" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/TipoDocumentoRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Adjunto.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/MOCK_DATA_PERSONAS.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/WidgetRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/MockController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="30" column="1" selection-start-line="7" selection-start-column="4" selection-end-line="30" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/UsuarioRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-44">
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="64" column="39" lean-forward="true" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/vendor/nikic/fast-route/src/RouteParser/Std.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/PersonaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="35" column="19" lean-forward="true" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
+        <state relative-caret-position="166">
+          <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
           <folding>
-            <element signature="e#81#137#0#PHP" expanded="true" />
+            <element signature="e#7#63#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/PersonaService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="35" column="24" lean-forward="true" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Public/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="125" column="35" selection-start-line="125" selection-start-column="35" selection-end-line="125" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Campania.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="101" column="51" selection-start-line="101" selection-start-column="51" selection-end-line="101" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Usuario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="148" selection-start-line="148" selection-end-line="148" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+          <folding>
+            <element signature="e#6#62#0#PHP" expanded="true" />
+            <element signature="e#2743#2804#1#PHP" />
+            <element signature="e#3168#3229#1#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="26" column="35" lean-forward="true" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
         </state>
       </provider>
     </entry>

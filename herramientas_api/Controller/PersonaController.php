@@ -102,7 +102,7 @@ class PersonaController
 
                 $this->post('', function (Request $request, Response $response) {
                     $persona = PersonaController::getInstanceFromRequest($request);
-                    $personasService = new PersonasService();
+                    $personasService = new PersonaService();
                     $persona = $personasService->create($persona);
 
                     return $response->withJson($persona, 201);

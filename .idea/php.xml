@@ -11,6 +11,9 @@
       <path value="$PROJECT_DIR$/herramientas_api/vendor/pimple/pimple" />
       <path value="$PROJECT_DIR$/herramientas_api/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/herramientas_api/vendor/composer" />
+      <path value="$PROJECT_DIR$/../../php" />
+      <path value="$PROJECT_DIR$/../../php/PEAR" />
     </include_path>
   </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
 </project>

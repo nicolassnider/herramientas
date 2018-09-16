@@ -22,42 +22,10 @@ class MockController
                   return $data;
                 });
             });
-            $this->group('/mock-ticket-history', function () {
-                $this->get('', function (Request $request, Response $response) {
-                  $url = '../Commons/JsonMocks/ticketHistory.json';
-                  $data = file_get_contents($url);
-                  return $data;
-                });
+
             });
-            $this->group('/mock-otros-tickets', function () {
-                $this->get('', function (Request $request, Response $response) {
-                  $url = '../Commons/JsonMocks/otrosTickets.json';
-                  $data = file_get_contents($url);
-                  return $data;
-                });
-            });
-            $this->group('/mock-tareas', function () {
-                $this->get('', function (Request $request, Response $response) {
-                  $url = '../Commons/JsonMocks/tareas.json';
-                  $data = file_get_contents($url);
-                  return $data;
-                });
-            });
-            $this->group('/mock-talleres', function () {
-                $this->get('', function (Request $request, Response $response) {
-                  $url = '../Commons/JsonMocks/talleresSelect.json';
-                  $data = file_get_contents($url);
-                  return $data;
-                });
-            });
-            $this->group('/mock-vencimientos', function () {
-                $this->get('', function (Request $request, Response $response) {
-                  $url = '../Commons/JsonMocks/vencimientos.json';
-                  $data = file_get_contents($url);
-                  return $data;
-                });
-            });
-        });
+
+
     }
 
 }

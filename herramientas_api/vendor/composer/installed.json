@@ -237,17 +237,17 @@
     },
     {
         "name": "respect/validation",
-        "version": "1.1.21",
-        "version_normalized": "1.1.21.0",
+        "version": "1.1.25",
+        "version_normalized": "1.1.25.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Respect/Validation.git",
-            "reference": "47f21596a5accd73e53f8b34bdc8d14abb2849fd"
+            "reference": "5a067faec79d0cd74aa189fc535a644fa29e0c70"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Respect/Validation/zipball/47f21596a5accd73e53f8b34bdc8d14abb2849fd",
-            "reference": "47f21596a5accd73e53f8b34bdc8d14abb2849fd",
+            "url": "https://api.github.com/repos/Respect/Validation/zipball/5a067faec79d0cd74aa189fc535a644fa29e0c70",
+            "reference": "5a067faec79d0cd74aa189fc535a644fa29e0c70",
             "shasum": ""
         },
         "require": {
@@ -269,7 +269,7 @@
             "symfony/validator": "Use Symfony validator through Respect\\Validation",
             "zendframework/zend-validator": "Use Zend Framework validator through Respect\\Validation"
         },
-        "time": "2018-07-28T03:01:58+00:00",
+        "time": "2018-08-29T20:30:50+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -375,17 +375,17 @@
     },
     {
         "name": "symfony/polyfill-mbstring",
-        "version": "v1.8.0",
-        "version_normalized": "1.8.0.0",
+        "version": "v1.9.0",
+        "version_normalized": "1.9.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-mbstring.git",
-            "reference": "3296adf6a6454a050679cde90f95350ad604b171"
+            "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/3296adf6a6454a050679cde90f95350ad604b171",
-            "reference": "3296adf6a6454a050679cde90f95350ad604b171",
+            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d0cd638f4634c16d8df4508e847f14e9e43168b8",
+            "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8",
             "shasum": ""
         },
         "require": {
@@ -394,11 +394,11 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2018-04-26T10:06:28+00:00",
+        "time": "2018-08-06T14:22:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.8-dev"
+                "dev-master": "1.9-dev"
             }
         },
         "installation-source": "dist",

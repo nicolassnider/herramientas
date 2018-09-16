@@ -114,6 +114,7 @@ require_once '../Controller/ParametroController.php';
 require_once '../Controller/CommonsController.php';
 require_once '../Controller/MockController.php';
 require_once '../Controller/WidgetController.php';
+require_once '../Controller/CampaniaController.php';
 
 
 
@@ -122,6 +123,7 @@ require_once '../Controller/WidgetController.php';
 (new PermisosController($app))->init();
 (new TipoDocumentoController($app))->init();
 (new ParametroController($app))->init();
+(new CampaniaController($app))->init();
 
 
 

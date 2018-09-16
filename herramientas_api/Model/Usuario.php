@@ -145,9 +145,8 @@ class Usuario implements JsonSerializable
         if(isset($this->claveActivacionExpiracion)) $array['claveActivacionExpiracion'] = $this->claveActivacionExpiracion;
         if(isset($this->perfil)) $array['perfil'] = $this->perfil;
         if(isset($this->notificacionesActivas)) $array['notificacionesActivas'] = $this->notificacionesActivas;
-        if(isset($this->id)) $array['id'] = $this->id;
-        if(isset($this->id)) $array['id'] = $this->id;
-        if(isset($this->id)) $array['id'] = $this->id;
+        if(isset($this->token)) $array['token'] = $this->token;
+
 
         return $array;
     }
