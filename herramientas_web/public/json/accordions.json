@@ -1,0 +1,84 @@
+[  
+  {  
+    "title":{  
+      "text":"En Taller",
+      "value":"77"
+    },
+    "primaryClassColor":"info",
+    "secondaryClassColor":"info",
+    "tabs":[  
+      {  
+        "opened": true,
+        "headerText":"FRAGA (11%)",
+        "cards":[  
+          {  
+            "headerRowLabel":"NCS013",
+            "headerRowClassLabel":"info",
+            "headerRowValue":"",
+            "row1Label":"Correctivo",
+            "row1Value":"Tkt: 371721 - MTT: 5 - MTTp: 1",
+            "row2Label":"Preventivo",
+            "row2Value":"Tkt: 371723 - MTT: 10 - MTTp: 2"
+          },
+          {  
+            "headerRowLabel":"AA495CC",
+            "headerRowClassLabel":"info",
+            "headerRowValue":"",
+            "row1Label":"Correctivo",
+            "row1Value":"Tkt: 341671 - MTT: 4 - MTTp: 1",
+            "row2Label":"",
+            "row2Value":""
+          }
+        ]
+      },
+      {  
+        "opened": true,
+        "headerText":"MUNRO (7%)",
+        "cards":[  
+          {  
+            "headerRowLabel":"NCS013",
+            "headerRowClassLabel":"info",
+            "headerRowValue":"",
+            "row1Label":"Correctivo",
+            "row1Value":"Tkt: 371721 - MTT: 5 - MTTp: 1",
+            "row2Label":"Preventivo",
+            "row2Value":"Tkt: 371723 - MTT: 10 - MTTp: 2"
+          },
+          {  
+            "headerRowLabel":"AA495CC",
+            "headerRowClassLabel":"info",
+            "headerRowValue":"",
+            "row1Label":"Correctivo",
+            "row1Value":"Tkt: 341671 - MTT: 4 - MTTp: 1",
+            "row2Label":"",
+            "row2Value":""
+          }
+        ]
+      },
+      {  
+        "opened": false,
+        "headerText":"LANUS (2%)",
+        "cards":[  
+          {  
+            "headerRowLabel":"NCS013",
+            "headerRowClassLabel":"info",
+            "headerRowValue":"",
+            "row1Label":"Correctivo",
+            "row1Value":"Tkt: 371721 - MTT: 5 - MTTp: 1",
+            "row2Label":"Preventivo",
+            "row2Value":"Tkt: 371723 - MTT: 10 - MTTp: 2"
+          },
+          {  
+            "headerRowLabel":"AA495CC",
+            "headerRowClassLabel":"info",
+            "headerRowValue":"",
+            "row1Label":"Correctivo",
+            "row1Value":"Tkt: 341671 - MTT: 4 - MTTp: 1",
+            "row2Label":"",
+            "row2Value":""
+          }
+        ]
+      }
+    ]
+  }
+]
