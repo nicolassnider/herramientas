@@ -105,8 +105,10 @@ class CampaniaController
     {
         $campania = new Campania();
         $campania->setId((int)$request->getAttribute('id'));
-        $campania->setFechaInicio($request->getParam('fechaInicio'));
-        $campania->setFechaFin($request->getParam('fechaFin'));
+        $fechaInicio = new DateTime($request->getParam('fechaInicio'));
+        $campania->setFechaInicio($fechaInicio);
+        $fechaFin = new DateTime($request->getParam('fechaFin'));
+        $campania->setFechaFin($fechaFin);
         $campania->setDescripcion($request->getParam('descripcion'));
         $campania->setActivo($request->getParam('activo'));
         return $campania;

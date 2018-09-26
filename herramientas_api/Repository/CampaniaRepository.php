@@ -108,8 +108,8 @@ class CampaniaRepository extends AbstractRepository
         $db = $this->connect();
         $db->beginTransaction();
         $sqlCreate = "INSERT INTO campania (fecha_inicio, fecha_fin, descripcion, activo) VALUES (:fechaInicio,:fechaFin,:descripcion,:activo)";
-        $fechaInicio = $campania->getFechaInicio();
-        $fechaFin = $campania->getFechaFin();
+        $fechaInicio = (string)$campania->getFechaInicio()->format("Y-m-d");
+        $fechaFin = (string)$campania->getFechaFin()->format("Y-m-d");
         $descripcion = $campania->getDescripcion();
         $activo = $campania->getActivo();
         $stmtCreate = $db->prepare($sqlCreate);
