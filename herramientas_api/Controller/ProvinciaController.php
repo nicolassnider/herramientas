@@ -15,7 +15,7 @@ class ProvinciaController {
     public function init() {
         $this->app->group('/api', function () {
             $this->group('/provincias', function () {
-                $this->get('/{pais}/select', function (Request $request, Response $response) {
+                $this->get('/pais/{pais}/select', function (Request $request, Response $response) {
                     $pais = $request->getAttribute('pais');
                     $items = (new ProvinciaService())->getAllSortedByPais($pais);
                     array_walk($items, function(&$item) {
@@ -23,9 +23,11 @@ class ProvinciaController {
                     });
                     return $response->withJson($items, 200);
                 })->add(new ValidatePermissionsMiddleware([
-                    'PERSONAS_CREAR',
-                    'PERSONAS_MODIFICAR'
-                    // TODO: Agregar los permisos faltantes.
+                    'PERSONA_CREAR',
+                    'PERSONA_ELIMINAR',
+                    'PERSONA_LISTAR',
+                    'PERSONA_MODIFICAR',
+                    'PERSONA_VISUALIZAR'
                 ]));
             });
         });

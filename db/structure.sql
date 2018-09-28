@@ -153,6 +153,7 @@ CREATE TABLE herramientas.revendedora (
   id                     INT(30)          NOT NULL AUTO_INCREMENT,
   categoria_revendedora  INT(30)          NOT NULL,
   fecha_alta_revendedora DATE             NOT NULL,
+  fecha_baja_revendedora DATE             NOT NULL,
   activo                 BIT(1) DEFAULT 1 NOT NULL,
   persona                INT(30)          NOT NULL,
   PRIMARY KEY (id),
