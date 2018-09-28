@@ -5,7 +5,7 @@
  * Date: 28/09/2018
  * Time: 7:55 AM
  */
-require_once '../Repository/RevendedoraRepository.php'
+require_once '../Repository/RevendedoraRepository.php';
 
 class RevendedoraService
 {

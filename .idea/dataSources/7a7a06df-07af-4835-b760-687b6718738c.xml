@@ -2010,188 +2010,193 @@ permiso</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="439" parent="264" name="CATEGORIA_REVENDEDORA">
+    <column id="439" parent="264" name="fecha_baja_revendedora">
+      <Position>6</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="440" parent="264" name="CATEGORIA_REVENDEDORA">
       <ColNames>categoria_revendedora</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="440" parent="264" name="PERSONA_REVENDEDORA">
+    <index id="441" parent="264" name="PERSONA_REVENDEDORA">
       <ColNames>persona</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="441" parent="264" name="PRIMARY">
+    <key id="442" parent="264" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="442" parent="264" name="CATEGORIA_REVENDEDORA">
+    <foreign-key id="443" parent="264" name="CATEGORIA_REVENDEDORA">
       <ColNames>categoria_revendedora</ColNames>
       <RefSchemaName>herramientas</RefSchemaName>
       <RefTableName>categoria_revendedora</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="443" parent="264" name="PERSONA_REVENDEDORA">
+    <foreign-key id="444" parent="264" name="PERSONA_REVENDEDORA">
       <ColNames>persona</ColNames>
       <RefSchemaName>herramientas</RefSchemaName>
       <RefTableName>persona</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="444" parent="265" name="id">
+    <column id="445" parent="265" name="id">
       <Position>1</Position>
       <DataType>int(30)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="445" parent="265" name="descripcion">
+    <column id="446" parent="265" name="descripcion">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="446" parent="265" name="PRIMARY">
+    <key id="447" parent="265" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="447" parent="266" name="id">
+    <column id="448" parent="266" name="id">
       <Position>1</Position>
       <DataType>int(30)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="448" parent="266" name="ubicacion">
+    <column id="449" parent="266" name="ubicacion">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="449" parent="266" name="PRIMARY">
+    <key id="450" parent="266" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="450" parent="267" name="id">
+    <column id="451" parent="267" name="id">
       <Position>1</Position>
       <DataType>int(30)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="451" parent="267" name="descripcion">
+    <column id="452" parent="267" name="descripcion">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="452" parent="267" name="PRIMARY">
+    <key id="453" parent="267" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="453" parent="268" name="id">
+    <column id="454" parent="268" name="id">
       <Position>1</Position>
       <DataType>int(30)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="454" parent="268" name="revendedora">
+    <column id="455" parent="268" name="revendedora">
       <Position>2</Position>
       <DataType>int(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="455" parent="268" name="usuario">
+    <column id="456" parent="268" name="usuario">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="456" parent="268" name="clave">
+    <column id="457" parent="268" name="clave">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="457" parent="268" name="clave_activacion_codigo">
+    <column id="458" parent="268" name="clave_activacion_codigo">
       <Position>5</Position>
       <DataType>varchar(16)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="458" parent="268" name="clave_activacion_expiracion">
+    <column id="459" parent="268" name="clave_activacion_expiracion">
       <Position>6</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="459" parent="268" name="perfil">
+    <column id="460" parent="268" name="perfil">
       <Position>7</Position>
       <DataType>int(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="460" parent="268" name="notificaciones_activas">
+    <column id="461" parent="268" name="notificaciones_activas">
       <Position>8</Position>
       <DataType>bit(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>b&apos;1&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="461" parent="268" name="USUARIO_UNICO">
+    <index id="462" parent="268" name="USUARIO_UNICO">
       <ColNames>usuario</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="462" parent="268" name="FK_USUARIO_REVENDEDORA">
+    <index id="463" parent="268" name="FK_USUARIO_REVENDEDORA">
       <ColNames>revendedora</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="463" parent="268" name="FK_PERFIL_USUARIO">
+    <index id="464" parent="268" name="FK_PERFIL_USUARIO">
       <ColNames>perfil</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="464" parent="268" name="PRIMARY">
+    <key id="465" parent="268" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="465" parent="268" name="USUARIO_UNICO">
+    <key id="466" parent="268" name="USUARIO_UNICO">
       <ColNames>usuario</ColNames>
       <UnderlyingIndexName>USUARIO_UNICO</UnderlyingIndexName>
     </key>
-    <foreign-key id="466" parent="268" name="FK_USUARIO_REVENDEDORA">
+    <foreign-key id="467" parent="268" name="FK_USUARIO_REVENDEDORA">
       <ColNames>revendedora</ColNames>
       <RefSchemaName>herramientas</RefSchemaName>
       <RefTableName>revendedora</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="467" parent="268" name="FK_PERFIL_USUARIO">
+    <foreign-key id="468" parent="268" name="FK_PERFIL_USUARIO">
       <ColNames>perfil</ColNames>
       <RefSchemaName>herramientas</RefSchemaName>
       <RefTableName>perfil</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="468" parent="269" name="token">
+    <column id="469" parent="269" name="token">
       <Position>1</Position>
       <DataType>varchar(16)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="469" parent="269" name="usuario">
+    <column id="470" parent="269" name="usuario">
       <Position>2</Position>
       <DataType>int(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="470" parent="269" name="expiracion">
+    <column id="471" parent="269" name="expiracion">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="471" parent="269" name="usuarios_tokens_expiracion_idx">
+    <index id="472" parent="269" name="usuarios_tokens_expiracion_idx">
       <ColNames>expiracion</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="472" parent="269" name="PRIMARY">
+    <key id="473" parent="269" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>token</ColNames>
       <Primary>1</Primary>
