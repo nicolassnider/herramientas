@@ -1,0 +1,3 @@
+UPDATE herramientas.campania SET fecha_inicio = '2018-08-31', fecha_fin = '2018-09-29', descripcion = 'septiembre 18', activo = true WHERE id = 1;
+UPDATE herramientas.campania SET fecha_inicio = '2018-09-30', fecha_fin = '2018-09-30', descripcion = 'octubre 18', activo = false WHERE id = 2;
+UPDATE herramientas.campania SET fecha_inicio = '2018-10-31', fecha_fin = '2018-11-29', descripcion = 'Noviembre 18', activo = false WHERE id = 6;

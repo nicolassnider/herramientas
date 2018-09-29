@@ -1,0 +1,1 @@
+UPDATE herramientas.catalogo_campania SET catalogo = 1, campania = 1, activo = true WHERE id = 1;

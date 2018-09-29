@@ -1,0 +1,1 @@
+UPDATE herramientas.usuario SET revendedora = 2, usuario = 'administrador', clave = 'administrador', clave_activacion_codigo = null, clave_activacion_expiracion = null, perfil = 1, notificaciones_activas = true WHERE id = 1;

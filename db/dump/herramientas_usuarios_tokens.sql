@@ -1,0 +1,1 @@
+UPDATE herramientas.usuarios_tokens SET usuario = 1, expiracion = '2018-09-27 09:06:27' WHERE token = '1147e925741cb6f0';

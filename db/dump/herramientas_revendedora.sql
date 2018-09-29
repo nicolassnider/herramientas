@@ -1,0 +1,1 @@
+UPDATE herramientas.revendedora SET categoria_revendedora = 1, fecha_alta_revendedora = '2018-08-31', activo = true, persona = 2, fecha_baja_revendedora = null WHERE id = 2;
