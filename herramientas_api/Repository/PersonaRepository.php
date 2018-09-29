@@ -8,10 +8,41 @@ require_once 'Db.php';
 require_once '../Model/Persona.php';
 require_once '../Repository/AbstractRepository.php';
 require_once '../Repository/LocalidadRepository.php';
+require_once '../Repository/TipoDocumentoRepository.php';
 
 
 class PersonaRepository extends AbstractRepository
 {
+    public function get(int $id, bool $full = true): ?Persona
+    {
+        try {
+            $db = $this->connect();
+            $db->beginTransaction();
+            $sqlGet = "SELECT persona.*,r.id as r_id, u.id as u_id FROM persona
+                        LEFT JOIN revendedora r on persona.id = r.persona
+                        LEFT JOIN usuario u on r.id = u.revendedora
+                        WHERE persona.id=:id";
+            $stmtGet = $db->prepare($sqlGet);
+            $stmtGet->bindParam(':id', $id);
+            $stmtGet->execute();
+            $result = $stmtGet->fetchObject();
+            if ($result==null)
+            {
+                return null;
+            }
+            $db->commit();
+            return $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
+
+
+        } catch (PDOException $e) {
+            throw  $e ;
+
+        } finally {
+            $stmtGet = null;
+            $db = null;
+            $this->disconnect();
+        }
+    }
 
     public function create(Persona $persona)
     {
@@ -30,6 +61,7 @@ class PersonaRepository extends AbstractRepository
             nombre,
             nombre_segundo,
             apellido,
+            apellido_segundo,
             apellido_segundo,
             telefono,
             email,
@@ -52,7 +84,7 @@ class PersonaRepository extends AbstractRepository
             :fecha_alta_persona
                         )";
 
-            $tipoDocumento = $persona->getTipoDocumento()!=null?$persona->getTipoDocumento()->getId():null;
+            $tipoDocumento = $persona->getTipoDocumento() != null ? $persona->getTipoDocumento()->getId() : null;
             $documento = $persona->getDocumento();
             $nombre = $persona->getNombre();
             $nombreSegundo = $persona->getNombreSegundo();
@@ -61,7 +93,7 @@ class PersonaRepository extends AbstractRepository
             $telefono = $persona->getTelefono();
             $email = $persona->getEmail();
             $activo = $persona->getActivo();
-            $localidad = $persona->getLocalidad()!=null?$persona->getLocalidad()->getId():null;
+            $localidad = $persona->getLocalidad() != null ? $persona->getLocalidad()->getId() : null;
             $esUsuario = $persona->getEsUsuario();
             $fechaAltaPersona = date('Y-m-d H:i:s');
 
@@ -71,16 +103,17 @@ class PersonaRepository extends AbstractRepository
             $stmtCreatePersona->bindParam(':documento', $documento);
             $stmtCreatePersona->bindParam(':nombre', $nombre);
             $stmtCreatePersona->bindParam(':nombre_segundo', $nombreSegundo);
-            $stmtCreatePersona->bindParam(':apellido', $apellidoSegundo);
+            $stmtCreatePersona->bindParam(':apellido', $apellido);
+            $stmtCreatePersona->bindParam(':apellido_segundo', $apellidoSegundo);
             $stmtCreatePersona->bindParam(':telefono', $telefono);
             $stmtCreatePersona->bindParam(':email', $email);
-            $stmtCreatePersona->bindParam(':activo', $activo,PDO::PARAM_BOOL);
+            $stmtCreatePersona->bindParam(':activo', $activo, PDO::PARAM_BOOL);
             $stmtCreatePersona->bindParam(':localidad', $localidad, PDO::PARAM_INT);
-            $stmtCreatePersona->bindParam(':es_usuario',$esUsuario,PDO::PARAM_BOOL);
+            $stmtCreatePersona->bindParam(':es_usuario', $esUsuario, PDO::PARAM_BOOL);
             $stmtCreatePersona->bindParam(':fecha_alta_persona', $fechaAltaPersona);
             $stmtCreatePersona->execute();
             $persona->setId($db->lastInsertId());
-            if($transaction) $db->commit();
+            if ($transaction) $db->commit();
 
 
         } catch (Exception $e) {
@@ -164,26 +197,9 @@ WHERE per.activo=1 and usu.usuario=:usuario";
         return $item;
     }
 
-    public function get(int $id, bool $full = true): ?Persona {
-        $sqlGet = "SELECT * FROM persona";
 
-        $db = $this->connect();
-        $stmtGet = $db->prepare($sqlGet);
-        $stmtGet->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmtGet->execute();
-        $result = $stmtGet->fetchObject();
-
-        if ($result == null) {
-            return null;
-        }
-
-        $persona = $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
-
-        $this->disconnect();
-        return $persona;
-    }
-
-    public function getAll(): Array {
+    public function getAll(): Array
+    {
         $sql = "SELECT *
                 FROM persona";
 
@@ -198,7 +214,7 @@ WHERE per.activo=1 and usu.usuario=:usuario";
 
         $personas = Array();
         foreach ($items as $item) {
-            $persona = $this->createFromResultset($item, [], $this->db);
+            $persona = $this->createFromResultset($item, ['*'], $this->db);
             array_push($personas, $persona);
         }
 
@@ -206,7 +222,8 @@ WHERE per.activo=1 and usu.usuario=:usuario";
         return $personas;
     }
 
-    public function getAllActiveSorted(): Array {
+    public function getAllActiveSorted(): Array
+    {
         $sql = "SELECT per.*, dot.id as documentoTipoId, dot.descripcion as descripcion
                 FROM persona as per
                 INNER JOIN tipo_documento as dot on dot.id = per.tipo_documento
@@ -239,24 +256,25 @@ WHERE per.activo=1 and usu.usuario=:usuario";
     }
 
 
-    public function grid(DataTablesResponse $dataTablesResponse, DataTableRequest $dataTableRequest) {
-    $db = $this->connect();
+    public function grid(DataTablesResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
+    {
+        $db = $this->connect();
 
-    $length = $dataTableRequest->getLength();
-    $start = $dataTableRequest->getStart();
-    $searchGeneral = $dataTableRequest->getSearch();
-    $orderColumn = $dataTableRequest->getOrderColumn();
-    $arrayColsFilter = $dataTableRequest->getArrayColsFilter();
+        $length = $dataTableRequest->getLength();
+        $start = $dataTableRequest->getStart();
+        $searchGeneral = $dataTableRequest->getSearch();
+        $orderColumn = $dataTableRequest->getOrderColumn();
+        $arrayColsFilter = $dataTableRequest->getArrayColsFilter();
 
-    //RecordsTotal
-    $consultaTotal = "SELECT COUNT(*) FROM persona";
-    $stmtTotal = $db->prepare($consultaTotal);
-    $stmtTotal->execute();
-    $recordsTotal = $stmtTotal->fetchColumn();
-    $dataTablesResponse->setRecordsTotal((int)$recordsTotal);
+        //RecordsTotal
+        $consultaTotal = "SELECT COUNT(*) FROM persona";
+        $stmtTotal = $db->prepare($consultaTotal);
+        $stmtTotal->execute();
+        $recordsTotal = $stmtTotal->fetchColumn();
+        $dataTablesResponse->setRecordsTotal((int)$recordsTotal);
 
-    //Prepara Consulta
-    $consulta = "SELECT p.id,
+        //Prepara Consulta
+        $consulta = "SELECT p.id,
                             p.nombre,
                             p.apellido,
                             p.es_activo,
@@ -272,119 +290,119 @@ WHERE per.activo=1 and usu.usuario=:usuario";
                         LEFT JOIN bases b ON (p.base = b.id)
                      WHERE '1=1'";
 
-    $stmt = $db->prepare($consulta);
+        $stmt = $db->prepare($consulta);
 
-    foreach ($arrayColsFilter as $columna) {
-        if ($columna['search']['value'] != null) {
-            $columnaSearchValue = $columna['search']['value'];
-            switch($columna['data']) {
-                case "esActivo":
-                    $consulta .= " AND p.es_activo = '" . $columnaSearchValue . "' ";
-                    break;
-                case "esUsuario":
-                    $consulta .= " AND p.es_usuario = '" . $columnaSearchValue . "' ";
-                    break;
-                case "nombre":
-                    $consulta .= " AND p.nombre LIKE '%" . $columnaSearchValue . "%' ";
-                    break;
-                case "apellido":
-                    $consulta .= " AND p.apellido LIKE '%" . $columnaSearchValue . "%' ";
-                    break;
-                case "legajoNumero":
-                    $consulta .= " AND p.legajo_numero LIKE '%" . $columnaSearchValue . "%' ";
-                    break;
-                case "base":
-                    $consulta .= " AND b.id = '" . $columnaSearchValue . "' ";
-                    break;
-                case "categoria":
-                    $consulta .= " AND pc.id = '" . $columnaSearchValue . "' ";
-                    break;
+        foreach ($arrayColsFilter as $columna) {
+            if ($columna['search']['value'] != null) {
+                $columnaSearchValue = $columna['search']['value'];
+                switch ($columna['data']) {
+                    case "esActivo":
+                        $consulta .= " AND p.es_activo = '" . $columnaSearchValue . "' ";
+                        break;
+                    case "esUsuario":
+                        $consulta .= " AND p.es_usuario = '" . $columnaSearchValue . "' ";
+                        break;
+                    case "nombre":
+                        $consulta .= " AND p.nombre LIKE '%" . $columnaSearchValue . "%' ";
+                        break;
+                    case "apellido":
+                        $consulta .= " AND p.apellido LIKE '%" . $columnaSearchValue . "%' ";
+                        break;
+                    case "legajoNumero":
+                        $consulta .= " AND p.legajo_numero LIKE '%" . $columnaSearchValue . "%' ";
+                        break;
+                    case "base":
+                        $consulta .= " AND b.id = '" . $columnaSearchValue . "' ";
+                        break;
+                    case "categoria":
+                        $consulta .= " AND pc.id = '" . $columnaSearchValue . "' ";
+                        break;
+                }
             }
         }
-    }
 
-    //RecordsFiltered
-    $consultaRecordsFiltered = $consulta;
-    $stmtRecordsFiltered = $db->prepare($consultaRecordsFiltered);
-    $stmtRecordsFiltered->execute();
-    $recordsFiltered = $stmtRecordsFiltered->rowCount();
-    $dataTablesResponse->setRecordsFiltered($recordsFiltered);
+        //RecordsFiltered
+        $consultaRecordsFiltered = $consulta;
+        $stmtRecordsFiltered = $db->prepare($consultaRecordsFiltered);
+        $stmtRecordsFiltered->execute();
+        $recordsFiltered = $stmtRecordsFiltered->rowCount();
+        $dataTablesResponse->setRecordsFiltered($recordsFiltered);
 
-    if ($searchGeneral != null) {
-        $consulta .= " AND (p.nombre LIKE '%" . $searchGeneral . "%' OR p.apellido LIKE '%" . $searchGeneral . "%') ";
-        $stmt = $db->prepare($consulta);
-    }
-
-    //Order by
-    $columnaAOrdernar = $arrayColsFilter[$orderColumn['column']]['data'];
-    switch($columnaAOrdernar) {
-        case "esUsuario":
-            $consulta .= " ORDER BY p.es_usuario" . "  " . $orderColumn['dir'];
-            break;
-        case "apellido":
-            $consulta .= " ORDER BY p.apellido" . "  " . $orderColumn['dir'];
-            break;
-        case "nombre":
-            $consulta .= " ORDER BY p.nombre" . "  " . $orderColumn['dir'];
-            break;
-        case "legajoNumero":
-            $consulta .= " ORDER BY p.legajo_numero" . "  " . $orderColumn['dir'];
-            break;
-        case "base":
-            $consulta .= " ORDER BY b.descripcion" . "  " . $orderColumn['dir'];
-            break;
-        case "categoria":
-            $consulta .= " ORDER BY pc.nombre" . "  " . $orderColumn['dir'];
-            break;
-    }
-
-    //Limit Start, Length
-    if ($length != -1) {
-        $consulta .= " LIMIT " . $start . " ," . $length;
-        $stmt = $db->prepare($consulta);
-    }
-
-    //Prepara Data
-    $stmt->execute();
-    $items = $stmt->fetchAll(PDO::FETCH_OBJ);
-    $personasGrid = Array();
-
-    foreach ($items as $item) {
-        $base = null;
-        if($item->base != null) {
-            $base = new Base();
-            $base->setId((int)$item->base);
-            $base->setDescripcion($item->base_descripcion);
+        if ($searchGeneral != null) {
+            $consulta .= " AND (p.nombre LIKE '%" . $searchGeneral . "%' OR p.apellido LIKE '%" . $searchGeneral . "%') ";
+            $stmt = $db->prepare($consulta);
         }
 
-        $personaCategoria = null;
-        if($item->categoria != null) {
-            $personaCategoria = new PersonaCategoria();
-            $personaCategoria->setId((int)$item->categoria);
-            $personaCategoria->setNombre($item->categoria_nombre);
+        //Order by
+        $columnaAOrdernar = $arrayColsFilter[$orderColumn['column']]['data'];
+        switch ($columnaAOrdernar) {
+            case "esUsuario":
+                $consulta .= " ORDER BY p.es_usuario" . "  " . $orderColumn['dir'];
+                break;
+            case "apellido":
+                $consulta .= " ORDER BY p.apellido" . "  " . $orderColumn['dir'];
+                break;
+            case "nombre":
+                $consulta .= " ORDER BY p.nombre" . "  " . $orderColumn['dir'];
+                break;
+            case "legajoNumero":
+                $consulta .= " ORDER BY p.legajo_numero" . "  " . $orderColumn['dir'];
+                break;
+            case "base":
+                $consulta .= " ORDER BY b.descripcion" . "  " . $orderColumn['dir'];
+                break;
+            case "categoria":
+                $consulta .= " ORDER BY pc.nombre" . "  " . $orderColumn['dir'];
+                break;
         }
 
-        $personaGrid = new PersonaGrid();
-        $personaGrid->setId((int)$item->id);
-        $personaGrid->setNombre($item->nombre);
-        $personaGrid->setApellido($item->apellido);
-        $personaGrid->setEsActivo((bool)$item->es_activo);
-        $personaGrid->setLegajoNumero($item->legajo_numero);
-        $personaGrid->setEsUsuario((bool)$item->es_usuario);
-        $personaGrid->setFoto($item->foto);
-        $personaGrid->setBase($base);
-        $personaGrid->setCategoria($personaCategoria);
-        array_push($personasGrid, $personaGrid);
-    }
-    $dataTableRequest->setLength($length);
-    $dataTablesResponse->setData($personasGrid);
+        //Limit Start, Length
+        if ($length != -1) {
+            $consulta .= " LIMIT " . $start . " ," . $length;
+            $stmt = $db->prepare($consulta);
+        }
 
-    $db = null;
-    $personas = null;
-    $items = null;
-    $this->disconnect();
-    return $dataTablesResponse;
-}
+        //Prepara Data
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $personasGrid = Array();
+
+        foreach ($items as $item) {
+            $base = null;
+            if ($item->base != null) {
+                $base = new Base();
+                $base->setId((int)$item->base);
+                $base->setDescripcion($item->base_descripcion);
+            }
+
+            $personaCategoria = null;
+            if ($item->categoria != null) {
+                $personaCategoria = new PersonaCategoria();
+                $personaCategoria->setId((int)$item->categoria);
+                $personaCategoria->setNombre($item->categoria_nombre);
+            }
+
+            $personaGrid = new PersonaGrid();
+            $personaGrid->setId((int)$item->id);
+            $personaGrid->setNombre($item->nombre);
+            $personaGrid->setApellido($item->apellido);
+            $personaGrid->setEsActivo((bool)$item->es_activo);
+            $personaGrid->setLegajoNumero($item->legajo_numero);
+            $personaGrid->setEsUsuario((bool)$item->es_usuario);
+            $personaGrid->setFoto($item->foto);
+            $personaGrid->setBase($base);
+            $personaGrid->setCategoria($personaCategoria);
+            array_push($personasGrid, $personaGrid);
+        }
+        $dataTableRequest->setLength($length);
+        $dataTablesResponse->setData($personasGrid);
+
+        $db = null;
+        $personas = null;
+        $items = null;
+        $this->disconnect();
+        return $dataTablesResponse;
+    }
 
 
     /**
@@ -404,20 +422,22 @@ WHERE per.activo=1 and usu.usuario=:usuario";
         $item->setTelefono($result->telefono);
         $item->setEmail($result->email);
         $item->setActivo((bool)$result->activo);
-        $item->setFechaAltaPersona(new DateTime ($result->fecha_alta_persona));
+        $item->setFechaAltaPersona(DateTime::createFromFormat('Y-m-d', $result->fecha_alta_persona));
         $item->setNombre($result->nombre);
         $item->setNombreSegundo($result->nombre_segundo);
         $item->setApellido($result->apellido);
         $item->setApellidoSegundo($result->apellido_segundo);
-        $item->setEsUsuario($result->es_usuario);
-
-
+        $item->setEsUsuario((bool)$result->es_usuario);
         if (in_array('*', $fields) || in_array('tipoDocumento', $fields))
-            $item->setTipoDocumento((new TipoDocumentoRepository($db))->get($result->tipo_documento));
+            $item->setTipoDocumento((new TipoDocumentoRepository($db))->get((int)$result->tipo_documento));
         if (in_array('*', $fields) || in_array('localidad', $fields))
             $item->setLocalidad((new LocalidadRepository($db))->get($result->localidad));
-        if ((in_array('*', $fields) || in_array('usuario', $fields)) && $item->getEsUsuario())
-            $item->setUsuario((new UsuarioRepository($db))->get($result->usuario));
+        if ($item->getEsUsuario()) {
+            if ((in_array('usuario', $fields)))
+                $item->setUsuario((new UsuarioRepository($db))->get($result->usuario));
+        }
+
+
         return $item;
     }
 

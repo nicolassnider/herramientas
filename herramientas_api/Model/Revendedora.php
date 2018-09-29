@@ -121,7 +121,7 @@ class Revendedora implements JsonSerializable
         if(isset($this->fechaAltaRevendedora)) $array['fechaAltaRevendedora'] = $this->fechaAltaRevendedora;
         if(isset($this->fechaBajaRevendedora)) $array['fechaBajaRevendedora'] = $this->fechaBajaRevendedora;
         if(isset($this->activo)) $array['activo'] = $this->activo;
-        if(isset($this->persona)) $array['persona'] = $this->activo;
+        if(isset($this->persona)) $array['persona'] = $this->persona;
         return $array;
     }
 }

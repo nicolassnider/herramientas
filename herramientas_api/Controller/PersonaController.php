@@ -12,7 +12,6 @@ require_once '../Model/TipoDocumento.php';
 require_once '../Model/Pais.php';
 require_once '../Model/Localidad.php';
 require_once '../Model/Provincia.php';
-require_once '../Model/TipoDocumento.php';
 require_once '../Model/Usuario.php';
 require_once '../Model/Perfil.php';
 require_once '../Model/Adjunto.php';

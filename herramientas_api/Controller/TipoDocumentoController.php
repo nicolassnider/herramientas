@@ -21,14 +21,26 @@ class TipoDocumentoController {
 
     public function init() {
         $this->app->group('/api', function () {
-            $this->group('/tipo-documento/select', function () {
-                $this->get('', function (Request $request, Response $response) {
+            $this->group('/tipos-documento', function () {
+                $this->get('/select', function (Request $request, Response $response) {
                     $items = (new TipoDocumentoService())->getAllSorted();
                     array_walk($items, function(&$item) {
                         $item = new SelectOption($item->getId(), $item->getDescripcion());
                     });
                     return $response->withJson($items, 200);
                 });
+                $this->get('/{id}', function (Request $request, Response $response) {
+                    $id = $request->getAttribute('id');
+                    $service = new TipoDocumentoService();
+                    $tipoDocumento = $service->get($id);
+
+                    if ($tipoDocumento == null) {
+                        return $response->withStatus(204);
+                    }
+                    return $response->withJson($tipoDocumento, 200);
+                })->add(new ValidatePermissionsMiddleware([
+                    'PERSONA_VISUALIZAR'
+                ]));
             });
         });
     }

@@ -78,7 +78,7 @@ class CampaniaController
 
                 $this->put('/{id}', function (Request $request, Response $response) {
                     $campania = CampaniaController::getInstanceFromRequest($request);
-                    $service = new PerfilesService();
+                    $service = new PersonaCategoriaService();
                     return $response->withJson($service->update($campania), 204);
 
                 })->add(new ValidatePermissionsMiddleware([

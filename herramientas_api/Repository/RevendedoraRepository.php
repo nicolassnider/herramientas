@@ -14,14 +14,61 @@ require_once '../Repository/CategoriaRevendedoraRepository.php';
 class RevendedoraRepository extends AbstractRepository
 {
 
-    public function create(Revendedora $revendedora) :Revendedora
+    public function create(Revendedora $revendedora): ?Revendedora
     {
+
+        $db = $this->connect();
+        $db->beginTransaction();
+        $sqlCreate = "INSERT INTO herramientas.revendedora(categoria_revendedora, fecha_alta_revendedora, activo, persona, fecha_alta_revendedora_revendedora) 
+                      VALUES (:categoria_revendedora,
+                              :fecha_alta_revendedora,
+                              :activo,
+                              :persona)";
+        $categoriaRevendedora=(int)$revendedora->getCategoriaRevendedora()->getId();
+        $fechaAltaRevendedora=date('Y-m-d');
+        $activo=(bool)$revendedora->getActivo();
+        $persona=(int)$revendedora->getPersona()->getId();
+        $stmtCreate = $db->prepare($sqlCreate);
+        $stmtCreate->bindParam(':categoria_revendedora', $categoriaRevendedora);
+        $stmtCreate->bindParam(':fecha_alta_revendedora', $fechaAltaRevendedora);
+        $stmtCreate->bindParam(':persona', $persona,PDO::PARAM_INT);
+        $stmtCreate->bindParam(':activo', $activo, PDO::PARAM_BOOL);
+        $stmtCreate->execute();
+        $revendedora->setId($db->lastInsertId());
+        $db->commit();
         return $revendedora;
     }
 
-    public function getAll(): Array {
+    public function getAll(bool $full = true): Array {
         $sql = "SELECT *
                 FROM revendedora";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $revendedoras = Array();
+        foreach ($items as $item) {
+            $item = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
+            array_push($revendedoras, $item);
+        }
+
+
+
+        $this->disconnect();
+        return $revendedoras;
+    }
+
+    public function getAllActiveSorted(): Array {
+        $sql = "SELECT rev.id, per.nombre, per.apellido FROM revendedora rev
+LEFT JOIN persona per on rev.persona = per.id
+WHERE per.activo=1";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
@@ -35,39 +82,13 @@ class RevendedoraRepository extends AbstractRepository
         $revendedoras = Array();
         foreach ($items as $item) {
             $revendedora = $this->createFromResultset($item, [], $this->db);
+
+
             array_push($revendedoras, $revendedora);
         }
 
         $this->disconnect();
         return $revendedoras;
-    }
-
-    public function getAllActiveSorted(): Array {
-        $sql = "";
-
-        $db = $this->connect();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-        if ($items == null) {
-            return Array();
-        }
-
-        $personas = Array();
-        foreach ($items as $item) {
-            $persona = $this->createFromResultset($item, [], $this->db);
-
-            $tipoDocumento = new TipoDocumento();
-            $tipoDocumento->setId($item->documentoTipoId);
-            $tipoDocumento->setDescripcion($item->descripcion);
-            $persona->setTipoDocumento($tipoDocumento);
-
-            array_push($personas, $persona);
-        }
-
-        $this->disconnect();
-        return $personas;
     }
 
     public function grid(DataTablesResponse $dataTablesResponse, DataTableRequest $dataTableRequest) {
@@ -218,7 +239,7 @@ class RevendedoraRepository extends AbstractRepository
     }
 
     public function get(int $id, bool $full = true): ?Revendedora {
-        $sqlGet = "SELECT * FROM persona";
+        $sqlGet = "SELECT * FROM revendedora WHERE id=:id";
 
         $db = $this->connect();
         $stmtGet = $db->prepare($sqlGet);
@@ -230,26 +251,27 @@ class RevendedoraRepository extends AbstractRepository
             return null;
         }
 
-        $persona = $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
+        $revendedora = $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
 
         $this->disconnect();
-        return $persona;
+        return $revendedora;
     }
 
 
     private function createFromResultset($result, array $fields, $db)
     {
+
         $item = new Revendedora();
         $item->setId((int)$result->id);
-        $item->setFechaAltaRevendedora(new DateTime ($result->fecha_alta_revendedora));
-        $item->setFechaBajaRevendedora(new DateTime ($result->fecha_baja_revendedora));
+        $item->setFechaAltaRevendedora(DateTime::createFromFormat('Y-m-d', $result->fecha_alta_revendedora));
+        if ($result->fecha_baja_revendedora){
+        $item->setFechaBajaRevendedora(DateTime::createFromFormat('Y-m-d', $result->fecha_baja_revendedora));}
         $item->setActivo((bool)$result->activo);
-
-
-        if (in_array('*', $fields) || in_array('categoriaPersona', $fields))
-            $item->setCategoriaRevendedora((new CategoriaRevendedoraRepository($db))->get($result->categoria_persona));
+        if (in_array('*', $fields) || in_array('categoriaRevendedora', $fields))
+            $item->setCategoriaRevendedora((new CategoriaRevendedoraRepository($db))->get($result->categoria_revendedora));
         if (in_array('*', $fields) || in_array('persona', $fields))
-            $item->setPersona((new PersonaRepository($db))->get($result->categoria_persona));
+            $item->setPersona((new PersonaRepository($db))->get($result->persona));
+
 
         return $item;
     }

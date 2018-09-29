@@ -6,6 +6,7 @@ require_once '../Repository/PerfilRepository.php';
 
 class UsuarioRepository extends AbstractRepository {
     public function get($id) {
+
         $sql = "SELECT * FROM usuario WHERE id=:id";
         $db = $this->connect();
         $stmt = $db->prepare($sql);

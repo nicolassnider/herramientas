@@ -5,6 +5,7 @@
  * Time: 12:43 AM
  */
 require_once '../Repository/TipoDocumentoRepository.php';
+require_once '../Model/TipoDocumento.php';
 
 class TipoDocumentoService {
     private $repository;
@@ -15,5 +16,9 @@ class TipoDocumentoService {
 
     public function getAllSorted(): Array {
         return $this->repository->getAllSorted();
+    }
+
+    public function get(int $id): ?TipoDocumento {
+        return $this->repository->get($id);
     }
 }
