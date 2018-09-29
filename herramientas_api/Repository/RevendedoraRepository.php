@@ -43,11 +43,7 @@ class RevendedoraRepository extends AbstractRepository
     }
 
     public function getAllActiveSorted(): Array {
-        $sql = "SELECT per.*, dot.id as documentoTipoId, dot.descripcion as descripcion
-                FROM persona as per
-                INNER JOIN tipo_documento as dot on dot.id = per.tipo_documento
-                WHERE per.activo=1
-                ORDER BY per.nombre, per.apellido ASC";
+        $sql = "";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
