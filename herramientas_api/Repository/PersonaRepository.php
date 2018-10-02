@@ -13,76 +13,140 @@ require_once '../Repository/TipoDocumentoRepository.php';
 
 class PersonaRepository extends AbstractRepository
 {
+    public function getAll(): Array
+    {
+        $sql = "SELECT persona.*,r.id AS r_id, u.id AS u_id  FROM persona
+                        LEFT JOIN revendedora r on persona.id = r.persona
+                        LEFT JOIN usuario u on r.id = u.revendedora";
+
+        $db = $this->connect();
+        $db->beginTransaction();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $db->commit();
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $personas = Array();
+        foreach ($items as $item) {
+            $persona = new Persona();
+
+            $persona->setId((int)$item->id);
+            $tipoDocumento = ((new TipoDocumentoRepository($this->db))->get((int)$item->tipo_documento));
+            $persona->setTipoDocumento($tipoDocumento);
+            $persona->setDocumento($item->documento);
+            $persona->setTelefono($item->telefono);
+            $persona->setEmail($item->email);
+            $persona->setActivo((bool)$item->activo);
+            $localidad = ((new LocalidadRepository($this->db))->get((int)$item->localidad));
+            $persona->setLocalidad($localidad);
+            $persona->setNombre($item->nombre);
+            $persona->setNombreSegundo($item->nombre_segundo);
+            $persona->setApellido($item->apellido);
+            $persona->setApellidoSegundo($item->apellido_segundo);
+            $persona->setFechaAltaPersona(new DateTime ($item->fecha_alta_persona));
+            $persona->setEsUsuario((bool)$item->es_usuario);
+            $usuario = ((new UsuarioRepository($this->db))->get((int)$item->u_id));
+            $persona->setUsuario($usuario);
+
+
+            array_push($personas, $persona);
+        }
+
+
+        $this->disconnect();
+        return $personas;
+    }
+
     public function get(int $id, bool $full = true): ?Persona
     {
+
         try {
             $db = $this->connect();
-            $db->beginTransaction();
-            $sqlGet = "SELECT persona.*,r.id as r_id, u.id as u_id FROM persona
+
+            $sqlGet = "SELECT persona.*,r.id AS r_id, u.id AS u_id  FROM persona
                         LEFT JOIN revendedora r on persona.id = r.persona
                         LEFT JOIN usuario u on r.id = u.revendedora
                         WHERE persona.id=:id";
+
             $stmtGet = $db->prepare($sqlGet);
             $stmtGet->bindParam(':id', $id);
             $stmtGet->execute();
-            $result = $stmtGet->fetchObject();
-            if ($result==null)
-            {
+
+            $item = $stmtGet->fetchObject();
+
+
+            if ($item == null) {
                 return null;
             }
-            $db->commit();
-            return $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
 
+            $persona = new Persona();
+
+            $persona->setId((int)$item->id);
+            $tipoDocumento = ((new TipoDocumentoRepository($this->db))->get((int)$item->tipo_documento));
+            $persona->setTipoDocumento($tipoDocumento);
+            $persona->setDocumento($item->documento);
+            $persona->setTelefono($item->telefono);
+            $persona->setEmail($item->email);
+            $persona->setActivo((bool)$item->activo);
+            $localidad = ((new LocalidadRepository($this->db))->get((int)$item->localidad));
+            $persona->setLocalidad($localidad);
+            $persona->setNombre($item->nombre);
+            $persona->setNombreSegundo($item->nombre_segundo);
+            $persona->setApellido($item->apellido);
+            $persona->setApellidoSegundo($item->apellido_segundo);
+            $persona->setFechaAltaPersona(new DateTime ($item->fecha_alta_persona));
+            $persona->setEsUsuario((bool)$item->es_usuario);
+            $usuario = ((new UsuarioRepository($this->db))->get((int)$item->u_id));
+            $persona->setUsuario($usuario);
 
         } catch (PDOException $e) {
-            throw  $e ;
+            throw  $e;
 
         } finally {
             $stmtGet = null;
             $db = null;
             $this->disconnect();
+            return $persona;
         }
     }
 
     public function create(Persona $persona)
     {
         $db = $this->connect();
-        $transaction = false;
-
-        if (!$db->inTransaction()) {
-            $db->beginTransaction();
-            $transaction = true;
-        }
+        $db->beginTransaction();
 
         try {
-            $sqlCreatePersona = "INSERT INTO persona(
-            tipo_documento,
-            documento,
-            nombre,
-            nombre_segundo,
-            apellido,
-            apellido_segundo,
-            apellido_segundo,
-            telefono,
-            email,
-            activo,
-            localidad,
-            es_usuario,
-            fecha_alta_persona) 
-                        VALUES (
-            :tipo_documento,
-            :documento,
-            :nombre,
-            :nombre_segundo,
-            :apellido,
-            :apellido_segundo,
-            :telefono,
-            :email,
-            :activo,
-            :localidad,
-            :es_usuario,
-            :fecha_alta_persona
-                        )";
+            $sqlCreatePersona = "INSERT INTO herramientas.persona(
+                                  tipo_documento, 
+                                  documento, 
+                                  nombre, 
+                                  nombre_segundo, 
+                                  apellido, 
+                                  apellido_segundo, 
+                                  telefono, 
+                                  email, 
+                                  activo,
+                                  localidad,
+                                  es_usuario, 
+                                  fecha_alta_persona)
+                                  VALUES (
+                                  :tipo_documento,
+                                  :documento,
+                                  :nombre,
+                                  :nombre_segundo,
+                                  :apellido,
+                                  :apellido_segundo,
+                                  :telefono,
+                                  :email,
+                                  :activo,
+                                  :localidad,
+                                  :es_usuario,
+                                  :fecha_alta_persona
+                                                )";
 
             $tipoDocumento = $persona->getTipoDocumento() != null ? $persona->getTipoDocumento()->getId() : null;
             $documento = $persona->getDocumento();
@@ -95,7 +159,8 @@ class PersonaRepository extends AbstractRepository
             $activo = $persona->getActivo();
             $localidad = $persona->getLocalidad() != null ? $persona->getLocalidad()->getId() : null;
             $esUsuario = $persona->getEsUsuario();
-            $fechaAltaPersona = date('Y-m-d H:i:s');
+            $fechaAltaPersona = date('Y-m-d');
+
 
             //prepara inserción base de datos
             $stmtCreatePersona = $db->prepare($sqlCreatePersona);
@@ -113,23 +178,24 @@ class PersonaRepository extends AbstractRepository
             $stmtCreatePersona->bindParam(':fecha_alta_persona', $fechaAltaPersona);
             $stmtCreatePersona->execute();
             $persona->setId($db->lastInsertId());
-            if ($transaction) $db->commit();
+            $db->commit();
 
 
         } catch (Exception $e) {
-            if ($db != null && $transaction) $db->rollback();
+            if ($db != null) $db->rollback();
             if ($e instanceof PDOException && $stmtCreatePersona->errorInfo()[0] == 23000 && $stmtCreatePersona->errorInfo()[1] == 1062) {
                 $array = explode("'", $stmtCreatePersona->errorInfo()[2]);
                 switch ($array[3]) {
-                    case 'legajo_unico':
-                        throw new BadRequestException("El legajo " . $array[1] . " ya existe.");
-                        break;
+
                     case 'documento_unico':
                         $array2 = explode("-", $array[1]);
                         $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
                         $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
-                        throw new BadRequestException($nombreDocumento . ": " . $array2[1] . " ya existe");
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
                         break;
+                    default:
+                        die(print_r($array));
+
                 }
             } else {
                 throw $e;
@@ -139,7 +205,207 @@ class PersonaRepository extends AbstractRepository
             $this->disconnect();
         }
 
-        return $persona;
+        return PersonaRepository::get($persona->getId());
+    }
+
+    public function update(Persona $persona): void
+    {
+        $db = $this->connect();
+        $db->beginTransaction();
+        try {
+            $sqlUpdatePersona = "UPDATE herramientas.persona 
+                                SET 
+                                tipo_documento  =:tipo_documento, 
+                                 documento  = :documento, 
+                                 nombre  = :nombre, 
+                                 nombre_segundo  = :nombre_segundo, 
+                                 apellido  = :apellido, 
+                                 apellido_segundo  = :apellido_segundo, 
+                                 telefono  = :telefono,
+                                 email=:email, 
+                                 activo  = :activo, 
+                                 localidad  = :localidad,                                   
+                                 es_usuario  = :es_usuario
+                                  
+                                WHERE 
+                                ( id  = :id)
+                                ";
+
+            $tipoDocumento = $persona->getTipoDocumento() != null ? $persona->getTipoDocumento()->getId() : null;
+            $documento = $persona->getDocumento();
+            $nombre = $persona->getNombre();
+            $nombreSegundo = $persona->getNombreSegundo();
+            $apellido = $persona->getApellido();
+            $apellidoSegundo = $persona->getApellidoSegundo();
+            $telefono = $persona->getTelefono();
+            $email = $persona->getEmail();
+            $activo = $persona->getActivo();
+            $localidad = $persona->getLocalidad() != null ? $persona->getLocalidad()->getId() : null;
+            $esUsuario = $persona->getEsUsuario();
+            $id = $persona->getId();
+
+            //prepara inserción base de datos
+            $stmtUpdatePersona = $db->prepare($sqlUpdatePersona);
+            $stmtUpdatePersona->bindParam(':tipo_documento', $tipoDocumento, PDO::PARAM_INT);
+            $stmtUpdatePersona->bindParam(':documento', $documento);
+            $stmtUpdatePersona->bindParam(':nombre', $nombre);
+            $stmtUpdatePersona->bindParam(':nombre_segundo', $nombreSegundo);
+            $stmtUpdatePersona->bindParam(':apellido', $apellido);
+            $stmtUpdatePersona->bindParam(':apellido_segundo', $apellidoSegundo);
+            $stmtUpdatePersona->bindParam(':telefono', $telefono);
+            $stmtUpdatePersona->bindParam(':email', $email);
+            $stmtUpdatePersona->bindParam(':activo', $activo, PDO::PARAM_BOOL);
+            $stmtUpdatePersona->bindParam(':localidad', $localidad, PDO::PARAM_INT);
+            $stmtUpdatePersona->bindParam(':es_usuario', $esUsuario, PDO::PARAM_BOOL);
+            $stmtUpdatePersona->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtUpdatePersona->execute();
+            $db->commit();
+        } catch (Exception $e) {
+            if ($db != null) $db->rollback();
+            if ($e instanceof PDOException && $stmtUpdatePersona->errorInfo()[0] == 23000 && $stmtUpdatePersona->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmtUpdatePersona->errorInfo()[2]);
+                switch ($array[3]) {
+
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
+                        break;
+                    default:
+                        die(print_r($array));
+
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $stmtUpdatePersona = null;
+            $this->disconnect();
+
+        }
+    }
+
+    public function delete(int $id): void
+    {
+        $db = $this->connect();
+        $db->beginTransaction();
+        try {
+            $sqlDeletePersona = "DELETE FROM herramientas.persona WHERE id=:id";
+            $stmtDeletePersona = $db->prepare($sqlDeletePersona);
+            $stmtDeletePersona->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtDeletePersona->execute();
+            $db->commit();
+
+        } catch (Exception $e) {
+            if ($db != null) $db->rollback();
+            if ($e instanceof PDOException && $stmtDeletePersona->errorInfo()[0] == 23000 && $stmtDeletePersona->errorInfo()[1] == 1451) {
+                $array = explode("`", $stmtDeletePersona->errorInfo()[2]);
+
+                switch ($array[5]) {
+
+                    case 'PERSONA_REVENDEDORA':
+                        //TODO:verificar id de revendedora
+                        $personaRepository = new PersonaRepository($this->db);
+                        throw new BadRequestException("Existe una relación para la persona " . $personaRepository->get($id)->getNombre() . " " . $personaRepository->get($id)->getApellidoSegundo() . " con Revendedora id X");
+                        break;
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+
+            $stmtDeletePersona = null;
+            $this->disconnect();
+
+        }
+    }
+
+    public function deactivate(int $id): void
+    {
+        $db = $this->connect();
+        $db->beginTransaction();
+        try {
+            $sqlDeactivatePersona = "UPDATE herramientas.persona SET activo = :activo, fecha_baja_persona = :fecha_baja_persona WHERE (id = :id);";
+            $fechaBajaPersona=date('Y-m-d');
+            $activo=false;
+
+            //prepara inserción base de datos
+            $stmtDeactivatePersona = $db->prepare($sqlDeactivatePersona);
+            $stmtDeactivatePersona->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtDeactivatePersona->bindParam(':activo', $activo, PDO::PARAM_BOOL);
+            $stmtDeactivatePersona->bindParam(':fecha_baja_persona', $fechaBajaPersona);
+            $stmtDeactivatePersona->execute();
+            $db->commit();
+
+        } catch (Exception $e) {
+            if ($db != null) $db->rollback();
+
+            if ($e instanceof PDOException && $stmtDeactivatePersona->errorInfo()[0] == 23000 && $stmtDeactivatePersona->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmtDeactivatePersona->errorInfo()[2]);
+                switch ($array[3]) {
+
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
+                        break;
+                    default:
+                        die(print_r($array));
+
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $stmtDeactivatePersona = null;
+            $this->disconnect();
+        }
+    }
+
+    public function activate(int $id): void
+    {
+        $db = $this->connect();
+        $db->beginTransaction();
+        try {
+            $sqlActivatePersona = "UPDATE herramientas.persona SET activo = :activo, fecha_baja_persona=:fecha_baja_persona WHERE (id = :id);";
+            $activo=true;
+            $fecha_baja_persona=null;
+            //prepara inserción base de datos
+            $stmtActivatePersona = $db->prepare($sqlActivatePersona);
+            $stmtActivatePersona->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtActivatePersona->bindParam(':activo', $activo, PDO::PARAM_BOOL);
+            $stmtActivatePersona->bindParam(':fecha_baja_persona', $fecha_baja_persona);
+            $stmtActivatePersona->execute();
+            $db->commit();
+            $stmtActivatePersona->errorInfo();
+        } catch (Exception $e) {
+            if ($db != null) $db->rollback();
+
+
+            if ($e instanceof PDOException && $stmtActivatePersona->errorInfo()[0] == 23000 && $stmtActivatePersona->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmtActivatePersona->errorInfo()[2]);
+                switch ($array[3]) {
+
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
+                        break;
+                    default:
+                        die(print_r($array));
+
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $stmtActivatePersona = null;
+            $this->disconnect();
+
+        }
     }
 
     public function getByUsuario(string $usuario): ?Persona
@@ -195,31 +461,6 @@ WHERE per.activo=1 and usu.usuario=:usuario";
 
         $this->disconnect();
         return $item;
-    }
-
-
-    public function getAll(): Array
-    {
-        $sql = "SELECT *
-                FROM persona";
-
-        $db = $this->connect();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-        if ($items == null) {
-            return Array();
-        }
-
-        $personas = Array();
-        foreach ($items as $item) {
-            $persona = $this->createFromResultset($item, ['*'], $this->db);
-            array_push($personas, $persona);
-        }
-
-        $this->disconnect();
-        return $personas;
     }
 
     public function getAllActiveSorted(): Array
@@ -416,28 +657,29 @@ WHERE per.activo=1 and usu.usuario=:usuario";
      */
     private function createFromResultset($result, array $fields, $db)
     {
+
+
         $item = new Persona();
         $item->setId((int)$result->id);
         $item->setDocumento($result->documento);
         $item->setTelefono($result->telefono);
         $item->setEmail($result->email);
         $item->setActivo((bool)$result->activo);
-        $item->setFechaAltaPersona(DateTime::createFromFormat('Y-m-d', $result->fecha_alta_persona));
+        $item->setFechaAltaPersona(new DateTime ($result->fecha_alta_persona));
         $item->setNombre($result->nombre);
         $item->setNombreSegundo($result->nombre_segundo);
         $item->setApellido($result->apellido);
         $item->setApellidoSegundo($result->apellido_segundo);
-        $item->setEsUsuario((bool)$result->es_usuario);
+        $item->setEsUsuario($result->es_usuario);
+
         if (in_array('*', $fields) || in_array('tipoDocumento', $fields))
-            $item->setTipoDocumento((new TipoDocumentoRepository($db))->get((int)$result->tipo_documento));
+            $item->setTipoDocumento((new TipoDocumentoRepository($db))->get($result->tipo_documento));
+
         if (in_array('*', $fields) || in_array('localidad', $fields))
             $item->setLocalidad((new LocalidadRepository($db))->get($result->localidad));
-        if ($item->getEsUsuario()) {
-            if ((in_array('usuario', $fields)))
-                $item->setUsuario((new UsuarioRepository($db))->get($result->usuario));
-        }
 
-
+        if ((in_array('*', $fields) || in_array('usuario', $fields)) && $item->getEsUsuario())
+            $item->setUsuario((new UsuarioRepository($db))->get($result->usuario));
         return $item;
     }
 

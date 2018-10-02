@@ -20,10 +20,11 @@ class AuthService {
 
     public function authenticate(string $usuario, string $clave): ?Persona {
         $persona = $this->personasRepository->getByUsuario($usuario);
-        //die(print_r($persona));
+
         if($persona != null && $persona->getEsUsuario() && $persona->getUsuario() != null) {
             if($persona->getUsuario()->getClave() == $clave) {
                 $token = bin2hex(openssl_random_pseudo_bytes(8));
+
 
                 $tokenMinutesValidity = Config::get('authentication.session.timeout');
                 $tokenExpire = (new DateTime())->modify("+{$tokenMinutesValidity} minutes")->format('Y-m-d H:i:s');

@@ -119,7 +119,8 @@ CREATE TABLE herramientas.persona (
   PRIMARY KEY (id),
   CONSTRAINT FK_TIPO_DOCUMENTO FOREIGN KEY (tipo_documento)
   REFERENCES herramientas.tipo_documento (id),
-  CONSTRAINT UNICO_DOCUMENTO UNIQUE (documento)
+  CONSTRAINT documento_unico UNIQUE (tipo_documento, documento)
+
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -160,7 +161,8 @@ CREATE TABLE herramientas.revendedora (
   CONSTRAINT CATEGORIA_REVENDEDORA FOREIGN KEY (categoria_revendedora)
   REFERENCES herramientas.categoria_revendedora (id),
   CONSTRAINT PERSONA_REVENDEDORA FOREIGN KEY (persona)
-  REFERENCES herramientas.persona (id)
+  REFERENCES herramientas.persona (id),
+  CONSTRAINT persona_unique UNIQUE (persona)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

@@ -4,15 +4,26 @@
       <w>activa</w>
       <w>activo</w>
       <w>apellido</w>
+      <w>baja</w>
       <w>campania</w>
       <w>categoria</w>
+      <w>categorias</w>
+      <w>categoriasrevendedora</w>
+      <w>combinación</w>
+      <w>consulta</w>
+      <w>crear</w>
       <w>desactivar</w>
       <w>descripcion</w>
       <w>docmento</w>
       <w>documento</w>
+      <w>eliminar</w>
+      <w>existe</w>
       <w>fecha</w>
+      <w>herramientas</w>
       <w>inicio</w>
+      <w>listar</w>
       <w>localidad</w>
+      <w>modificar</w>
       <w>nombre</w>
       <w>pais</w>
       <w>parametro</w>
@@ -26,6 +37,7 @@
       <w>revendedoras</w>
       <w>telefono</w>
       <w>tipo</w>
+      <w>unico</w>
       <w>usuario</w>
       <w>visualizar</w>
     </words>

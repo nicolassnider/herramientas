@@ -14,6 +14,7 @@ class UsuarioRepository extends AbstractRepository {
         $stmt->execute();
         $result = $stmt->fetchObject();
 
+
         $item = null;
         if ($result != null) {
             $item = new Usuario();
@@ -25,6 +26,7 @@ class UsuarioRepository extends AbstractRepository {
         }
 
         $this->disconnect();
+
         return $item;
     }
 
@@ -45,12 +47,6 @@ class UsuarioRepository extends AbstractRepository {
         $usuario->setId((int)$resultado->id);
         $usuario->setUsuario($resultado->usuario);
         $usuario->setNotificacionesActivas($resultado->notificaciones_activas);
-        $usuario->setMovil(null); //TODO: Completar
-        $usuario->setGerenciador(
-            $resultado->gerenciador != null ?
-            (new GerenciadoresRepository($this->db))->get($resultado->gerenciador) :
-            null
-        );
         $usuario->setPerfil((new PerfilesRepository($this->db))->get($resultado->perfil));
 
         $this->disconnect();

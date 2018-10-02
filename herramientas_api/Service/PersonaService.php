@@ -17,10 +17,10 @@ class PersonaService
         $this->repository = new PersonaRepository();
     }
 
-    public function get(int $idPersona): ?Persona
+    public function get(int $id): ?Persona
     {
 
-        return $this->repository->get($idPersona);
+        return $this->repository->get($id);
     }
 
     public function getAll(): Array
@@ -37,6 +37,26 @@ class PersonaService
     {
 
         return $this->repository->create($persona);
+    }
+
+    public function update(Persona $persona): void
+    {
+        $this->repository->update($persona);
+    }
+
+    public function delete(int $id): void
+    {
+        $this->repository->delete($id);
+    }
+
+    public function deactivate(int $id): void
+    {
+        $this->repository->deactivate($id);
+    }
+
+    public function activate(int $id): void
+    {
+        $this->repository->activate($id);
     }
 
     public function grid(DataTablesResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
