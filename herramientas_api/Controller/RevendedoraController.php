@@ -24,6 +24,20 @@ class RevendedoraController
     {
         $this->app->group('/api', function () {
             $this->group('/revendedoras', function () {
+
+                $this->get('/select', function (Request $request, Response $response) {
+
+                    $items = (new RevendedoraService())->getAllActiveSorted();
+
+                    array_walk($items, function (&$item) {
+                        $label = $item->getPersona()->getNombre() . ' ' . $item->getPersona()->getApellido() . ' (' . $item->getPersona()->getLocalidad()->getDescripcion() . ')';
+                        $item = new SelectOption($item->getId(), $label);
+                    });
+
+                    return $response->withJson($items, 200);
+                })->add(new ValidatePermissionsMiddleware([
+                    'REVENDEDORA_LISTAR'
+                ]));
                 $this->get('', function (Request $request, Response $response) {
                     $revendedoraService = new RevendedoraService();
                     $revendedoras = $revendedoraService->getAll();
@@ -45,12 +59,51 @@ class RevendedoraController
 
                 $this->post('', function (Request $request, Response $response) {
                     $revendedora = RevendedoraController::getInstanceFromRequest($request);
+
                     $service = new RevendedoraService();
                     $service->create($revendedora);
                     return $response->withJson($revendedora, 201);
 
                 })->add(new ValidatePermissionsMiddleware([
-                    'CAMPANIA_CREAR'
+                    'REVENDEDORA_CREAR'
+                ]));
+
+                $this->put('/{id}', function (Request $request, Response $response) {
+                    $revendedora = RevendedoraController::getInstanceFromRequest($request);
+                    $revendedoraService = new RevendedoraService();
+                    $revendedoraService->update($revendedora);
+                    return $response->withJson("updated", 204);
+                })->add(function ($request, $response, $next) {
+                    return $next($request, $response);
+                })->add(new ValidatePermissionsMiddleware([
+                    'REVENDEDORA_MODIFICAR'
+                ]));
+
+                $this->delete('/{id}', function (Request $request, Response $response) {
+                    $id=(int)$request->getAttribute('id');
+                    $revendedoraService=new RevendedoraService();
+                    $revendedoraService->delete($id);
+                    return $response->withJson("deleted", 204);
+                })->add(new ValidatePermissionsMiddleware([
+                    'REVENDEDORA_ELIMINAR'
+                ]));
+
+                $this->put('/desactivar/{id}', function (Request $request, Response $response) {
+                    $id=(int)$request->getAttribute('id');
+                    $revendedoraService = new RevendedoraService();
+                    $revendedoraService->deactivate($id);
+                    return $response->withJson("deactivated", 204);
+                })->add(new ValidatePermissionsMiddleware([
+                    'REVENDEDORA_MODIFICAR'
+                ]));
+
+                $this->put('/activar/{id}', function (Request $request, Response $response) {
+                    $id=(int)$request->getAttribute('id');
+                    $revendedoraService = new RevendedoraService();
+                    $revendedoraService->activate($id);
+                    return $response->withJson("activated", 204);
+                })->add(new ValidatePermissionsMiddleware([
+                    'PERSONA_MODIFICAR'
                 ]));
             });
         });
@@ -60,33 +113,20 @@ class RevendedoraController
     {
         $revendedora = new Revendedora();
         $revendedora->setId((int)$request->getAttribute('id'));
+        $categoriaRevendedora = new CategoriaRevendedora();
+        $categoriaRevendedora->setId($request->getParam('categoriaRevendedora')['id']);
+        $revendedora->setCategoriaRevendedora($categoriaRevendedora);
+        $revendedora->setActivo((bool)$request->getParam('activo'));
+        $persona = new Persona();
+        $persona->setId((int)$request->getParam('persona')['id']);
+        $revendedora->setPersona($persona);
+        $usuario = new Usuario();
+        $perfil= new Perfil();
+        $perfil->setId($request->getParam('usuario')['perfil']['id']);
+        $usuario->setPerfil($perfil);
+        $revendedora->setUsuario($usuario);
 
-        if ($request->getParam('categoriaRevendedora')) {
-            $categoriaRevendedora = new CategoriaRevendedora();
-            if ($request->getParam('categoriaRevendedora')['id'] == null) {
-                $categoriaRevendedora = null;
-            } else {
-                $categoriaRevendedora->setId($request->getParam('cebe')['id']);
-            }
-            $revendedora->setCategoriaRevendedora($categoriaRevendedora);
-        } else {
-            $revendedora->setCebe(null);
-        }
-
-        $revendedora->setFechaAltaRevendedora($request->getParam('fechaAltaRevendedora'));
-        $revendedora->setActivo($request->getParam('activo'));
-
-        if ($request->getParam('persona')) {
-            $persona = new Persona();
-            if ($request->getParam('persona')['id'] == null) {
-                $persona = null;
-            } else {
-                $persona->setId($request->getParam('persona')['id']);
-            }
-            $revendedora->setPersona($persona);
-        } else {
-            $revendedora->setPersona(null);
-        }
+        return $revendedora;
 
     }
 

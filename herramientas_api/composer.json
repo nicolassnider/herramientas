@@ -1,6 +1,7 @@
 {
     "require": {
         "slim/slim": "3.10",
-        "respect/validation": "^1.1"
+        "respect/validation": "^1.1",
+      "ext-pdo": "*"
     }
 }

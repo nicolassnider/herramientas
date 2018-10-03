@@ -14,6 +14,25 @@ class Revendedora implements JsonSerializable
     private $fechaBajaRevendedora;
     private $activo;
     private $persona;
+    private $usuario;
+
+    /**
+     * @return mixed
+     */
+    public function getUsuario() :?Usuario
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param mixed $usuario
+     */
+    public function setUsuario(?Usuario $usuario): void
+    {
+        $this->usuario = $usuario;
+    }
+
+
 
     /**
      * @return mixed
@@ -122,6 +141,7 @@ class Revendedora implements JsonSerializable
         if(isset($this->fechaBajaRevendedora)) $array['fechaBajaRevendedora'] = $this->fechaBajaRevendedora;
         if(isset($this->activo)) $array['activo'] = $this->activo;
         if(isset($this->persona)) $array['persona'] = $this->persona;
+        if(isset($this->usuario))$array['usuario']=$this->usuario;
         return $array;
     }
 }

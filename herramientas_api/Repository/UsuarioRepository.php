@@ -4,8 +4,10 @@ require_once '../Model/Usuario.php';
 require_once '../Model/Perfil.php';
 require_once '../Repository/PerfilRepository.php';
 
-class UsuarioRepository extends AbstractRepository {
-    public function get($id) {
+class UsuarioRepository extends AbstractRepository
+{
+    public function get($id)
+    {
 
         $sql = "SELECT * FROM usuario WHERE id=:id";
         $db = $this->connect();
@@ -30,7 +32,8 @@ class UsuarioRepository extends AbstractRepository {
         return $item;
     }
 
-    public function buscar($id) {
+    public function buscar($id)
+    {
         $consulta = "SELECT * FROM usuario WHERE persona=:id";
         $db = $this->connect();
         $stmt = $db->prepare($consulta);
@@ -53,7 +56,8 @@ class UsuarioRepository extends AbstractRepository {
         return $usuario;
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
 
         $consulta = "DELETE FROM usuario WHERE persona=:id";
 
@@ -65,51 +69,43 @@ class UsuarioRepository extends AbstractRepository {
         $stmt->execute();
     }
 
-    public function create(int $id, Usuario $usuario): Usuario {
+    public function create(Revendedora $revendedora): Usuario
+    {
         try {
-            $consulta = "INSERT INTO usuario (
-                persona,
-                usuario,
-                clave_activacion_codigo,
-                clave_activacion_expiracion,
-                perfil,
-                notificaciones_activas,
-                movil,
-                gerenciador
-            ) VALUES (
-                :persona,
-                :usuario,
-                :claveActivacionCodigo,
-                :claveActivacionExpiracion,
-                :perfil,
-                :notificacionesActivas,
-                :movil,
-                :gerenciador
-            )";
-
+            $persona= (new PersonaRepository($this->db))->get($revendedora->getPersona()->getId());
             $db = $this->connect();
-            $stmt = $db->prepare($consulta);
-            $nUsuario = $usuario->getUsuario();
-            $perfil = $usuario->getPerfil()->getId();
-            $notificacionesActivas = $usuario->getNotificacionesActivas();
-            $movil = $usuario->getMovil();
-            $gerenciador = $usuario->getGerenciador()->getId();
-            $claveActivacionCodigo = $usuario->getClaveActivacionCodigo();
-            $claveActivacionExpiracion = $usuario->getClaveActivacionExpiracion();
+            $sqlCreateUsuario = "INSERT INTO  herramientas.usuario  (
+                                                              revendedora, 
+                                                              usuario, 
+                                                              clave, 
+                                                              perfil, 
+                                                              notificaciones_activas) 
+                          VALUES (
+                                                              :revendedora, 
+                                                              :usuario, 
+                                                              :clave, 
+                                                              :perfil, 
+                                                              :notificaciones_activas);";
+            $stmtCreateUsuario = $db->prepare($sqlCreateUsuario);
+            $idRevendedora = (int)$revendedora->getId();
+            $usuarioN = UsuarioRepository::generaUsuario($persona->getNombre(), $persona->getApellido(), $persona->getDocumento());
+            $clave = "password";
+            $perfil = $revendedora->getUsuario()->getPerfil()->getId();
+            $notificacionesActivas = (bool)$revendedora->getUsuario()->getNotificacionesActivas();
+            $stmtCreateUsuario->bindParam(':revendedora', $idRevendedora, PDO::PARAM_INT);
+            $stmtCreateUsuario->bindParam(':usuario', $usuarioN);
+            $stmtCreateUsuario->bindParam(':clave', $clave);
+            $stmtCreateUsuario->bindParam(':perfil', $perfil, PDO::PARAM_INT);
+            $stmtCreateUsuario->bindParam(':notificaciones_activas', $notificacionesActivas, PDO::PARAM_BOOL);
+            $stmtCreateUsuario->execute();
+            $revendedora->getUsuario()->setId($db->lastInsertId());
+            $revendedora->getUsuario()->setUsuario($usuarioN);
 
-            $stmt->bindParam(':persona', $id, PDO::PARAM_INT);
-            $stmt->bindParam(':usuario', $nUsuario);
-            $stmt->bindParam(':claveActivacionCodigo', $claveActivacionCodigo);
-            $stmt->bindParam(':claveActivacionExpiracion', $claveActivacionExpiracion);
-            $stmt->bindParam(':perfil', $perfil, PDO::PARAM_INT);
-            $stmt->bindParam(':notificacionesActivas', $notificacionesActivas, PDO::PARAM_BOOL);
-            $stmt->bindParam(':movil', $movil, PDO::PARAM_INT);
-            $stmt->bindParam(':gerenciador', $gerenciador, PDO::PARAM_INT);
-            $stmt->execute();
-            $usuario->setId($db->lastInsertId());
         } catch (Exception $e) {
-            if ($e instanceof PDOException && $stmt->errorInfo()[0] == 23000 && $stmt->errorInfo()[1] == 1062) {
-                $array = explode("'", $stmt->errorInfo()[2]);
+            $array = $stmtCreateUsuario->errorInfo();
+            die(print_r($array));
+            if ($e instanceof PDOException && $stmtCreateUsuario->errorInfo()[0] == 23000 && $stmtCreateUsuario->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmtCreateUsuario->errorInfo()[2]);
                 switch ($array[3]) {
                     case 'usuario_unico':
                         throw new BadRequestException("El usuario " . $array[1] . " ya existe.");
@@ -120,13 +116,15 @@ class UsuarioRepository extends AbstractRepository {
             }
         } finally {
             $this->disconnect();
+            return $revendedora->getUsuario();
         }
-        return $usuario;
+
     }
 
-    public function update($id, $usuario){
+    public function update($id, $usuario)
+    {
 
-        try{
+        try {
             $consulta = "UPDATE usuario SET usuario=:usuario, perfil=:perfil, notificaciones_activas=:notificacionesActivas, movil=:movil, gerenciador=:gerenciador WHERE persona=:persona";
 
             $db = new Db();
@@ -164,7 +162,8 @@ class UsuarioRepository extends AbstractRepository {
         }
     }
 
-    public function getByToken(string $token): ?Usuario {
+    public function getByToken(string $token): ?Usuario
+    {
         $sql = "SELECT u.*, ut.token, ut.expiracion
                 FROM usuarios_tokens ut
                 LEFT JOIN usuario u ON ut.usuario = u.id
@@ -189,5 +188,11 @@ class UsuarioRepository extends AbstractRepository {
         }
 
         return $item;
+    }
+
+    public function generaUsuario($nombre, $apellido, $documento): ?string
+    {
+        $nombreUsuario = strtolower(substr($nombre, 0, 3) . substr($apellido, 0, 3) . substr($documento, 4, 10));
+        return $nombreUsuario;
     }
 }

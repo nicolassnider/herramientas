@@ -32,10 +32,29 @@ class RevendedoraService
     }
 
 
-    public function create(Revendedora $revendedora): Revendedora
+    public function create(Revendedora $revendedora)
     {
 
         return $this->repository->create($revendedora);
+    }
+    public function update(Revendedora $revendedora): void
+    {
+        $this->repository->update($revendedora);
+    }
+
+    public function delete(int $id): void
+    {
+        $this->repository->delete($id);
+    }
+
+    public function deactivate(int $id): void
+    {
+        $this->repository->deactivate($id);
+    }
+
+    public function activate(int $id): void
+    {
+        $this->repository->activate($id);
     }
 
     public function grid(DataTablesResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
