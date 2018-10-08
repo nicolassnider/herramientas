@@ -2,19 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: nicol
- * Date: 28/09/2018
- * Time: 8:45 AM
+ * Date: 07/10/2018
+ * Time: 3:58 PM
  */
+
 require_once 'Db.php';
 require_once 'AbstractRepository.php';
-require_once '../Model/CategoriaRevendedora.php';
+require_once '../Model/CategoriaCliente.php';
 require_once '../Commons/Exceptions/BadRequestException.php';
 
-class CategoriaRevendedoraRepository extends AbstractRepository
+class CategoriaClienteRepository extends AbstractRepository
 {
     public function getAllSorted(): Array{
         $sql = "SELECT * 
-                FROM categoria_revendedora 
+                FROM categoria_cliente 
                 ORDER BY descripcion ASC";
 
         $db = $this->connect();
@@ -26,21 +27,21 @@ class CategoriaRevendedoraRepository extends AbstractRepository
             return Array();
         }
 
-        $categoriaRevendedoras = Array();
+        $categoriaClientes = Array();
         foreach ($items as $item) {
-            $categoriaRevendedora = new CategoriaRevendedora();
-            $categoriaRevendedora->setId($item->id);
-            $categoriaRevendedora->setDescripcion($item->descripcion);
-            array_push($categoriaRevendedoras, $categoriaRevendedora);
+            $categoriaCliente = new CategoriaCliente();
+            $categoriaCliente->setId($item->id);
+            $categoriaCliente->setDescripcion($item->descripcion);
+            array_push($categoriaClientes, $categoriaCliente);
         }
 
         $this->disconnect();
-        return $categoriaRevendedoras;
+        return $categoriaClientes;
     }
 
-    public function get(int $id):?CategoriaRevendedora {
+    public function get(int $id):?CategoriaCliente {
         $sql = "SELECT * 
-                FROM categoria_revendedora 
+                FROM categoria_cliente 
                 WHERE id=:id";
 
         $db = $this->connect();
@@ -54,7 +55,7 @@ class CategoriaRevendedoraRepository extends AbstractRepository
 
         $item = null;
 
-        $item = new CategoriaRevendedora();
+        $item = new CategoriaCliente();
         $item->setId((int)$result->id);
         $item->setDescripcion($result->descripcion);
 
@@ -63,7 +64,7 @@ class CategoriaRevendedoraRepository extends AbstractRepository
     }
 
     public function getAll():Array{
-        $sqlGetAll="SELECT * FROM categoria_revendedora";
+        $sqlGetAll="SELECT * FROM categoria_cliente";
         $db = $this->connect();
         $stmtGetAll= $db->prepare($sqlGetAll);
         $stmtGetAll->execute();
@@ -72,46 +73,46 @@ class CategoriaRevendedoraRepository extends AbstractRepository
             return Array();
         }
 
-        $categoriasRevendedora = Array();
+        $categoriasCliente = Array();
         foreach ($items as $item) {
-            $categoriaRevendedora = new CategoriaRevendedora();
-            $categoriaRevendedora->setId((int)$item->id);
-            $categoriaRevendedora->setDescripcion((string)$item->descripcion);
-            array_push($categoriasRevendedora, $categoriaRevendedora);
+            $categoriaCliente = new CategoriaCliente();
+            $categoriaCliente->setId((int)$item->id);
+            $categoriaCliente->setDescripcion((string)$item->descripcion);
+            array_push($categoriasCliente, $categoriaCliente);
         }
 
         $this->disconnect();
-        return $categoriasRevendedora;
+        return $categoriasCliente;
     }
 
-    public function create(CategoriaRevendedora $categoriaRevendedora): ?CategoriaRevendedora
+    public function create(CategoriaCliente $categoriaCliente): ?CategoriaCliente
     {
 
         $db = $this->connect();
         $db->beginTransaction();
-        $sqlCreate = "INSERT INTO categoria_revendedora (descripcion) VALUES (:descripcion)";
-        $descripcion = $categoriaRevendedora->getDescripcion();
+        $sqlCreate = "INSERT INTO categoria_cliente (descripcion) VALUES (:descripcion)";
+        $descripcion = $categoriaCliente->getDescripcion();
         $stmtCreate = $db->prepare($sqlCreate);
         $stmtCreate->bindParam(':descripcion', $descripcion);
         $stmtCreate->execute();
-        $categoriaRevendedora->setId($db->lastInsertId());
+        $categoriaCliente->setId($db->lastInsertId());
         $db->commit();
-        return $categoriaRevendedora;
+        return $categoriaCliente;
     }
 
-    public function update(CategoriaRevendedora $categoriaRevendedora)
+    public function update(CategoriaCliente $categoriaCliente)
     {
 
         try {
             $db = $this->connect();
             $db->beginTransaction();
             $sqlUpdate = "UPDATE 
-                        categoria_revendedora SET                        
+                        categoria_cliente SET                        
                         descripcion=:descripcion                        
                         WHERE
                         id=:id";
-            $id = $categoriaRevendedora->getId();
-            $descripcion = $categoriaRevendedora->getDescripcion();
+            $id = $categoriaCliente->getId();
+            $descripcion = $categoriaCliente->getDescripcion();
             $stmtUpdate = $db->prepare($sqlUpdate);
             $stmtUpdate->bindParam(':id', $id);
             $stmtUpdate->bindParam(':descripcion', $descripcion);
@@ -135,7 +136,7 @@ class CategoriaRevendedoraRepository extends AbstractRepository
         try {
             $db = $this->connect();
             $db->beginTransaction();
-            $sqlDelete = "DELETE FROM herramientas.categoria_revendedora WHERE (id =:id)";
+            $sqlDelete = "DELETE FROM herramientas.categoria_cliente WHERE (id =:id)";
             $stmtDelete = $db->prepare($sqlDelete);
             $stmtDelete->bindParam(':id', $id);
             $stmtDelete->execute();

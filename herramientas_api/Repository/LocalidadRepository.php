@@ -8,6 +8,7 @@
 require_once "../Model/Localidad.php";
 require_once "../Repository/ProvinciaRepository.php";
 require_once "../Repository/AbstractRepository.php";
+require_once '../Commons/Exceptions/BadRequestException.php';
 class LocalidadRepository extends AbstractRepository {
     public function getAllSortedByProvincia($provincia): Array {
         $sql = "SELECT * 

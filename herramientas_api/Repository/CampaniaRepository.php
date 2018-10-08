@@ -6,6 +6,7 @@
  * Time: 12:17 AM
  */
 require_once '../Model/Campania.php';
+require_once '../Commons/Exceptions/BadRequestException.php';
 class CampaniaRepository extends AbstractRepository
 {
 

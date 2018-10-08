@@ -6,7 +6,7 @@
  */
 
 require_once '../Commons/Config/Config.php';
-
+require_once '../Commons/Exceptions/BadRequestException.php';
 class Db
 {
     private $host;

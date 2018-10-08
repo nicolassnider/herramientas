@@ -23,8 +23,8 @@ class LocalidadController {
                     });
                     return $response->withJson($items, 200);
                 })->add(new ValidatePermissionsMiddleware([
-                    'PERSONAS_CREAR',
-                    'PERSONAS_MODIFICAR'
+                    'PERSONA_CREAR',
+                    'PERSONA_MODIFICAR'
                     // TODO: Agregar los permisos faltantes.
                 ]));
             });

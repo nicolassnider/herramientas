@@ -22,7 +22,8 @@ CREATE TABLE herramientas.catalogo (
   descripcion   VARCHAR(30)      NOT NULL,
   observaciones TEXT(200)        NULL,
   activo        BIT(1) DEFAULT 1 NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  CONSTRAINT descripcion_catalogo_unico UNIQUE (descripcion)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -194,6 +195,7 @@ CREATE TABLE herramientas.cliente (
   direccion_entrega  VARCHAR(30) NOT NULL,
   ubicacion          INT(30)     NULL,
   fecha_alta_cliente DATE        NOT NULL,
+  fecha_baja_cliente DATE        NULL,
   anio_nacimiento    DATE        NULL,
   madre              BIT(1)      NULL,
   apodo              VARCHAR(15) NULL,
@@ -206,7 +208,8 @@ CREATE TABLE herramientas.cliente (
   CONSTRAINT FK_UBICACION FOREIGN KEY (ubicacion)
   REFERENCES herramientas.ubicacion (id),
   CONSTRAINT FK_REVENDEDORA FOREIGN KEY (revendedora)
-  REFERENCES herramientas.revendedora (id)
+  REFERENCES herramientas.revendedora (id),
+  CONSTRAINT persona_unico UNIQUE (persona)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -221,6 +224,7 @@ CREATE TABLE herramientas.catalogo_campania (
   REFERENCES herramientas.catalogo (id),
   CONSTRAINT FK_CAMPANIA FOREIGN KEY (campania)
   REFERENCES herramientas.campania (id)
+
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -293,11 +297,12 @@ CREATE TABLE herramientas.factura (
   total             DECIMAL(13, 3)   NOT NULL,
   fecha_vencimiento DATE             NOT NULL,
   campania          INT(30)          NOT NULL,
-  cobrado           BIT(1) DEFAULT 0 NOT NULL,
+  pagado           BIT(1) DEFAULT 0 NOT NULL,
   nro_factura       VARCHAR(15)      NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_FACTURA_CAMPANIA FOREIGN KEY (campania)
-  REFERENCES herramientas.campania (id)
+  REFERENCES herramientas.campania (id),
+  CONSTRAINT nro_factura_unico UNIQUE (nro_factura)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

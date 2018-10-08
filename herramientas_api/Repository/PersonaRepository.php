@@ -15,15 +15,15 @@ class PersonaRepository extends AbstractRepository
 {
     public function getAll(): Array
     {
-        $sql = "SELECT persona.*,r.id AS r_id, u.id AS u_id  FROM persona
+        $sqlGetAll = "SELECT persona.*,r.id AS r_id, u.id AS u_id  FROM persona
                         LEFT JOIN revendedora r on persona.id = r.persona
                         LEFT JOIN usuario u on r.id = u.revendedora";
 
         $db = $this->connect();
         $db->beginTransaction();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $stmtGetAll = $db->prepare($sqlGetAll);
+        $stmtGetAll->execute();
+        $items = $stmtGetAll->fetchAll(PDO::FETCH_OBJ);
         $db->commit();
 
         if ($items == null) {
@@ -120,7 +120,7 @@ class PersonaRepository extends AbstractRepository
         $db->beginTransaction();
 
         try {
-            $sqlCreatePersona = "INSERT INTO herramientas.persona(
+            $sqlCreate = "INSERT INTO herramientas.persona(
                                   tipo_documento, 
                                   documento, 
                                   nombre, 
@@ -163,28 +163,28 @@ class PersonaRepository extends AbstractRepository
 
 
             //prepara inserción base de datos
-            $stmtCreatePersona = $db->prepare($sqlCreatePersona);
-            $stmtCreatePersona->bindParam(':tipo_documento', $tipoDocumento, PDO::PARAM_INT);
-            $stmtCreatePersona->bindParam(':documento', $documento);
-            $stmtCreatePersona->bindParam(':nombre', $nombre);
-            $stmtCreatePersona->bindParam(':nombre_segundo', $nombreSegundo);
-            $stmtCreatePersona->bindParam(':apellido', $apellido);
-            $stmtCreatePersona->bindParam(':apellido_segundo', $apellidoSegundo);
-            $stmtCreatePersona->bindParam(':telefono', $telefono);
-            $stmtCreatePersona->bindParam(':email', $email);
-            $stmtCreatePersona->bindParam(':activo', $activo, PDO::PARAM_BOOL);
-            $stmtCreatePersona->bindParam(':localidad', $localidad, PDO::PARAM_INT);
-            $stmtCreatePersona->bindParam(':es_usuario', $esUsuario, PDO::PARAM_BOOL);
-            $stmtCreatePersona->bindParam(':fecha_alta_persona', $fechaAltaPersona);
-            $stmtCreatePersona->execute();
+            $stmtCreate = $db->prepare($sqlCreate);
+            $stmtCreate->bindParam(':tipo_documento', $tipoDocumento, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':documento', $documento);
+            $stmtCreate->bindParam(':nombre', $nombre);
+            $stmtCreate->bindParam(':nombre_segundo', $nombreSegundo);
+            $stmtCreate->bindParam(':apellido', $apellido);
+            $stmtCreate->bindParam(':apellido_segundo', $apellidoSegundo);
+            $stmtCreate->bindParam(':telefono', $telefono);
+            $stmtCreate->bindParam(':email', $email);
+            $stmtCreate->bindParam(':activo', $activo, PDO::PARAM_BOOL);
+            $stmtCreate->bindParam(':localidad', $localidad, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':es_usuario', $esUsuario, PDO::PARAM_BOOL);
+            $stmtCreate->bindParam(':fecha_alta_persona', $fechaAltaPersona);
+            $stmtCreate->execute();
             $persona->setId($db->lastInsertId());
             $db->commit();
 
 
         } catch (Exception $e) {
             if ($db != null) $db->rollback();
-            if ($e instanceof PDOException && $stmtCreatePersona->errorInfo()[0] == 23000 && $stmtCreatePersona->errorInfo()[1] == 1062) {
-                $array = explode("'", $stmtCreatePersona->errorInfo()[2]);
+            if ($e instanceof PDOException && $stmtCreate->errorInfo()[0] == 23000 && $stmtCreate->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmtCreate->errorInfo()[2]);
                 switch ($array[3]) {
 
                     case 'documento_unico':
@@ -213,7 +213,7 @@ class PersonaRepository extends AbstractRepository
         $db = $this->connect();
         $db->beginTransaction();
         try {
-            $sqlUpdatePersona = "UPDATE herramientas.persona 
+            $sqlUpdate = "UPDATE herramientas.persona 
                                 SET 
                                 tipo_documento  =:tipo_documento, 
                                  documento  = :documento, 
@@ -245,25 +245,25 @@ class PersonaRepository extends AbstractRepository
             $id = $persona->getId();
 
             //prepara inserción base de datos
-            $stmtUpdatePersona = $db->prepare($sqlUpdatePersona);
-            $stmtUpdatePersona->bindParam(':tipo_documento', $tipoDocumento, PDO::PARAM_INT);
-            $stmtUpdatePersona->bindParam(':documento', $documento);
-            $stmtUpdatePersona->bindParam(':nombre', $nombre);
-            $stmtUpdatePersona->bindParam(':nombre_segundo', $nombreSegundo);
-            $stmtUpdatePersona->bindParam(':apellido', $apellido);
-            $stmtUpdatePersona->bindParam(':apellido_segundo', $apellidoSegundo);
-            $stmtUpdatePersona->bindParam(':telefono', $telefono);
-            $stmtUpdatePersona->bindParam(':email', $email);
-            $stmtUpdatePersona->bindParam(':activo', $activo, PDO::PARAM_BOOL);
-            $stmtUpdatePersona->bindParam(':localidad', $localidad, PDO::PARAM_INT);
-            $stmtUpdatePersona->bindParam(':es_usuario', $esUsuario, PDO::PARAM_BOOL);
-            $stmtUpdatePersona->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmtUpdatePersona->execute();
+            $stmtUpdate = $db->prepare($sqlUpdate);
+            $stmtUpdate->bindParam(':tipo_documento', $tipoDocumento, PDO::PARAM_INT);
+            $stmtUpdate->bindParam(':documento', $documento);
+            $stmtUpdate->bindParam(':nombre', $nombre);
+            $stmtUpdate->bindParam(':nombre_segundo', $nombreSegundo);
+            $stmtUpdate->bindParam(':apellido', $apellido);
+            $stmtUpdate->bindParam(':apellido_segundo', $apellidoSegundo);
+            $stmtUpdate->bindParam(':telefono', $telefono);
+            $stmtUpdate->bindParam(':email', $email);
+            $stmtUpdate->bindParam(':activo', $activo, PDO::PARAM_BOOL);
+            $stmtUpdate->bindParam(':localidad', $localidad, PDO::PARAM_INT);
+            $stmtUpdate->bindParam(':es_usuario', $esUsuario, PDO::PARAM_BOOL);
+            $stmtUpdate->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtUpdate->execute();
             $db->commit();
         } catch (Exception $e) {
             if ($db != null) $db->rollback();
-            if ($e instanceof PDOException && $stmtUpdatePersona->errorInfo()[0] == 23000 && $stmtUpdatePersona->errorInfo()[1] == 1062) {
-                $array = explode("'", $stmtUpdatePersona->errorInfo()[2]);
+            if ($e instanceof PDOException && $stmtUpdate->errorInfo()[0] == 23000 && $stmtUpdate->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmtUpdate->errorInfo()[2]);
                 switch ($array[3]) {
 
                     case 'documento_unico':
@@ -280,7 +280,7 @@ class PersonaRepository extends AbstractRepository
                 throw $e;
             }
         } finally {
-            $stmtUpdatePersona = null;
+            $stmtUpdate = null;
             $this->disconnect();
 
         }
@@ -291,16 +291,16 @@ class PersonaRepository extends AbstractRepository
         $db = $this->connect();
         $db->beginTransaction();
         try {
-            $sqlDeletePersona = "DELETE FROM herramientas.persona WHERE id=:id";
-            $stmtDeletePersona = $db->prepare($sqlDeletePersona);
-            $stmtDeletePersona->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmtDeletePersona->execute();
+            $sqlDelete = "DELETE FROM herramientas.persona WHERE id=:id";
+            $stmtDelete = $db->prepare($sqlDelete);
+            $stmtDelete->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtDelete->execute();
             $db->commit();
 
         } catch (Exception $e) {
             if ($db != null) $db->rollback();
-            if ($e instanceof PDOException && $stmtDeletePersona->errorInfo()[0] == 23000 && $stmtDeletePersona->errorInfo()[1] == 1451) {
-                $array = explode("`", $stmtDeletePersona->errorInfo()[2]);
+            if ($e instanceof PDOException && $stmtDelete->errorInfo()[0] == 23000 && $stmtDelete->errorInfo()[1] == 1451) {
+                $array = explode("`", $stmtDelete->errorInfo()[2]);
 
                 switch ($array[5]) {
 
@@ -315,7 +315,7 @@ class PersonaRepository extends AbstractRepository
             }
         } finally {
 
-            $stmtDeletePersona = null;
+            $stmtDelete = null;
             $this->disconnect();
 
         }
@@ -326,23 +326,20 @@ class PersonaRepository extends AbstractRepository
         $db = $this->connect();
         $db->beginTransaction();
         try {
-            $sqlDeactivatePersona = "UPDATE herramientas.persona SET activo = :activo, fecha_baja_persona = :fecha_baja_persona WHERE (id = :id);";
+            $sqlDeactivate = "UPDATE herramientas.persona SET activo = '0', fecha_baja_persona = :fecha_baja_persona WHERE (id = :id);";
             $fechaBajaPersona=date('Y-m-d');
-            $activo=false;
-
             //prepara inserción base de datos
-            $stmtDeactivatePersona = $db->prepare($sqlDeactivatePersona);
-            $stmtDeactivatePersona->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmtDeactivatePersona->bindParam(':activo', $activo, PDO::PARAM_BOOL);
-            $stmtDeactivatePersona->bindParam(':fecha_baja_persona', $fechaBajaPersona);
-            $stmtDeactivatePersona->execute();
+            $stmtDeactivate = $db->prepare($sqlDeactivate);
+            $stmtDeactivate->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtDeactivate->bindParam(':fecha_baja_persona', $fechaBajaPersona);
+            $stmtDeactivate->execute();
             $db->commit();
-
         } catch (Exception $e) {
             if ($db != null) $db->rollback();
-
-            if ($e instanceof PDOException && $stmtDeactivatePersona->errorInfo()[0] == 23000 && $stmtDeactivatePersona->errorInfo()[1] == 1062) {
-                $array = explode("'", $stmtDeactivatePersona->errorInfo()[2]);
+            $array= $stmtDeactivate->errorInfo();
+            //TODO:verificar ex
+            if ($e instanceof PDOException && $stmtDeactivate->errorInfo()[0] == 23000 && $stmtDeactivate->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmtDeactivate->errorInfo()[2]);
                 switch ($array[3]) {
 
                     case 'documento_unico':
@@ -359,7 +356,7 @@ class PersonaRepository extends AbstractRepository
                 throw $e;
             }
         } finally {
-            $stmtDeactivatePersona = null;
+            $stmtDeletePersona = null;
             $this->disconnect();
         }
     }
@@ -369,23 +366,19 @@ class PersonaRepository extends AbstractRepository
         $db = $this->connect();
         $db->beginTransaction();
         try {
-            $sqlActivatePersona = "UPDATE herramientas.persona SET activo = :activo, fecha_baja_persona=:fecha_baja_persona WHERE (id = :id);";
-            $activo=true;
-            $fecha_baja_persona=null;
+            $sqlActivate = "UPDATE herramientas.persona SET activo = '1' WHERE (id = :id);";
+
             //prepara inserción base de datos
-            $stmtActivatePersona = $db->prepare($sqlActivatePersona);
-            $stmtActivatePersona->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmtActivatePersona->bindParam(':activo', $activo, PDO::PARAM_BOOL);
-            $stmtActivatePersona->bindParam(':fecha_baja_persona', $fecha_baja_persona);
-            $stmtActivatePersona->execute();
+            $stmtActivate = $db->prepare($sqlActivate);
+            $stmtActivate->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtActivate->execute();
             $db->commit();
-            $stmtActivatePersona->errorInfo();
         } catch (Exception $e) {
             if ($db != null) $db->rollback();
-
-
-            if ($e instanceof PDOException && $stmtActivatePersona->errorInfo()[0] == 23000 && $stmtActivatePersona->errorInfo()[1] == 1062) {
-                $array = explode("'", $stmtActivatePersona->errorInfo()[2]);
+            $array= $stmtActivate->errorInfo();
+            die(print_r($array));
+            if ($e instanceof PDOException && $stmtActivate->errorInfo()[0] == 23000 && $stmtActivate->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmtActivate->errorInfo()[2]);
                 switch ($array[3]) {
 
                     case 'documento_unico':
@@ -402,7 +395,7 @@ class PersonaRepository extends AbstractRepository
                 throw $e;
             }
         } finally {
-            $stmtActivatePersona = null;
+            $stmtDeletePersona = null;
             $this->disconnect();
 
         }

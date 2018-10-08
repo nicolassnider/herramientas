@@ -2,18 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: nicol
- * Date: 13/08/2018
- * Time: 4:20 PM
+ * Date: 07/10/2018
+ * Time: 2:45 PM
  */
 
-class Catalogo
+class CatalogoCampania implements JsonSerializable
 {
+
     public $id;
-    public $descripcion;
-    public $observaciones;
+    public $catalogo;
+    public $campania;
     public $activo;
 
-     /**
+    /**
      * @return mixed
      */
     public function getId():?int
@@ -32,33 +33,33 @@ class Catalogo
     /**
      * @return mixed
      */
-    public function getDescripcion():?string
+    public function getCatalogo():?Catalogo
     {
-        return $this->descripcion;
+        return $this->catalogo;
     }
 
     /**
-     * @param mixed $descripcion
+     * @param mixed $catalogo
      */
-    public function setDescripcion(?string $descripcion): void
+    public function setCatalogo(?Catalogo $catalogo): void
     {
-        $this->descripcion = $descripcion;
+        $this->catalogo = $catalogo;
     }
 
     /**
      * @return mixed
      */
-    public function getObservaciones():?string
+    public function getCampania():?Campania
     {
-        return $this->observaciones;
+        return $this->campania;
     }
 
     /**
-     * @param mixed $observaciones
+     * @param mixed $campania
      */
-    public function setObservaciones(?string $observaciones): void
+    public function setCampania(?Campania $campania): void
     {
-        $this->observaciones = $observaciones;
+        $this->campania = $campania;
     }
 
     /**
@@ -83,9 +84,10 @@ class Catalogo
     {
         $array=Array();
         if(isset($this->id)) $array['id'] = $this->id;
-        if(isset($this->fecha_inicio)) $array['descripcion'] = $this->descripcion;
-        if(isset($this->fecha_fin)) $array['observaciones'] = $this->observaciones;
+        if(isset($this->catalogo)) $array['catalogo']=$this->catalogo;
+        if(isset($this->campania)) $array['campania']=$this->campania;
         if(isset($this->activo)) $array['activo'] = $this->activo;
         return $array;
     }
+
 }

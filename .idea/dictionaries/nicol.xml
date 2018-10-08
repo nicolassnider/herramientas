@@ -3,43 +3,61 @@
     <words>
       <w>activa</w>
       <w>activo</w>
+      <w>anio</w>
       <w>apellido</w>
+      <w>apodo</w>
       <w>baja</w>
       <w>campania</w>
       <w>catalogo</w>
+      <w>catalogos</w>
       <w>categoria</w>
       <w>categorias</w>
       <w>categoriasrevendedora</w>
+      <w>cliente</w>
+      <w>clientes</w>
       <w>combinación</w>
+      <w>conexion</w>
       <w>consulta</w>
       <w>crear</w>
       <w>desactivar</w>
       <w>descripcion</w>
+      <w>direccion</w>
       <w>docmento</w>
       <w>documento</w>
       <w>eliminar</w>
+      <w>entrega</w>
       <w>existe</w>
+      <w>factura</w>
       <w>fecha</w>
       <w>herramientas</w>
       <w>inicio</w>
       <w>listar</w>
       <w>localidad</w>
+      <w>madre</w>
       <w>modificar</w>
+      <w>nacimiento</w>
       <w>nombre</w>
+      <w>observaciones</w>
+      <w>pagado</w>
       <w>pais</w>
       <w>parametro</w>
       <w>perfil</w>
       <w>perfiles</w>
       <w>permisos</w>
       <w>personas</w>
+      <w>prepara</w>
+      <w>producto</w>
       <w>provincia</w>
       <w>resultset</w>
       <w>revendedora</w>
       <w>revendedoras</w>
       <w>telefono</w>
       <w>tipo</w>
+      <w>ubicacion</w>
       <w>unico</w>
+      <w>unidad</w>
       <w>usuario</w>
+      <w>vencimiento</w>
       <w>visualizar</w>
     </words>
   </dictionary>
