@@ -111,45 +111,52 @@ $app->options('/{routes:.+}', function ($request, $response, $args) {
 });
 
 require_once '../Controller/AuthController.php';
-require_once '../Controller/PersonaController.php';
-require_once '../Controller/PermisosController.php';;
-require_once '../Controller/TipoDocumentoController.php';
-require_once '../Controller/ParametroController.php';
-require_once '../Controller/PerfilesController.php';
-require_once '../Controller/LocalidadController.php';
-require_once '../Controller/ProvinciaController.php';
-require_once '../Controller/PaisController.php';
-require_once '../Controller/UsuarioController.php';
-require_once '../Controller/ParametroController.php';
-require_once '../Controller/CommonsController.php';
-require_once '../Controller/MockController.php';
-require_once '../Controller/WidgetController.php';
 require_once '../Controller/CampaniaController.php';
-require_once '../Controller/RevendedoraController.php';
-require_once '../Controller/CategoriaRevendedoraController.php';
 require_once '../Controller/CatalogoController.php';
-require_once '../Controller/ClienteController.php';
-require_once '../Controller/FacturaController.php';
-require_once '../Controller/PedidoAvonController.php';
-require_once '../Controller/UnidadController.php';
 require_once '../Controller/CategoriaClienteController.php';
 require_once '../Controller/CategoriaProductoController.php';
+require_once '../Controller/CategoriaRevendedoraController.php';
+require_once '../Controller/ClienteController.php';
+require_once '../Controller/CommonsController.php';
+require_once '../Controller/FacturaController.php';
+require_once '../Controller/LocalidadController.php';
+require_once '../Controller/PaisController.php';
+require_once '../Controller/ParametroController.php';
+require_once '../Controller/PedidoAvonController.php';
+require_once '../Controller/PerfilesController.php';
+require_once '../Controller/PermisosController.php';;
+require_once '../Controller/PersonaController.php';
+require_once '../Controller/ProvinciaController.php';
+require_once '../Controller/RevendedoraController.php';
+require_once '../Controller/TipoDocumentoController.php';
+require_once '../Controller/UnidadController.php';
+
+require_once '../Controller/UsuarioController.php';
+require_once '../Controller/MockController.php';
+require_once '../Controller/WidgetController.php';
 
 (new AuthController($app))->init();
-(new PersonaController($app))->init();
-(new PermisosController($app))->init();
-(new TipoDocumentoController($app))->init();
-(new ParametroController($app))->init();
 (new CampaniaController($app))->init();
-(new RevendedoraController($app))->init();
-(new CategoriaRevendedoraController($app))->init();
 (new CatalogoController($app))->init();
-(new ClienteController($app))->init();
-(new FacturaController($app))->init();
-(new PedidoAvonController($app))->init();
-(new UnidadController($app))->init();
 (new CategoriaClienteController($app))->init();
 (new CategoriaProductoController($app))->init();
+(new CategoriaRevendedoraController($app))->init();
+(new ClienteController($app))->init();
+(new CommonsController($app))->init();
+(new FacturaController($app))->init();
+(new LocalidadController($app))->init();
+(new PaisController($app))->init();
+(new ParametroController($app))->init();
+(new PedidoAvonController($app))->init();
+(new PerfilesController($app))->init();
+(new PermisosController($app))->init();
+(new PersonaController($app))->init();
+(new ProvinciaController($app))->init();
+(new RevendedoraController($app))->init();
+(new TipoDocumentoController($app))->init();
+(new UnidadController($app))->init();
+
+
 
 
 
