@@ -131,6 +131,9 @@ require_once '../Controller/CatalogoController.php';
 require_once '../Controller/ClienteController.php';
 require_once '../Controller/FacturaController.php';
 require_once '../Controller/PedidoAvonController.php';
+require_once '../Controller/UnidadController.php';
+require_once '../Controller/CategoriaClienteController.php';
+require_once '../Controller/CategoriaProductoController.php';
 
 (new AuthController($app))->init();
 (new PersonaController($app))->init();
@@ -144,6 +147,10 @@ require_once '../Controller/PedidoAvonController.php';
 (new ClienteController($app))->init();
 (new FacturaController($app))->init();
 (new PedidoAvonController($app))->init();
+(new UnidadController($app))->init();
+(new CategoriaClienteController($app))->init();
+(new CategoriaProductoController($app))->init();
+
 
 
 
