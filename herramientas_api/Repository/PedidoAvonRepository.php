@@ -2,56 +2,63 @@
 /**
  * Created by PhpStorm.
  * User: nicol
- * Date: 07/10/2018
- * Time: 11:44 PM
+ * Date: 08/10/2018
+ * Time: 7:56 AM
  */
 
-require_once 'Db.php';
-require_once '../Repository/AbstractRepository.php';
-require_once '../Model/Factura.php';
-require_once '../Commons/Exceptions/BadRequestException.php';
-require_once '../Repository/CampaniaRepository.php';
 
-class FacturaRepository extends AbstractRepository
+require_once 'Db.php';
+require_once 'AbstractRepository.php';
+require_once '../Model/PedidoAvon.php';
+require_once '../Repository/PersonaRepository.php';
+require_once '../Repository/CategoriaClienteRepository.php';
+require_once '../Repository/RevendedoraRepository.php';
+require_once '../Commons/Exceptions/BadRequestException.php';
+
+class PedidoAvonRepository extends AbstractRepository
 {
 
     /**
-     * @param Cliente $factura
+     * @param Cliente $cliente
      * @return null|Cliente
      * @throws BadRequestException
      */
-    public function create(Factura $factura): ?Factura
+    public function create(PedidoAvon $pedidoAvon): ?PedidoAvon
     {
 
         try {
             $db = $this->connect();
             $db->beginTransaction();
-            $sqlCreate = "INSERT INTO `herramientas`.`factura` (
-                                                                total, 
-                                                                fecha_vencimiento, 
-                                                                campania, 
-                                                                pagado, 
-                                                                nro_factura) 
-                                                        VALUES (
-                                                                :total, 
-                                                                :fecha_vencimiento, 
-                                                                :campania, 
-                                                                :pagado, 
-                                                                :nro_factura);
-                                                                ";
-            $total=$factura->getTotal();
-            $fechaVencimiento=(string)$factura->getFechaVencimiento()->format("Y-m-d");
-            $campania=$factura->getCampania()->getId();
-            $pagado=(bool)$factura->getPagado();
-            $nroFactura=$factura->getNroFactura();
+            $sqlCreate = "INSERT INTO herramientas.pedido_avon(
+                              cliente, 
+                              revendedora, 
+                              fecha_alta, 
+                              recibido, 
+                              entregado, 
+                              cobrado) 
+                      VALUES (
+                              :cliente, 
+                              :revendedora, 
+                              :fecha_alta, 
+                              :recibido, 
+                              :entregado, 
+                              :cobrado 
+                              )";
+            $cliente = (int)$pedidoAvon->getCliente()->getId();
+            $revendedora = (int)$pedidoAvon->getRevendedora()->getId();
+            $fechaAlta = date('Y-m-d');
+            $recibido = false;
+            $entregado = false;
+            $cobrado = false;
             $stmtCreate = $db->prepare($sqlCreate);
-            $stmtCreate->bindParam(':categoria_cliente', $total);
-            $stmtCreate->bindParam(':fecha_vencimiento', $fechaVencimiento);
-            $stmtCreate->bindParam(':campania', $campania,PDO::PARAM_INT);
-            $stmtCreate->bindParam(':pagado', $pagado,PDO::PARAM_BOOL);
-            $stmtCreate->bindParam(':nro_factura', $nroFactura);
+            $stmtCreate->bindParam(':cliente', $cliente, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':revendedora', $revendedora, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':fecha_alta', $fechaAlta);
+            $stmtCreate->bindParam(':recibido', $recibido, PDO::PARAM_BOOL);
+            $stmtCreate->bindParam(':entregado', $entregado, PDO::PARAM_BOOL);
+            $stmtCreate->bindParam(':cobrado', $cobrado, PDO::PARAM_BOOL);
             $stmtCreate->execute();
-            $factura->setId($db->lastInsertId());
+            $pedidoAvon->setId($db->lastInsertId());
             $db->commit();
 
         } catch (Exception $e) {
@@ -74,41 +81,33 @@ class FacturaRepository extends AbstractRepository
             $this->disconnect();
 
         }
-        return $factura;
+        return $pedidoAvon;
     }
 
-    public function update(Factura $factura): void
+    public function update(PedidoAvon $pedidoAvon): void
     {
         $db = $this->connect();
         $db->beginTransaction();
         try {
-            $sqlUpdate = "UPDATE herramientas.factura 
+            $sqlUpdate = "UPDATE herramientas.pedido_avon 
                                 SET 
-                                  total=:total,
-                                  fecha_vencimiento=:fecha_vencimiento,
-                                  campania=:campania,
-                                  pagado=:pagado,
-                                  nro_factura=:nro_factura
+                                  cliente=:cliente,
+                                  revendedora=:revendedora
                                 WHERE
                                   (id =:id)
                                 ";
 
-            $total=$factura->getTotal();
-            $fechaVencimiento=(string)$factura->getFechaVencimiento()->format("Y-m-d");
-            $campania=$factura->getCampania()->getId();
-            $pagado=(bool)$factura->getPagado();
-            $nroFactura=$factura->getNroFactura();
-            $id=$factura->getId();
+            $cliente = (int)$pedidoAvon->getCliente()->getId();
+            $revendedora = (int)$pedidoAvon->getRevendedora()->getId();
+            $id = (int)$pedidoAvon->getId();
             $stmtUpdate = $db->prepare($sqlUpdate);
-            $stmtUpdate->bindParam(':categoria_cliente', $total);
-            $stmtUpdate->bindParam(':fecha_vencimiento', $fechaVencimiento);
-            $stmtUpdate->bindParam(':campania', $campania,PDO::PARAM_INT);
-            $stmtUpdate->bindParam(':pagado', $pagado,PDO::PARAM_BOOL);
-            $stmtUpdate->bindParam(':nro_factura', $nroFactura);
+            $stmtUpdate->bindParam(':cliente', $cliente, PDO::PARAM_INT);
+            $stmtUpdate->bindParam(':revendedora', $revendedora, PDO::PARAM_INT);
             $stmtUpdate->bindParam(':id', $id, PDO::PARAM_INT);
             $stmtUpdate->execute();
             $db->commit();
         } catch (Exception $e) {
+            //TODO:implement ex
             if ($db != null) $db->rollback();
             if ($e instanceof PDOException && $stmtUpdate->errorInfo()[0] == 23000 && $stmtUpdate->errorInfo()[1] == 1062) {
                 $array = explode("'", $stmtUpdate->errorInfo()[2]);
@@ -136,7 +135,7 @@ class FacturaRepository extends AbstractRepository
         $db = $this->connect();
         $db->beginTransaction();
         try {
-            $sqlDelete = "DELETE FROM herramientas.factura WHERE id=:id";
+            $sqlDelete = "DELETE FROM herramientas.pedido_avon WHERE id=:id";
             $stmtDelete = $db->prepare($sqlDelete);
             $stmtDelete->bindParam(':id', $id, PDO::PARAM_INT);
             $stmtDelete->execute();
@@ -169,31 +168,33 @@ class FacturaRepository extends AbstractRepository
         }
     }
 
-    public function Pagar(int $id): void
+    public function recibir(int $id): void
     {
         $db = $this->connect();
         $db->beginTransaction();
         try {
-            $sqlPagar = "UPDATE herramientas.factura SET pagado = :pagado WHERE (id = :id);";
-            $fechaBajaCliente = date('Y-m-d');
-            $pagado = true;
+            $sql = "UPDATE herramientas.pedido_avon SET recibido = :recibido, fecha_recibido = :fecha_recibido WHERE (id = :id);";
+            $fechaRecibido = date('Y-m-d');
+            $recibido = true;
+
 
             //prepara inserción base de datos
-            $stmtPagar = $db->prepare($sqlPagar);
-            $stmtPagar->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmtPagar->bindParam(':pagado', $pagado, PDO::PARAM_BOOL);
-            $stmtPagar->execute();
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':recibido', $recibido, PDO::PARAM_BOOL);
+            $stmt->bindParam(':fecha_recibido', $fechaRecibido);
+            $stmt->execute();
             $db->commit();
 
         } catch (Exception $e) {
             //TODO: implementar ex
             if ($db != null) $db->rollback();
 
-            if ($e instanceof PDOException && $stmtPagar->errorInfo()[0] == 23000 && $stmtPagar->errorInfo()[1] == 1062) {
-                $array = explode("'", $stmtPagar->errorInfo()[2]);
+            if ($e instanceof PDOException && $stmt->errorInfo()[0] == 23000 && $stmt->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmt->errorInfo()[2]);
                 switch ($array[3]) {
 
-                    case 'nro_factura_unico':
+                    case 'documento_unico':
                         $array2 = explode("-", $array[1]);
                         $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
                         $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
@@ -207,15 +208,102 @@ class FacturaRepository extends AbstractRepository
                 throw $e;
             }
         } finally {
-            $stmtPagar = null;
+            $stmt = null;
             $this->disconnect();
         }
     }
 
+    public function entregar(int $id): void
+    {
+        $db = $this->connect();
+        $db->beginTransaction();
+        try {
+            $sql = "UPDATE herramientas.pedido_avon SET entregado = :entregado WHERE (id = :id);";
+            $entregado = true;
+
+
+            //prepara inserción base de datos
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':entregado', $entregado, PDO::PARAM_BOOL);
+            $stmt->execute();
+            $db->commit();
+
+        } catch (Exception $e) {
+            //TODO: implementar ex
+            if ($db != null) $db->rollback();
+
+            if ($e instanceof PDOException && $stmt->errorInfo()[0] == 23000 && $stmt->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmt->errorInfo()[2]);
+                switch ($array[3]) {
+
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
+                        break;
+                    default:
+                        die(print_r($array));
+
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $stmt = null;
+            $this->disconnect();
+        }
+    }
+
+    public function cobrar(int $id): void
+    {
+        $db = $this->connect();
+        $db->beginTransaction();
+        try {
+            $sql = "UPDATE herramientas.pedido_avon SET cobrado = :cobrado WHERE (id = :id);";
+            $cobrado = true;
+
+
+            //prepara inserción base de datos
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':cobrado', $cobrado, PDO::PARAM_BOOL);
+            $stmt->execute();
+            $db->commit();
+
+        } catch (Exception $e) {
+            //TODO: implementar ex
+            if ($db != null) $db->rollback();
+
+            if ($e instanceof PDOException && $stmt->errorInfo()[0] == 23000 && $stmt->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmt->errorInfo()[2]);
+                switch ($array[3]) {
+
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
+                        break;
+                    default:
+                        die(print_r($array));
+
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $stmt = null;
+            $this->disconnect();
+        }
+    }
+
+
     public function getAll(bool $full = true): Array
     {
         $sql = "SELECT *
-                FROM factura";
+                FROM pedido_avon";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
@@ -226,42 +314,18 @@ class FacturaRepository extends AbstractRepository
             return Array();
         }
 
-        $facturas = Array();
+        $pedidosAvon = Array();
         foreach ($items as $item) {
             $item = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
-            array_push($facturas, $item);
+            array_push($pedidosAvon, $item);
         }
 
 
         $this->disconnect();
-        return $facturas;
+        return $pedidosAvon;
     }
 
-    public function getAllSorted(): Array
-    {
-        $sql = "SELECT * FROM factura";
 
-        $db = $this->connect();
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-
-        if ($items == null) {
-            return Array();
-        }
-
-        $facturas = Array();
-        foreach ($items as $item) {
-            $factura = $this->get($item->id);
-
-
-            array_push($facturas, $factura);
-        }
-
-        $this->disconnect();
-        return $facturas;
-    }
 
     public function grid(DataTableResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
     {
@@ -411,10 +475,10 @@ class FacturaRepository extends AbstractRepository
         return $dataTablesResponse;
     }
 
-    public function get(int $id, bool $full = true): ?Factura
+    public function get(int $id, bool $full = true): ?PedidoAvon
     {
-        $sqlGet = "SELECT fac.*  FROM factura fac                     
-                    WHERE fac.id=:id
+        $sqlGet = "SELECT ped.*  FROM pedido_avon ped                     
+                    WHERE ped.id=:id
                     ";
 
         $db = $this->connect();
@@ -436,14 +500,18 @@ class FacturaRepository extends AbstractRepository
     private function createFromResultset($result, array $fields, $db)
     {
 
-        $item = new Factura();
+        $item = new PedidoAvon();
         $item->setId((int)$result->id);
-        $item->setTotal((float)$result->total);
-        $item->setFechaVencimiento(new DateTime($result->fecha_vencimiento));
-        if (in_array('*', $fields) || in_array('campania', $fields))
-            $item->setCampania((new CampaniaRepository($db))->get($result->campania));
-        $item->setPagado((bool)$result->pagado);
-        $item->setNroFactura($result->nro_factura);
+        if (in_array('*', $fields) || in_array('cliente', $fields))
+            $item->setCliente((new ClienteRepository($db))->get($result->cliente));
+        if (in_array('*', $fields) || in_array('revendedora', $fields))
+            $item->setRevendedora((new RevendedoraRepository($db))->get($result->revendedora));
+
+        $item->setFechaAlta(new DateTime($result->fecha_alta));
+        $item->setFechaRecibido(new DateTime($result->fecha_recibido));
+        $item->setRecibido((bool)$result->recibido);
+        $item->setCobrado((bool)$result->entregado);
+        $item->setCobrado((bool)$result->cobrado);
         return $item;
     }
 

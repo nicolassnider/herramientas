@@ -290,7 +290,7 @@ WHERE per.activo=1";
         return $revendedoras;
     }
 
-    public function grid(DataTablesResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
+    public function grid(DataTableResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
     {
         $db = $this->connect();
 

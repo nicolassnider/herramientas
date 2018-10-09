@@ -41,6 +41,8 @@
       <w>pagado</w>
       <w>pais</w>
       <w>parametro</w>
+      <w>pedido</w>
+      <w>pedidos</w>
       <w>perfil</w>
       <w>perfiles</w>
       <w>permisos</w>
@@ -48,6 +50,7 @@
       <w>prepara</w>
       <w>producto</w>
       <w>provincia</w>
+      <w>recibido</w>
       <w>resultset</w>
       <w>revendedora</w>
       <w>revendedoras</w>

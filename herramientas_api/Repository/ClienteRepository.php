@@ -339,7 +339,7 @@ WHERE cli.activo=1";
         return $clientes;
     }
 
-    public function grid(DataTablesResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
+    public function grid(DataTableResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
     {
         $db = $this->connect();
 

@@ -16,7 +16,7 @@ require_once '../Model/Usuario.php';
 require_once '../Model/Perfil.php';
 require_once '../Model/Adjunto.php';
 require_once '../Dto/DataTableRequest.php';
-require_once '../Dto/DataTablesResponse.php';
+require_once '../Dto/DataTableResponse.php';
 
 class PersonaController
 {

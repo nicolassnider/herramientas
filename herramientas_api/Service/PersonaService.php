@@ -59,7 +59,7 @@ class PersonaService
         $this->repository->activate($id);
     }
 
-    public function grid(DataTablesResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
+    public function grid(DataTableResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
     {
 
         return $this->repository->grid($dataTablesResponse, $dataTableRequest);

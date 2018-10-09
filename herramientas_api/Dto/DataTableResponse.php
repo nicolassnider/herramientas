@@ -6,7 +6,7 @@
  * Time: 4:02 PM
  */
 
-class DataTablesResponse implements JsonSerializable
+class DataTableResponse implements JsonSerializable
 {
     private $draw;
     private $recordsTotal;
