@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f2446b9-8818-4249-a8f3-ce3293d6607b" name="Default" comment="ABM &#10;-CategoriaProducto">
-      <change afterPath="$PROJECT_DIR$/herramientas_api/Controller/ProductoController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_api/Model/PedidoProductoCatalogo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_api/Model/ProductoCatalogo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_api/Repository/ProductoRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_api/Service/ProductoService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nicol.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nicol.xml" afterDir="false" />
+    <list default="true" id="2f2446b9-8818-4249-a8f3-ce3293d6607b" name="Default" comment="ABM &#10;-Producto">
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/PersonasServices.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Model/Producto.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Model/Producto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Public/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Public/Index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/logo.svg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +76,8 @@
     <session id="1898872594">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="19" />
+          <entry key="project.closed" value="21" />
+          <entry key="project.open.time.123" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.19" value="1" />
@@ -82,7 +89,7 @@
           <entry key="project.open.time.45" value="1" />
           <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.49" value="1" />
-          <entry key="project.open.time.51" value="1" />
+          <entry key="project.open.time.51" value="2" />
           <entry key="project.open.time.53" value="1" />
           <entry key="project.open.time.58" value="1" />
           <entry key="project.open.time.59" value="1" />
@@ -91,53 +98,55 @@
           <entry key="project.open.time.67" value="1" />
           <entry key="project.open.time.9" value="2" />
           <entry key="project.open.time.92" value="1" />
-          <entry key="project.opened" value="25" />
+          <entry key="project.opened" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="70" />
-          <entry key="js" value="3" />
-          <entry key="php" value="34473" />
-          <entry key="sql" value="439" />
-          <entry key="txt" value="110" />
+          <entry key="html" value="106" />
+          <entry key="js" value="106" />
+          <entry key="json" value="65" />
+          <entry key="php" value="34546" />
+          <entry key="sql" value="498" />
+          <entry key="txt" value="111" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.composer.command.options" />
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="cliente" value="1" />
-          <entry key="css" value="2" />
-          <entry key="html" value="3" />
-          <entry key="js" value="22" />
-          <entry key="json" value="3" />
-          <entry key="php" value="276" />
+          <entry key="css" value="5" />
+          <entry key="html" value="4" />
+          <entry key="js" value="41" />
+          <entry key="json" value="4" />
+          <entry key="php" value="282" />
           <entry key="revendedora" value="1" />
           <entry key="sample" value="1" />
-          <entry key="sql" value="18" />
+          <entry key="sql" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.new.test" />
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="2" />
+          <entry key="CSS" value="5" />
           <entry key="Database Element" value="2" />
-          <entry key="HTML" value="3" />
-          <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="22" />
-          <entry key="PHP" value="276" />
+          <entry key="HTML" value="4" />
+          <entry key="JSON" value="4" />
+          <entry key="JavaScript" value="41" />
+          <entry key="PHP" value="282" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="SQL" value="17" />
+          <entry key="SQL" value="19" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="70" />
-          <entry key="JavaScript" value="3" />
-          <entry key="PHP" value="34043" />
-          <entry key="PLAIN_TEXT" value="110" />
-          <entry key="SQL" value="711" />
+          <entry key="HTML" value="106" />
+          <entry key="JSON" value="65" />
+          <entry key="JavaScript" value="106" />
+          <entry key="PHP" value="34116" />
+          <entry key="PLAIN_TEXT" value="111" />
+          <entry key="SQL" value="770" />
           <entry key="Scratch" value="158" />
         </counts>
       </usages-collector>
@@ -154,81 +163,107 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Producto.php">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/_nav.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="89" column="5" lean-forward="true" selection-start-line="81" selection-start-column="3" selection-end-line="89" selection-end-column="5" />
+            <state relative-caret-position="88">
+              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/ProductoRepository.php">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Laboratorios/LaboratorioFila.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8382">
-              <caret line="386" column="47" selection-start-line="386" selection-start-column="47" selection-end-line="386" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Service/ProductoService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="831">
-              <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/ProductoController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="677">
-              <caret line="100" column="5" lean-forward="true" selection-start-line="88" selection-start-column="4" selection-end-line="100" selection-end-column="5" />
+            <state>
               <folding>
-                <element signature="e#92#148#0#PHP" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Model/ProductoCatalogo.php">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Laboratorios/LaboratoriosGrilla.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1914">
-              <caret line="92" column="36" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Model/PedidoProductoCatalogo.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="84" column="34" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
+            <state>
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/ClienteRepository.php">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5104">
-              <caret line="254" column="25" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
+            <state relative-caret-position="-1048">
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/App.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/LaboratoriosServices.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PersonasServices.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/Config/Config.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/public/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="6" column="77" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/AuthServices.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" column="27" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>excep</find>
-      <find>foreach</find>
-      <find>cata</find>
-      <find>catalogo</find>
-      <find>create table herramientas.cata</find>
-      <find>bindpara</find>
       <find>update</find>
       <find>persoa</find>
       <find>activate</find>
@@ -253,6 +288,12 @@
       <find>$clientes</find>
       <find>$cliente</find>
       <find>ClienteController</find>
+      <find>tipo</find>
+      <find>remito</find>
+      <find>check</find>
+      <find>relacion</find>
+      <find>laboratorio</find>
+      <find>Laboratorio</find>
     </findStrings>
     <replaceStrings>
       <replace>FacturaService</replace>
@@ -265,7 +306,13 @@
       <replace>$productos</replace>
       <replace>$producto</replace>
       <replace>ProductoController</replace>
+      <replace>grillaPersonas</replace>
+      <replace>persona</replace>
+      <replace>Persona</replace>
     </replaceStrings>
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="ONTO" value="refs/heads/master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -276,15 +323,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/herramientas_api/Controller/PersonaController.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Model/Revendedora.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Repository/UsuarioRepository.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Controller/RevendedoraController.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Service/RevendedoraService.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Repository/RevendedoraRepository.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Model/CategoriaCliente.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/composer.json" />
-        <option value="$PROJECT_DIR$/herramientas_api/Controller/LocalidadController.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Model/Catalogo.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Model/CatalogoCampania.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Service/CatalogoService.php" />
@@ -303,7 +341,6 @@
         <option value="$PROJECT_DIR$/herramientas_api/Controller/ClienteController.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Model/Cliente.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Model/Factura.php" />
-        <option value="$PROJECT_DIR$/db/structure.sql" />
         <option value="$PROJECT_DIR$/herramientas_api/Repository/FacturaRepository.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Service/FacturaService.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Controller/FacturaController.php" />
@@ -319,7 +356,6 @@
         <option value="$PROJECT_DIR$/herramientas_api/Repository/CategoriaProductoRepository.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Service/CategoriaProductoService.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Controller/CategoriaProductoController.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Public/Index.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Model/Producto.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Repository/ClienteRepository.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Repository/ProductoRepository.php" />
@@ -327,6 +363,17 @@
         <option value="$PROJECT_DIR$/herramientas_api/Controller/ProductoController.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Model/ProductoCatalogo.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Model/PedidoProductoCatalogo.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Remito.php" />
+        <option value="$PROJECT_DIR$/db/structure.sql" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/App.css" />
+        <option value="$PROJECT_DIR$/herramientas_api/Public/Index.php" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/App.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/package.json" />
+        <option value="$PROJECT_DIR$/herramientas_api/Controller/AuthController.php" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Auth/Login.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/_nav.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/services/PersonasServices.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/public/index.html" />
       </list>
     </option>
   </component>
@@ -342,6 +389,52 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
       <path value="$PROJECT_DIR$/herramientas_web/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/containers/AuthLayout/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Series/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Breadcrumbs/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Cards/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Carousels/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Collapses/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Dropdowns/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Forms/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Jumbotrons/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/ListGroups/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Navbars/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Navs/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Paginations/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Popovers/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/ProgressBar/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Switches/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Tables/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Tabs/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Tooltips/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Buttons/BrandButtons/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Buttons/ButtonDropdowns/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Buttons/ButtonGroups/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Buttons/Buttons/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Calendario/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Charts/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Determinaciones/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Laboratorios/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Presentacion/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Unidades/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Icons/CoreUIIcons/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Icons/Flags/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Icons/FontAwesome/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Icons/SimpleLineIcons/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Alerts/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Badges/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Modals/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Pages/Login/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Pages/Page404/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Pages/Page500/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Pages/Register/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Theme/Colors/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Theme/Typography/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Users/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Widgets/package.json" />
     </packageJsonPaths>
   </component>
   <component name="PhpDebugGeneral" listening_started="true" />
@@ -365,7 +458,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+    <option name="x" value="228" />
+    <option name="y" value="-8" />
     <option name="width" value="782" />
     <option name="height" value="907" />
   </component>
@@ -390,37 +484,104 @@
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Public" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Repository" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Calendario" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
-              <item name="Service" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Laboratorios" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Metodos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="Series" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Calendario" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Users" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -433,9 +594,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MariaDB" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vecApp/vec-fleet" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../interlaboratorios-iram" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.debug" />
   </component>
   <component name="RecentsManager">
@@ -444,11 +606,11 @@
       <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\Auth" />
       <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\bases" />
       <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Model" />
       <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Repository" />
       <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Controller" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_api\Service" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -524,7 +686,9 @@
       <workItem from="1538262499164" duration="24440000" />
       <workItem from="1538426399810" duration="42336000" />
       <workItem from="1538790665533" duration="39781000" />
-      <workItem from="1539040772725" duration="13056000" />
+      <workItem from="1539040772725" duration="19337000" />
+      <workItem from="1539138610504" duration="4028000" />
+      <workItem from="1539184293836" duration="3975000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1530410997261</created>
@@ -827,21 +991,29 @@
       <option name="project" value="LOCAL" />
       <updated>1539083826594</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="ABM &#10;-Producto">
+      <created>1539101147670</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1539101147670</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="286707000" />
+    <option name="totallyTimeSpent" value="300991000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1872" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1552" height="916" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14072847" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17493297" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.42455244" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3286445" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26715177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39897698" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -858,7 +1030,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.13852097" />
+      <window_info anchor="right" id="Database" order="3" weight="0.16823056" />
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23659517" />
@@ -909,7 +1081,8 @@
     <MESSAGE value="ABM &#10;-PedidoAvon" />
     <MESSAGE value="ABM &#10;-Unidad" />
     <MESSAGE value="ABM &#10;-CategoriaProducto" />
-    <option name="LAST_COMMIT_MESSAGE" value="ABM &#10;-CategoriaProducto" />
+    <MESSAGE value="ABM &#10;-Producto" />
+    <option name="LAST_COMMIT_MESSAGE" value="ABM &#10;-Producto" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -923,200 +1096,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/UsuarioTokensRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/WidgetRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PaisRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="40" column="39" selection-start-line="38" selection-start-column="8" selection-end-line="40" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/ParametroRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PerfilesRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PerfilRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Revendedora.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2434">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="110" column="18" lean-forward="true" selection-start-line="110" selection-start-column="18" selection-end-line="110" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="161" column="46" lean-forward="true" selection-start-line="161" selection-start-column="32" selection-end-line="161" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="40" column="24" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
-          <folding>
-            <element signature="e#7#63#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/CategoriaRevendedoraController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="37" column="20" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="37" selection-end-column="20" />
-          <folding>
-            <element signature="e#91#147#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/CatalogoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="95" column="37" lean-forward="true" selection-start-line="95" selection-start-column="37" selection-end-line="95" selection-end-column="73" />
-          <folding>
-            <element signature="e#7#63#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/RevendedoraRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="469" column="84" selection-start-line="469" selection-start-column="39" selection-end-line="469" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/PaisService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/ClienteService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/ClienteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="e#90#146#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/TipoDocumentoService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="12" selection-start-column="4" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Factura.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="115" column="28" selection-start-line="115" selection-start-column="28" selection-end-line="115" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/FacturaRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5508">
-          <caret line="171" column="25" selection-start-line="171" selection-start-column="4" selection-end-line="171" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Cliente.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/FacturaService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/FacturaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1342">
-          <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-          <folding>
-            <element signature="e#92#148#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/structure.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="304" column="51" lean-forward="true" selection-start-line="304" selection-start-column="51" selection-end-line="304" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PedidoAvonRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-184">
-          <caret line="302" column="26" selection-start-line="302" selection-start-column="20" selection-end-line="302" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/PedidoAvonService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="46" column="34" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/PedidoAvonController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="111" selection-start-line="111" selection-end-line="111" />
-          <folding>
-            <element signature="e#91#147#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7a7a06df-07af-4835-b760-687b6718738c/schema/herramientas/table/cliente">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Unidad.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
@@ -1142,9 +1121,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="439">
           <caret line="93" selection-start-line="93" selection-end-line="93" />
-          <folding>
-            <element signature="e#92#148#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1204,9 +1180,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
           <caret line="82" column="1" lean-forward="true" selection-start-line="11" selection-end-line="82" selection-end-column="1" />
-          <folding>
-            <element signature="e#90#146#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1220,17 +1193,10 @@
     <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/CommonsController.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Public/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28">
-          <caret line="123" column="53" selection-start-line="123" selection-start-column="13" selection-end-line="123" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/ProductoRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8382">
-          <caret line="386" column="47" selection-start-line="386" selection-start-column="47" selection-end-line="386" selection-end-column="47" />
+        <state relative-caret-position="4070">
+          <caret line="190" column="47" selection-start-line="190" selection-start-column="47" selection-end-line="190" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -1245,16 +1211,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="677">
           <caret line="100" column="5" lean-forward="true" selection-start-line="88" selection-start-column="4" selection-end-line="100" selection-end-column="5" />
-          <folding>
-            <element signature="e#92#148#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/ProductoCatalogo.php">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/ClienteRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1914">
-          <caret line="92" column="36" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
+        <state relative-caret-position="1870">
+          <caret line="254" column="25" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1265,10 +1228,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/ClienteRepository.php">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Public/Index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5104">
-          <caret line="254" column="25" selection-start-line="254" selection-start-column="25" selection-end-line="254" selection-end-column="25" />
+        <state relative-caret-position="440">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1276,6 +1239,208 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="84" column="34" selection-start-line="84" selection-start-column="34" selection-end-line="84" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/ProductoCatalogo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1914">
+          <caret line="92" column="36" selection-start-line="92" selection-start-column="36" selection-end-line="92" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Remito.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="646" column="60" selection-start-line="646" selection-start-column="52" selection-end-line="646" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/RevendedoraRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="136" column="72" selection-start-line="136" selection-start-column="72" selection-end-line="136" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/App.css" />
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/index.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/App.js" />
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Auth/Activate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="51" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Auth/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/polyfill.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Auth/Logout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/structure.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6930">
+          <caret line="315" column="37" selection-start-line="315" selection-start-column="37" selection-end-line="315" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/ApiServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="29" lean-forward="true" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Auth/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/AuthServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/_nav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Laboratorios/LaboratorioFila.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Laboratorios/LaboratoriosGrilla.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1048">
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Users/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Users/Users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-858">
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/App.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/LaboratoriosServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PersonasServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Config/Config.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="77" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
         </state>
       </provider>
     </entry>
