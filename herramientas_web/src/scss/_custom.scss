@@ -1,0 +1,67 @@
+// Here you can add other styles
+.app-header {
+    height: 65px;
+}
+
+.app-header .navbar-brand {
+    width: 200px;
+    height: 65px;
+}
+
+.sidebar .sidebar-close {
+    line-height: 65px;
+}
+
+.app-header {
+    flex: 0 0 65px;
+}
+
+@media (min-width: 992px) {
+    .header-fixed .app-body {
+        margin-top: 65px; }
+    .sidebar-fixed .app-header + .app-body .sidebar {
+        height: calc(100vh - 65px); }
+    .sidebar-off-canvas .app-header + .app-body .sidebar {
+        height: calc(100vh - 65px); }
+    .aside-menu-fixed .aside-menu .tab-content {
+        height: calc(100vh - 2.375rem - 65px); }
+    .aside-menu-fixed .app-header + .app-body .aside-menu {
+        height: calc(100vh - 65px); }
+    .aside-menu-off-canvas .app-header + .app-body .aside-menu {
+        height: calc(100vh - 6px); }
+}
+
+.breadcrumb-fixed .breadcrumb {
+    top: 65px; }
+
+@media (max-width: 991.98px) {
+    .app-body {
+        margin-top: 65px; }
+    .sidebar {
+        height: calc(100vh - 65px); }
+}
+
+form.login {
+    @media (max-width: 767.98px) {
+        button {
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+.card-img-width {
+    width: 70%;
+}
+
+.callout-custom {
+    margin: 0px;
+}
+
+.callout-custom-selected {
+    border-left-color: #63c2de;
+}
+
+.callout-custom-transparent {
+    border-left-color: rgba(0,0,0,0)
+}
