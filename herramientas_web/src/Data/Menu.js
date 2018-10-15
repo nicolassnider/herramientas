@@ -1,31 +1,23 @@
 export default [
     {
         title: 'Home',
-        url:'/'
+        url: '/'
     },
     {
         title: 'Pedidos',
-        url:'/pedidos'
-    },
-    {
-        title: 'Clientes',
-        url:'/clientes'
-    },
-    {
-        title: 'Revendedoras',
-        url:'/revendedoras'
+        url: '/pedidos'
     },
     {
         title: 'Administracion',
-        url:'/administracion'
+        url: '/administracion'
     },
     {
         title: 'Nosotros',
-        url:'/about'
+        url: '/about'
     },
     {
         title: 'Contacto',
-        url:'/contacto'
+        url: '/contact'
     }
 
 

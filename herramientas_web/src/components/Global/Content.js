@@ -1,15 +1,24 @@
+//Dependencies
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
+//Assets
 import './Css/Content.css';
 
-class Content extends Component{
+class Content extends Component {
+    static propTypes = {
+        body:PropTypes.object.isRequired
+    };
+
     render() {
-        return (<div className="Content">
-                <h1>Content</h1>
-                <p>
-                    Edit <code>src/Components/Header.js</code> and save to reload.
-                </p>
-            </div>        );
+        const {body} = this.props;
+
+        return (
+            <div className="Content">
+                {body}
+            </div>
+        );
     }
-    
 }
+
 export default Content;
