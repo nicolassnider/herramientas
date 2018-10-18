@@ -1,31 +1,76 @@
-//Dependencies
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import {HashRouter, Route, Switch} from 'react-router-dom';
 
-//Components
-import Header from "./Global/Header";
-import Content from "./Global/Content";
-import Footer from "./Global/Footer";
+import './App.css';
+// Styles
+// CoreUI Icons Set
+import '@coreui/icons/css/coreui-icons.min.css';
+// Import Flag Icons Set
+import 'flag-icon-css/css/flag-icon.min.css';
+// Import Font Awesome Icons Set
+import 'font-awesome/css/font-awesome.min.css';
+// Import Simple Line Icons Set
+import 'simple-line-icons/css/simple-line-icons.css';
+// Import Main styles for this application
+import '../scss/style.css'
 
-//Data
-import items from '../Data/Menu';
+// Containers
+import {DefaultLayout, AuthLayout} from '../containers';
+import PrivateRoute from '../hoc/PrivateRoute';
+import {setConfig} from '../utils/Storage';
+import {checkSession} from '../services/AuthServices';
 
 class App extends Component {
-    static propTypes = {
-        children: PropTypes.object.isRequired
-};
+
+    getConfig = () => {
+        // Carga configuración desde el archivo config.json.
+        return fetch('./config/config.json', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(configData => {
+                setConfig(configData);
+            })
+            .catch(function (error) {
+                // TODO: Manejo de errores
+                console.log(error);
+            });
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            authVerified: null
+        }
+    }
+
+    componentDidMount() {
+        this.getConfig()
+            .then(() => {
+                checkSession()
+                    .then((result) => {
+                        this.setState({authVerified: result});
+                    });
+            });
+    }
 
     render() {
-        const{children}=this.props;
+
+        if (this.state.authVerified === null)
+            return null;
 
         return (
-            <div className="App">
-                <Header title="Herramientas WEB" items={items}/>
-                <Content body={children}/>
-                <Footer copyright={"&copy; Nicolás Snider 2018"}/>
-
-
-            </div>
+            <HashRouter>
+                <Switch>
+                    <Route path="/auth" name="Home" component={AuthLayout}/>
+                    <PrivateRoute path="/" name="Home" component={DefaultLayout}/>
+                </Switch>
+            </HashRouter>
         );
     }
 }

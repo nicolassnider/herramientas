@@ -2,36 +2,512 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f2446b9-8818-4249-a8f3-ce3293d6607b" name="Default" comment="preparacion de web">
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/Data/MenuAdministracion.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/Routes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/About/About.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Administracion.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/Campania.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/Campanias.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Catalogos/Catalogo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Persona.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Productos/Producto.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Contact/Contact.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Global/Content-old.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Global/Header-old.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Home/Home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Page404/Page404.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Pedidos/Pedidos.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/assets/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/assets/img/avatars/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/assets/img/avatars/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/assets/img/avatars/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/assets/img/avatars/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/assets/img/avatars/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/assets/img/avatars/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/assets/img/avatars/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/assets/img/avatars/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/assets/img/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/public/config/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/_nav.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/assets/img/brand/logo-chico.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/assets/img/brand/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/CampaniaFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/CampaniaGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Catalogos/CatalogoFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Catalogos/CatalogoGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/App.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Auth/Activate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Auth/ForgotPassword.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Auth/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Auth/Logout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Auth/RecoverPassword.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Auth/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Calendario/CalendarioFecha.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Calendario/CalendarioFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Calendario/CalendarioGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Determinaciones/DeterminacionFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Determinaciones/DeterminacionesGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Laboratorios/LaboratorioFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Laboratorios/LaboratoriosGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Metodos/MetodoFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Metodos/MetodosGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Paginador/Paginador.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Series/SerieFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Series/SeriesGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Unidades/UnidadFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Unidades/UnidadesGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/AuthLayout/AuthLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/AuthLayout/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/DefaultAside.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/DefaultFooter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/DefaultHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/DefaultLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/__tests__/DefaultAside.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/__tests__/DefaultFooter.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/__tests__/DefaultHeader.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/containers/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/hoc/PrivateRoute.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/polyfill.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/registerServiceWorker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/scss/_custom.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/scss/_ie-fix.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/scss/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/scss/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/scss/style.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/scss/vendors/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/scss/vendors/chart.js/chart.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/scss/vendors/chart.js/chart.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/ApiServices.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/AuthServices.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/CampaniaServices.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/CatalogoService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/DeterminacionesServices.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/LaboratoriosServices.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/MetodosServices.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/PresentacionesService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/SeriesServices.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/UnidadesService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/setupTests.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/utils/FormValidation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/utils/Storage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/utils/ValidatePermissions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/utils/Validator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Administracion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Campanias/Campania.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Campanias/Campanias.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Catalogos/Catalogo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Catalogos/Catalogos.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Series/Informe.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Series/Serie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Series/Series.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Series/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Breadcrumbs/Breadcrumbs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Breadcrumbs/Breadcrumbs.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Breadcrumbs/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Cards/Cards.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Cards/Cards.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Cards/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Carousels/Carousels.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Carousels/Carousels.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Carousels/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Collapses/Collapses.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Collapses/Collapses.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Collapses/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Dropdowns/Dropdowns.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Dropdowns/Dropdowns.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Dropdowns/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Forms/Forms.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Forms/Forms.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Forms/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Jumbotrons/Jumbotrons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Jumbotrons/Jumbotrons.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Jumbotrons/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/ListGroups/ListGroups.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/ListGroups/ListGroups.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/ListGroups/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Navbars/Navbars.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Navbars/Navbars.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Navbars/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Navs/Navs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Navs/Navs.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Navs/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Paginations/Paginations.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Paginations/Pagnations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Paginations/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Popovers/Popovers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Popovers/Popovers.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Popovers/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/ProgressBar/ProgressBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/ProgressBar/ProgressBar.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/ProgressBar/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Switches/Switches.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Switches/Switches.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Switches/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Tables/Tables.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Tables/Tables.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Tables/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Tabs/Tabs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Tabs/Tabs.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Tabs/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Tooltips/Tooltips.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Tooltips/Tooltips.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/Tooltips/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Base/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/BrandButtons/BrandButtons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/BrandButtons/BrandButtons.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/BrandButtons/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/ButtonDropdowns/ButtonDropdowns.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/ButtonDropdowns/ButtonDropdowns.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/ButtonDropdowns/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/ButtonGroups/ButtonGroups.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/ButtonGroups/ButtonGroups.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/ButtonGroups/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/Buttons/Buttons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/Buttons/Buttons.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/Buttons/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Buttons/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Calendario/Calendario.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Calendario/Calendario.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Calendario/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Charts/Charts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Charts/Charts.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Charts/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Determinaciones/Determinacion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Determinaciones/Determinaciones.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Determinaciones/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Laboratorios/Laboratorio.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Laboratorios/Laboratorios.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Laboratorios/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/Metodo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/Metodos.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Presentacion/Presentacion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Presentacion/Presentaciones.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Presentacion/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Unidades/Unidad.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Unidades/Unidades.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Unidades/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/CoreUIIcons/CoreUIIcons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/CoreUIIcons/CoreUIIcons.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/CoreUIIcons/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/Flags/Flags.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/Flags/Flags.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/Flags/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/FontAwesome/FontAwesome.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/FontAwesome/FontAwesome.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/FontAwesome/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/SimpleLineIcons/SimpleLineIcons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/SimpleLineIcons/SimpleLineIcons.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/SimpleLineIcons/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Icons/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Alerts/Alerts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Alerts/Alerts.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Alerts/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Badges/Badges.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Badges/Badges.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Badges/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Modals/Modals.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Modals/Modals.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Modals/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Notifications/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Login/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Login/Login.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Login/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Page404/Page404.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Page404/Page404.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Page404/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Page500/Page500.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Page500/Page500.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Page500/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Register/Register.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Register/Register.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/Register/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Pages/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Presentacion/Determinacion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Presentacion/Metodo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Presentacion/Presentacion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Presentacion/Resumen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Theme/Colors/Colors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Theme/Colors/Colors.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Theme/Colors/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Theme/Typography/Typography.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Theme/Typography/Typography.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Theme/Typography/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Theme/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Users/User.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Users/Users.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Users/Users.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Users/UsersData.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Users/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Widgets/Widget01.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Widgets/Widget02.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Widgets/Widget03.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Widgets/Widget04.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Widgets/Widgets.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Widgets/Widgets.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Widgets/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nicol.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nicol.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web.old/CRA.md" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web.old/CRA.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web.old/REACT.md" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web.old/REACT.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web.old/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web.old/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Model/Campania.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Model/Campania.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/.env" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/CONTRIBUTING.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/CRA.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/ISSUE_TEMPLATE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/REACT.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/assets/img/avatars/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/assets/img/avatars/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/assets/img/avatars/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/assets/img/avatars/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/assets/img/avatars/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/assets/img/avatars/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/assets/img/avatars/7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/assets/img/avatars/8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/assets/img/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/config/config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/_nav.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/assets/img/brand/logo-chico.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/assets/img/brand/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Auth/Activate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Auth/ForgotPassword.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Auth/Login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Auth/Logout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Auth/RecoverPassword.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Auth/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Calendario/CalendarioFecha.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Calendario/CalendarioFila.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Calendario/CalendarioGrilla.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Determinaciones/DeterminacionFila.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Determinaciones/DeterminacionesGrilla.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Laboratorios/LaboratorioFila.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Laboratorios/LaboratoriosGrilla.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Metodos/MetodoFila.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Metodos/MetodosGrilla.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Paginador/Paginador.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Personas/PersonasFila.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Personas/PersonasGrilla.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Series/SerieFila.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Series/SeriesGrilla.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Unidades/UnidadFila.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/components/Unidades/UnidadesGrilla.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/AuthLayout/AuthLayout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/AuthLayout/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/DefaultLayout/DefaultAside.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/DefaultLayout/DefaultFooter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/DefaultLayout/DefaultHeader.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/DefaultLayout/DefaultLayout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/DefaultLayout/__tests__/DefaultAside.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/DefaultLayout/__tests__/DefaultFooter.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/DefaultLayout/__tests__/DefaultHeader.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/DefaultLayout/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/DefaultLayout/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/containers/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/hoc/PrivateRoute.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/polyfill.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/registerServiceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/routes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/scss/_custom.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/scss/_ie-fix.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/scss/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/scss/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/scss/style.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/scss/vendors/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/scss/vendors/chart.js/chart.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/scss/vendors/chart.js/chart.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/services/ApiServices.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/services/AuthServices.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/services/PersonasServices.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/utils/FormValidation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/utils/Storage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/utils/ValidatePermissions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/utils/Validator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Administracion/Personas/Persona.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Administracion/Personas/Personas.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Administracion/Personas/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Breadcrumbs/Breadcrumbs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Breadcrumbs/Breadcrumbs.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Breadcrumbs/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Cards/Cards.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Cards/Cards.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Cards/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Carousels/Carousels.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Carousels/Carousels.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Carousels/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Collapses/Collapses.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Collapses/Collapses.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Collapses/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Dropdowns/Dropdowns.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Dropdowns/Dropdowns.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Dropdowns/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Forms/Forms.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Forms/Forms.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Forms/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Jumbotrons/Jumbotrons.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Jumbotrons/Jumbotrons.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Jumbotrons/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/ListGroups/ListGroups.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/ListGroups/ListGroups.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/ListGroups/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Navbars/Navbars.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Navbars/Navbars.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Navbars/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Navs/Navs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Navs/Navs.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Navs/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Paginations/Paginations.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Paginations/Pagnations.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Paginations/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Popovers/Popovers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Popovers/Popovers.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Popovers/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/ProgressBar/ProgressBar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/ProgressBar/ProgressBar.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/ProgressBar/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Switches/Switches.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Switches/Switches.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Switches/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tables/Tables.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tables/Tables.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tables/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tabs/Tabs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tabs/Tabs.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tabs/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tooltips/Tooltips.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tooltips/Tooltips.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tooltips/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Base/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/BrandButtons/BrandButtons.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/BrandButtons/BrandButtons.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/BrandButtons/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/ButtonDropdowns/ButtonDropdowns.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/ButtonDropdowns/ButtonDropdowns.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/ButtonDropdowns/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/ButtonGroups/ButtonGroups.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/ButtonGroups/ButtonGroups.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/ButtonGroups/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/Buttons/Buttons.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/Buttons/Buttons.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/Buttons/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Charts/Charts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Charts/Charts.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Charts/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Laboratorios/Laboratorio.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Laboratorios/Laboratorios.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Laboratorios/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Metodos/Metodo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Metodos/Metodos.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Metodos/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Presentacion/Presentacion.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Presentacion/Presentaciones.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Presentacion/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Unidades/Unidad.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Unidades/Unidades.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Unidades/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/CoreUIIcons/CoreUIIcons.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/CoreUIIcons/CoreUIIcons.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/CoreUIIcons/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/Flags/Flags.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/Flags/Flags.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/Flags/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/FontAwesome/FontAwesome.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/FontAwesome/FontAwesome.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/FontAwesome/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/SimpleLineIcons/SimpleLineIcons.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/SimpleLineIcons/SimpleLineIcons.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/SimpleLineIcons/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Alerts/Alerts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Alerts/Alerts.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Alerts/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Badges/Badges.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Badges/Badges.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Badges/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Modals/Modals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Modals/Modals.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Modals/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Login/Login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Login/Login.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Login/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Page404/Page404.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Page404/Page404.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Page404/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Page500/Page500.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Page500/Page500.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Page500/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Register/Register.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Register/Register.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Register/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Theme/Colors/Colors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Theme/Colors/Colors.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Theme/Colors/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Theme/Typography/Typography.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Theme/Typography/Typography.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Theme/Typography/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Theme/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Users/User.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Users/Users.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Users/Users.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Users/UsersData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Users/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Widgets/Widget01.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Widgets/Widget02.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Widgets/Widget03.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Widgets/Widget04.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Widgets/Widgets.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Widgets/Widgets.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/Widgets/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web.old/src/views/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/herramientas_web/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/herramientas_web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/herramientas_web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/public/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/herramientas_web/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/Data/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/Data/Menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Content.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/Global/Content.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Css/Header.css" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/Global/Css/Header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/Global/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/Data/Menu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/Data/MenuAdministracion.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/About/About.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Administracion.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/Campania.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/Campanias.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Catalogos/Catalogo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Persona.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Productos/Producto.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Contact/Contact.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Content-old.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Content.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Css/Content.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Css/Footer.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Css/Header.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Css/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Footer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Header-old.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Imagenes/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Global/Logo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Home/Home.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Page404/Page404.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Pedidos/Pedidos.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/herramientas_web/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/serviceWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/serviceWorker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/herramientas_web/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,7 +543,7 @@
     <session id="1898872594">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="21" />
+          <entry key="project.closed" value="22" />
           <entry key="project.open.time.123" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="1" />
@@ -76,8 +552,8 @@
           <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.36" value="2" />
           <entry key="project.open.time.37" value="2" />
-          <entry key="project.open.time.42" value="4" />
-          <entry key="project.open.time.45" value="1" />
+          <entry key="project.open.time.42" value="5" />
+          <entry key="project.open.time.45" value="2" />
           <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.49" value="1" />
           <entry key="project.open.time.51" value="2" />
@@ -88,18 +564,19 @@
           <entry key="project.open.time.60" value="1" />
           <entry key="project.open.time.61" value="1" />
           <entry key="project.open.time.67" value="1" />
+          <entry key="project.open.time.69" value="1" />
           <entry key="project.open.time.9" value="2" />
           <entry key="project.open.time.92" value="1" />
-          <entry key="project.opened" value="29" />
+          <entry key="project.opened" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="331" />
-          <entry key="html" value="344" />
-          <entry key="js" value="8201" />
-          <entry key="json" value="152" />
-          <entry key="php" value="34563" />
+          <entry key="html" value="374" />
+          <entry key="js" value="15170" />
+          <entry key="json" value="192" />
+          <entry key="php" value="35230" />
           <entry key="sql" value="498" />
           <entry key="svg" value="3" />
           <entry key="txt" value="129" />
@@ -109,41 +586,43 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="cliente" value="1" />
-          <entry key="css" value="11" />
-          <entry key="html" value="7" />
-          <entry key="js" value="178" />
-          <entry key="json" value="16" />
-          <entry key="php" value="287" />
+          <entry key="css" value="14" />
+          <entry key="html" value="8" />
+          <entry key="js" value="361" />
+          <entry key="json" value="21" />
+          <entry key="php" value="314" />
           <entry key="revendedora" value="1" />
+          <entry key="rnc" value="1" />
           <entry key="sample" value="1" />
           <entry key="sql" value="20" />
-          <entry key="svg" value="3" />
-          <entry key="ts" value="2" />
+          <entry key="svg" value="4" />
+          <entry key="ts" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.new.test" />
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="11" />
+          <entry key="CSS" value="14" />
           <entry key="Database Element" value="2" />
-          <entry key="HTML" value="7" />
-          <entry key="JSON" value="16" />
-          <entry key="JavaScript" value="178" />
-          <entry key="PHP" value="287" />
+          <entry key="HTML" value="8" />
+          <entry key="JSON" value="21" />
+          <entry key="JavaScript" value="361" />
+          <entry key="PHP" value="314" />
           <entry key="PLAIN_TEXT" value="1" />
+          <entry key="RNG Compact" value="1" />
           <entry key="SQL" value="19" />
-          <entry key="SVG" value="3" />
+          <entry key="SVG" value="4" />
           <entry key="Scratch" value="1" />
-          <entry key="TypeScript" value="2" />
+          <entry key="TypeScript" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="331" />
-          <entry key="HTML" value="344" />
-          <entry key="JSON" value="152" />
-          <entry key="JavaScript" value="8201" />
-          <entry key="PHP" value="34133" />
+          <entry key="HTML" value="374" />
+          <entry key="JSON" value="192" />
+          <entry key="JavaScript" value="15170" />
+          <entry key="PHP" value="34800" />
           <entry key="PLAIN_TEXT" value="129" />
           <entry key="SQL" value="770" />
           <entry key="SVG" value="3" />
@@ -163,35 +642,35 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/Routes.js">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
+            <state relative-caret-position="-3344">
+              <caret line="10" column="15" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="15" />
               <folding>
-                <element signature="e#15#41#0" expanded="true" />
-                <element signature="e#137#172#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Pedidos/Pedidos.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="12" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Campanias/Campania.js">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Catalogos/Catalogo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+            <state relative-caret-position="1419">
+              <caret line="281" column="33" selection-start-line="281" selection-start-column="33" selection-end-line="281" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#391#443#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Campanias/Campania.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="56" column="11" selection-start-line="56" selection-end-line="57" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -200,81 +679,76 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Campanias/Campanias.js">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Campanias/Campanias.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1581">
+              <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/App.js">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Catalogos/Catalogos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="64" />
-              <folding>
-                <element signature="e#15#56#0" expanded="true" />
-                <element signature="e#107#144#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-1625">
+              <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/Data/Menu.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/Data/MenuAdministracion.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Header.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="22" column="105" selection-start-line="22" selection-start-column="105" selection-end-line="22" selection-end-column="105" />
-              <folding>
-                <element signature="e#14#53#0" expanded="true" />
-                <element signature="e#102#141#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Content.js">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/CampaniaGrilla.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="88">
-              <caret line="4" column="8" lean-forward="true" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
               <folding>
-                <element signature="e#15#54#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/index.js">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Catalogos/CatalogoGrilla.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            <state relative-caret-position="506">
+              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
               <folding>
-                <element signature="e#15#41#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/CampaniaFila.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Catalogos/CatalogoFila.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/CatalogoService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="34" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -293,36 +767,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>date</find>
-      <find>select</find>
-      <find>delete</find>
-      <find>get</find>
-      <find>dateT</find>
-      <find>service</find>
-      <find>herramientas.fact</find>
-      <find>pagar</find>
-      <find>public function pagar</find>
-      <find>ClienteService</find>
-      <find>herramientas.fac</find>
-      <find>getall</find>
-      <find>create</find>
-      <find>PategoriaProducto</find>
-      <find>categoriaCliente</find>
-      <find>.cliente</find>
-      <find>$clientes</find>
-      <find>$cliente</find>
-      <find>ClienteController</find>
-      <find>tipo</find>
-      <find>remito</find>
-      <find>relacion</find>
-      <find>laboratorio</find>
-      <find>Laboratorio</find>
+      <find>setstate</find>
+      <find>metodosporpagina</find>
+      <find>metodo</find>
+      <find>int</find>
       <find>serie</find>
-      <find>calendario</find>
-      <find>check</find>
-      <find>authoriza</find>
-      <find>persona</find>
-      <find>props</find>
+      <find>form</find>
+      <find>formgr</find>
+      <find>nuev</find>
+      <find>/</find>
+      <find>metodos</find>
+      <find>nuevo</find>
+      <find>nueva</find>
+      <find>date</find>
+      <find>laboratorio</find>
+      <find>submit</find>
+      <find>handleselect</find>
+      <find>this.handles</find>
+      <find>input</find>
+      <find>newData</find>
+      <find>determina</find>
+      <find>pristine</find>
+      <find>campa</find>
+      <find>grilla</find>
+      <find>grillacampanias</find>
+      <find>id</find>
+      <find>console.log</find>
+      <find>newdata</find>
+      <find>data</find>
+      <find>campania</find>
+      <find>c</find>
     </findStrings>
     <replaceStrings>
       <replace>FacturaService</replace>
@@ -352,43 +826,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/herramientas_web/src/routes.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/package.json" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/components/Personas/PersonasFila.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/services/PersonasServices.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/_nav.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/utils/Storage.js" />
-        <option value="$PROJECT_DIR$/herramientas_api/Public/Index.php" />
-        <option value="$PROJECT_DIR$/HTML/Index.html" />
-        <option value="$PROJECT_DIR$/HTML/login.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/components/Auth/Login.js" />
-        <option value="$PROJECT_DIR$/herramientas_api/Config/ConfigBusiness.php" />
-        <option value="$PROJECT_DIR$/herramientas_web/package.json" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Personas.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Persona.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Global/App.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Global/Imagenes/logo.svg" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Logo.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Global/Logo.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Global/Css/Footer.css" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Global/Css/Content.css" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Global/Footer.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/App.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/About/Index.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Contact/Index.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Home/Index.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Page404/Index.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/App.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Global/Content.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/About/About.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Contact/Contact.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Page404/Page404.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Global/Css/Header.css" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Personas/Persona.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Productos/Producto.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/AdministracionApp.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Content/Content.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/RoutesAdministracion.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Home/Home.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Home/HomeAdministracion.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/Components/Home/Home.js" />
@@ -396,13 +833,50 @@
         <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Home.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/Data/Menu.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/Data/MenuCampania.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/index.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Campanias/Campania.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Global/Content.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/Components/Global/Header.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Data/MenuAdministracion.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/Routes-old.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/RoutesAdministracion.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Campanias/Campanias.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/index.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Administracion.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/Routes.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Campanias/Campanias.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Campanias/Campania.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/Data/MenuAdministracion.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/Components/App.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/public/config/config.json" />
+        <option value="$PROJECT_DIR$/herramientas_web/public/index.html" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Administracion.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Pages/Login/Login.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Calendario/Calendario.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/DefaultLayout.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Laboratorios/Laboratorio.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Determinaciones/Determinaciones.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Determinaciones/Determinacion.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Paginador/Paginador.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/utils/Storage.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Auth/Login.js" />
+        <option value="$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/Campania.php" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/services/CampaniaServices.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/CampaniaGrilla.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/CampaniaFila.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/package.json" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/DefaultFooter.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/services/LaboratoriosServices.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Campanias/Campanias.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/Metodo.js" />
+        <option value="$PROJECT_DIR$/herramientas_api/Public/Index.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/_nav.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/services/CatalogoService.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Catalogos/CatalogoGrilla.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/routes.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Catalogos/CatalogoFila.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Campanias/Campania.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Catalogos/Catalogos.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Catalogos/Catalogo.js" />
       </list>
     </option>
   </component>
@@ -413,57 +887,57 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/herramientas_web.old/node_modules" />
     <handled-path value="$PROJECT_DIR$/herramientas_web/node_modules" />
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
-      <path value="$PROJECT_DIR$/herramientas_web.old/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/containers/AuthLayout/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/containers/DefaultLayout/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Administracion/Personas/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Breadcrumbs/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Cards/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Carousels/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Collapses/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Dropdowns/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Forms/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Jumbotrons/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/ListGroups/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Navbars/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Navs/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Paginations/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Popovers/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/ProgressBar/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Switches/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tables/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tabs/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Base/Tooltips/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/BrandButtons/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/ButtonDropdowns/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/ButtonGroups/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Buttons/Buttons/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Charts/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Laboratorios/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Metodos/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Presentacion/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Configuracion/Unidades/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/CoreUIIcons/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/Flags/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/FontAwesome/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Icons/SimpleLineIcons/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Alerts/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Badges/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Notifications/Modals/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Login/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Page404/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Page500/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Pages/Register/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Theme/Colors/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Theme/Typography/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Users/package.json" />
-      <path value="$PROJECT_DIR$/herramientas_web.old/src/views/Widgets/package.json" />
       <path value="$PROJECT_DIR$/herramientas_web/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/containers/AuthLayout/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Series/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Breadcrumbs/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Cards/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Carousels/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Collapses/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Dropdowns/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Forms/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Jumbotrons/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/ListGroups/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Navbars/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Navs/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Paginations/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Popovers/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/ProgressBar/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Switches/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Tables/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Tabs/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Base/Tooltips/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Buttons/BrandButtons/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Buttons/ButtonDropdowns/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Buttons/ButtonGroups/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Buttons/Buttons/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Calendario/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Charts/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Determinaciones/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Laboratorios/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Presentacion/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Unidades/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Icons/CoreUIIcons/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Icons/Flags/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Icons/FontAwesome/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Icons/SimpleLineIcons/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Alerts/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Badges/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Notifications/Modals/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Pages/Login/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Pages/Page404/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Pages/Page500/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Pages/Register/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Theme/Colors/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Theme/Typography/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Users/package.json" />
+      <path value="$PROJECT_DIR$/herramientas_web/src/views/Widgets/package.json" />
     </packageJsonPaths>
   </component>
   <component name="PhpDebugGeneral" listening_started="true" />
@@ -487,8 +961,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="x" value="384" />
+    <option name="y" value="86" />
     <option name="width" value="755" />
     <option name="height" value="725" />
   </component>
@@ -497,7 +971,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -508,33 +981,59 @@
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_api" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
-              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="Administracion" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -542,7 +1041,7 @@
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="Administracion" type="462c0819:PsiDirectoryNode" />
               <item name="Campanias" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -551,25 +1050,45 @@
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Components" type="462c0819:PsiDirectoryNode" />
-              <item name="Global" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="Catalogos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Data" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="Series" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Presentacion" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="token_key&#9;null&#9;null&#10;authorization-to&#9;null&#9;null&#10;toke&#9;null&#9;null&#10;nav&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/_nav.js&#10;calendario&#9;null&#9;null&#10;serie&#9;null&#9;null&#10;apiser&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/services/ApiServices.js&#10;No se encontró una sesión activa&#9;null&#9;null&#10;check&#9;null&#9;null&#10;react-router-dom&#9;null&#9;null&#10;tipodocumento&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Model/TipoDocumento.php" />
+    <property name="SearchEverywhereHistoryKey" value="campania&#9;null&#9;null&#10;campaniaser&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/services/CampaniaServices.js&#10;camp&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/Administracion/Campanias/CampaniaGrilla.js&#10;nuevo&#9;null&#9;null&#10;route&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/routes.js&#10;token_key&#9;null&#9;null&#10;authorization-to&#9;null&#9;null&#10;toke&#9;null&#9;null&#10;nav&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/_nav.js&#10;calendario&#9;null&#9;null&#10;serie&#9;null&#9;null&#10;apiser&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/services/ApiServices.js&#10;No se encontró una sesión activa&#9;null&#9;null&#10;check&#9;null&#9;null&#10;react-router-dom&#9;null&#9;null&#10;tipodocumento&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Model/TipoDocumento.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MariaDB" />
     <property name="database.console.LAST_STATE" value="false" />
@@ -582,19 +1101,19 @@
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.debug" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\Administracion\Catalogos" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\Administracion\Catalogos" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\Administracion\Campanias" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\Administracion" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\Administracion\Campanias" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Components\Administracion\Productos" />
       <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Components\Administracion\Personas" />
       <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Components\Administracion" />
       <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Components" />
       <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Components\Global" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Data" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Components\Administracion" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Components\Pedidos" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Components\Administracion\Content" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Components\Administracion\Catalogos" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -609,11 +1128,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.Index.php">
+  <component name="RunManager" selected="Node.js.Campanias.js">
     <configuration name="AuthService.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://herramientas/herramientas_api/Service/AuthService.php">
       <method v="2" />
     </configuration>
     <configuration name="Index.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://herramientas/herramientas_api/Public/Index.php">
+      <method v="2" />
+    </configuration>
+    <configuration name="Campanias.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="Campanias.js" working-dir="$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Campanias">
       <method v="2" />
     </configuration>
     <configuration name="PersonaRepository.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php">
@@ -623,9 +1145,11 @@
       <item itemvalue="PHP Script.PersonaRepository.php" />
       <item itemvalue="JavaScript Debug.AuthService.php" />
       <item itemvalue="JavaScript Debug.Index.php" />
+      <item itemvalue="Node.js.Campanias.js" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.Campanias.js" />
         <item itemvalue="JavaScript Debug.Index.php" />
         <item itemvalue="JavaScript Debug.AuthService.php" />
         <item itemvalue="PHP Script.PersonaRepository.php" />
@@ -674,7 +1198,10 @@
       <workItem from="1539138610504" duration="4028000" />
       <workItem from="1539184293836" duration="16685000" />
       <workItem from="1539374982286" duration="9819000" />
-      <workItem from="1539520730600" duration="35433000" />
+      <workItem from="1539520730600" duration="43535000" />
+      <workItem from="1539619536690" duration="20954000" />
+      <workItem from="1539645733943" duration="21972000" />
+      <workItem from="1539776965133" duration="14433000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1530410997261</created>
@@ -1005,21 +1532,28 @@
       <option name="project" value="LOCAL" />
       <updated>1539528635468</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="preparacion de web">
+      <created>1539588502224</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1539588502224</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="358953000" />
+    <option name="totallyTimeSpent" value="424414000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1552" height="916" extended-state="6" />
+    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20643431" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14639397" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.342711" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" visible="true" weight="0.38930348" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.26715177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39897698" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1039,31 +1573,6 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" weight="0.19470699" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20643431" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.342711" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.26715177" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39897698" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Console" order="7" weight="0.40409207" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32952183" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50053304" side_tool="true" weight="0.32884097" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49946696" weight="0.22378516" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.32925585" />
-      <window_info anchor="bottom" id="PHP-CGI Server" order="14" />
-      <window_info anchor="bottom" id="SQL Generator" order="15" weight="0.32952183" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.19470699" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1092,6 +1601,29 @@
     <MESSAGE value="ABM &#10;-Producto" />
     <MESSAGE value="preparacion de web" />
     <option name="LAST_COMMIT_MESSAGE" value="preparacion de web" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/Metodo.js</url>
+          <line>157</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/Metodo.js</url>
+          <line>282</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Campanias/Campania.js</url>
+          <line>152</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>
@@ -1103,316 +1635,406 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/setupTests.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/registerServiceWorker.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/polyfill.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/index.css" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/_nav.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/index.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Users/User.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/Metodo.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Public/Index.php">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/utils/Storage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        <state relative-caret-position="198">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Persona.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Personas.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Configuracion/index.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Imagenes/logo.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Css/Content.css">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Auth/Login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        <state relative-caret-position="248">
+          <caret line="59" column="18" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Css/Footer.css">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="15" selection-start-line="3" selection-start-column="15" selection-end-line="3" selection-end-column="15" />
+        <state relative-caret-position="383">
+          <caret line="484" column="22" selection-start-line="484" selection-start-column="22" selection-end-line="484" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Footer.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Campania.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        <state relative-caret-position="650">
+          <caret line="102" column="87" lean-forward="true" selection-start-line="102" selection-start-column="46" selection-end-line="102" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Metodos/MetodoFila.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="17" lean-forward="true" selection-end-line="32" selection-end-column="34" />
           <folding>
-            <element signature="e#15#54#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Logo.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/Metodos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
+        <state relative-caret-position="1540">
+          <caret line="70" column="70" lean-forward="true" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="70" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Content-old.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Home/Index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Contact/Index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/About/Index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Page404/Index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Page404/Page404.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Header-old.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Contact/Contact.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/About/About.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Css/Header.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="39" column="16" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Personas/Persona.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Catalogos/Catalogo.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Productos/Producto.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Content/Content.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/AdministracionIndex.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="e#15#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/AdministracionApp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="23" column="31" lean-forward="true" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-          <folding>
-            <element signature="e#15#56#0" expanded="true" />
-            <element signature="e#107#144#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/RoutesAdministracion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="12" column="66" lean-forward="true" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
-          <folding>
-            <element signature="e#15#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Home/HomeAdministracion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Css/index.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Productos/Producto.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Home/Home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Administracion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="35" lean-forward="true" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Pedidos/Pedidos.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Metodos/MetodosGrilla.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret selection-end-line="12" selection-end-column="23" />
+          <caret selection-end-line="33" selection-end-column="23" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/App.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Determinaciones/DeterminacionFila.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="64" />
+        <state relative-caret-position="220">
+          <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
           <folding>
-            <element signature="e#15#56#0" expanded="true" />
-            <element signature="e#107#144#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Config/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/structural.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="129" column="16" selection-start-line="129" selection-start-column="16" selection-end-line="129" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/index.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Presentacion/Determinacion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Config/ConfigBusiness.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/App.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="50" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Administracion.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/node_modules/@coreui/react/es/NavbarBrand.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/DefaultFooter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="60" selection-start-line="17" selection-start-column="60" selection-end-line="17" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/containers/DefaultLayout/DefaultHeader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/MetodosServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="11" column="15" lean-forward="true" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/DeterminacionesServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_web/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        <state>
           <folding>
-            <element signature="e#15#41#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Content.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Determinaciones/Determinaciones.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="8" lean-forward="true" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-          <folding>
-            <element signature="e#15#54#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="660">
+          <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Data/Menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Data/MenuAdministracion.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/LaboratoriosServices.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Global/Header.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Laboratorios/Laboratorio.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="22" column="105" selection-start-line="22" selection-start-column="105" selection-end-line="22" selection-end-column="105" />
-          <folding>
-            <element signature="e#14#53#0" expanded="true" />
-            <element signature="e#102#141#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Administracion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="95" selection-start-line="16" selection-start-column="95" selection-end-line="16" selection-end-column="95" />
-          <folding>
-            <element signature="e#15#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
-          <folding>
-            <element signature="e#15#41#0" expanded="true" />
-            <element signature="e#137#172#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Campanias/Campanias.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        <state relative-caret-position="4884">
+          <caret line="227" column="66" selection-start-line="227" selection-start-column="54" selection-end-line="227" selection-end-column="66" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/Components/Administracion/Campanias/Campania.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Series/Serie.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+        <state relative-caret-position="1100">
+          <caret line="50" column="74" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/node_modules/react-datepicker/es/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3955">
+          <caret line="3050" column="29" selection-start-line="3050" selection-start-column="29" selection-end-line="3051" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Public/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="90" column="33" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="162" column="72" selection-start-line="162" selection-start-column="72" selection-end-line="162" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Catalogo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/_nav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Configuracion/Metodos/Metodo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="222" column="4" lean-forward="true" selection-start-line="222" selection-start-column="4" selection-end-line="226" selection-end-column="5" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Base/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Configuracion/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/CampaniaServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/CampaniaFila.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Catalogos/CatalogoFila.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Campanias/CampaniaGrilla.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Catalogos/CatalogoGrilla.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/CatalogoService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Catalogos/Catalogos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1625">
+          <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3344">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Campanias/Campanias.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1581">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Campanias/Campania.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="56" column="11" selection-start-line="56" selection-end-line="57" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Catalogos/Catalogo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1419">
+          <caret line="281" column="33" selection-start-line="281" selection-start-column="33" selection-end-line="281" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#391#443#0" expanded="true" />
           </folding>
         </state>
       </provider>

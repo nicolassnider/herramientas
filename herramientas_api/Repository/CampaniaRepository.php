@@ -29,6 +29,27 @@ class CampaniaRepository extends AbstractRepository
         return $campanias;
     }
 
+    public function getAllGrilla(bool $full = true): Array
+    {
+        $db = $this->connect();
+        $sqlGetAll = "SELECT * FROM campania";
+        $result = $db->query($sqlGetAll);
+        $items = $result->fetchAll(PDO::FETCH_OBJ);
+        if ($items == null) {
+            return Array();
+        }
+        $campanias = Array();
+        foreach ($items as $item) {
+            $item = $this->createFromResultset($item, $full ? ['fechaInicio', 'fechaFin', 'descripcion'] : [], $this->db);
+            $item->setId(null);
+            $item->setActivo(null);
+            array_push($campanias, $item);
+        }
+
+
+        return $campanias;
+    }
+
 
     public function get(int $id, bool $full = true): ?Campania
     {
@@ -139,8 +160,8 @@ class CampaniaRepository extends AbstractRepository
                         WHERE
                         id=:id";
             $id = $campania->getId();
-            $fechaInicio = $campania->getFechaInicio();
-            $fechaFin = $campania->getFechaFin();
+            $fechaInicio = $campania->getFechaInicio()->format('Y-m-d');
+            $fechaFin = $campania->getFechaFin()->format('Y-m-d');
             $descripcion = $campania->getDescripcion();
             $activo = $campania->getActivo();
             $stmtUpdate = $db->prepare($sqlUpdate);
@@ -192,9 +213,16 @@ class CampaniaRepository extends AbstractRepository
 
         $item = new Campania();
         $item->setId((int)$result->id);
-        $item->setFechaInicio(DateTime::createFromFormat('Y-m-d', $result->fecha_inicio) );
-        $item->setFechaFin(DateTime::createFromFormat('Y-m-d', $result->fecha_fin) );
-        $item->setDescripcion($result->descripcion);
+
+        if (in_array('*', $fields) || in_array('fechaInicio', $fields))
+            $item->setFechaInicio(DateTime::createFromFormat('Y-m-d', $result->fecha_inicio));
+
+        if (in_array('*', $fields) || in_array('fechaFin', $fields))
+            $item->setFechaFin(DateTime::createFromFormat('Y-m-d', $result->fecha_fin));
+
+        if (in_array('*', $fields) || in_array('descripcion', $fields))
+            $item->setDescripcion($result->descripcion);
+
         $item->setActivo((bool)$result->activo);
         return $item;
     }

@@ -34,6 +34,15 @@ class CampaniaController
                     'CAMPANIA_LISTAR'
                 ]));
 
+                $this->get('/campania_grilla', function (Request $request, Response $response) {
+                    $service = new CampaniaService();
+                    $items = $service->getAllGrilla();
+                    return $response->withJson($items, 200);
+
+                })->add(new ValidatePermissionsMiddleware([
+                    'CAMPANIA_LISTAR'
+                ]));
+
                 $this->get('/{id}', function (Request $request, Response $response) {
                     $service = new CampaniaService();
                     $id = $request->getAttribute('id');
@@ -78,8 +87,9 @@ class CampaniaController
 
                 $this->put('/{id}', function (Request $request, Response $response) {
                     $campania = CampaniaController::getInstanceFromRequest($request);
-                    $service = new PersonaCategoriaService();
-                    return $response->withJson($service->update($campania), 204);
+                    $service = new CampaniaService();
+                    $service->update($campania);
+                    return $response->withJson("updated", 204);
 
                 })->add(new ValidatePermissionsMiddleware([
                     'CAMPANIA_MODIFICAR'

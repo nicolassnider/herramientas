@@ -1,22 +1,11 @@
-//Dependencies
+import './polyfill'
 import React from 'react';
-import {render} from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './components/App';
+// disable ServiceWorker
+// import registerServiceWorker from './registerServiceWorker';
 
-//Routes
-import AppRoutes from './Routes';
-
-//Assets
-import './Components/Global/Css/index.css';
-
-
-render(
-    <BrowserRouter>
-        <AppRoutes/>
-    </BrowserRouter>,
-    document.getElementById('root')
-
-
-);
-
-
+ReactDOM.render(<App/>, document.getElementById('root'));
+// disable ServiceWorker
+// registerServiceWorker();

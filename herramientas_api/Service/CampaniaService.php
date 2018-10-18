@@ -52,5 +52,10 @@ class CampaniaService
         $this->repository->delete($id);
     }
 
+    public function getAllGrilla()
+    {
+        return $this->repository->getAllGrilla();
+    }
+
 
 }

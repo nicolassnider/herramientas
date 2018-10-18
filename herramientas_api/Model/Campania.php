@@ -100,8 +100,8 @@ class Campania implements JsonSerializable
     {
         $array=Array();
         if(isset($this->id)) $array['id'] = $this->id;
-        if(isset($this->fecha_inicio)) $array['fecha_inicio'] = $this->fecha_inicio;
-        if(isset($this->fecha_fin)) $array['fecha_fin'] = $this->fecha_fin;
+        if (isset($this->fecha_inicio)) $array['fechaInicio'] = $this->fecha_inicio->format('Y-m-d');
+        if (isset($this->fecha_fin)) $array['fechaFin'] = $this->fecha_fin->format('Y-m-d');
         if(isset($this->descripcion)) $array['descripcion'] = $this->descripcion;
         if(isset($this->activo)) $array['activo'] = $this->activo;
         return $array;
