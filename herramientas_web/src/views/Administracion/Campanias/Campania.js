@@ -47,7 +47,7 @@ class Campania extends Component {
             modified: false,
             flagPrimeraVez: true,
             loaded: false
-        },
+        };
             this.idCampania = props.match.params.id;
 
         this.urlCancelar = "/administracion/campanias";

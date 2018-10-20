@@ -12,8 +12,7 @@ class Persona implements JsonSerializable
     private $tipoDocumento;
     private $documento;
     private $telefono;
-    private $email;
-    private $activo;
+    private $email;    
     private $localidad;
     private $nombre;
     private $nombreSegundo;
@@ -22,6 +21,7 @@ class Persona implements JsonSerializable
     private $fechaAltaPersona;
     private $esUsuario;
     private $usuario;
+    private $activo;
 
     /**
      * @return mixed
@@ -263,10 +263,12 @@ class Persona implements JsonSerializable
         if(isset($this->email)) $array['email'] = $this->email;
         if(isset($this->activo)) $array['activo'] = $this->activo;
         if(isset($this->localidad)) $array['localidad'] = $this->localidad;
-        if(isset($this->fechaAltaPersona)) $array['fechaAltaPersona'] = $this->fechaAltaPersona;
+        if (isset($this->fechaAltaPersona)) $array['fechaAltaPersona'] = $this->fechaAltaPersona->format('Y-m-d');
         if(isset($this->esUsuario)) $array['esUsuario'] = $this->esUsuario;
-        if(isset($this->fechaBajaPersona)) $array['fechaAltaPersona'] = $this->fechaBajaPersona;
+        if (isset($this->fechaBajaPersona)) $array['fechaAltaPersona'] = $this->fechaBajaPersona->format('Y-m-d');
         if(isset($this->usuario)) $array['usuario'] = $this->usuario;
+        if (isset($this->usuario)) $array['nombreUsuario'] = $this->usuario->getUsuario();
+
         return $array;
 
 

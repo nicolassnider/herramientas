@@ -19,7 +19,7 @@ const catalogo = (props) => {
                     <h5><Badge color="danger">Inactivo</Badge></h5>
                 }
             </td>
-            <td style={style}>
+            <td style={style}>            
                 <Button size="sm"
                         onClick={() => props.history.push(`/administracion/catalogos/editar/${props.catalogo.id}`)}
                         className="btn-outline-secondary">

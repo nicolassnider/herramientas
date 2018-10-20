@@ -14,10 +14,9 @@ import {
     FormGroup,
     Label
 } from 'reactstrap';
-import {
-    getCatalogos, getCatalogoPorId, desactivarCatalogo, editarCatalogo, eliminarCatalogo, nuevoCatalogo
+import {getPersonaPorId, editarPersona, nuevoPersona} from '../../../services/PersonaServices';
+import {getAllTipoDocumento} from '../../../services/TipoDocumentoServices';
 
-} from '../../../services/CatalogoService';
 import Switch from 'react-switch';
 import Select from 'react-select';
 import Validator from '../../../utils/Validator.js';
@@ -26,14 +25,28 @@ import Date from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
 
-class Catalogo extends Component {
+class Persona extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            catalogo: {
+            persona: {
                 id: null,
-                descripcion: "",
-                observaciones: "",
+                tipoDocumento: "",
+                documento: "",
+                nombre: "",
+                nombreSegundo: "",
+                apellido: "",
+                apellidoSegundo: "",
+                telefono: "",
+                email: "",
+                localidad: {
+                    id: null,
+                    label: ""
+                },
+                fechaAltaPersona: "",
+                esUsuario: "",
+                fechaBajaPersona: "",
+                nombreUsuario: "",
                 activo: false
             },
             error: {
@@ -45,46 +58,73 @@ class Catalogo extends Component {
             flagPrimeraVez: true,
             loaded: false
         },
-            this.idCatalogo = props.match.params.id;
+            this.idPersona = props.match.params.id;
 
-        this.urlCancelar = "/administracion/catalogos";
+        this.urlCancelar = "/administracion/personas";
 
         this.submitForm = this.submitForm.bind(this);
         this.handleSwitch = this.handleSwitch.bind(this);
-        //this.handleSelect = this.handleSelect.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
 
         this.formValidation = new FormValidation({
             component: this,
             validators: {
-                'catalogo.descripcion': (value) => Validator.notEmpty(value),
-                'catalogo.observaciones': (value) => Validator.notEmpty(value),
+                'persona.documento': (value) => Validator.intNumber(value),
+                'persona.nombre': (value) => Validator.notEmpty(value),
+                'persona.apellido': (value) => Validator.notEmpty(value),
             }
         });
     }
 
     handleSwitch(checked) {
         let newState = {...this.state};
-        newState.catalogo.activo = checked;
+        newState.persona.activo = checked;
         this.setState(newState);
     }
+
+    handleSelect(name, object) {
+        //console.log(object);
+        let newState = {...this.state};
+        if (name === "tipoDocumento") {
+            newState.metodo.tipoDocumento = object.value;
+
+        }
+        this.setState(newState);
+    }
+
 
     componentDidMount() {
 
         let component = this;
         let arrayPromises = [];
-        if (component.idCatalogo) {
-            let p1 = getCatalogoPorId(component.idCatalogo).then(result => result.json());
+        if (component.idPersona) {
+            let p1 = getPersonaPorId(component.idPersona).then(result => result.json());
             arrayPromises.push(p1);
         }
+        let p2 = getAllTipoDocumento().then(result => result.json());
+
+        arrayPromises.push(p2);
+
         Promise.all(arrayPromises)
             .then(
                 (result) => {
                     let miState = {...this.state};
 
-                    if (component.idCatalogo) {
-                        miState.catalogo = result[0];
-
+                    if (component.tipoDocumento) {
+                        miState.persona = result[0];
+                        miState.persona.tipoDocumento = result[1].map((tipoDocumento, index) => {
+                            return (
+                                {value: tipoDocumento.id, label: tipoDocumento.label}
+                            )
+                        });
+                    } else {
+                        miState.persona.tipoDocumento = result[0].map((tipoDocumento, index) => {
+                            return (
+                                {value: tipoDocumento.id, label: tipoDocumento.label}
+                            )
+                        });
                     }
+
                     miState.loaded = true;
                     component.setState(miState)
 
@@ -97,9 +137,9 @@ class Catalogo extends Component {
 
     submitForm(event) {
         event.preventDefault();
-        let catalogo = this.state.catalogo;
-        if (!this.idCatalogo) {
-            nuevoCatalogo(catalogo)
+        let persona = this.state.persona;
+        if (!this.idPersona) {
+            nuevoPersona(persona)
                 .then(response => {
                     if (response.status === 400) {
                         response.json()
@@ -120,13 +160,13 @@ class Catalogo extends Component {
                                     codigo: 2001,
                                     mensaje: "",
                                     detalle: [
-                                        "Catalogo creado correctamente."
+                                        "Persona creado correctamente."
                                     ]
                                 },
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/catalogos");
+                                this.props.history.push("/administracion/personas");
                             }, 2500);
                         } else {
                             if (response.status === 500) {
@@ -144,7 +184,7 @@ class Catalogo extends Component {
                     }
                 });
         } else {
-            editarCatalogo(catalogo)
+            editarPersona(persona)
                 .then(response => {
                     if (response.status === 400) {
                         response.json()
@@ -163,13 +203,13 @@ class Catalogo extends Component {
                                     codigo: 2004,
                                     mensaje: "",
                                     detalle: [
-                                        "Catalogo modificado correctamente."
+                                        "Persona modificado correctamente."
                                     ]
                                 },
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/catalogos");
+                                this.props.history.push("/administracion/personas");
                             }, 2500);
                         }
                     }
@@ -192,7 +232,7 @@ class Catalogo extends Component {
 
     newData(event) {
         let newState = {...this.state};
-        newState.catalogo[event.target.name] = event.target.value;
+        newState.persona[event.target.name] = event.target.value;
         this.setState(newState);
     }
 
@@ -244,18 +284,28 @@ class Catalogo extends Component {
             <Card>
                 <Form onSubmit={this.submitForm}>
                     <CardHeader>
-                        {!this.idCatalogo ? "Crear Catalogo" : "Modificar Catalogo"}
+                        {!this.idPersona ? "Crear Persona" : "Modificar Persona"}
                     </CardHeader>
                     <CardBody>
+                        <Col xs={{size: 12, offset: 0}}>
+                            <Label htmlFor="tipoDocumento">Tipo de Documento:</Label>
+                            <Select
+                                name="tipoDocumento" placeholder="Tipo de documento..."
+                                valueKey="value" labelKey="label"
+                                options={this.state.persona.tipoDocumento}
+                                value={this.state.persona.tipoDocumento.find(e => e.value === this.state.persona.tipoDocumento)}
+                                onChange={(e) => this.handleSelect("tipoDocumento", e)}
+                            />
+                        </Col>
                         <Row>
                             <Col xs="12">
                                 <Label htmlFor="descripcion">Descripcion:</Label>
                                 <Input type="text" name="descripcion"
                                        onChange={this.newData} placeholder="Ingresar descripcion"
-                                       value={this.state.catalogo.descripcion}
-                                       invalid={!validationState.catalogo.descripcion.pristine && !validationState.catalogo.descripcion.valid}/>
+                                       value={this.state.persona.descripcion}
+                                       invalid={!validationState.persona.descripcion.pristine && !validationState.persona.descripcion.valid}/>
                                 <FormFeedback
-                                    invalid={!validationState.catalogo.pristine && !validationState.catalogo.descripcion.valid}>{validationState.catalogo.descripcion.message}</FormFeedback>
+                                    invalid={!validationState.persona.pristine && !validationState.persona.descripcion.valid}>{validationState.persona.descripcion.message}</FormFeedback>
                             </Col>
                         </Row>
                         <Row>
@@ -263,10 +313,10 @@ class Catalogo extends Component {
                                 <Label htmlFor="observaciones">observaciones:</Label>
                                 <Input type="text" name="observaciones"
                                        onChange={this.newData} placeholder="Ingresar observaciones o comentarios"
-                                       value={this.state.catalogo.observaciones}
-                                       invalid={!validationState.catalogo.observaciones.pristine && !validationState.catalogo.observaciones.valid}/>
+                                       value={this.state.persona.observaciones}
+                                       invalid={!validationState.persona.observaciones.pristine && !validationState.persona.observaciones.valid}/>
                                 <FormFeedback
-                                    invalid={!validationState.catalogo.pristine && !validationState.catalogo.observaciones.valid}>{validationState.catalogo.observaciones.message}</FormFeedback>
+                                    invalid={!validationState.persona.pristine && !validationState.persona.observaciones.valid}>{validationState.persona.observaciones.message}</FormFeedback>
                             </Col>
                         </Row>
 
@@ -277,20 +327,17 @@ class Catalogo extends Component {
 
                                     <Label htmlFor="activo">Activo:</Label> <br/>
                                     <Switch onChange={this.handleSwitch} name="activo"
-                                            checked={this.state.catalogo.activo}/>
+                                            checked={this.state.persona.activo}/>
                                 </FormGroup>
                             </Col>
                         </Row>
-
-
-
 
 
                     </CardBody>
                     <CardFooter style={estilosFooter}>
                         <Button type="submit" color="success" size="xs"
                                 disabled={!validationState.form.valid}>
-                            {!this.idCatalogo ? "Crear" : "Modificar"}
+                            {!this.idPersona ? "Crear" : "Modificar"}
                         </Button>
                         <Button type="submit" color="danger" size="xs"
                                 onClick={() => this.props.history.push(this.urlCancelar)}>
@@ -304,4 +351,4 @@ class Catalogo extends Component {
 
 }
 
-export default Catalogo;
+export default Persona;

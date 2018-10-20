@@ -7,6 +7,23 @@ export default {
         },
         {
             title: true,
+            name: 'Area de trabajo',
+            wrapper: {
+                element: '',
+                attributes: {},
+            }
+        },
+        {
+            name: 'Pedidos',
+            url: '/areadetrabajo/pedidos'
+        },
+        {
+            name: 'Stock',
+            url: '/areadetrabajo/reportes'
+
+        },
+        {
+            title: true,
             name: 'Administración',
             wrapper: {
                 element: '',
@@ -27,23 +44,6 @@ export default {
             url: '/administracion/personas',
 
         },
-        {
-            title: true,
-            name: 'Area de trabajo',
-            wrapper: {
-                element: '',
-                attributes: {},
-            }
-        },
-        {
-            name: 'Pedidos',
-            url: '/areadetrabajo/pedidos'
-        },
-        {
-            name: 'Stock',
-            url: '/areadetrabajo/reportes'
-
-        }
 
     ],
 };

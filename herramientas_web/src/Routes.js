@@ -13,7 +13,7 @@ const Campanias = Loadable({
     loading: Loading,
 });
 
-/***** Campañas *****/
+/***** Campaña *****/
 const Campania = Loadable({
     loader: () => import('./views/Administracion/Campanias/Campania'),
     loading: Loading,
@@ -25,11 +25,25 @@ const Catalogos = Loadable({
     loading: Loading,
 });
 
-/***** Campañas *****/
+/***** Catalogo *****/
 const Catalogo = Loadable({
     loader: () => import('./views/Administracion/Catalogos/Catalogo'),
     loading: Loading,
 });
+
+/***** Personas *****/
+const Personas = Loadable({
+    loader: () => import('./views/Administracion/Personas/Personas'),
+    loading: Loading,
+});
+
+/***** Persona *****/
+const Persona = Loadable({
+    loader: () => import('./views/Administracion/Personas/Persona'),
+    loading: Loading,
+});
+
+
 
 const Calendario = Loadable({
     loader: () => import('./views/Calendario'),
@@ -167,6 +181,7 @@ const routes = [
     {
         path: '/configuracion/metodos/editar/:id', exact: true, name: 'Editar', component: Metodo
     },
+
     {
         path: '/administracion/campanias', exact: true, name: 'Campanias', component: Campanias
     },
@@ -187,6 +202,23 @@ const routes = [
     {
         path: '/administracion/catalogos/editar/:id', exact: true, name: 'Editar', component: Catalogo
     },
+    {
+        path: '/administracion/catalogos/desactivar/:id', exact: true, name: 'Desactivar', component: Catalogo
+    },
+
+    {
+        path: '/administracion/personas', exact: true, name: 'Personas', component: Personas
+    },
+    {
+        path: '/administracion/personas/nuevo', exact: true, name: 'Nuevo', component: Persona
+    },
+    {
+        path: '/administracion/personas/editar/:id', exact: true, name: 'Editar', component: Persona
+    },
+    {
+        path: '/administracion/personas/desactivar/:id', exact: true, name: 'Desactivar', component: Persona
+    },
+    
 
 
     {
