@@ -32,6 +32,11 @@ class PersonaService
         return $this->repository->getAllActiveSorted();
     }
 
+    public function getAllActiveSortedSinCLiente(): Array
+    {
+        return $this->repository->getAllActiveSortedSinCliente();
+    }
+
 
     public function create(Persona $persona): Persona
     {

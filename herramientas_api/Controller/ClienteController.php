@@ -108,7 +108,7 @@ class ClienteController
         $cliente->setCategoriaCliente($categoriaCliente);
         $cliente->setDireccionEntrega($request->getParam('direccionEntrega'));
         $cliente->setUbicacion($request->getParam('ubicacion'));
-        $cliente->setAnioNacimiento(new DateTime($request->getParam('anioNacimiento')['date']));
+        $cliente->setAnioNacimiento(new DateTime($request->getParam('anioNacimiento')));
         $cliente->setMadre((bool)$request->getParam('madre'));
         $cliente->setApodo($request->getParam('apodo'));
         $persona = new Persona();

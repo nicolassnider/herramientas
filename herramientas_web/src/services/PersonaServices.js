@@ -29,3 +29,11 @@ export const eliminarPersona = (id) => {
 export const grillaPersonas = () => {
     return get("personas");
 };
+
+export const selectPersonas = () => {
+    return get("personas/select");
+};
+
+export const selectPersonasSinCliente = () => {
+    return get("personas/selectsincliente");
+};

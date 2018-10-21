@@ -223,7 +223,7 @@ class Cliente implements JsonSerializable
         if (isset($this->categoriaCliente)) $array['categoriaCliente'] = $this->categoriaCliente;
         if (isset($this->direccionEntrega)) $array['direccionEntrega'] = $this->direccionEntrega;
         if (isset($this->ubicacion)) $array['ubicacion'] = $this->ubicacion;
-        if (isset($this->fechaAltaCliente)) $array['fechaAltaCliente'] = $this->fechaAltaCliente;
+        if (isset($this->fechaAltaCliente)) $array['fechaAltaCliente'] = $this->fechaAltaCliente->format('Y-m-d');
         if (isset($this->fechaBajaCliente)) $array['fechaBajaCliente'] = $this->fechaBajaCliente;
         if (isset($this->anioNacimiento)) $array['anioNacimiento'] = $this->anioNacimiento;
         if (isset($this->madre)) $array['madre'] = $this->madre;

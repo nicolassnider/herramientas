@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaPersonas} from '../../../services/PersonaServices';
+import {grillaClientes} from '../../../../services/ClientesServices';
 
-import PersonaGrilla from '../../../components/Administracion/Personas/PersonaGrilla';
-import Paginador from '../../../components/Paginador/Paginador';
+import ClienteGrilla from '../../../../components/Administracion/Personas/Clientes/ClienteGrilla';
+import Paginador from '../../../../components/Paginador/Paginador';
 
 
-class Personas extends Component {
+class Clientes extends Component {
     onPageChanged = data => {
         const {currentPage, totalPages, pageLimit} = data;
         const offset = (currentPage - 1) * pageLimit;
-        const personas = this.state.resultado.personas.slice(offset, offset + pageLimit);
+        const clientes = this.state.resultado.clientes.slice(offset, offset + pageLimit);
 
         let miState = {...this.state};
-        miState.personasPorPagina = personas;
+        miState.clientesPorPagina = clientes;
         miState.currentPage = currentPage;
         miState.totalPages = totalPages;
         this.setState(miState);
@@ -23,11 +23,11 @@ class Personas extends Component {
         super();
         this.state = {
             resultado: {
-                personas: [],
+                clientes: [],
                 codigo: 0,
                 mensaje: ""
             },
-            personasPorPagina: [],
+            clientesPorPagina: [],
             currentPage: null,
             totalPages: null
         }
@@ -35,13 +35,13 @@ class Personas extends Component {
 
     componentDidMount() {
         let miState = {...this.state};
-        grillaPersonas()
+        grillaClientes()
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
 
-                            miState.resultado.personas = response;
+                            miState.resultado.clientes = response;
                             miState.resultado.codigo = 2000;
                             this.setState(miState);
 
@@ -51,7 +51,7 @@ class Personas extends Component {
                         this.setState({
                             resultado: {
                                 codigo: 5000,
-                                mensaje: "Error al listar los personas disponibles."
+                                mensaje: "Error al listar los clientes disponibles."
                             }
                         });
                     }
@@ -71,10 +71,10 @@ class Personas extends Component {
                     <Row>
                         <Col xs="12">
 
-                            <PersonaGrilla personas={this.state.personasPorPagina}/>
+                            <ClienteGrilla clientes={this.state.clientesPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.personas.length}
+                            <Paginador totalRecords={this.state.resultado.clientes.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -98,16 +98,8 @@ class Personas extends Component {
                 <Card>
                     <CardHeader style={addBtn}>
                         <Button color="primary"
-                                onClick={() => this.props.history.push('/administracion/personas/nuevo')}>
-                            Nueva <i className="fa fa-plus"></i>
-                        </Button>
-                        <Button color="info"
-                                onClick={() => this.props.history.push('/administracion/personas/revendedoras')}>
-                            Adm.Revendedoras <i className="fa fa-plus"></i>
-                        </Button>
-                        <Button color="warning"
-                                onClick={() => this.props.history.push('/administracion/personas/clientes')}>
-                            Adm.Clientes <i className="fa fa-plus"></i>
+                                onClick={() => this.props.history.push('/administracion/personas/clientes/nuevo')}>
+                            Nuevo Cliente <i className="fa fa-plus"></i>
                         </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>
@@ -117,4 +109,4 @@ class Personas extends Component {
     };
 }
 
-export default Personas;
+export default Clientes;

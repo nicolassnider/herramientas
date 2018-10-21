@@ -18,8 +18,10 @@ class LocalidadController {
                 $this->get('/{provincia}/select', function (Request $request, Response $response) {
                     $provincia = $request->getAttribute('provincia');
                     $items = (new LocalidadService())->getAllSortedByProvincia($provincia);
+
                     array_walk($items, function(&$item) {
-                        $item = new SelectOption($item->getId(), $item->getNombre());
+
+                        $item = new SelectOption($item->getId(), $item->getDescripcion());
                     });
                     return $response->withJson($items, 200);
                 })->add(new ValidatePermissionsMiddleware([

@@ -2,48 +2,47 @@ import React from 'react';
 import {Button, Badge} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 
-const persona = (props) => {
+const cliente = (props) => {
     const style = {
         textAlign: 'center'
     }
 
     return (
         <tr>
-            <td>{props.persona.id}</td>
-            <td>{props.persona.tipoDocumento.descripcion}</td>
-            <td>{props.persona.documento}</td>
-            <td>{props.persona.nombre}</td>
-            <td>{props.persona.apellido}</td>
+            <td>{props.cliente.id}</td>
+            <td>{props.cliente.categoriaCliente.descripcion}</td>
+            <td>{props.cliente.persona.nombre + " " + props.cliente.persona.apellido}</td>
+            <td>{props.cliente.revendedora.persona.nombre + " " + props.cliente.revendedora.persona.apellido}</td>
             <td>
-                {props.persona.activo ?
+                {props.cliente.activo ?
                     <h5><Badge color="success">Activo</Badge></h5>
                     :
                     <h5><Badge color="danger">Inactivo</Badge></h5>
                 }
             </td>
             <td>
-                {props.persona.esUsuario ?
-                    <h5><Badge color="info">Vendedora</Badge></h5>
+                {props.cliente.madre ?
+                    <h5><Badge color="info">SI</Badge></h5>
                     :
-                    <h5><Badge color="info">Cliente</Badge></h5>
+                    <h5><Badge color="info"> </Badge></h5>
                 }
             </td>
-            <td>{props.persona.fechaAltaPersona}</td>
+            <td>{props.cliente.fechaAltaCliente}</td>
             <td style={style}>
                 <Button size="sm"
-                        onClick={() => props.history.push(`/administracion/personas/editar/${props.persona.id}`)}
+                        onClick={() => props.history.push(`/administracion/personas/clientes/editar/${props.cliente.id}`)}
                         className="btn-outline-secondary"
-                        title="Nuevo revendedora">
+                        title="Nuevo cliente">
                     <i className="fa fa-pencil-square-o"></i>
                 </Button>
                 <Button size="sm"
-                        onClick={() => props.history.push(`/administracion/personas/editar/${props.persona.id}`)}
+                        onClick={() => props.history.push(`/administracion/personas/clientes/editar/${props.cliente.id}`)}
                         className="btn-outline-secondary"
                         title="Nuevo cliente">
                     <i className="fa fa-pencil-square"></i>
                 </Button>
                 <Button size="sm"
-                        onClick={() => props.history.push(`/administracion/personas/editar/${props.persona.id}`)}
+                        onClick={() => props.history.push(`/administracion/personas/clientes/editar/${props.cliente.id}`)}
                         className="btn-outline-secondary">
                     <i className="fa fa-pencil"></i>
                 </Button>
@@ -52,4 +51,4 @@ const persona = (props) => {
     );
 }
 
-export default withRouter(persona);
+export default withRouter(cliente);

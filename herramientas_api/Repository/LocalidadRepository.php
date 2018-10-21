@@ -14,7 +14,7 @@ class LocalidadRepository extends AbstractRepository {
         $sql = "SELECT * 
                 FROM localidad
                 WHERE localidad.provincia =:provincia 
-                ORDER BY nombre ASC";
+                ORDER BY descripcion ASC";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
@@ -30,7 +30,7 @@ class LocalidadRepository extends AbstractRepository {
         foreach($items as $item) {
             $localidad = new Localidad();
             $localidad->setId($item->id);
-            $localidad->setDescripcion($item->nombre);
+            $localidad->setDescripcion($item->descripcion);
             array_push($localidades, $localidad);
         }
 

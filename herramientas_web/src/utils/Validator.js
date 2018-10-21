@@ -2,6 +2,8 @@ import moment from 'moment'
 import 'moment/min/locales'
 
 class Validator {
+
+
     static notEmpty(value) {
         let valid = value === null ? false : /\S/.test(value);
         return {
@@ -29,6 +31,7 @@ class Validator {
                 valid: true,
                 message: ''
             }
+
         }
     }
 
@@ -38,10 +41,7 @@ class Validator {
             return intNumberResult;
         let maximunNumberResult = this.intNumber(maximun);
         if (!maximunNumberResult.valid) {
-            return {
-                valid: true,
-                message: ''
-            };
+
         } else {
             let valid = parseInt(value) <= maximun;
             return {
@@ -153,6 +153,18 @@ class Validator {
             message: message
         };
     }
+
+    static intNumberMaxLength(value) {
+        if (this.intNumber(value)) {
+            this.lengthNotEmpty(value)
+        } else {
+            return {
+                valid: true,
+                message: ''
+            };
+        }
+
+    };
 
     static intNumberNotRequired(value) {
         if (!this.notEmpty(value)) {
