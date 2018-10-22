@@ -37,3 +37,7 @@ export const selectPersonas = () => {
 export const selectPersonasSinCliente = () => {
     return get("personas/selectsincliente");
 };
+
+export const selectPersonasSinRevendedora = () => {
+    return get("personas/selectsinrevendedora");
+};

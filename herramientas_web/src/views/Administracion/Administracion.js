@@ -2,12 +2,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-//data
-
-
-//assets
-//import '../Global/Css/index.css';
-
 
 const administracion = () => {
     return (

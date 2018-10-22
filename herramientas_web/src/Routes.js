@@ -12,7 +12,6 @@ const Campanias = Loadable({
     loader: () => import('./views/Administracion/Campanias/Campanias'),
     loading: Loading,
 });
-
 /***** Campaña *****/
 const Campania = Loadable({
     loader: () => import('./views/Administracion/Campanias/Campania'),
@@ -24,7 +23,6 @@ const Catalogos = Loadable({
     loader: () => import('./views/Administracion/Catalogos/Catalogos'),
     loading: Loading,
 });
-
 /***** Catalogo *****/
 const Catalogo = Loadable({
     loader: () => import('./views/Administracion/Catalogos/Catalogo'),
@@ -36,7 +34,6 @@ const Revendedoras = Loadable({
     loader: () => import('./views/Administracion/Personas/Revendedoras/Revendedoras'),
     loading: Loading,
 });
-
 /***** Revendedora *****/
 const Revendedora = Loadable({
     loader: () => import('./views/Administracion/Personas/Revendedoras/Revendedora'),
@@ -48,26 +45,22 @@ const Clientes = Loadable({
     loader: () => import('./views/Administracion/Personas/Clientes/Clientes'),
     loading: Loading,
 });
-
 /***** Cliente *****/
 const Cliente = Loadable({
     loader: () => import('./views/Administracion/Personas/Clientes/Cliente'),
     loading: Loading,
 });
+
 /***** Personas *****/
 const Personas = Loadable({
     loader: () => import('./views/Administracion/Personas/Personas'),
     loading: Loading,
 });
-
 /***** Persona *****/
 const Persona = Loadable({
     loader: () => import('./views/Administracion/Personas/Persona'),
     loading: Loading,
 });
-
-
-
 
 
 const Users = Loadable({
@@ -80,14 +73,11 @@ const User = Loadable({
     loading: Loading,
 });
 
-
-
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
     {
         path: '/', exact: true, name: 'Home', component: DefaultLayout
     },
-
 
 
     {
@@ -99,7 +89,6 @@ const routes = [
     {
         path: '/administracion/campanias/editar/:id', exact: true, name: 'Editar', component: Campania
     },
-
 
     {
         path: '/administracion/catalogos', exact: true, name: 'Catalogos', component: Catalogos
@@ -155,7 +144,6 @@ const routes = [
     {
         path: '/administracion/personas/desactivar/:id', exact: true, name: 'Desactivar', component: Persona
     },
-
 
     {
         path: '/users', exact: true, name: 'Users', component: Users

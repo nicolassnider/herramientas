@@ -1,58 +1,57 @@
 import React, {Component} from 'react';
-import {Alert, Row, Col, Card, CardBody, Button, CardHeader} from 'reactstrap';
-import {grillaUnidades} from '../../../services/UnidadesService';
+import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
+import {grillaRevendedoras} from '../../../../services/RevendedorasServices';
 
-import UnidadesGrilla from '../../../components/Unidades/UnidadesGrilla';
-import Paginador from '../../../components/Paginador/Paginador';
+import RevendedoraGrilla from '../../../../components/Administracion/Personas/Revendedoras/RevendedoraGrilla';
+import Paginador from '../../../../components/Paginador/Paginador';
 
-class Unidades extends Component {
+
+class Revendedoras extends Component {
     onPageChanged = data => {
-
         const {currentPage, totalPages, pageLimit} = data;
-
         const offset = (currentPage - 1) * pageLimit;
-        const unidades = this.state.resultado.unidades.slice(offset, offset + pageLimit);
+        const revendedoras = this.state.resultado.revendedoras.slice(offset, offset + pageLimit);
 
-        this.setState({
-            unidadesPorPagina: unidades,
-            currentPage: currentPage,
-            totalPages: totalPages
-        })
+        let miState = {...this.state};
+        miState.revendedorasPorPagina = revendedoras;
+        miState.currentPage = currentPage;
+        miState.totalPages = totalPages;
+        this.setState(miState);
     }
 
     constructor() {
         super();
         this.state = {
             resultado: {
-                unidades: [],
+                clientes: [],
                 codigo: 0,
                 mensaje: ""
             },
-            unidadesPorPagina: [], //Array que contendrá la cantidad de unidades a mostrar por página.
+            revendedorasPorPagina: [],
             currentPage: null,
             totalPages: null
         }
     }
 
     componentDidMount() {
-        grillaUnidades()
+        let miState = {...this.state};
+        grillaRevendedoras()
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
-                            this.setState({
-                                resultado: {
-                                    unidades: response,
-                                    codigo: 2000
-                                }
-                            });
+
+                            miState.resultado.revendedoras = response;
+                            miState.resultado.codigo = 2000;
+                            this.setState(miState);
+
                         })
                 } else {
                     if (response.status === 500) {
                         this.setState({
                             resultado: {
                                 codigo: 5000,
-                                mensaje: "Error al listar las unidades disponibles."
+                                mensaje: "Error al listar las revendedoras disponibles."
                             }
                         });
                     }
@@ -65,17 +64,17 @@ class Unidades extends Component {
         const addBtn = {
             textAlign: 'right'
         }
-
         let content = null;
         if (this.state.resultado.codigo === 2000) {
             content =
                 (
                     <Row>
                         <Col xs="12">
-                            <UnidadesGrilla unids={this.state.unidadesPorPagina}/>
+
+                            <RevendedoraGrilla clientes={this.state.revendedorasPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.unidades.length}
+                            <Paginador totalRecords={this.state.resultado.revendedoras.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -87,7 +86,9 @@ class Unidades extends Component {
             content =
                 (
                     <Row>
-                        <Alert color="warning"><strong>{this.state.resultado.mensaje}</strong></Alert>
+                        <Alert color="warning">
+                            <strong>{this.state.resultado.mensaje}</strong>
+                        </Alert>
                     </Row>
                 )
         }
@@ -96,10 +97,9 @@ class Unidades extends Component {
             <div className="animated fadeIn">
                 <Card>
                     <CardHeader style={addBtn}>
-                        <Button
-                            color="primary"
-                            onClick={() => this.props.history.push('/configuracion/unidades/nueva')}>
-                            Nueva <i className="fa fa-plus"></i>
+                        <Button color="primary"
+                                onClick={() => this.props.history.push('/administracion/personas/revendedoras/nuevo')}>
+                            Nueva Revendedora <i className="fa fa-plus"></i>
                         </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>
@@ -109,4 +109,4 @@ class Unidades extends Component {
     };
 }
 
-export default Unidades;
+export default Revendedoras;

@@ -65,6 +65,19 @@ class PersonaController
 
                 });
 
+                $this->get('/selectsinrevendedora', function (Request $request, Response $response) {
+
+                    $items = (new PersonaService())->getAllActiveSortedSinCliente();
+
+                    array_walk($items, function (&$item) {
+                        $label = $item->getNombre() . ' ' . $item->getApellido() . ' (' . $item->getTipoDocumento()->getDescripcion() . ':' . $item->getDocumento() . ')';
+                        $item = new SelectOption($item->getId(), $label);
+                    });
+
+                    return $response->withJson($items, 200);
+
+                });
+
                 $this->get('/{id}', function (Request $request, Response $response) {
                     $id = $request->getAttribute('id');
                     $personasService = new PersonaService();

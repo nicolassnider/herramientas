@@ -1,56 +1,57 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaDeterminaciones} from '../../../services/DeterminacionesServices';
+import {grillaRevendedoras} from '../../../../services/RevendedorasServices';
 
-import DeterminacionesGrilla from '../../../components/Determinaciones/DeterminacionesGrilla';
-import Paginador from '../../../components/Paginador/Paginador';
+import RevendedoraGrilla from '../../../../components/Administracion/Personas/Revendedoras/RevendedoraGrilla';
+import Paginador from '../../../../components/Paginador/Paginador';
 
-class Determinaciones extends Component {
+
+class Revendedoras extends Component {
     onPageChanged = data => {
         const {currentPage, totalPages, pageLimit} = data;
         const offset = (currentPage - 1) * pageLimit;
-        const determinaciones = this.state.resultado.determinaciones.slice(offset, offset + pageLimit);
+        const revendedoras = this.state.resultado.revendedoras.slice(offset, offset + pageLimit);
 
-        this.setState({
-            determinacionesPorPagina: determinaciones,
-            currentPage: currentPage,
-            totalPages: totalPages
-        })
-    };
+        let miState = {...this.state};
+        miState.revendedorasPorPagina = revendedoras;
+        miState.currentPage = currentPage;
+        miState.totalPages = totalPages;
+        this.setState(miState);
+    }
 
     constructor() {
         super();
         this.state = {
             resultado: {
-                determinaciones: [],
+                revendedoras: [],
                 codigo: 0,
                 mensaje: ""
             },
-            determinacionesPorPagina: [],
+            revendedorasPorPagina: [],
             currentPage: null,
             totalPages: null
         }
     }
 
     componentDidMount() {
-        grillaDeterminaciones()
+        let miState = {...this.state};
+        grillaRevendedoras()
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
-                            this.setState({
-                                resultado: {
-                                    determinaciones: response,
-                                    codigo: 2000
-                                }
-                            });
+
+                            miState.resultado.revendedoras = response;
+                            miState.resultado.codigo = 2000;
+                            this.setState(miState);
+
                         })
                 } else {
                     if (response.status === 500) {
                         this.setState({
                             resultado: {
                                 codigo: 5000,
-                                mensaje: "error al listar las determinaciones disponibles"
+                                mensaje: "Error al listar los revendedoras disponibles."
                             }
                         });
                     }
@@ -62,17 +63,18 @@ class Determinaciones extends Component {
 
         const addBtn = {
             textAlign: 'right'
-        };
+        }
         let content = null;
         if (this.state.resultado.codigo === 2000) {
             content =
                 (
                     <Row>
                         <Col xs="12">
-                            <DeterminacionesGrilla determinaciones={this.state.determinacionesPorPagina}/>
+
+                            <RevendedoraGrilla revendedoras={this.state.revendedorasPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.determinaciones.length}
+                            <Paginador totalRecords={this.state.resultado.revendedoras.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -90,13 +92,14 @@ class Determinaciones extends Component {
                     </Row>
                 )
         }
+
         return (
             <div className="animated fadeIn">
                 <Card>
                     <CardHeader style={addBtn}>
                         <Button color="primary"
-                                onClick={() => this.props.history.push('/configuracion/determinaciones/nuevo')}>
-                            Nuevo <i className="fa fa-plus"></i>
+                                onClick={() => this.props.history.push('/administracion/personas/revendedoras/nuevo')}>
+                            Nueva Revendedora <i className="fa fa-plus"></i>
                         </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>
@@ -106,4 +109,4 @@ class Determinaciones extends Component {
     };
 }
 
-export default Determinaciones;
+export default Revendedoras;

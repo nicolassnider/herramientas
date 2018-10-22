@@ -32,9 +32,14 @@ class PersonaService
         return $this->repository->getAllActiveSorted();
     }
 
-    public function getAllActiveSortedSinCLiente(): Array
+    public function getAllActiveSortedSinCliente(): Array
     {
         return $this->repository->getAllActiveSortedSinCliente();
+    }
+
+    public function getAllActiveSortedSinRevendedora(): Array
+    {
+        return $this->repository->getAllActiveSortedSinRevendedora();
     }
 
 

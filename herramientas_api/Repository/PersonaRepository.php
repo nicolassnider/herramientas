@@ -527,6 +527,44 @@ WHERE per.activo=1 and usu.usuario=:usuario";
         return $personas;
     }
 
+    public function getAllActiveSortedSinRevendedora(): Array
+    {
+        $sql = "SELECT per.*, dot.id as documentoTipoId, dot.descripcion as descripcion, rev.id as revendedora_id
+                FROM persona as per
+                INNER JOIN tipo_documento as dot on dot.id = per.tipo_documento
+                LEFT JOIN revendedora as rev on per.id = rev.persona
+                WHERE 
+                (per.activo=1
+                )
+                ORDER BY per.nombre, per.apellido ASC";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $personas = Array();
+        foreach ($items as $item) {
+            if (!$item->revendedora_id) {
+                $persona = $this->createFromResultset($item, [], $this->db);
+
+                $tipoDocumento = new TipoDocumento();
+                $tipoDocumento->setId($item->documentoTipoId);
+                $tipoDocumento->setDescripcion($item->descripcion);
+                $persona->setTipoDocumento($tipoDocumento);
+
+                array_push($personas, $persona);
+            }
+        }
+
+        $this->disconnect();
+        return $personas;
+    }
+
 
     public function grid(DataTableResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
     {

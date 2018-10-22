@@ -2,11 +2,9 @@ import React, {Component} from 'react';
 import {
     Input, Col, Alert, Card, Form, FormFeedback, CardHeader, CardBody, CardFooter, Button, Row, FormGroup, Label
 } from 'reactstrap';
-import {getClientePorId, editarCliente, nuevoCliente} from '../../../../services/ClientesServices';
-import {getAllCategoriaClientes} from '../../../../services/CategoriaClienteServices';
-import {selectPersonasSinCliente} from '../../../../services/PersonaServices';
-import {selectRevendedoras} from '../../../../services/RevendedorasServices';
-
+import {getRevendedoraPorId, editarRevendedora, nuevoRevendedora} from '../../../../services/RevendedorasServices';
+import {getAllCategoriaRevendedoras} from '../../../../services/CategoriaRevendedoraServices';
+import {selectPersonasSinRevendedora} from '../../../../services/PersonaServices';
 
 import Switch from 'react-switch';
 import Select from 'react-select';
@@ -16,38 +14,28 @@ import Date from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
 
-class Cliente extends Component {
+class Revendedora extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cliente: {
+            revendedora: {
                 id: null,
-                categoriaCliente: {
+                categoriaRevendedora: {
                     id: null
                 },
-                categoriaClientes: {
+                categoriaRevendedoras: {
                     id: ''
                 },
-                direccionEntrega: "",
-                fechaAltaCliente: "",
-                fechaBajaCliente: "",
-                anioNacimiento: "",
-                madre: false,
-                apodo: "",
+                activo: true,
                 persona: {
                     id: null
                 },
                 personas: {
+                    id: ''
+                },
+                usuario: {
                     id: null
-                },
-                activo: true,
-                revendedora: {
-                    id: ''
-                },
-                revendedoras: {
-                    id: ''
                 }
-
             },
 
             error: {
@@ -59,39 +47,28 @@ class Cliente extends Component {
             flagPrimeraVez: true,
             loaded: false
         };
-        this.idCliente = props.match.params.id;
+        this.idRevendedora = props.match.params.id;
 
-        this.urlCancelar = "/administracion/personas/clientes";
+        this.urlCancelar = "/administracion/personas/revendedoras";
 
 
         this.submitForm = this.submitForm.bind(this);
         this.handleSwitch = this.handleSwitch.bind(this);
-        this.handleSwitchMadre = this.handleSwitchMadre().bind(this);
         this.handleSelect = this.handleSelect.bind(this);
-        this.newDate = this.newDate.bind(this);
         this.newData = this.newData.bind(this);
 
         this.formValidation = new FormValidation({
             component: this,
             validators: {
-                'cliente.categoriaCliente': (value) => Validator.notEmpty(value),
-                'cliente.direccionEntrega': (value) => Validator.notEmpty(value),
-                'cliente.persona': (value) => Validator.notEmpty(value),
-                'cliente.apodo': (value) => Validator.notEmpty(value)
+                'revendedora.categoriaRevendedora': (value) => Validator.notEmpty(value),
+                'revendedora.persona': (value) => Validator.notEmpty(value)
             }
         });
     }
 
-
     handleSwitch(checked) {
         let newState = {...this.state};
-        newState.cliente.activo = checked;
-        this.setState(newState);
-    }
-
-    handleSwitchMadre(checked) {
-        let newState = {...this.state};
-        newState.cliente.madre = checked;
+        newState.revendedora.activo = checked;
         this.setState(newState);
     }
 
@@ -100,14 +77,11 @@ class Cliente extends Component {
 
         switch (name) {
 
-            case "categoriaClientes":
-                newState.cliente.categoriaCliente.id = object.value;
+            case "categoriaRevendedoras":
+                newState.revendedora.categoriaRevendedora.id = object.value;
                 break;
             case "personas":
-                newState.cliente.persona.id = object.value;
-                break;
-            case "revendedoras":
-                newState.cliente.revendedora.id = object.value;
+                newState.revendedora.persona.id = object.value;
                 break;
         }
 
@@ -120,55 +94,42 @@ class Cliente extends Component {
 
         let component = this;
         let arrayPromises = [];
-        if (component.idCliente) {
-            let p1 = getClientePorId(component.idCliente).then(result => result.json());
+        if (component.idRevendedora) {
+            let p1 = getRevendedoraPorId(component.idRevendedora).then(result => result.json());
             arrayPromises.push(p1);
         }
-        let p2 = getAllCategoriaClientes().then(result => result.json());
+        let p2 = getAllCategoriaRevendedoras().then(result => result.json());
 
-        let p3 = selectPersonasSinCliente().then(result => result.json());
-        let p4 = selectRevendedoras().then(result => result.json());
+        let p3 = selectPersonasSinRevendedora().then(result => result.json());
 
-
-        arrayPromises.push(p2, p3, p4);
+        arrayPromises.push(p2, p3);
 
         Promise.all(arrayPromises)
             .then(
                 (result) => {
                     let miState = {...this.state};
 
-                    if (component.idCliente) {
-                        miState.cliente = result[0];
-                        console.log(result);
-                        miState.cliente.categoriaClientes = result[1].map((categoriaCliente, index) => {
+                    if (component.idRevendedora) {
+                        miState.revendedora = result[0];
+                        miState.revendedora.categoriaRevendedoras = result[1].map((categoriaRevendedora, index) => {
                             return (
-                                {value: categoriaCliente.value, label: categoriaCliente.label}
+                                {value: categoriaRevendedora.value, label: categoriaRevendedora.label}
                             )
                         })
-                        miState.cliente.personas = result[2].map((persona, index) => {
+                        miState.revendedora.personas = result[2].map((persona, index) => {
                             return (
                                 {value: persona.value, label: persona.label}
-                            )
-                        })
-                        miState.cliente.revendedoras = result[3].map((revendedora, index) => {
-                            return (
-                                {value: revendedora.value, label: revendedora.label}
                             )
                         });
                     } else {
-                        miState.cliente.categoriaClientes = result[0].map((categoriaCliente, index) => {
+                        miState.revendedora.categoriaRevendedoras = result[0].map((categoriaRevendedora, index) => {
                             return (
-                                {value: categoriaCliente.value, label: categoriaCliente.label}
+                                {value: categoriaRevendedora.value, label: categoriaRevendedora.label}
                             )
                         })
-                        miState.cliente.personas = result[1].map((persona, index) => {
+                        miState.revendedora.personas = result[1].map((persona, index) => {
                             return (
                                 {value: persona.value, label: persona.label}
-                            )
-                        })
-                        miState.cliente.revendedoras = result[2].map((revendedora, index) => {
-                            return (
-                                {value: revendedora.value, label: revendedora.label}
                             )
                         });
                     }
@@ -185,22 +146,20 @@ class Cliente extends Component {
 
     submitForm(event) {
         event.preventDefault();
-        let cliente = this.state.cliente;
-        if (!this.idCliente) {
-            nuevoCliente(cliente)
+        let revendedora = this.state.revendedora;
+        if (!this.idRevendedora) {
+            nuevoRevendedora(revendedora)
                 .then(response => {
                     if (response.status === 400) {
 
                         response.json()
-                        //console.log("Antes",response)
                             .then(response => {
-                                //console.log("Después",response)
                                 this.setState({
                                     error: response,
                                     modified: false,
                                     flagPrimeraVez: false
                                 });
-                                //alert(this.state.error.detalle[0]);
+                                alert(this.state.error.detalle[0]);
 
                             })
                     } else {
@@ -211,13 +170,13 @@ class Cliente extends Component {
                                     codigo: 2001,
                                     mensaje: "",
                                     detalle: [
-                                        "Cliente creado correctamente."
+                                        "Revendedora creado correctamente."
                                     ]
                                 },
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/personas/clientes");
+                                this.props.history.push("/administracion/personas/revendedorass");
                             }, 2500);
                         } else {
                             if (response.status === 400) {
@@ -235,7 +194,7 @@ class Cliente extends Component {
                     }
                 });
         } else {
-            editarCliente(cliente)
+            editarRevendedora(revendedora)
                 .then(response => {
                     if (response.status === 400) {
                         response.json()
@@ -254,13 +213,13 @@ class Cliente extends Component {
                                     codigo: 2004,
                                     mensaje: "",
                                     detalle: [
-                                        "Cliente modificado correctamente."
+                                        "Revendedora modificado correctamente."
                                     ]
                                 },
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/personas/clientes");
+                                this.props.history.push("/administracion/personas/revendedoras");
                             }, 2500);
                         }
                     }
@@ -269,24 +228,9 @@ class Cliente extends Component {
 
     }
 
-
-    newDate(name, event) {
-        let date = event ? event.format() : '';
-        let newState = {...this.state};
-
-        switch (name) {
-            case "anioNacimiento":
-                newState.cliente.anioNacimiento = date;
-                break;
-
-        }
-
-        this.setState(newState);
-    }
-
     newData(event) {
         let newState = {...this.state};
-        newState.cliente[event.target.name] = event.target.value;
+        newState.revendedora[event.target.name] = event.target.value;
         this.setState(newState);
     }
 
@@ -338,7 +282,7 @@ class Cliente extends Component {
             <Card>
                 <Form onSubmit={this.submitForm}>
                     <CardHeader>
-                        {!this.idCliente ? "Crear Cliente" : "Modificar Cliente"}
+                        {!this.idRevendedora ? "Crear Revendedora" : "Modificar Revendedora"}
                     </CardHeader>
                     <CardBody>
 
@@ -348,67 +292,29 @@ class Cliente extends Component {
                                 <Select
                                     name="personas" placeholder="Persona..."
                                     valueKey="value" labelKey="label"
-                                    options={this.state.cliente.personas}
-                                    value={this.state.cliente.personas.find(e => e.value === this.state.cliente.personas.id)}
+                                    options={this.state.revendedora.personas}
+                                    value={this.state.revendedora.personas.find(e => e.value === this.state.revendedora.personas.id)}
                                     onChange={(e) => this.handleSelect("personas", e)}
                                 />
                             </Col>
-                            <Col xs="6">
-                                <Label htmlFor="apodo">Apodo:</Label>
-                                <Input type="text" name="apodo"
-                                       onChange={this.newData} placeholder="Apodo"
-                                       value={this.state.cliente.apodo}
-                                       invalid={!validationState.cliente.apodo.pristine && !validationState.cliente.apodo.valid}/>
-                                <FormFeedback
-                                    invalid={!validationState.cliente.pristine && !validationState.cliente.apodo.valid}>{validationState.cliente.apodo.message}</FormFeedback>
-                            </Col>
+
                         </Row>
 
                         <Row xs={{size: 12, offset: 0}}>
 
                             <Col xs={{size: 2, offset: 0}}>
-                                <Label htmlFor="categoriaClientes">(*)Categoría:</Label>
+                                <Label htmlFor="categoriaRevendedoras">(*)Categoría:</Label>
                                 <Select
-                                    name="categoriaClientes" placeholder="Categoría..."
+                                    name="categoriaRevendedoras" placeholder="Categoría..."
                                     valueKey="value" labelKey="label"
-                                    options={this.state.cliente.categoriaClientes}
-                                    value={this.state.cliente.categoriaClientes.find(e => e.value === this.state.cliente.categoriaClientes.id)}
-                                    onChange={(e) => this.handleSelect("categoriaClientes", e)}
+                                    options={this.state.revendedora.categoriaRevendedoras}
+                                    value={this.state.revendedora.categoriaRevendedoras.find(e => e.value === this.state.revendedora.categoriaRevendedoras.id)}
+                                    onChange={(e) => this.handleSelect("categoriaRevendedoras", e)}
                                 />
                             </Col>
-
-                            <Col xs={{size: 4, offset: 0}}>
-                                <Label htmlFor="direccionEntrega">(*)Dirección de entrega:</Label>
-                                <Input type="text" name="direccionEntrega"
-                                       onChange={this.newData} placeholder="Dirección de entrega"
-                                       value={this.state.cliente.direccionEntrega}
-                                       invalid={!validationState.cliente.direccionEntrega.pristine && !validationState.cliente.direccionEntrega.valid}/>
-                                <FormFeedback
-                                    invalid={!validationState.cliente.pristine && !validationState.cliente.direccionEntrega.valid}>{validationState.cliente.direccionEntrega.message}</FormFeedback>
-                            </Col>
                         </Row>
 
-                        <Row>
-                            <Col xs="6">
-                                <Label htmlFor="anioNacimiento">Fecha de nacimiento:</Label>
-                                <Date placeholderText="Seleccionar fecha"
-                                      selected={!this.state.cliente.anioNacimiento || this.state.cliente.anioNacimiento === '0000-00-00' ? null : moment(this.state.cliente.anioNacimiento)}
-                                      dateFormat="DD/MM/YYYY"
-                                      className="form-control date-picker-placeholder"
-                                      onChange={(event) => this.newDate("anioNacimiento", event)}/>
-                            </Col>
 
-                        </Row>
-                        <Row>
-                            <Col sm="6" xs="12">
-                                <FormGroup>
-
-                                    <Label htmlFor="madre">Es Madre?:</Label> <br/>
-                                    <Switch onChange={this.handleSwitchMadre} name="madre"
-                                            checked={this.state.cliente.madre}/>
-                                </FormGroup>
-                            </Col>
-                        </Row>
                         <Row>
 
                             <Col sm="6" xs="12">
@@ -416,22 +322,10 @@ class Cliente extends Component {
 
                                     <Label htmlFor="activo">Activo:</Label> <br/>
                                     <Switch onChange={this.handleSwitch} name="activo"
-                                            checked={this.state.cliente.activo}/>
+                                            checked={this.state.revendedora.activo}/>
                                 </FormGroup>
                             </Col>
 
-                        </Row>
-                        <Row>
-                            <Col xs={{size: 6, offset: 0}}>
-                                <Label htmlFor="revendedoras">(*)Revendedora:</Label>
-                                <Select
-                                    name="revendedoras" placeholder="Seleccionar una Revendedora..."
-                                    valueKey="value" labelKey="label"
-                                    options={this.state.cliente.revendedoras}
-                                    value={this.state.cliente.revendedoras.find(e => e.value === this.state.cliente.revendedoras.id)}
-                                    onChange={(e) => this.handleSelect("revendedoras", e)}
-                                />
-                            </Col>
                         </Row>
 
 
@@ -453,4 +347,4 @@ class Cliente extends Component {
 
 }
 
-export default Cliente;
+export default Revendedora;
