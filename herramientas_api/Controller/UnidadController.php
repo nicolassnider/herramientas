@@ -32,7 +32,7 @@ class UnidadController
                     $service = new UnidadService();
                     $items = $service->getAllActiveSorted();
                     array_walk($items, function (&$item) {
-                        $item = new SelectOption($item->getId(), $item->getDescripcion);
+                        $item = new SelectOption($item->getId(), $item->getDescripcion());
                     });
                     return $response->withJson($items, 200);
                 });

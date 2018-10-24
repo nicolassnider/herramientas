@@ -14,6 +14,14 @@ export default {
             }
         },
         {
+            name: 'Catálogo Actual',
+            url: '/areadetrabajo/catalogo_actual'
+        },
+        {
+            name: 'Campania Actual',
+            url: '/areatrabajo/campaniaactual/campaniaactual'
+        },
+        {
             name: 'Pedidos',
             url: '/areadetrabajo/pedidos'
         },
@@ -37,6 +45,11 @@ export default {
         {
             name: 'Catalogos',
             url: '/administracion/catalogos',
+
+        },
+        {
+            name: 'Productos',
+            url: '/administracion/productos',
 
         },
         {

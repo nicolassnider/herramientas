@@ -267,11 +267,14 @@ CREATE TABLE herramientas.pedido_avon (
   recibido       BIT(1) DEFAULT 0 NOT NULL,
   entregado      BIT(1) DEFAULT 0 NOT NULL,
   cobrado        BIT(1) DEFAULT 0 NOT NULL,
+  campania       INT(30)          NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_CLIENTE_PEDIDO_AVON FOREIGN KEY (cliente)
   REFERENCES herramientas.cliente (id),
   CONSTRAINT FK_REVENDEDORA_PEDIDO_AVON FOREIGN KEY (revendedora)
-  REFERENCES herramientas.revendedora (id)
+  REFERENCES herramientas.revendedora (id),
+  CONSTRAINT pedido_avon_campania FOREIGN KEY (campania)
+  REFERENCES herramientas.campania (id)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

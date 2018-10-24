@@ -40,7 +40,7 @@ class Producto implements JsonSerializable
     /**
      * @param mixed $descripcion
      */
-    public function setDescripcion(?$descripcion): void
+    public function setDescripcion(?string $descripcion): void
     {
         $this->descripcion = $descripcion;
     }
@@ -85,7 +85,7 @@ class Producto implements JsonSerializable
         if (isset($this->id)) $array['id'] = $this->id;
         if (isset($this->descripcion)) $array['descripcion'] = $this->descripcion;
         if (isset($this->categoria)) $array['categoria'] = $this->categoria;
-        if (isset($this->ubicacion)) $array['unidad'] = $this->unidad;
+        if (isset($this->unidad)) $array['unidad'] = $this->unidad;
         return $array;
     }
 }

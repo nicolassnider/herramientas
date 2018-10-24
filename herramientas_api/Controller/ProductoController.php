@@ -47,11 +47,11 @@ class ProductoController
                 $this->get('/{id}', function (Request $request, Response $response) {
                     $service = new ProductoService();
                     $id = $request->getAttribute('id');
-                    $items = $service->get($id);
-                    if ($items == null) {
-                        return $response->withJson($items, 400);
+                    $item = $service->get($id);
+                    if ($item == null) {
+                        return $response->withJson($item, 400);
                     }
-                    return $response->withJson($items, 200);
+                    return $response->withJson($item, 200);
                 });
                 
 

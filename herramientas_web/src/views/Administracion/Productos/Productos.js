@@ -1,56 +1,57 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaLaboratorios} from '../../../services/LaboratoriosServices';
+import {grillaProductos} from '../../../services/ProductoServices';
 
-import LaboratoriosGrilla from '../../../components/Laboratorios/LaboratoriosGrilla';
+import ProductoGrilla from '../../../components/Administracion/Productos/ProductoGrilla';
 import Paginador from '../../../components/Paginador/Paginador';
 
-class Laboratorios extends Component {
+
+class Productos extends Component {
     onPageChanged = data => {
         const {currentPage, totalPages, pageLimit} = data;
         const offset = (currentPage - 1) * pageLimit;
-        const laboratorios = this.state.resultado.laboratorios.slice(offset, offset + pageLimit);
+        const productos = this.state.resultado.productos.slice(offset, offset + pageLimit);
 
-        this.setState({
-            laboratoriosPorPagina: laboratorios,
-            currentPage: currentPage,
-            totalPages: totalPages
-        })
+        let miState = {...this.state};
+        miState.productosPorPagina = productos;
+        miState.currentPage = currentPage;
+        miState.totalPages = totalPages;
+        this.setState(miState);
     }
 
     constructor() {
         super();
         this.state = {
             resultado: {
-                laboratorios: [],
+                productos: [],
                 codigo: 0,
                 mensaje: ""
             },
-            laboratoriosPorPagina: [],
+            productosPorPagina: [],
             currentPage: null,
             totalPages: null
         }
     }
 
     componentDidMount() {
-        grillaLaboratorios()
+        let miState = {...this.state};
+        grillaProductos()
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
-                            this.setState({
-                                resultado: {
-                                    laboratorios: response,
-                                    codigo: 2000
-                                }
-                            });
+
+                            miState.resultado.productos = response;
+                            miState.resultado.codigo = 2000;
+                            this.setState(miState);
+
                         })
                 } else {
                     if (response.status === 500) {
                         this.setState({
                             resultado: {
                                 codigo: 5000,
-                                mensaje: "Error al listar los laboratorios disponibles."
+                                mensaje: "Error al listar los personas disponibles."
                             }
                         });
                     }
@@ -69,10 +70,11 @@ class Laboratorios extends Component {
                 (
                     <Row>
                         <Col xs="12">
-                            <LaboratoriosGrilla laboratorios={this.state.laboratoriosPorPagina}/>
+
+                            <ProductoGrilla productos={this.state.productosPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.laboratorios.length}
+                            <Paginador totalRecords={this.state.resultado.productos.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -96,8 +98,16 @@ class Laboratorios extends Component {
                 <Card>
                     <CardHeader style={addBtn}>
                         <Button color="primary"
-                                onClick={() => this.props.history.push('/configuracion/laboratorios/nuevo')}>
-                            Nuevo <i className="fa fa-plus"></i>
+                                onClick={() => this.props.history.push('/administracion/productos/nuevo')}>
+                            Nueva <i className="fa fa-plus"></i>
+                        </Button>
+                        <Button color="info"
+                                onClick={() => this.props.history.push('/administracion/productos/revendedoras')}>
+                            Adm.Revendedoras <i className="fa fa-plus"></i>
+                        </Button>
+                        <Button color="warning"
+                                onClick={() => this.props.history.push('/administracion/productos/clientes')}>
+                            Adm.Clientes <i className="fa fa-plus"></i>
                         </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>
@@ -107,4 +117,4 @@ class Laboratorios extends Component {
     };
 }
 
-export default Laboratorios;
+export default Productos;

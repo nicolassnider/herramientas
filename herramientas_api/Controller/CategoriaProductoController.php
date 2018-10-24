@@ -9,6 +9,7 @@
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
+require_once '../Service/CategoriaProductoService.php';
 class CategoriaProductoController
 {
 
@@ -35,7 +36,7 @@ class CategoriaProductoController
                     return $response->withJson($items, 200);
                 });
 
-                $this->get('/{categoriacliente}', function(Request $request, Response $response) {
+                $this->get('/{categoriaproducto}', function (Request $request, Response $response) {
                     $id = $request->getAttribute('categoriacliente');
                     $service = new CategoriaProductoService();
                     $id = $service->get($id);

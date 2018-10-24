@@ -63,6 +63,10 @@ class CatalogoRepository extends AbstractRepository
         return $catalogo;
     }
 
+    /**
+     * @return array
+     * @throws BadRequestException
+     */
     public function getAll(): Array
     {
         try {

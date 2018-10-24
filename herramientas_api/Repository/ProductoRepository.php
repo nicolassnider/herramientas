@@ -28,7 +28,7 @@ class ProductoRepository extends AbstractRepository
             $sqlCreate = "INSERT INTO herramientas.producto(
                               descripcion, categoria, unidad) 
                       VALUES (
-                              :id, 
+                               
                               :descripcion, 
                               :categoria, 
                               :unidad)";

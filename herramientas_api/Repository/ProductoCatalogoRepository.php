@@ -2,38 +2,52 @@
 /**
  * Created by PhpStorm.
  * User: nicol
- * Date: 08/10/2018
- * Time: 9:36 PM
+ * Date: 09/10/2018
+ * Time: 12:20 PM
  */
-
 
 require_once 'Db.php';
 require_once 'AbstractRepository.php';
-require_once '../Model/Unidad.php';
+require_once '../Model/Producto.php';
+require_once '../Model/Catalogo.php';
+require_once '../Model/ProductoCatalogo.php';
 
-class UnidadRepository extends AbstractRepository
+require_once '../Repository/CatalogoRepository.php';
+require_once '../Repository/ProductoRepository.php';
+
+
+require_once '../Commons/Exceptions/BadRequestException.php';
+
+class ProductoCatalogoRepository extends AbstractRepository
 {
 
     /**
-     * @param Cliente $unidad
-     * @return null|Cliente
+     * @param Producto $producto
+     * @return null|Producto
      * @throws BadRequestException
      */
-    public function create(Unidad $unidad): ?Unidad
+    public function create(Producto $producto): ?Producto
     {
 
         try {
             $db = $this->connect();
             $db->beginTransaction();
-            $sqlCreate = "INSERT INTO herramientas.unidad(
-                              descripcion) 
+            $sqlCreate = "INSERT INTO herramientas.producto(
+                              descripcion, categoria, unidad) 
                       VALUES (
-                              :descripcion)";
-            $descripcion = $unidad->getDescripcion();
+                               
+                              :descripcion, 
+                              :categoria, 
+                              :unidad)";
+            $descripcion = $producto->getDescripcion();
+            $categoria = (int)$producto->getCategoria()->getId();
+            $unidad = (int)$producto->getUnidad()->getId();
             $stmtCreate = $db->prepare($sqlCreate);
-            $stmtCreate->bindParam(':direccion_entrega', $descripcion);
+            $stmtCreate->bindParam(':descripcion', $descripcion);
+            $stmtCreate->bindParam(':categoria', $categoria, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':unidad', $unidad, PDO::PARAM_INT);
             $stmtCreate->execute();
-            $unidad->setId($db->lastInsertId());
+            $producto->setId($db->lastInsertId());
             $db->commit();
 
         } catch (Exception $e) {
@@ -56,29 +70,36 @@ class UnidadRepository extends AbstractRepository
             $this->disconnect();
 
         }
-        return $unidad;
+        return $producto;
     }
 
-    public function update(Unidad $unidad): void
+    public function update(Producto $producto): void
     {
         $db = $this->connect();
         $db->beginTransaction();
         try {
-            $sqlUpdate = "UPDATE herramientas.unidad 
-                                SET 
-                                  descripcion=:descripcion
+            $sqlUpdate = "UPDATE herramientas.producto 
+                                SET                                   
+                                  descripcion=:descripcion,
+                                  categoria=:categoria,
+                                  unidad=:unidad
+                                  
                                 WHERE
-                                  (id =:id)
-                                ";
+                                  (id =:id)";
 
-            $descripcion = $unidad->getDescripcion();
-            $id=$unidad->getId();
+            $descripcion = $producto->getDescripcion();
+            $categoria = $producto->getCategoria()->getId();
+            $unidad = $producto->getUnidad()->getId();
+            $id = $producto->getId();
             $stmtUpdate = $db->prepare($sqlUpdate);
             $stmtUpdate->bindParam(':descripcion', $descripcion);
+            $stmtUpdate->bindParam(':categoria', $categoria, PDO::PARAM_INT);
+            $stmtUpdate->bindParam(':unidad', $unidad, PDO::PARAM_INT);
             $stmtUpdate->bindParam(':id', $id, PDO::PARAM_INT);
             $stmtUpdate->execute();
             $db->commit();
         } catch (Exception $e) {
+            die(print_r(Array($stmtUpdate->errorInfo())));
             if ($db != null) $db->rollback();
             if ($e instanceof PDOException && $stmtUpdate->errorInfo()[0] == 23000 && $stmtUpdate->errorInfo()[1] == 1062) {
                 $array = explode("'", $stmtUpdate->errorInfo()[2]);
@@ -106,7 +127,7 @@ class UnidadRepository extends AbstractRepository
         $db = $this->connect();
         $db->beginTransaction();
         try {
-            $sqlDelete = "DELETE FROM herramientas.unidad WHERE id=:id";
+            $sqlDelete = "DELETE FROM herramientas.producto WHERE id=:id";
             $stmtDelete = $db->prepare($sqlDelete);
             $stmtDelete->bindParam(':id', $id, PDO::PARAM_INT);
             $stmtDelete->execute();
@@ -143,10 +164,11 @@ class UnidadRepository extends AbstractRepository
     public function getAll(bool $full = true): Array
     {
         $sql = "SELECT *
-                FROM unidad";
+                FROM producto";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $items = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -154,20 +176,59 @@ class UnidadRepository extends AbstractRepository
             return Array();
         }
 
-        $unidades = Array();
+        $productos = Array();
         foreach ($items as $item) {
             $item = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
-            array_push($unidades, $item);
+            array_push($productos, $item);
         }
 
 
         $this->disconnect();
-        return $unidades;
+        return $productos;
+    }
+
+    private function createFromResultset($result, array $fields, $db)
+    {
+
+        $item = new ProductoCatalogo();
+        $item->setId((int)$result->id);
+        $item->setProducto((new ProductoRepository($db))->get($result->producto));
+        $item->setCatalogo((new CatalogoRepository($db))->get($result->catalogo));
+        $item->setPrecio((float)$result->precio);
+        $item->setActivo((bool)$result->activo);
+        return $item;
+    }
+
+    public function getAllCatalogoProductoPorProducto(int $id, bool $full = true): Array
+    {
+        $productoId = $id;
+        $sql = "SELECT *
+                FROM producto_catalogo WHERE producto=:id";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $productoId, PDO::PARAM_INT);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $productoCatalogos = Array();
+        foreach ($items as $item) {
+            $item = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
+            array_push($productoCatalogos, $item);
+        }
+
+
+        $this->disconnect();
+        return $productoCatalogos;
     }
 
     public function getAllActiveSorted(): Array
     {
-        $sql = "SELECT * FROM unidad uni";
+        $sql = "SELECT pro.* FROM producto pro";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
@@ -179,16 +240,37 @@ class UnidadRepository extends AbstractRepository
             return Array();
         }
 
-        $unidades = Array();
+        $productos = Array();
         foreach ($items as $item) {
-            $unidad = $this->get($item->id);
+            $producto = $this->get($item->id);
 
 
-            array_push($unidades, $unidad);
+            array_push($productos, $producto);
         }
 
         $this->disconnect();
-        return $unidades;
+        return $productos;
+    }
+
+    public function get(int $id, bool $full = true): ?Producto
+    {
+        $sqlGet = "SELECT pro.*  FROM producto pro               
+                    WHERE pro.id=:id
+                    ";
+
+        $db = $this->connect();
+        $stmtGet = $db->prepare($sqlGet);
+        $stmtGet->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmtGet->execute();
+        $result = $stmtGet->fetchObject();
+
+        if ($result == null) {
+            return null;
+        }
+
+        $producto = $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
+        $this->disconnect();
+        return $producto;
     }
 
     public function grid(DataTableResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
@@ -337,40 +419,6 @@ class UnidadRepository extends AbstractRepository
         $items = null;
         $this->disconnect();
         return $dataTablesResponse;
-    }
-
-    public function get(int $id, bool $full = true): ?Unidad
-    {
-        $sqlGet = "SELECT uni.*  FROM unidad uni                     
-                    WHERE uni.id=:id
-                    ";
-
-        $db = $this->connect();
-        $stmtGet = $db->prepare($sqlGet);
-        $stmtGet->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmtGet->execute();
-        $result = $stmtGet->fetchObject();
-
-        if ($result == null) {
-            return null;
-        }
-
-        $unidad = $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
-        $this->disconnect();
-
-        return $unidad;
-    }
-
-
-    private function createFromResultset($result, array $fields, $db)
-    {
-
-        $item = new Unidad();
-        $item->setId((int)$result->id);
-        $item->setDescripcion($result->descripcion);
-
-
-        return $item;
     }
 
 }

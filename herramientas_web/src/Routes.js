@@ -3,6 +3,7 @@ import Loadable from 'react-loadable'
 
 import DefaultLayout from './containers/DefaultLayout';
 
+
 function Loading() {
     return <div>Loading...</div>;
 }
@@ -17,6 +18,12 @@ const Campania = Loadable({
     loader: () => import('./views/Administracion/Campanias/Campania'),
     loading: Loading,
 });
+/***** Campaña Actual *****/
+const CampaniaActual = Loadable({
+    loader: () => import('./views/AreaTrabajo/CampaniaActual/CampaniaActual'),
+    loading: Loading,
+});
+
 
 /***** Catalogos *****/
 const Catalogos = Loadable({
@@ -59,6 +66,28 @@ const Personas = Loadable({
 /***** Persona *****/
 const Persona = Loadable({
     loader: () => import('./views/Administracion/Personas/Persona'),
+    loading: Loading,
+});
+
+/***** Productos *****/
+const Productos = Loadable({
+    loader: () => import('./views/Administracion/Productos/Productos'),
+    loading: Loading,
+});
+/***** Producto *****/
+const Producto = Loadable({
+    loader: () => import('./views/Administracion/Productos/Producto'),
+    loading: Loading,
+});
+
+/***** ProductoCatalogos *****/
+const ProductoCatalogos = Loadable({
+    loader: () => import('./views/Administracion/ProductoCatalogo/ProductoCatalogos'),
+    loading: Loading,
+});
+/***** ProductoCatalogo *****/
+const ProductoCatalogo = Loadable({
+    loader: () => import('./views/Administracion/ProductoCatalogo/ProductoCatalogo'),
     loading: Loading,
 });
 
@@ -143,6 +172,39 @@ const routes = [
     },
     {
         path: '/administracion/personas/desactivar/:id', exact: true, name: 'Desactivar', component: Persona
+    },
+
+    {
+        path: '/administracion/productos', exact: true, name: 'Personas', component: Productos
+    },
+    {
+        path: '/administracion/productos/nuevo', exact: true, name: 'Nuevo', component: Producto
+    },
+    {
+        path: '/administracion/productos/editar/:id', exact: true, name: 'Editar', component: Producto
+    },
+    {
+        path: '/administracion/productos/desactivar/:id', exact: true, name: 'Desactivar', component: Producto
+    },
+
+    {
+        path: '/administracion/productos/catalogosenproducto/:id',
+        exact: true,
+        name: 'Catalogos de Producto',
+        component: ProductoCatalogos
+    },
+    {
+        path: '/administracion/productos/incluirencatalogo',
+        exact: true,
+        name: 'Incluye en Catalogo',
+        component: ProductoCatalogo
+    },
+
+    {
+        path: '/areatrabajo/campaniaactual/campaniaactual',
+        exact: true,
+        name: 'Campania Actual',
+        component: CampaniaActual
     },
 
     {

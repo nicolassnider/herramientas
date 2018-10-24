@@ -7,6 +7,7 @@
  */
 require_once '../Model/Campania.php';
 require_once '../Commons/Exceptions/BadRequestException.php';
+
 class CampaniaRepository extends AbstractRepository
 {
 
@@ -19,7 +20,7 @@ class CampaniaRepository extends AbstractRepository
         if ($items == null) {
             return Array();
         }
-        $campanias=Array();
+        $campanias = Array();
         foreach ($items as $item) {
             $item = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
             array_push($campanias, $item);
@@ -62,12 +63,13 @@ class CampaniaRepository extends AbstractRepository
             $stmtGet->bindParam(':id', $id);
             $stmtGet->execute();
             $result = $stmtGet->fetchObject();
+            if ($result == null) return null;
             $db->commit();
             return $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
 
 
         } catch (PDOException $e) {
-            throw  $e ;
+            throw  $e;
 
         } finally {
             $stmtGet = null;
@@ -86,11 +88,12 @@ class CampaniaRepository extends AbstractRepository
             $stmtGetCampaniaActiva->execute();
             $result = $stmtGetCampaniaActiva->fetchObject();
             $db->commit();
+            if ($result == null) return null;
             return $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
 
 
         } catch (PDOException $e) {
-            throw  $e ;
+            throw  $e;
 
         } finally {
             $stmtGetCampaniaActiva = null;
@@ -128,6 +131,7 @@ class CampaniaRepository extends AbstractRepository
     {
 
         $db = $this->connect();
+        CampaniaRepository::checkCampaniaActiva();
         $db->beginTransaction();
         $sqlCreate = "INSERT INTO campania (fecha_inicio, fecha_fin, descripcion, activo) VALUES (:fechaInicio,:fechaFin,:descripcion,:activo)";
         $fechaInicio = (string)$campania->getFechaInicio()->format("Y-m-d");
@@ -142,7 +146,62 @@ class CampaniaRepository extends AbstractRepository
         $stmtCreate->execute();
         $campania->setId($db->lastInsertId());
         $db->commit();
+        CampaniaRepository::crearCatalogoCampania($campania);
+
         return $campania;
+    }
+
+    public function crearCatalogoCampania(Campania $campania)
+    {
+        $catalogoRepository = new CatalogoRepository();
+        $catalogos = $catalogoRepository->getAll();
+        foreach ($catalogos as $catalogo) {
+
+            $db = $this->connect();
+
+            if ($catalogo->getActivo()) {
+
+                $campaniaId = $campania->getId();
+                $catalogoId = $catalogo->getId();
+                $sqlCrearCatalogoCampania = "INSERT INTO catalogo_campania(catalogo, campania) VALUES (:catalogo,:campania)";
+                $stmtCrearCatalogoCampania = $db->prepare($sqlCrearCatalogoCampania);
+                $stmtCrearCatalogoCampania->bindParam(':catalogo', $catalogoId, PDO::PARAM_INT);
+                $stmtCrearCatalogoCampania->bindParam(':campania', $campaniaId, PDO::PARAM_INT);
+                $stmtCrearCatalogoCampania->execute();
+                $this->disconnect();
+
+            }
+            $this->disconnect();
+        }
+
+    }
+
+
+    /**
+     * @throws BadRequestException
+     */
+    public function checkCampaniaActiva()
+    {
+        try {
+            $db = $this->connect();
+            $sqlCheckCampaniaActiva = " SELECT COUNT(id)AS campanias_activas FROM herramientas.campania 
+                                        WHERE campania.activo=1";
+            $stmtCheckCampaniaActiva = $db->prepare($sqlCheckCampaniaActiva);
+            $stmtCheckCampaniaActiva->execute();
+            $result = $stmtCheckCampaniaActiva->fetchObject();
+            if ($result->campanias_activas != 0) {
+                throw new BadRequestException("Existe una Campania activa, por favor verificar");
+            }
+
+
+        } catch (PDOException $e) {
+            throw  $e;
+
+        } finally {
+            $result = null;
+            $sqlCheckCampaniaActiva = null;
+            $stmtCheckCampaniaActivaCampaniaActiva = null;
+        }
     }
 
     public function update(Campania $campania)
@@ -218,7 +277,7 @@ class CampaniaRepository extends AbstractRepository
             $item->setFechaInicio(DateTime::createFromFormat('Y-m-d', $result->fecha_inicio));
 
         if (in_array('*', $fields) || in_array('fechaFin', $fields))
-            $item->setFechaFin(DateTime::createFromFormat('Y-m-d', $result->fecha_fin));
+            $item->setFechaFin(DateTime::createFromFormat('Y-m-d', $result->fecha_inicio));
 
         if (in_array('*', $fields) || in_array('descripcion', $fields))
             $item->setDescripcion($result->descripcion);
