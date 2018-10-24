@@ -30,5 +30,11 @@ export const grillaCatalogos = () => {
     return get("catalogos");
 };
 
+export const selectCatalogosSinProducto = (id) => {
+    return get("catalogos/selectsinproducto/" + id);
+};
+
+
+
 
 

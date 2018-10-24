@@ -16,7 +16,7 @@ class CatalogoService
     public function getAll()
     {
 
-        $this->repository=new CatalogoRepository();
+        $this->repository = new CatalogoRepository();
         return $this->repository->getAll();
     }
 
@@ -24,6 +24,12 @@ class CatalogoService
     {
         $this->repository = new CatalogoRepository();
         return $this->repository->getAllActiveSorted();
+    }
+
+    public function getAllActiveSortedSinProducto(int $id)
+    {
+        $this->repository = new CatalogoRepository();
+        return $this->repository->getAllActiveSortedSinProducto($id);
     }
 
     public function get(int $id): ?Catalogo
@@ -35,19 +41,19 @@ class CatalogoService
 
     public function create(Catalogo $catalogo): ?Catalogo
     {
-        $this->repository= new CatalogoRepository();
+        $this->repository = new CatalogoRepository();
         return $this->repository->create($catalogo);
     }
 
     public function update(Catalogo $catalogo)
     {
-        $this->repository= new CatalogoRepository();
+        $this->repository = new CatalogoRepository();
         $this->repository->update($catalogo);
     }
 
     public function delete(int $id)
     {
-        $this->repository= new CatalogoRepository();
+        $this->repository = new CatalogoRepository();
         $this->repository->delete($id);
     }
 
@@ -63,7 +69,7 @@ class CatalogoService
 
     public function createCatalogoByCampania(CatalogoCampania $catalogoCampania)
     {
-        $this->repository= new CatalogoRepository();
+        $this->repository = new CatalogoRepository();
         return $this->repository->createCatalogoByCampania($catalogoCampania);
     }
 

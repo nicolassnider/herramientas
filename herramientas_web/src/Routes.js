@@ -90,6 +90,11 @@ const ProductoCatalogo = Loadable({
     loader: () => import('./views/Administracion/ProductoCatalogo/ProductoCatalogo'),
     loading: Loading,
 });
+/***** IncluirProductoEnCatalogo *****/
+const IncluirProductoEnCatalogo = Loadable({
+    loader: () => import('./views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo'),
+    loading: Loading,
+});
 
 
 const Users = Loadable({
@@ -198,6 +203,13 @@ const routes = [
         exact: true,
         name: 'Incluye en Catalogo',
         component: ProductoCatalogo
+    },
+
+    {
+        path: '/administracion/productos/incluirproductoencatalogo/:id',
+        exact: true,
+        name: 'Incluye Producto en Catalogo',
+        component: IncluirProductoEnCatalogo
     },
 
     {

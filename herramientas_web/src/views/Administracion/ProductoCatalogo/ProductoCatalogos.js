@@ -99,7 +99,7 @@ class ProductoCatalogos extends Component {
                 <Card>
                     <CardHeader style={addBtn}>
                         <Button color="primary"
-                                onClick={() => this.props.history.push('/administracion/catalogos/nuevo')}>
+                                onClick={() => this.props.history.push('/administracion/productos/incluirproductoencatalogo/' + this.props.match.params.id)}>
                             Nueva <i className="fa fa-plus"></i>
                         </Button>
                     </CardHeader>

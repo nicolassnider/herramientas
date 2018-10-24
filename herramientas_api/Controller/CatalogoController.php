@@ -36,6 +36,21 @@ class CatalogoController
                     'CATALOGO_LISTAR'
                 ]));
 
+                $this->get('/selectsinproducto/{id}', function (Request $request, Response $response) {
+                    $id = $request->getAttribute('id');
+
+                    $items = (new CatalogoService())->getAllActiveSortedSinProducto($id);
+
+                    array_walk($items, function (&$item) {
+                        $label = $item->getDescripcion();
+                        $item = new SelectOption($item->getId(), $label);
+                    });
+
+                    return $response->withJson($items, 200);
+                })->add(new ValidatePermissionsMiddleware([
+                    'CATALOGO_LISTAR'
+                ]));
+
                 $this->get('', function (Request $request, Response $response) {
                     $catalogoService = new CatalogoService();
                     $catalogos = $catalogoService->getAll();

@@ -118,6 +118,55 @@ class CatalogoRepository extends AbstractRepository
         return CatalogoRepository::getAll();
     }
 
+    public function getAllActiveSortedSinProducto(int $id): Array
+    {
+        try {
+            $db = $this->connect();
+            $sqlGetAllCatalogo = "SELECT catalogo.* from catalogo
+                                  WHERE catalogo.id NOT IN (
+                                  SELECT producto_catalogo.catalogo from producto_catalogo WHERE producto=:id)";
+            $stmtGetAllCatalogo = $db->prepare($sqlGetAllCatalogo);
+            $stmtGetAllCatalogo->bindParam(':id', $id, PDO::PARAM_INT);
+
+            $stmtGetAllCatalogo->execute();
+            $items = $stmtGetAllCatalogo->fetchAll(PDO::FETCH_OBJ);
+            $catalogos = Array();
+            foreach ($items as $item) {
+                $item = $this->createFromResultset($item, ['*'], $this->db);
+                array_push($catalogos, $item);
+            }
+            return $catalogos;
+
+
+        } catch (Exception $e) {
+            if ($db != null) $db->rollback();
+
+            if ($e instanceof PDOException && $stmtGetAllCatalogo->errorInfo()[0] == 23000 && $stmtGetAllCatalogo->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmtGetAllCatalogo->errorInfo()[2]);
+
+                switch ($array[3]) {
+
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
+                        break;
+                    default:
+                        die(print_r($array));
+
+                }
+            } else {
+                throw $e;
+            }
+
+        } finally {
+            $this->disconnect();
+        }
+
+        return $item;
+    }
+
     public function create(Catalogo $catalogo)
     {
         $db = $this->connect();
@@ -164,9 +213,9 @@ class CatalogoRepository extends AbstractRepository
             $stmt = null;
             $this->disconnect();
         }
-        $db=null;
-        $sqlCreateCatalogo=null;
-        $stmtCreateCatalogo=null;
+        $db = null;
+        $sqlCreateCatalogo = null;
+        $stmtCreateCatalogo = null;
 
         return CatalogoRepository::get($catalogo->getId());
     }
@@ -191,14 +240,14 @@ class CatalogoRepository extends AbstractRepository
             $descripcion = $catalogo->getDescripcion();
             $observaciones = $catalogo->getObservaciones();
             $activo = $catalogo->getActivo();
-            $id=$catalogo->getId();
+            $id = $catalogo->getId();
 
             //prepara inserción base de datos
             $stmtUpdateCatalogo = $db->prepare($sqlUpdateCatalogo);
             $stmtUpdateCatalogo->bindParam(':descripcion', $descripcion);
             $stmtUpdateCatalogo->bindParam(':observaciones', $observaciones);
             $stmtUpdateCatalogo->bindParam(':activo', $activo, PDO::PARAM_BOOL);
-            $stmtUpdateCatalogo->bindParam(':id',$id,PDO::PARAM_INT);
+            $stmtUpdateCatalogo->bindParam(':id', $id, PDO::PARAM_INT);
             $stmtUpdateCatalogo->execute();
             $catalogo->setId($db->lastInsertId());
             $db->commit();
@@ -225,9 +274,9 @@ class CatalogoRepository extends AbstractRepository
             $stmt = null;
             $this->disconnect();
         }
-        $db=null;
-        $sqlUpdateCatalogo=null;
-        $stmtUpdateCatalogo=null;
+        $db = null;
+        $sqlUpdateCatalogo = null;
+        $stmtUpdateCatalogo = null;
 
 
     }
@@ -245,7 +294,7 @@ class CatalogoRepository extends AbstractRepository
 
             //prepara inserción base de datos
             $stmtDeleteCatalogo = $db->prepare($sqlDeleteCatalogo);
-            $stmtDeleteCatalogo->bindParam(':id',$id,PDO::PARAM_INT);
+            $stmtDeleteCatalogo->bindParam(':id', $id, PDO::PARAM_INT);
             $stmtDeleteCatalogo->execute();
             $db->commit();
 
@@ -272,9 +321,9 @@ class CatalogoRepository extends AbstractRepository
             $stmt = null;
             $this->disconnect();
         }
-        $db=null;
-        $sqlDeleteCatalogo=null;
-        $stmtDeleteCatalogo=null;
+        $db = null;
+        $sqlDeleteCatalogo = null;
+        $stmtDeleteCatalogo = null;
 
 
     }
@@ -285,7 +334,7 @@ class CatalogoRepository extends AbstractRepository
         $db->beginTransaction();
         try {
             $sqlDeactivateCatalogo = "UPDATE herramientas.catalogo SET activo = :activo WHERE (id = :id);";
-            $activo=false;
+            $activo = false;
 
             //prepara inserción base de datos
             $stmtDeactivateCatalogo = $db->prepare($sqlDeactivateCatalogo);
@@ -331,7 +380,7 @@ class CatalogoRepository extends AbstractRepository
         $db->beginTransaction();
         try {
             $sqlActivateCatalogo = "UPDATE herramientas.catalogo SET activo = :activo WHERE (id = :id);";
-            $activo=true;
+            $activo = true;
             //prepara inserción base de datos
             $stmtActivateRevendedora = $db->prepare($sqlActivateCatalogo);
             $stmtActivateRevendedora->bindParam(':id', $id, PDO::PARAM_INT);
@@ -385,8 +434,8 @@ class CatalogoRepository extends AbstractRepository
 
             //prepara inserción base de datos
             $stmtCreateCatalogoCampania = $db->prepare($sqlCreateCatalogoCampania);
-            $stmtCreateCatalogoCampania->bindParam(':catalogo', $catalogo,PDO::PARAM_INT);
-            $stmtCreateCatalogoCampania->bindParam(':campania', $campania,PDO::PARAM_INT);
+            $stmtCreateCatalogoCampania->bindParam(':catalogo', $catalogo, PDO::PARAM_INT);
+            $stmtCreateCatalogoCampania->bindParam(':campania', $campania, PDO::PARAM_INT);
             $stmtCreateCatalogoCampania->bindParam(':activo', $activo, PDO::PARAM_BOOL);
             $stmtCreateCatalogoCampania->execute();
             $catalogoCampania->setId($db->lastInsertId());
@@ -416,9 +465,9 @@ class CatalogoRepository extends AbstractRepository
             $stmt = null;
             $this->disconnect();
         }
-        $db=null;
-        $sqlCreateCatalogoCampania=null;
-        $stmtCreateCatalogoCampania=null;
+        $db = null;
+        $sqlCreateCatalogoCampania = null;
+        $stmtCreateCatalogoCampania = null;
     }
 
     private function createFromResultset($result, array $fields, $db)
