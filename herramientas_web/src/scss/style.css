@@ -12125,7 +12125,6 @@ canvas {
     *[dir="rtl"] .sidebar-minimized .sidebar .nav {
         list-style-image: url("data:,");
     }
-
     *[dir="rtl"] .sidebar-minimized .sidebar .nav .divider {
         height: 0;
     }
@@ -12138,16 +12137,13 @@ canvas {
     *[dir="rtl"] .sidebar-minimized .sidebar .nav-link {
         padding-right: 0;
     }
-
     *[dir="rtl"] .sidebar-minimized .sidebar .nav-link .nav-icon {
         float: right;
     }
-
     *[dir="rtl"] .sidebar-minimized .sidebar .nav-link .badge {
         right: auto;
         left: 15px;
     }
-
     *[dir="rtl"] .sidebar-minimized .sidebar .nav-link:hover .badge {
         display: inline;
     }
@@ -12161,7 +12157,6 @@ canvas {
     *[dir="rtl"] .sidebar-minimized .sidebar .nav > .nav-dropdown:hover {
         background: #20a8d8;
     }
-
     *[dir="rtl"] .sidebar-minimized .sidebar .nav > .nav-dropdown:hover > .nav-dropdown-items {
         position: absolute;
         left: 0;
