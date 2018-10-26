@@ -147,7 +147,8 @@ class CampaniaRepository extends AbstractRepository
         $campania->setId($db->lastInsertId());
         $db->commit();
         CampaniaRepository::crearCatalogoCampania($campania);
-
+        $pedidoAvonRepository = new PedidoAvonRepository();
+        $pedidoAvonRepository->create($campania);
         return $campania;
     }
 
@@ -277,7 +278,7 @@ class CampaniaRepository extends AbstractRepository
             $item->setFechaInicio(DateTime::createFromFormat('Y-m-d', $result->fecha_inicio));
 
         if (in_array('*', $fields) || in_array('fechaFin', $fields))
-            $item->setFechaFin(DateTime::createFromFormat('Y-m-d', $result->fecha_inicio));
+            $item->setFechaFin(DateTime::createFromFormat('Y-m-d', $result->fecha_fin));
 
         if (in_array('*', $fields) || in_array('descripcion', $fields))
             $item->setDescripcion($result->descripcion);

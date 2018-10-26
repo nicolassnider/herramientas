@@ -18,7 +18,7 @@ require_once '../Repository/ProductoRepository.php';
 
 require_once '../Commons/Exceptions/BadRequestException.php';
 
-class ProductoCatalogoRepository extends AbstractRepository
+class PedidoProductoCatalogoRepository extends AbstractRepository
 {
 
     /**
@@ -272,7 +272,6 @@ class ProductoCatalogoRepository extends AbstractRepository
         $this->disconnect();
         return $producto;
     }
-
 
 
 }

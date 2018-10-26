@@ -23,42 +23,33 @@ class PedidoAvonRepository extends AbstractRepository
      * @return null|Cliente
      * @throws BadRequestException
      */
-    public function create(PedidoAvon $pedidoAvon): ?PedidoAvon
+    public function create(Campania $campania): void
     {
 
         try {
             $db = $this->connect();
             $db->beginTransaction();
             $sqlCreate = "INSERT INTO herramientas.pedido_avon(
-                              cliente, 
-                              revendedora, 
-                              fecha_alta, 
                               recibido, 
                               entregado, 
-                              cobrado) 
+                              cobrado,
+                              campania) 
                       VALUES (
-                              :cliente, 
-                              :revendedora, 
-                              :fecha_alta, 
                               :recibido, 
                               :entregado, 
-                              :cobrado 
-                              )";
-            $cliente = (int)$pedidoAvon->getCliente()->getId();
-            $revendedora = (int)$pedidoAvon->getRevendedora()->getId();
-            $fechaAlta = date('Y-m-d');
+                              :cobrado,
+                              :campania)";
             $recibido = false;
             $entregado = false;
             $cobrado = false;
+            $campaniaId = $campania->getId();
             $stmtCreate = $db->prepare($sqlCreate);
-            $stmtCreate->bindParam(':cliente', $cliente, PDO::PARAM_INT);
-            $stmtCreate->bindParam(':revendedora', $revendedora, PDO::PARAM_INT);
-            $stmtCreate->bindParam(':fecha_alta', $fechaAlta);
             $stmtCreate->bindParam(':recibido', $recibido, PDO::PARAM_BOOL);
             $stmtCreate->bindParam(':entregado', $entregado, PDO::PARAM_BOOL);
             $stmtCreate->bindParam(':cobrado', $cobrado, PDO::PARAM_BOOL);
+            $stmtCreate->bindParam(':campania', $campaniaId, PDO::PARAM_INT);
             $stmtCreate->execute();
-            $pedidoAvon->setId($db->lastInsertId());
+
             $db->commit();
 
         } catch (Exception $e) {
@@ -81,54 +72,9 @@ class PedidoAvonRepository extends AbstractRepository
             $this->disconnect();
 
         }
-        return $pedidoAvon;
+
     }
 
-    public function update(PedidoAvon $pedidoAvon): void
-    {
-        $db = $this->connect();
-        $db->beginTransaction();
-        try {
-            $sqlUpdate = "UPDATE herramientas.pedido_avon 
-                                SET 
-                                  cliente=:cliente,
-                                  revendedora=:revendedora
-                                WHERE
-                                  (id =:id)
-                                ";
-
-            $cliente = (int)$pedidoAvon->getCliente()->getId();
-            $revendedora = (int)$pedidoAvon->getRevendedora()->getId();
-            $id = (int)$pedidoAvon->getId();
-            $stmtUpdate = $db->prepare($sqlUpdate);
-            $stmtUpdate->bindParam(':cliente', $cliente, PDO::PARAM_INT);
-            $stmtUpdate->bindParam(':revendedora', $revendedora, PDO::PARAM_INT);
-            $stmtUpdate->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmtUpdate->execute();
-            $db->commit();
-        } catch (Exception $e) {
-            //TODO:implement ex
-            if ($db != null) $db->rollback();
-            if ($e instanceof PDOException && $stmtUpdate->errorInfo()[0] == 23000 && $stmtUpdate->errorInfo()[1] == 1062) {
-                $array = explode("'", $stmtUpdate->errorInfo()[2]);
-                switch ($array[3]) {
-
-                    case 'persona_unique':
-                        throw new BadRequestException("La combinación " . " número " . " ya existe");
-                        break;
-                    default:
-                        die(print_r($array));
-
-                }
-            } else {
-                throw $e;
-            }
-        } finally {
-            $stmtUpdate = null;
-            $this->disconnect();
-
-        }
-    }
 
     public function delete(int $id): void
     {
@@ -327,153 +273,7 @@ class PedidoAvonRepository extends AbstractRepository
 
 
 
-    public function grid(DataTableResponse $dataTablesResponse, DataTableRequest $dataTableRequest)
-    {
-        $db = $this->connect();
 
-        $length = $dataTableRequest->getLength();
-        $start = $dataTableRequest->getStart();
-        $searchGeneral = $dataTableRequest->getSearch();
-        $orderColumn = $dataTableRequest->getOrderColumn();
-        $arrayColsFilter = $dataTableRequest->getArrayColsFilter();
-
-        //RecordsTotal
-        $consultaTotal = "SELECT COUNT(*) FROM persona";
-        $stmtTotal = $db->prepare($consultaTotal);
-        $stmtTotal->execute();
-        $recordsTotal = $stmtTotal->fetchColumn();
-        $dataTablesResponse->setRecordsTotal((int)$recordsTotal);
-
-        //Prepara Consulta
-        $consulta = "SELECT p.id,
-                            p.nombre,
-                            p.apellido,
-                            p.es_activo,
-                            p.es_usuario,
-                            p.foto,
-                            p.legajo_numero,
-                            p.base,
-                            b.descripcion as base_descripcion,
-                            p.categoria,
-                            pc.nombre AS categoria_nombre
-                     FROM persona per
-                        LEFT JOIN persona_categorias pc ON (p.categoria = pc.id)
-                        LEFT JOIN bases b ON (p.base = b.id)
-                     WHERE '1=1'";
-
-        $stmt = $db->prepare($consulta);
-
-        foreach ($arrayColsFilter as $columna) {
-            if ($columna['search']['value'] != null) {
-                $columnaSearchValue = $columna['search']['value'];
-                switch ($columna['data']) {
-                    case "esActivo":
-                        $consulta .= " AND p.es_activo = '" . $columnaSearchValue . "' ";
-                        break;
-                    case "esUsuario":
-                        $consulta .= " AND p.es_usuario = '" . $columnaSearchValue . "' ";
-                        break;
-                    case "nombre":
-                        $consulta .= " AND p.nombre LIKE '%" . $columnaSearchValue . "%' ";
-                        break;
-                    case "apellido":
-                        $consulta .= " AND p.apellido LIKE '%" . $columnaSearchValue . "%' ";
-                        break;
-                    case "legajoNumero":
-                        $consulta .= " AND p.legajo_numero LIKE '%" . $columnaSearchValue . "%' ";
-                        break;
-                    case "base":
-                        $consulta .= " AND b.id = '" . $columnaSearchValue . "' ";
-                        break;
-                    case "categoria":
-                        $consulta .= " AND pc.id = '" . $columnaSearchValue . "' ";
-                        break;
-                }
-            }
-        }
-
-        //RecordsFiltered
-        $consultaRecordsFiltered = $consulta;
-        $stmtRecordsFiltered = $db->prepare($consultaRecordsFiltered);
-        $stmtRecordsFiltered->execute();
-        $recordsFiltered = $stmtRecordsFiltered->rowCount();
-        $dataTablesResponse->setRecordsFiltered($recordsFiltered);
-
-        if ($searchGeneral != null) {
-            $consulta .= " AND (p.nombre LIKE '%" . $searchGeneral . "%' OR p.apellido LIKE '%" . $searchGeneral . "%') ";
-            $stmt = $db->prepare($consulta);
-        }
-
-        //Order by
-        $columnaAOrdernar = $arrayColsFilter[$orderColumn['column']]['data'];
-        switch ($columnaAOrdernar) {
-            case "esUsuario":
-                $consulta .= " ORDER BY p.es_usuario" . "  " . $orderColumn['dir'];
-                break;
-            case "apellido":
-                $consulta .= " ORDER BY p.apellido" . "  " . $orderColumn['dir'];
-                break;
-            case "nombre":
-                $consulta .= " ORDER BY p.nombre" . "  " . $orderColumn['dir'];
-                break;
-            case "legajoNumero":
-                $consulta .= " ORDER BY p.legajo_numero" . "  " . $orderColumn['dir'];
-                break;
-            case "base":
-                $consulta .= " ORDER BY b.descripcion" . "  " . $orderColumn['dir'];
-                break;
-            case "categoria":
-                $consulta .= " ORDER BY pc.nombre" . "  " . $orderColumn['dir'];
-                break;
-        }
-
-        //Limit Start, Length
-        if ($length != -1) {
-            $consulta .= " LIMIT " . $start . " ," . $length;
-            $stmt = $db->prepare($consulta);
-        }
-
-        //Prepara Data
-        $stmt->execute();
-        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
-        $personasGrid = Array();
-
-        foreach ($items as $item) {
-            $base = null;
-            if ($item->base != null) {
-                $base = new Base();
-                $base->setId((int)$item->base);
-                $base->setDescripcion($item->base_descripcion);
-            }
-
-            $personaCategoria = null;
-            if ($item->categoria != null) {
-                $personaCategoria = new PersonaCategoria();
-                $personaCategoria->setId((int)$item->categoria);
-                $personaCategoria->setNombre($item->categoria_nombre);
-            }
-
-            $personaGrid = new PersonaGrid();
-            $personaGrid->setId((int)$item->id);
-            $personaGrid->setNombre($item->nombre);
-            $personaGrid->setApellido($item->apellido);
-            $personaGrid->setEsActivo((bool)$item->es_activo);
-            $personaGrid->setLegajoNumero($item->legajo_numero);
-            $personaGrid->setEsUsuario((bool)$item->es_usuario);
-            $personaGrid->setFoto($item->foto);
-            $personaGrid->setBase($base);
-            $personaGrid->setCategoria($personaCategoria);
-            array_push($personasGrid, $personaGrid);
-        }
-        $dataTableRequest->setLength($length);
-        $dataTablesResponse->setData($personasGrid);
-
-        $db = null;
-        $personas = null;
-        $items = null;
-        $this->disconnect();
-        return $dataTablesResponse;
-    }
 
     public function get(int $id, bool $full = true): ?PedidoAvon
     {
@@ -502,12 +302,6 @@ class PedidoAvonRepository extends AbstractRepository
 
         $item = new PedidoAvon();
         $item->setId((int)$result->id);
-        if (in_array('*', $fields) || in_array('cliente', $fields))
-            $item->setCliente((new ClienteRepository($db))->get($result->cliente));
-        if (in_array('*', $fields) || in_array('revendedora', $fields))
-            $item->setRevendedora((new RevendedoraRepository($db))->get($result->revendedora));
-
-        $item->setFechaAlta(new DateTime($result->fecha_alta));
         $item->setFechaRecibido(new DateTime($result->fecha_recibido));
         $item->setRecibido((bool)$result->recibido);
         $item->setCobrado((bool)$result->entregado);
