@@ -10,8 +10,6 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require_once "../Service/PedidoAvonService.php";
-require_once "../Model/Cliente.php";
-require_once "../Model/Revendedora.php";
 
 class PedidoAvonController
 {
@@ -38,6 +36,15 @@ class PedidoAvonController
                     $service = new PedidoAvonService();
                     $id = $request->getAttribute('id');
                     $items = $service->get($id);
+                    if ($items == null) {
+                        return $response->withJson($items, 400);
+                    }
+                    return $response->withJson($items, 200);
+                });
+
+                $this->get('/campaniaactual/pedido', function (Request $request, Response $response) {
+                    $service = new PedidoAvonService();
+                    $items = $service->getPedidoPorCampaniaActual();
                     if ($items == null) {
                         return $response->withJson($items, 400);
                     }
@@ -98,17 +105,13 @@ class PedidoAvonController
     {
         $pedidoAvon = new PedidoAvon();
         $pedidoAvon->setId((int)$request->getAttribute('id'));
-        $cliente = new Cliente();
-        $cliente->setId((int)$request->getParam('cliente')['id']);
-        $pedidoAvon->setCliente($cliente);
-        $revendedora = new Revendedora();
-        $revendedora->setId((int)$request->getParam('revendedora')['id']);
-        $pedidoAvon->setRevendedora($revendedora);
-        $pedidoAvon->setFechaAlta(new DateTime($request->getParam('fechaAlta')['date']));
         $pedidoAvon->setFechaRecibido(new DateTime($request->getParam('fechaRecibido')['date']));
         $pedidoAvon->setRecibido((bool)$request->getParam('recibido'));
         $pedidoAvon->setEntregado((bool)$request->getParam('entregado'));
         $pedidoAvon->setCobrado((bool)$request->getParam('cobrado'));
+        $campania = new Campania();
+        $campania->setId((int)$request->getParam('campania')['id']);
+        $pedidoAvon->setCampania($campania);
 
         return $pedidoAvon;
     }

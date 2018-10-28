@@ -19,7 +19,7 @@ export default {
         },
         {
             name: 'Campania Actual',
-            url: '/areatrabajo/campaniaactual/campaniaactual'
+            url: '/areatrabajo/campania/campaniaactual'
         },
         {
             name: 'Pedidos',

@@ -14,6 +14,41 @@ class PedidoProductoCatalogo implements JsonSerializable
     private $productoCatalogo;
     private $cantidad;
     private $recibido;
+    private $cliente;
+    private $revendedora;
+
+    /**
+     * @return mixed
+     */
+    public function getCliente(): ?Cliente
+    {
+        return $this->cliente;
+    }
+
+    /**
+     * @param mixed $cliente
+     */
+    public function setCliente(?Cliente $cliente): void
+    {
+        $this->cliente = $cliente;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRevendedora(): ?Revendedora
+    {
+        return $this->revendedora;
+    }
+
+    /**
+     * @param mixed $revendedora
+     */
+    public function setRevendedora(?Revendedora $revendedora): void
+    {
+        $this->revendedora = $revendedora;
+    }
+
 
     /**
      * @return mixed
@@ -105,6 +140,10 @@ class PedidoProductoCatalogo implements JsonSerializable
         if (isset($this->productoCatalogo)) $array['productoCatalogo'] = $this->productoCatalogo;
         if (isset($this->cantidad)) $array['cantidad'] = $this->cantidad;
         if (isset($this->recibido)) $array['recibido'] = $this->recibido;
+        if (isset($this->cliente)) $array['cliente'] = $this->cliente;
+        if (isset($this->cliente)) $array['revendedora'] = $this->revendedora;
+
+
         return $array;
     }
 

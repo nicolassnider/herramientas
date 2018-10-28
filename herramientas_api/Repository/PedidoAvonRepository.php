@@ -272,9 +272,6 @@ class PedidoAvonRepository extends AbstractRepository
     }
 
 
-
-
-
     public function get(int $id, bool $full = true): ?PedidoAvon
     {
         $sqlGet = "SELECT ped.*  FROM pedido_avon ped                     
@@ -296,8 +293,32 @@ class PedidoAvonRepository extends AbstractRepository
         return $cliente;
     }
 
+    public function getPedidoPorCampaniaActual(bool $full = true): ?PedidoAvon
+    {
+        $sqlGet = "SELECT ped.*  FROM pedido_avon ped                     
+                    WHERE ped.campania=:campaniaId
+                    ";
+        $campania = new CampaniaRepository();
+        $campaniaActiva = $campania->getCampaniaActiva();
+        $campaniaId = $campaniaActiva->getId();
+        $db = $this->connect();
+        $stmtGet = $db->prepare($sqlGet);
+        $stmtGet->bindParam(':campaniaId', $campaniaId, PDO::PARAM_INT);
+        $stmtGet->execute();
+        $result = $stmtGet->fetchObject();
 
-    private function createFromResultset($result, array $fields, $db)
+        if ($result == null) {
+            return null;
+        }
+
+        $cliente = $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
+        $this->disconnect();
+        return $cliente;
+    }
+
+
+    private
+    function createFromResultset($result, array $fields, $db)
     {
 
         $item = new PedidoAvon();

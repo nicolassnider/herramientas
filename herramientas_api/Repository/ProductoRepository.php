@@ -225,7 +225,6 @@ class ProductoRepository extends AbstractRepository
         $sqlGet = "SELECT pro.*  FROM producto pro               
                     WHERE pro.id=:id
                     ";
-
         $db = $this->connect();
         $stmtGet = $db->prepare($sqlGet);
         $stmtGet->bindParam(':id', $id, PDO::PARAM_INT);

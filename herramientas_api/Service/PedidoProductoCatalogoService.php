@@ -6,16 +6,16 @@
  * Time: 12:44 PM
  */
 
-require_once '../Repository/ProductoCatalogoRepository.php';
+require_once '../Repository/PedidoProductoCatalogoRepository.php';
 
-class ProductoCatalogoService
+class PedidoProductoCatalogoService
 {
 
     private $repository;
 
     public function __construct()
     {
-        $this->repository = new ProductoCatalogoRepository();
+        $this->repository = new PedidoProductoCatalogoRepository();
     }
 
     public function getAllActiveSorted()
@@ -23,9 +23,9 @@ class ProductoCatalogoService
         return $this->repository->getAllActiveSorted();
     }
 
-    public function create(ProductoCatalogo $productoCatalogo)
+    public function create(PedidoProductoCatalogo $pedidoProductoCatalogo)
     {
-        return $this->repository->create($productoCatalogo);
+        return $this->repository->create($pedidoProductoCatalogo);
     }
 
     public function get($id)
@@ -43,9 +43,14 @@ class ProductoCatalogoService
         return $this->repository->getAllCatalogoProductoPorProducto($id);
     }
 
-    public function update(Producto $producto)
+    public function getAllProductosPorPedido(int $id)
     {
-        $this->repository->update($producto);
+        return $this->repository->getAllProductosPorPedido($id);
+    }
+
+    public function update(PedidoProductoCatalogo $pedidoProductoCatalogo)
+    {
+        $this->repository->update($pedidoProductoCatalogo);
     }
 
     public function delete(int $id)

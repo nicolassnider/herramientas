@@ -10,13 +10,11 @@ class PedidoAvon implements JsonSerializable
 {
 
     private $id;
-    private $cliente;
-    private $revendedora;
-    private $fechaAlta;
     private $fechaRecibido;
     private $recibido;
     private $entregado;
     private $cobrado;
+    private $campania;
 
     /**
      * @return mixed
@@ -32,54 +30,6 @@ class PedidoAvon implements JsonSerializable
     public function setId(?int $id): void
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCliente():?int
-    {
-        return $this->cliente;
-    }
-
-    /**
-     * @param mixed $cliente
-     */
-    public function setCliente(?int $cliente): void
-    {
-        $this->cliente = $cliente;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRevendedora():?Revendedora
-    {
-        return $this->revendedora;
-    }
-
-    /**
-     * @param mixed $revendedora
-     */
-    public function setRevendedora(?Revendedora $revendedora): void
-    {
-        $this->revendedora = $revendedora;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFechaAlta():?DateTime
-    {
-        return $this->fechaAlta;
-    }
-
-    /**
-     * @param mixed $fechaAlta
-     */
-    public function setFechaAlta(?DateTime $fechaAlta): void
-    {
-        $this->fechaAlta = $fechaAlta;
     }
 
     /**
@@ -146,6 +96,23 @@ class PedidoAvon implements JsonSerializable
         $this->cobrado = $cobrado;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCampania(): ?bool
+    {
+        return $this->campania;
+    }
+
+    /**
+     * @param mixed $campania
+     */
+    public function setCampania(?Campania $campania): Campania
+    {
+        $this->campania = $campania;
+    }
+
+
 
 
 
@@ -153,13 +120,11 @@ class PedidoAvon implements JsonSerializable
     {
         $array = Array();
         if (isset($this->id)) $array['id'] = $this->id;
-        if (isset($this->cliente)) $array['cliente'] = $this->cliente;
-        if (isset($this->revendedora)) $array['revendedora'] = $this->revendedora;
-        if (isset($this->fechaAlta)) $array['fechaAlta'] = $this->fechaAlta;
-        if (isset($this->fechaRecibido)) $array['fechaRecibido'] = $this->fechaRecibido;
+        if (isset($this->fechaRecibido)) $array['fechaRecibido'] = $this->fechaRecibido->format('Y-m-d');
         if (isset($this->recibido)) $array['recibido'] = $this->recibido;
         if (isset($this->entregado)) $array['entregado'] = $this->entregado;
         if (isset($this->cobrado)) $array['cobrado'] = $this->cobrado;
+        if (isset($this->campania)) $array['campania'] = $this->campania;
         return $array;
     }
 

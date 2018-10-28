@@ -10,7 +10,7 @@ require_once 'Db.php';
 require_once 'AbstractRepository.php';
 require_once '../Model/Producto.php';
 require_once '../Model/Catalogo.php';
-require_once '../Model/ProductoCatalogo.php';
+require_once '../Model/PedidoProductoCatalogo.php';
 
 require_once '../Repository/CatalogoRepository.php';
 require_once '../Repository/ProductoRepository.php';
@@ -22,32 +22,35 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
 {
 
     /**
-     * @param Producto $productoCatalogo
-     * @return null|Producto
+     * @param PedidoProductoCatalogo $pedidoProductoCatalogo
+     * @return null
      * @throws BadRequestException
      */
-    public function create(ProductoCatalogo $productoCatalogo): ?ProductoCatalogo
+    public function create(PedidoProductoCatalogo $pedidoProductoCatalogo): ?PedidoProductoCatalogo
     {
 
         try {
             $db = $this->connect();
             $db->beginTransaction();
-            $sqlCreate = "INSERT INTO herramientas.producto_catalogo(producto, catalogo, precio, activo
-                              ) 
-                      VALUES (:producto,:catalogo,:precio,:activo                              
-                              )";
-            $producto = $productoCatalogo->getProducto()->getId();
-            $catalogo = $productoCatalogo->getCatalogo()->getId();
-            $precio = (float)$productoCatalogo->getPrecio();
-            $activo = (bool)$productoCatalogo->getActivo();
+            $sqlCreate = "INSERT INTO herramientas.pedido_producto_catalogo
+                          (pedido_avon, producto_catalogo, cantidad, cliente, revendedora) 
+                      VALUES 
+                          (:pedido_avon, :producto_catalogo, :cantidad,:cliente, :revendedora)";
+
+            $pedidoAvon = (int)$pedidoProductoCatalogo->getPedidoAvon()->getId();
+            $productoCatalogo = (int)$pedidoProductoCatalogo->getProductoCatalogo()->getId();
+            $cantidad = (int)$pedidoProductoCatalogo->getCantidad();
+            $cliente = $pedidoProductoCatalogo->getCliente() ? (int)$pedidoProductoCatalogo->getCliente()->getId() : null;
+            $revendedora = $pedidoProductoCatalogo->getRevendedora() ? (int)$pedidoProductoCatalogo->getRevendedora()->getId() : null;
 
             $stmtCreate = $db->prepare($sqlCreate);
-            $stmtCreate->bindParam(':producto', $producto, PDO::PARAM_INT);
-            $stmtCreate->bindParam(':catalogo', $catalogo, PDO::PARAM_INT);
-            $stmtCreate->bindParam(':precio', $precio);
-            $stmtCreate->bindParam(':activo', $activo, PDO::PARAM_BOOL);
+            $stmtCreate->bindParam(':pedido_avon', $pedidoAvon, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':producto_catalogo', $productoCatalogo, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':cliente', $cliente, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':revendedora', $revendedora, PDO::PARAM_INT);
             $stmtCreate->execute();
-            $productoCatalogo->setId($db->lastInsertId());
+            $pedidoProductoCatalogo->setId($db->lastInsertId());
             $db->commit();
 
         } catch (Exception $e) {
@@ -70,132 +73,74 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
             $this->disconnect();
 
         }
-        return $productoCatalogo;
+        return $pedidoProductoCatalogo;
     }
 
-    public function update(Producto $producto): void
+    public function update(PedidoProductoCatalogo $pedidoProductoCatalogo)
     {
-        $db = $this->connect();
-        $db->beginTransaction();
-        try {
-            $sqlUpdate = "UPDATE herramientas.producto 
-                                SET                                   
-                                  descripcion=:descripcion,
-                                  categoria=:categoria,
-                                  unidad=:unidad
-                                  
-                                WHERE
-                                  (id =:id)";
 
-            $descripcion = $producto->getDescripcion();
-            $categoria = $producto->getCategoria()->getId();
-            $unidad = $producto->getUnidad()->getId();
-            $id = $producto->getId();
-            $stmtUpdate = $db->prepare($sqlUpdate);
-            $stmtUpdate->bindParam(':descripcion', $descripcion);
-            $stmtUpdate->bindParam(':categoria', $categoria, PDO::PARAM_INT);
-            $stmtUpdate->bindParam(':unidad', $unidad, PDO::PARAM_INT);
-            $stmtUpdate->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmtUpdate->execute();
+        try {
+            $db = $this->connect();
+            $db->beginTransaction();
+            $sqlCreate = "UPDATE 
+                            herramientas.pedido_producto_catalogo
+                          SET 
+                            producto_catalogo = :producto_catalogo, 
+                            cantidad = :cantidad, 
+                            cliente = :cliente, 
+                            revendedora = :revendedora 
+                          WHERE 
+                            (id = :id);";
+
+            $productoCatalogo = (int)$pedidoProductoCatalogo->getProductoCatalogo()->getId();
+            $cantidad = (int)$pedidoProductoCatalogo->getCantidad();
+            $cliente = $pedidoProductoCatalogo->getCliente() ? (int)$pedidoProductoCatalogo->getCliente()->getId() : null;
+            $revendedora = $pedidoProductoCatalogo->getRevendedora() ? (int)$pedidoProductoCatalogo->getRevendedora()->getId() : null;
+            $id = (int)$pedidoProductoCatalogo->getId();
+            $stmtCreate = $db->prepare($sqlCreate);
+            $stmtCreate->bindParam(':producto_catalogo', $productoCatalogo, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':cliente', $cliente, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':revendedora', $revendedora, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtCreate->execute();
             $db->commit();
+
         } catch (Exception $e) {
-            die(print_r(Array($stmtUpdate->errorInfo())));
             if ($db != null) $db->rollback();
-            if ($e instanceof PDOException && $stmtUpdate->errorInfo()[0] == 23000 && $stmtUpdate->errorInfo()[1] == 1062) {
-                $array = explode("'", $stmtUpdate->errorInfo()[2]);
+            if ($e instanceof PDOException && $stmtCreate->errorInfo()[0] == 23000 && $stmtCreate->errorInfo()[1] == 1062) {
+                //TODO: implementar ex
+                $array = explode("'", $stmtCreate->errorInfo()[2]);
                 switch ($array[3]) {
-
-                    case 'persona_unique':
-                        throw new BadRequestException("La combinación " . " número " . " ya existe");
+                    case "persona_unique":
+                        throw new BadRequestException("existe una ocurrencia para la persona id: " . $array[1]);
                         break;
                     default:
                         die(print_r($array));
-
+                        break;
                 }
             } else {
                 throw $e;
             }
         } finally {
-            $stmtUpdate = null;
             $this->disconnect();
 
         }
-    }
 
-    public function delete(int $id): void
-    {
-        $db = $this->connect();
-        $db->beginTransaction();
-        try {
-            $sqlDelete = "DELETE FROM herramientas.producto WHERE id=:id";
-            $stmtDelete = $db->prepare($sqlDelete);
-            $stmtDelete->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmtDelete->execute();
-            $db->commit();
-
-        } catch (Exception $e) {
-            //TODO: implementar ex
-            if ($db != null) $db->rollback();
-            if ($e instanceof PDOException && $stmtDelete->errorInfo()[0] == 23000 && $stmtDelete->errorInfo()[1] == 1451) {
-                $array = explode("`", $stmtDelete->errorInfo()[2]);
-
-                switch ($array[5]) {
-
-                    case 'PERSONA_REVENDEDORA':
-                        //TODO:verificar id de revendedora
-                        $personaRepository = new PersonaRepository($this->db);
-                        throw new BadRequestException("Existe una relación para la persona " . $personaRepository->get($id)->getNombre() . " " . $personaRepository->get($id)->getApellidoSegundo() . " con Revendedora id X");
-                        break;
-                    default:
-                        die(print_r($array));
-                }
-            } else {
-                throw $e;
-            }
-        } finally {
-
-            $stmtDelete = null;
-            $this->disconnect();
-
-        }
-    }
-
-
-    public function getAll(bool $full = true): Array
-    {
-        $sql = "SELECT *
-                FROM producto";
-
-        $db = $this->connect();
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-        if ($items == null) {
-            return Array();
-        }
-
-        $productos = Array();
-        foreach ($items as $item) {
-            $item = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
-            array_push($productos, $item);
-        }
-
-
-        $this->disconnect();
-        return $productos;
     }
 
     private function createFromResultset($result, array $fields, $db)
     {
 
-        $item = new ProductoCatalogo();
+        $item = new PedidoProductoCatalogo();
         $item->setId((int)$result->id);
-        $item->setProducto((new ProductoRepository($db))->get($result->producto));
-        $item->setCatalogo((new CatalogoRepository($db))->get($result->catalogo));
-        $item->setPrecio((float)$result->precio);
-        $item->setActivo((bool)$result->activo);
+        $item->setPedidoAvon((new PedidoAvonRepository($db))->get($result->pedido_avon));
+        $item->setProductoCatalogo((new ProductoCatalogoRepository($db))->get($result->producto_catalogo));
+        $item->setCantidad((int)$result->cantidad);
+        $item->setRecibido((bool)$result->recibido);
+        if ($result->cliente) $item->setCliente((new ClienteRepository())->get($result->cliente));
+        if ($result->revendedora) $item->setRevendedora((new RevendedoraRepository())->get($result->revendedora));
+
         return $item;
     }
 
@@ -226,6 +171,31 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         return $productoCatalogos;
     }
 
+    public function getAllProductosPorPedido(int $id, bool $full = true): Array
+    {
+
+        $sql = "SELECT *
+                FROM pedido_producto_catalogo WHERE pedido_avon=:id";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $productosPorPedido = Array();
+        foreach ($items as $item) {
+            $item = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
+            array_push($productosPorPedido, $item);
+        }
+        $this->disconnect();
+        return $productosPorPedido;
+    }
+
     public function getAllActiveSorted(): Array
     {
         $sql = "SELECT pro.* FROM producto pro";
@@ -250,27 +220,6 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
 
         $this->disconnect();
         return $productos;
-    }
-
-    public function get(int $id, bool $full = true): ?Producto
-    {
-        $sqlGet = "SELECT pro.*  FROM producto pro               
-                    WHERE pro.id=:id
-                    ";
-
-        $db = $this->connect();
-        $stmtGet = $db->prepare($sqlGet);
-        $stmtGet->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmtGet->execute();
-        $result = $stmtGet->fetchObject();
-
-        if ($result == null) {
-            return null;
-        }
-
-        $producto = $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
-        $this->disconnect();
-        return $producto;
     }
 
 

@@ -14,13 +14,13 @@ import {
     CardFooter,
     Button
 } from 'reactstrap';
-import Select from 'react-select';
-
 
 import {getCampaniaActiva} from '../../../services/CampaniaServices';
 import FormValidation from "../../../utils/FormValidation";
-import Validator from "../../../utils/Validator";
-import {getCatalogoPorId} from "../../../services/CatalogoService";
+import {pedidoPorCampaniaActual} from "../../../services/PedidoServices";
+import {grillaPedidoProductoCatalogos} from "../../../services/PedidoProductoCatalogoServices";
+import PedidoProductoCatalogoGrilla
+    from '../../../components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla';
 
 class CampaniaActual extends Component {
 
@@ -32,7 +32,9 @@ class CampaniaActual extends Component {
                 fechaInicio: "",
                 fechaFin: "",
                 descripcion: "",
-                activo: false
+                activo: false,
+                idPedido: null,
+                grillaPedidos: [],
             },
             error: {
                 codigo: null,
@@ -45,7 +47,7 @@ class CampaniaActual extends Component {
         },
 
 
-            this.idCampaniaActual = props.match.params.id;
+
 
 
         this.urlCancelar = "/administracion/catalogos";
@@ -54,7 +56,10 @@ class CampaniaActual extends Component {
         this.formValidation = new FormValidation({
             component: this,
             validators: {}
+
         });
+
+
     }
 
     componentDidMount() {
@@ -62,34 +67,48 @@ class CampaniaActual extends Component {
         let component = this;
         let arrayPromises = [];
         let p1 = getCampaniaActiva().then(result => result.json());
-        arrayPromises.push(p1);
+        let p2 = pedidoPorCampaniaActual().then(result => result.json());
+        let p3 = grillaPedidoProductoCatalogos(this.state.campaniaActual.idPedido ? this.state.campaniaActual.idPedido : 1).then(result => result.json());
+
+        arrayPromises.push(p1, p2, p3);
         Promise.all(arrayPromises)
             .then(
                 (result) => {
-                    console.log(result);
+
                     let miState = {...this.state};
+
 
                     miState.loaded = true;
                     miState.campaniaActual.id = result[0].id;
                     miState.campaniaActual.fechaInicio = result[0].fechaInicio;
                     miState.campaniaActual.fechaFin = result[0].fechaFin;
                     miState.campaniaActual.descripcion = result[0].descripcion;
+                    miState.campaniaActual.idPedido = result[1].id;
+                    miState.campaniaActual.grillaPedidos = result[2];
 
 
                     component.setState(miState)
 
 
                 })
+
             .catch(function (err) {
                 console.log(err);
             })
+
+
     }
 
+
     render() {
+
+
         if (!this.state.loaded)
             return null;
 
+
         const currentState = {...this.state};
+
 
         const divStyle = {
             border: 'blue',
@@ -125,18 +144,19 @@ class CampaniaActual extends Component {
                         </Col>
 
                     </Row>
-                    <Row><h1>
-                        <Label>Pedidos:</Label>
+                    <Row>
+                        <h1>
+                            <Label>Pedido:{currentState.campaniaActual.idPedido}</Label>
 
-                    </h1></Row>
+                        </h1>
+                    </Row>
+
                     <Row>
                         <Col sm="4">
 
-                            <Button
-                                style={{marginLeft: "5px"}}
-                                color="success"
-                            >
-                                Cargar Items al Pedido
+                            <Button color="primary"
+                                    onClick={() => this.props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/' + currentState.campaniaActual.idPedido)}>
+                                Cargar Item <i className="fa fa-plus"></i>
                             </Button>
                         </Col>
                         <Col sm="4">
@@ -150,8 +170,10 @@ class CampaniaActual extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col sm="3">
+                        <Col sm="12">
                             <ListGroup id="list-tab" role="tablist">
+                                <PedidoProductoCatalogoGrilla
+                                    pedidoProductoCatalogos={currentState.campaniaActual.grillaPedidos}/>
 
                             </ListGroup>
                         </Col>
@@ -161,33 +183,11 @@ class CampaniaActual extends Component {
                     </Row>
 
                     <div style={divStyle}>
-                        hola
+
                     </div>
                 </CardBody>
                 <CardFooter style={{textAlign: "right"}}>
-                    <Button
-                        style={{marginLeft: "5px"}}
-                        color="success"
-                    >
-                        Guardar
-                    </Button>
-                    <Button
-                        style={{marginLeft: "5px"}}
-                        color="success"
-                        onClick={() => this.props.history.push({
-                            pathname: '/presentacion/resumen',
-                            state: {serie: "1", a: 1}
-                        })}
-                    >
-                        Envío de Resultados
-                    </Button>
-                    <Button
-                        style={{marginLeft: "5px"}}
-                        color="danger"
-                        onClick={() => this.props.history.push("/")}
-                    >
-                        Cancelar
-                    </Button>
+
                 </CardFooter>
             </Card>
 

@@ -28,6 +28,11 @@ class PedidoAvonService
         return $this->repository->get($id);
     }
 
+    public function getPedidoPorCampaniaActual(): ?PedidoAvon
+    {
+        return $this->repository->getPedidoPorCampaniaActual();
+    }
+
     public function getAll():Array
     {
         return $this->repository->getAll();

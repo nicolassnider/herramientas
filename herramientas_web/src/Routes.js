@@ -25,6 +25,7 @@ const CampaniaActual = Loadable({
 });
 
 
+
 /***** Catalogos *****/
 const Catalogos = Loadable({
     loader: () => import('./views/Administracion/Catalogos/Catalogos'),
@@ -96,6 +97,14 @@ const IncluirProductoEnCatalogo = Loadable({
     loading: Loading,
 });
 
+/***** IncluirProductoEnPedido *****/
+const IncluirProductoEnPedido = Loadable({
+    loader: () => import('./views/Administracion/ProductoCatalogo/IncluirProductoEnPedido'),
+    loading: Loading,
+});
+
+
+
 
 const Users = Loadable({
     loader: () => import('./views/Users/Users'),
@@ -122,6 +131,16 @@ const routes = [
     },
     {
         path: '/administracion/campanias/editar/:id', exact: true, name: 'Editar', component: Campania
+    },
+    {
+        path: '/areatrabajo/campania/campaniaactual', exact: true, name: 'Campania Actual', component: CampaniaActual
+    },
+
+    {
+        path: '/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/:id',
+        exact: true,
+        name: 'Incluir producto en Pedido',
+        component: IncluirProductoEnPedido
     },
 
     {
@@ -210,13 +229,6 @@ const routes = [
         exact: true,
         name: 'Incluye Producto en Catalogo',
         component: IncluirProductoEnCatalogo
-    },
-
-    {
-        path: '/areatrabajo/campaniaactual/campaniaactual',
-        exact: true,
-        name: 'Campania Actual',
-        component: CampaniaActual
     },
 
     {

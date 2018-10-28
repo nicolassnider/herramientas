@@ -260,19 +260,12 @@ CREATE TABLE herramientas.producto_catalogo (
 #21
 CREATE TABLE herramientas.pedido_avon (
   id             INT(30)          NOT NULL AUTO_INCREMENT,
-  cliente        INT(30)          NULL,
-  revendedora    INT(30)          NULL,
-  fecha_alta     DATE             NOT NULL,
   fecha_recibido DATE             NOT NULL,
   recibido       BIT(1) DEFAULT 0 NOT NULL,
   entregado      BIT(1) DEFAULT 0 NOT NULL,
   cobrado        BIT(1) DEFAULT 0 NOT NULL,
   campania       INT(30)          NOT NULL,
   PRIMARY KEY (id),
-  CONSTRAINT FK_CLIENTE_PEDIDO_AVON FOREIGN KEY (cliente)
-  REFERENCES herramientas.cliente (id),
-  CONSTRAINT FK_REVENDEDORA_PEDIDO_AVON FOREIGN KEY (revendedora)
-  REFERENCES herramientas.revendedora (id),
   CONSTRAINT pedido_avon_campania FOREIGN KEY (campania)
   REFERENCES herramientas.campania (id)
 )
@@ -285,11 +278,17 @@ CREATE TABLE herramientas.pedido_producto_catalogo (
   producto_catalogo INT(30)          NOT NULL,
   cantidad          INT(30)          NOT NULL,
   recibido          BIT(1) DEFAULT 0 NOT NULL,
+  cliente           INT(30)          NULL,
+  revendedora       INT(30)          NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_PEDIDO_AVON_CAMPANIA FOREIGN KEY (pedido_avon)
   REFERENCES herramientas.pedido_avon (id),
   CONSTRAINT FK_PRODUCTO_CATALOGO_ FOREIGN KEY (producto_catalogo)
-  REFERENCES herramientas.producto_catalogo (id)
+  REFERENCES herramientas.producto_catalogo (id),
+  CONSTRAINT FK_PEDIDO_PRODUCTO_CATALOGO_CLIENTE FOREIGN KEY (cliente)
+  REFERENCES herramientas.cliente (id),
+  CONSTRAINT FK_PEDIDO_PRODUCTO_CATALOGO_REVENDEDORA FOREIGN KEY (revendedora)
+  REFERENCES herramientas.cliente (id)
 
 )
   ENGINE = InnoDB

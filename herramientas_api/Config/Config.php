@@ -28,10 +28,10 @@ return [
                 'username' => '',
                 'password' => ''
             ],
-            'fromEmail' => 'fleet@vec.com.ar',
-            'fromName' => 'VEC Fleet',
-            'replyToEmail' => 'noreply@vec.com.ar',
-            'replyToName' => 'VEC Fleet'
+            'fromEmail' => '',
+            'fromName' => '',
+            'replyToEmail' => '',
+            'replyToName' => ''
         ]
     ],
     'storage' => [

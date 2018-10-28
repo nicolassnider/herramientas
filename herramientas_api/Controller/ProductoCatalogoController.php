@@ -23,19 +23,6 @@ class ProductoCatalogoController
         $this->app = $app;
     }
 
-    private static function getInstanceFromRequest(Request $request): Producto
-    {
-        $cliente = new Producto();
-        $cliente->setId((int)$request->getAttribute('id'));
-        $cliente->setDescripcion($request->getParam('descripcion'));
-        $categoria = new CategoriaProducto();
-        $categoria->setId((int)$request->getParam('categoria')['id']);
-        $cliente->setCategoria($categoria);
-        $unidad = new Unidad();
-        $unidad->setId((int)$request->getParam('unidad')['id']);
-        $cliente->setUnidad($unidad);
-        return $cliente;
-    }
 
     public function init()
     {
@@ -49,7 +36,25 @@ class ProductoCatalogoController
                     $id = ((int)$request->getAttribute('id'));
                     $items = $service->getAllCatalogosPorProducto($id);
                     return $response->withJson($items, 200);
+                });
 
+                $this->post('', function (Request $request, Response $response) {
+                    $service = new ProductoCatalogoService();
+                    $productoCatalogo = ProductoCatalogoController::getInstanceFromRequest($request);
+                    $service->create($productoCatalogo);
+                    return $response->withJson($productoCatalogo, 201);
+                });
+
+                $this->get('/select', function (Request $request, Response $response) {
+
+                    $items = (new ProductoCatalogoService())->getAllActiveSorted();
+
+                    array_walk($items, function (&$item) {
+                        $label = $item->getProducto()->getDescripcion() . ' (' . $item->getCatalogo()->getDescripcion() . ')';
+                        $item = new SelectOption($item->getId(), $label);
+                    });
+
+                    return $response->withJson($items, 200);
                 });
 
 
@@ -57,6 +62,21 @@ class ProductoCatalogoController
 
         });
 
+    }
+
+    private static function getInstanceFromRequest(Request $request): ProductoCatalogo
+    {
+        $productoCatalogo = new ProductoCatalogo;
+        $productoCatalogo->setId((int)$request->getAttribute('id'));
+        $producto = new Producto();
+        $producto->setId((int)$request->getParam('producto')['id']);
+        $productoCatalogo->setProducto($producto);
+        $catalogo = new Catalogo();
+        $catalogo->setId((int)$request->getParam('catalogo')['id']);
+        $productoCatalogo->setCatalogo($catalogo);
+        $productoCatalogo->setActivo((bool)$request->getParam('activo'));
+        $productoCatalogo->setPrecio((float)$request->getParam('precio'));
+        return $productoCatalogo;
     }
 
 }

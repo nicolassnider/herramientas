@@ -14,47 +14,47 @@ import {
     FormGroup,
     Label
 } from 'reactstrap';
-import {editarProductoCatalogo, getCatalogosPorProductoPorId} from '../../../services/ProductoCatalogoServices';
 import {selectCatalogosSinProducto} from '../../../services/CatalogoService';
-import {nuevaProductoCatalogo} from "../../../services/ProductoCatalogoServices";
+import {nuevoPedidoProductoCatalogo} from "../../../services/PedidoProductoCatalogoServices";
 import FormValidation from "../../../utils/FormValidation";
 import Validator from "../../../utils/Validator";
 import Select from 'react-select';
+import {selectProductoCatalogos} from "../../../services/ProductoCatalogoServices";
 
 //import 'react-datepicker/dist/react-datepicker.css';
 
-class IncluirProductoEnCatalogo extends Component {
+class IncluirProductoEnPedido extends Component {
     constructor(props) {
+        console.log("incluirproductoenpedido");
         super(props);
         this.state = {
-            productoCatalogo: {
-                id: null,
-                producto: {
-                    id: props.match.params.id,
-                    descripcion: "",
-                    categoria: {
-                        id: null,
-                        descripcion: ""
-                    },
-                    unidad: {
-                        id: null,
-                        descripcion: ""
-                    }
+            pedidoProductoCatalogo: {
+                "id": 1,
+                "pedidoAvon": {
+                    "id": props.id,
                 },
-                catalogo: {
-                    id: null,
-                    descripcion: "",
-                    observaciones: "",
-                    activo: true
+                "productoCatalogo": {
+                    "id": null,
                 },
-                catalogos: {
-                    id: null,
-                    descripcion: "",
-                    observaciones: "",
-                    activo: true
+                "productoCatalogos": {
+                    "id": null,
                 },
-                precio: null,
-                activo: true
+                "cantidad": 0,
+                "recibido": false,
+                "cliente": {
+                    "id": null
+                },
+                "clientes": {
+                    "id": null
+                },
+                "revendedora": {
+                    "id": null
+                },
+                "revendedoras": {
+                    "id": null
+                }
+
+
             },
 
 
@@ -62,15 +62,18 @@ class IncluirProductoEnCatalogo extends Component {
                 codigo: null,
                 mensaje: "",
                 detalle: []
-            },
-            modified: false,
-            flagPrimeraVez: true,
+            }
+            ,
+            modified: false
+            ,
+            flagPrimeraVez: true
+            ,
             loaded: false
         };
-        this.idProducto = props.match.params.id;
+        this.idPedido = props.match.params.id;
 
 
-        this.urlCancelar = "/administracion/productocatalogos";
+        this.urlCancelar = "/areatrabajo/campania/campaniaactual";
 
 
         this.submitForm = this.submitForm.bind(this);
@@ -88,8 +91,14 @@ class IncluirProductoEnCatalogo extends Component {
 
         switch (name) {
 
-            case "catalogos":
-                newState.productoCatalogo.catalogo.id = object.value;
+            case "productoCatalogos":
+                newState.pedidoProductoCatalogo.productoCatalogo.id = object.value;
+                break;
+            case "clientes":
+                newState.pedidoProductoCatalogo.cliente.id = object.value;
+                break;
+            case "revendedoras":
+                newState.pedidoProductoCatalogo.revendedora.id = object.value;
                 break;
         }
 
@@ -100,16 +109,16 @@ class IncluirProductoEnCatalogo extends Component {
 
     componentDidMount() {
 
+
         let component = this;
         let arrayPromises = [];
-        if (component.idProducto) {
-            let p1 = selectCatalogosSinProducto(component.idProducto).then(result => result.json());
-            arrayPromises.push(p1);
-        }
+        let p1 = selectProductoCatalogos().then(result => result.json());
+        arrayPromises.push(p1);
 
         Promise.all(arrayPromises)
             .then(
                 (result) => {
+                    console.log(result);
                     let miState = {...this.state};
 
                     if (component.idProducto) {
@@ -143,9 +152,9 @@ class IncluirProductoEnCatalogo extends Component {
 
     submitForm(event) {
         event.preventDefault();
-        let productoCatalogo = this.state.productoCatalogo;
+        let pedidoProductoCatalogo = this.state.pedidoProductoCatalogo;
         if (!this.idProducto) {
-            nuevaProductoCatalogo(productoCatalogo)
+            nuevoPedidoProductoCatalogo(pedidoProductoCatalogo)
                 .then(response => {
                     if (response.status === 400) {
 
@@ -191,7 +200,7 @@ class IncluirProductoEnCatalogo extends Component {
                     }
                 });
         } else {
-            nuevaProductoCatalogo(productoCatalogo)
+            nuevoPedidoProductoCatalogo(pedidoProductoCatalogo)
                 .then(response => {
                     if (response.status === 400) {
                         response.json()
@@ -287,7 +296,7 @@ class IncluirProductoEnCatalogo extends Component {
                         <Row xs={{size: 12, offset: 0}}>
 
                             <Col xs={{size: 4, offset: 0}}>
-                                <Label htmlFor="catalogos">(*)Catálogos disponibles:</Label>
+                                <Label htmlFor="catalogos">(*)Producto por Catálogo:</Label>
                                 <Select
                                     name="catalogos" placeholder="Seleccionar una Catálogo..."
                                     valueKey="value" labelKey="label"
@@ -319,4 +328,4 @@ class IncluirProductoEnCatalogo extends Component {
 
 }
 
-export default IncluirProductoEnCatalogo;
+export default IncluirProductoEnPedido;
