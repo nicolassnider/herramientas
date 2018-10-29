@@ -11,6 +11,7 @@ require_once 'AbstractRepository.php';
 require_once '../Model/Producto.php';
 require_once '../Model/Catalogo.php';
 require_once '../Model/PedidoProductoCatalogo.php';
+require_once '../Model/Archivo.php';
 
 require_once '../Repository/CatalogoRepository.php';
 require_once '../Repository/ProductoRepository.php';
@@ -126,6 +127,52 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
             $this->disconnect();
 
         }
+
+    }
+
+    public function getCsvFile(int $pedidoId): ?Archivo
+    {
+
+        $datos = array();
+        $datosPlanos = array();
+        $cabecera = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente');
+
+        // Datos de presentaciones
+        $pedidoProductoCatalogosPorPedidos = $this->getAllProductosPorPedido($pedidoId);
+        foreach ($pedidoProductoCatalogosPorPedidos as $pedidoProductoCatalogoPorPedido) {
+            $fila = [
+                $pedidoProductoCatalogoPorPedido->getId(),
+                $pedidoProductoCatalogoPorPedido->getProductoCatalogo()->getProducto()->getId(),
+                $pedidoProductoCatalogoPorPedido->getProductoCatalogo()->getProducto()->getDescripcion(),
+                $pedidoProductoCatalogoPorPedido->getProductoCatalogo()->getPrecio(),
+                $pedidoProductoCatalogoPorPedido->getCantidad(),
+                $pedidoProductoCatalogoPorPedido->getCliente() ?
+                    $pedidoProductoCatalogoPorPedido->getCliente()->getPersona()->getNombre() . ' ' . $pedidoProductoCatalogoPorPedido->getCliente()->getPersona()->getApellido() :
+                    $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getNombre() . ' ' . $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getApellido()
+
+
+            ];
+            array_push($datosPlanos, $fila);
+
+        }
+
+
+        $archivo = new Archivo;
+
+        $filename = 'pedido.csv';
+        $archivo->setNombre($filename);
+        $archivo->setTipo("tex/csv");
+        header("Content-type: text/csv");
+        header("Content-Disposition: attachment; filename=$filename");
+        $output = fopen("php://output", "w");
+        fputcsv($output, $cabecera);
+        foreach ($datosPlanos as $row) {
+            fputcsv($output, $row);
+        }
+        fclose($output);
+        $archivo->setContenido($output);
+
+        return $archivo;
 
     }
 
