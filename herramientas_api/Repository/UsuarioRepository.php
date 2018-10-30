@@ -24,13 +24,13 @@ class UsuarioRepository extends AbstractRepository
 
         $usuarios = Array();
         foreach ($items as $item) {
-            $item = new Usuario();
-            $item->setId((int)$item->id);
-            $item->setUsuario($item->usuario);
-            $item->setClave($item->clave);
-            $item->setNotificacionesActivas($item->notificaciones_activas);
-            $item->setPerfil((new PerfilRepository($this->db))->get($item->perfil));
-            array_push($usuarios, $item);
+            $usuario = new Usuario();
+            $usuario->setId((int)$item->id);
+            $usuario->setUsuario($item->usuario);
+            $usuario->setClave($item->clave);
+            $usuario->setNotificacionesActivas($item->notificaciones_activas);
+            $usuario->setPerfil((new PerfilRepository($this->db))->get($item->perfil));
+            array_push($usuarios, $usuario);
         }
 
 
