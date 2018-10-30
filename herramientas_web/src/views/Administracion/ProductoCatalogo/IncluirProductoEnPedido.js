@@ -20,6 +20,8 @@ import FormValidation from "../../../utils/FormValidation";
 import Validator from "../../../utils/Validator";
 import Select from 'react-select';
 import {selectProductoCatalogos} from "../../../services/ProductoCatalogoServices";
+import * as NumericInput from "react-numeric-input";
+import {selectClientes} from "../../../services/ClientesServices";
 
 //import 'react-datepicker/dist/react-datepicker.css';
 
@@ -27,11 +29,12 @@ class IncluirProductoEnPedido extends Component {
     constructor(props) {
         console.log("incluirproductoenpedido");
         super(props);
+        this.idPedido = props.match.params.id;
         this.state = {
             pedidoProductoCatalogo: {
-                "id": 1,
+                "id": null,
                 "pedidoAvon": {
-                    "id": props.id,
+                    "id": props.match.params.id,
                 },
                 "productoCatalogo": {
                     "id": null,
@@ -70,7 +73,6 @@ class IncluirProductoEnPedido extends Component {
             ,
             loaded: false
         };
-        this.idPedido = props.match.params.id;
 
 
         this.urlCancelar = "/areatrabajo/campania/campaniaactual";
@@ -82,7 +84,7 @@ class IncluirProductoEnPedido extends Component {
 
         this.formValidation = new FormValidation({
             component: this,
-            validators: {}
+            validators: {'pedidoProductoCatalogo.cantidad': (value) => Validator.intIsGreaterThan(value, 0)}
         });
     }
 
@@ -103,9 +105,9 @@ class IncluirProductoEnPedido extends Component {
         }
 
         this.setState(newState);
+        console.log(newState);
 
     }
-
 
     componentDidMount() {
 
@@ -113,7 +115,8 @@ class IncluirProductoEnPedido extends Component {
         let component = this;
         let arrayPromises = [];
         let p1 = selectProductoCatalogos().then(result => result.json());
-        arrayPromises.push(p1);
+        let p2 = selectClientes().then(result => result.json());
+        arrayPromises.push(p1, p2);
 
         Promise.all(arrayPromises)
             .then(
@@ -121,21 +124,30 @@ class IncluirProductoEnPedido extends Component {
                     console.log(result);
                     let miState = {...this.state};
 
-                    if (component.idProducto) {
-                        miState.productoCatalogo.catalogos = result[0];
-                        miState.productoCatalogo.catalogos = result[0].map((catalogo, index) => {
+                    if (component.idPersona) {
+                        miState.pedidoProductoCatalogo = result[0];
+                        console.log(result);
+                        miState.pedidoProductoCatalogo.productoCatalogos = result[1].map((productoCatalogo, index) => {
                             return (
-                                {value: catalogo.value, label: catalogo.label}
-                            )
-                        });
-
-                    } else {
-                        miState.productoCatalogo.catalogos = result[0].map((catalogo, index) => {
-                            return (
-                                {value: catalogo.value, label: catalogo.label}
+                                {value: productoCatalogo.value, label: productoCatalogo.label}
                             )
                         })
-                        ;
+                        miState.pedidoProductoCatalogo.clientes = result[2].map((cliente, index) => {
+                            return (
+                                {value: cliente.value, label: cliente.label}
+                            )
+                        });
+                    } else {
+                        miState.pedidoProductoCatalogo.productoCatalogos = result[0].map((productoCatalogo, index) => {
+                            return (
+                                {value: productoCatalogo.value, label: productoCatalogo.label}
+                            )
+                        })
+                        miState.pedidoProductoCatalogo.clientes = result[1].map((cliente, index) => {
+                            return (
+                                {value: cliente.value, label: cliente.label}
+                            )
+                        });
                     }
 
                     miState.loaded = true;
@@ -182,7 +194,7 @@ class IncluirProductoEnPedido extends Component {
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/productos/catalogosenproducto/" + this.idProducto);
+                                this.props.history.push("areatrabajo/campania/campaniaactual" + this.idPedido);
                             }, 2500);
                         } else {
                             if (response.status === 400) {
@@ -225,7 +237,7 @@ class IncluirProductoEnPedido extends Component {
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/productos/catalogosenproducto/" + this.idProducto);
+                                this.props.history.push("areatrabajo/campania/campaniaactual" + this.idPedido);
                             }, 2500);
                         }
                     }
@@ -237,7 +249,7 @@ class IncluirProductoEnPedido extends Component {
 
     newData(event) {
         let newState = {...this.state};
-        newState.producto[event.target.name] = event.target.value;
+        newState.pedidoProductoCatalogo[event.target.name] = event.target.value;
         this.setState(newState);
     }
 
@@ -298,15 +310,39 @@ class IncluirProductoEnPedido extends Component {
                             <Col xs={{size: 4, offset: 0}}>
                                 <Label htmlFor="catalogos">(*)Producto por Catálogo:</Label>
                                 <Select
-                                    name="catalogos" placeholder="Seleccionar una Catálogo..."
+                                    name="productoCatalogos" placeholder="Seleccionar un Producto (ver catalogo)..."
                                     valueKey="value" labelKey="label"
-                                    options={this.state.productoCatalogo.catalogos}
-                                    value={this.state.productoCatalogo.catalogos.find(e => e.value === this.state.productoCatalogo.catalogos.id)}
-                                    onChange={(e) => this.handleSelect("catalogos", e)}
+                                    options={this.state.pedidoProductoCatalogo.productoCatalogos}
+                                    value={this.state.pedidoProductoCatalogo.productoCatalogos.find(e => e.value === this.state.pedidoProductoCatalogo.productoCatalogos.id)}
+                                    onChange={(e) => this.handleSelect("productoCatalogos", e)}
                                 />
+                            </Col>
+                            <Col>
+                                <Label htmlFor="cantidad">(*)Cantidad:</Label>
+                                <Input type="text" name="cantidad"
+                                       onChange={this.newData} placeholder="Cantidad(entero)"
+                                       value={this.state.pedidoProductoCatalogo.cantidad}
+                                       invalid={!validationState.pedidoProductoCatalogo.cantidad.pristine && !validationState.pedidoProductoCatalogo.cantidad.valid}/>
+                                <FormFeedback
+                                    invalid={!validationState.pedidoProductoCatalogo.pristine && !validationState.pedidoProductoCatalogo.cantidad.valid}>{validationState.pedidoProductoCatalogo.cantidad.message}</FormFeedback>
+
+
                             </Col>
 
 
+                        </Row>
+
+                        <Row>
+                            <Col xs={{size: 4, offset: 0}}>
+                                <Label htmlFor="clientes">(*)Cliente:</Label>
+                                <Select
+                                    name="clientes" placeholder="Seleccionar un Cliente..."
+                                    valueKey="value" labelKey="label"
+                                    options={this.state.pedidoProductoCatalogo.clientes}
+                                    value={this.state.pedidoProductoCatalogo.clientes.find(e => e.value === this.state.pedidoProductoCatalogo.clientes.id)}
+                                    onChange={(e) => this.handleSelect("clientes", e)}
+                                />
+                            </Col>
                         </Row>
 
 

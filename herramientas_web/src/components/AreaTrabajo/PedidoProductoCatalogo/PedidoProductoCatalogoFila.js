@@ -6,6 +6,9 @@ const pedidoProductoCatalogo = (props) => {
     const style = {
         textAlign: 'center'
     }
+
+    console.log(props)
+
     return (
         <tr>
             <td>{props.pedidoProductoCatalogo.id}</td>
@@ -33,7 +36,7 @@ const pedidoProductoCatalogo = (props) => {
             </td>
             <td style={style}>
                 <Button size="sm"
-                        onClick={() => props.history.push(`/administracion/campanias/editar/${props.campania.id}`)}
+                        onClick={() => props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/editar/  ' + this.props.pedidoProductoCatalogo.pedidoAvon.id + "/" + this.props.pedidoProductoCatalogo.id)}
                         className="btn-outline-secondary">
                     <i className="fa fa-pencil"></i>
                 </Button>

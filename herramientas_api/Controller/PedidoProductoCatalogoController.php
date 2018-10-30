@@ -13,6 +13,7 @@ require_once "../Service/PedidoProductoCatalogoService.php";
 require_once "../Model/Producto.php";
 require_once "../Model/Catalogo.php";
 require_once "../Model/ProductoCatalogo.php";
+require_once "../Commons/Exceptions/BadRequestException.php";
 
 class PedidoProductoCatalogoController
 {
@@ -29,6 +30,15 @@ class PedidoProductoCatalogoController
 
         $this->app->group('/api', function () {
             $this->group('/pedidoproductocatalogo', function () {
+
+
+                $this->get('/pedido/archivo/{id}', function (Request $request, Response $response) {
+                    $pedidoId = (int)$request->getAttribute('id');
+                    $service = new PedidoProductoCatalogoService();
+
+
+                    return $service->getCsvFile($pedidoId);
+                });
 
 
                 $this->get('/{id}', function (Request $request, Response $response) {
@@ -70,14 +80,21 @@ class PedidoProductoCatalogoController
     {
         $pedidoProductoCatalogo = new PedidoProductoCatalogo;
         $pedidoProductoCatalogo->setId((int)$request->getAttribute('id'));
-        $producto = new Producto();
-        $producto->setId((int)$request->getParam('producto')['id']);
-        $pedidoProductoCatalogo->setProducto($producto);
-        $catalogo = new Catalogo();
-        $catalogo->setId((int)$request->getParam('catalogo')['id']);
-        $pedidoProductoCatalogo->setCatalogo($catalogo);
-        $pedidoProductoCatalogo->setActivo((bool)$request->getParam('activo'));
-        $pedidoProductoCatalogo->setPrecio((float)$request->getParam('precio'));
+        $productoCatalogo = new ProductoCatalogo();
+        $productoCatalogo->setId((int)$request->getParam('productoCatalogo')['id']);
+        $pedidoProductoCatalogo->setProductoCatalogo($productoCatalogo);
+        $pedidoAvon = new PedidoAvon();
+        $pedidoAvon->setId((int)$request->getParam('pedidoAvon')['id']);
+        $pedidoProductoCatalogo->setPedidoAvon($pedidoAvon);
+        $pedidoProductoCatalogo->setProductoCatalogo($productoCatalogo);
+        $pedidoProductoCatalogo->setCantidad((int)$request->getParam('cantidad'));
+        $cliente = new Cliente();
+        $request->getParam('cliente') ? $cliente->setId((int)$request->getParam('cliente')['id']) : $cliente = null;
+        $pedidoProductoCatalogo->setCliente($cliente);
+        $revendedora = new Revendedora();
+        $request->getParam('revendedora') ? $revendedora->setId((int)$request->getParam('revendedora')['id']) : $cliente = null;
+        $pedidoProductoCatalogo->setRevendedora($revendedora);
+
         return $pedidoProductoCatalogo;
     }
 

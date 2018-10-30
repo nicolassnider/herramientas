@@ -79,7 +79,10 @@ class IncluirProductoEnCatalogo extends Component {
 
         this.formValidation = new FormValidation({
             component: this,
-            validators: {}
+            validators: {
+                'productoCatalogo.precio': (value) => Validator.floatIsGreaterThan(value, 0),
+
+            }
         });
     }
 
@@ -173,7 +176,7 @@ class IncluirProductoEnCatalogo extends Component {
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/productos/catalogosenproducto/" + this.idProducto);
+                                this.props.history.push("/administracion/productos/productos");
                             }, 2500);
                         } else {
                             if (response.status === 400) {
@@ -228,7 +231,7 @@ class IncluirProductoEnCatalogo extends Component {
 
     newData(event) {
         let newState = {...this.state};
-        newState.producto[event.target.name] = event.target.value;
+        newState.productoCatalogo[event.target.name] = event.target.value;
         this.setState(newState);
     }
 
@@ -296,7 +299,15 @@ class IncluirProductoEnCatalogo extends Component {
                                     onChange={(e) => this.handleSelect("catalogos", e)}
                                 />
                             </Col>
-
+                            <Col xs={{size: 4, offset: 0}}>
+                                <Label htmlFor="precio">(*)Precio Unitario:</Label>
+                                <Input type="text" name="precio"
+                                       onChange={this.newData} placeholder="Precio"
+                                       value={this.state.productoCatalogo.precio}
+                                       invalid={!validationState.productoCatalogo.precio.pristine && !validationState.productoCatalogo.precio.valid}/>
+                                <FormFeedback
+                                    invalid={!validationState.productoCatalogo.pristine && !validationState.productoCatalogo.precio.valid}>{validationState.productoCatalogo.precio.message}</FormFeedback>
+                            </Col>
 
                         </Row>
 

@@ -18,7 +18,10 @@ import {
 import {getCampaniaActiva} from '../../../services/CampaniaServices';
 import FormValidation from "../../../utils/FormValidation";
 import {pedidoPorCampaniaActual} from "../../../services/PedidoServices";
-import {grillaPedidoProductoCatalogos} from "../../../services/PedidoProductoCatalogoServices";
+import {
+    getCsvProductoCatalogosPorPedido,
+    grillaPedidoProductoCatalogos
+} from "../../../services/PedidoProductoCatalogoServices";
 import PedidoProductoCatalogoGrilla
     from '../../../components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla';
 
@@ -164,8 +167,9 @@ class CampaniaActual extends Component {
                             <Button
                                 style={{marginLeft: "5px"}}
                                 color="success"
-                            >
-                                Cerrar Pedido
+                                onClick={() => this.props.history.push(getCsvProductoCatalogosPorPedido(currentState.campaniaActual.idPedido))}>
+
+                                Imprimir Pedido
                             </Button>
                         </Col>
                     </Row>

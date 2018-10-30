@@ -25,7 +25,9 @@ export const getFile = (url) => {
     return fetch(storage.getConfig().apiUrlBase + url, {
         method: 'GET',
         headers: {
-            'Authorization-Token': storage.getToken()
+            'Authorization-Token': storage.getToken(),
+            'Content-Type': 'text/csv',
+            'Content-Disposition': 'Attachment',
         }
     });
 }

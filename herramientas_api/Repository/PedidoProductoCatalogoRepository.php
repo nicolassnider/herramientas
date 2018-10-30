@@ -130,7 +130,7 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
 
     }
 
-    public function getCsvFile(int $pedidoId): ?Archivo
+    public function getCsvFile(int $pedidoId)
     {
 
         $datos = array();
@@ -156,23 +156,31 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
 
         }
 
+        $delimiter = ",";
+        $filename = "pedido.csv";
 
-        $archivo = new Archivo;
+        $f = fopen('php://memory', 'w');
 
-        $filename = 'pedido.csv';
-        $archivo->setNombre($filename);
-        $archivo->setTipo("tex/csv");
-        header("Content-type: text/csv");
-        header("Content-Disposition: attachment; filename=$filename");
-        $output = fopen("php://output", "w");
-        fputcsv($output, $cabecera);
-        foreach ($datosPlanos as $row) {
-            fputcsv($output, $row);
+        //set column headers
+        $fields = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente');
+        fputcsv($f, $fields, $delimiter);
+
+        //output each row of the data, format line as csv and write to file pointer
+
+
+        foreach ($datosPlanos as $filacsv) {
+            fputcsv($f, $filacsv, $delimiter);
         }
-        fclose($output);
-        $archivo->setContenido($output);
 
-        return $archivo;
+        //move back to beginning of file
+        fseek($f, 0);
+
+        //set headers to download file rather than displayed
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+        //output all remaining data on a file pointer
+        fpassthru($f);
 
     }
 

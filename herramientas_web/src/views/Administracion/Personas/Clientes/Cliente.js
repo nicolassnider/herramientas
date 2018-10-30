@@ -66,7 +66,7 @@ class Cliente extends Component {
 
         this.submitForm = this.submitForm.bind(this);
         this.handleSwitch = this.handleSwitch.bind(this);
-        this.handleSwitchMadre = this.handleSwitchMadre().bind(this);
+        this.handleSwitchMadre = this.handleSwitchMadre.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.newDate = this.newDate.bind(this);
         this.newData = this.newData.bind(this);

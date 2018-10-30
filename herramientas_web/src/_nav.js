@@ -1,10 +1,6 @@
 export default {
     items: [
-        {
-            name: 'Calendario',
-            url: '/calendario',
-            icon: 'icon-calendar'
-        },
+
         {
             title: true,
             name: 'Area de trabajo',
@@ -14,21 +10,12 @@ export default {
             }
         },
         {
-            name: 'Catálogo Actual',
-            url: '/areadetrabajo/catalogo_actual'
-        },
-        {
             name: 'Campania Actual',
             url: '/areatrabajo/campania/campaniaactual'
         },
         {
             name: 'Pedidos',
             url: '/areadetrabajo/pedidos'
-        },
-        {
-            name: 'Stock',
-            url: '/areadetrabajo/reportes'
-
         },
         {
             title: true,

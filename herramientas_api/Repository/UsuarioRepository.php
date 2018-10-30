@@ -6,6 +6,38 @@ require_once '../Repository/PerfilRepository.php';
 
 class UsuarioRepository extends AbstractRepository
 {
+
+    public function getAll(): Array
+    {
+        $sql = "SELECT *
+                FROM usuario";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $usuarios = Array();
+        foreach ($items as $item) {
+            $item = new Usuario();
+            $item->setId((int)$item->id);
+            $item->setUsuario($item->usuario);
+            $item->setClave($item->clave);
+            $item->setNotificacionesActivas($item->notificaciones_activas);
+            $item->setPerfil((new PerfilRepository($this->db))->get($item->perfil));
+            array_push($usuarios, $item);
+        }
+
+
+        $this->disconnect();
+        return $usuarios;
+    }
+    
     public function get($id)
     {
 

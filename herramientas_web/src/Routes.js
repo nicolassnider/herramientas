@@ -119,7 +119,7 @@ const User = Loadable({
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
     {
-        path: '/', exact: true, name: 'Home', component: DefaultLayout
+        path: '/', exact: true, name: 'Home', component: CampaniaActual
     },
 
 
@@ -140,6 +140,12 @@ const routes = [
         path: '/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/:id',
         exact: true,
         name: 'Incluir producto en Pedido',
+        component: IncluirProductoEnPedido
+    },
+    {
+        path: '/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/editar/:id/:pedidoproductocatalogo',
+        exact: true,
+        name: 'Editar producto en Pedido',
         component: IncluirProductoEnPedido
     },
 

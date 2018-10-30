@@ -137,13 +137,14 @@ class ProductoCatalogoRepository extends AbstractRepository
         return $productos;
     }
 
-    public function get(bool $full = true): ?ProductoCatalogo
+    public function get($id, bool $full = true): ?ProductoCatalogo
     {
         $sql = "SELECT *
-                FROM producto_catalogo";
+                FROM producto_catalogo WHERE id=:id";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         $item = $stmt->fetch(PDO::FETCH_OBJ);
 
