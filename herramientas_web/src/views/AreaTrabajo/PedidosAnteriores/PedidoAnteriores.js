@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaUsuarios} from '../../../../services/UsuarioServices';
+import {getPedidos} from '../../../services/PedidoServices';
 
-import UsuarioGrilla from '../../../../components/Administracion/Personas/Usuarios/UsuarioGrilla';
-import Paginador from '../../../../components/Paginador/Paginador';
+import PedidoAnterioresGrilla from '../../../components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorGrilla';
+import Paginador from '../../../components/Paginador/Paginador';
 
 
-class Usuarios extends Component {
+class PedidoAnteriores extends Component {
     onPageChanged = data => {
         const {currentPage, totalPages, pageLimit} = data;
         const offset = (currentPage - 1) * pageLimit;
-        const usuarios = this.state.resultado.usuarios.slice(offset, offset + pageLimit);
+        const pedidoAnteriores = this.state.resultado.pedidoAnteriores.slice(offset, offset + pageLimit);
 
         let miState = {...this.state};
-        miState.usuariosPorPagina = usuarios;
+        miState.pedidoAnterioresPorPagina = pedidoAnteriores;
         miState.currentPage = currentPage;
         miState.totalPages = totalPages;
         this.setState(miState);
@@ -23,11 +23,11 @@ class Usuarios extends Component {
         super();
         this.state = {
             resultado: {
-                usuarios: [],
+                pedidoAnteriores: [],
                 codigo: 0,
                 mensaje: ""
             },
-            usuariosPorPagina: [],
+            pedidoAnterioresPorPagina: [],
             currentPage: null,
             totalPages: null
         }
@@ -35,13 +35,13 @@ class Usuarios extends Component {
 
     componentDidMount() {
         let miState = {...this.state};
-        grillaUsuarios()
+        getPedidos()
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
 
-                            miState.resultado.usuarios = response;
+                            miState.resultado.pedidoAnteriores = response;
                             miState.resultado.codigo = 2000;
                             this.setState(miState);
 
@@ -51,7 +51,7 @@ class Usuarios extends Component {
                         this.setState({
                             resultado: {
                                 codigo: 5000,
-                                mensaje: "Error al listar las revendedoras disponibles."
+                                mensaje: "Error al listar los personas disponibles."
                             }
                         });
                     }
@@ -71,10 +71,10 @@ class Usuarios extends Component {
                     <Row>
                         <Col xs="12">
 
-                            <UsuarioGrilla clientes={this.state.usuariosPorPagina}/>
+                            <PedidoAnterioresGrilla pedidoAnteriores={this.state.pedidoAnterioresPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.usuarios.length}
+                            <Paginador totalRecords={this.state.resultado.pedidoAnteriores.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -106,4 +106,4 @@ class Usuarios extends Component {
     };
 }
 
-export default Usuarios;
+export default PedidoAnteriores;

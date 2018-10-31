@@ -26,4 +26,9 @@ class UsuariosService {
 
         return $this->repository->get($id);
     }
+
+    public function update(Usuario $usuario)
+    {
+        return $this->repository->update($usuario);
+    }
 }

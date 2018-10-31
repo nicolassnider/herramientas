@@ -34,6 +34,13 @@ class UsuarioController{
                     return $response->withJson($items, 200);
                 });
 
+                $this->put('/{id}', function (Request $request, Response $response) {
+                    $usuario = UsuarioController::getInstanceFromRequest($request);
+                    $usuarioService = new UsuariosService();
+                    $usuarioService->update($usuario);
+                    return $response->withJson("updated", 204);
+                });
+
 
             });
         });
@@ -41,22 +48,14 @@ class UsuarioController{
 
     private static function getInstanceFromRequest(Request $request): Usuario
     {
-        $revendedora = new Revendedora();
-        $revendedora->setId((int)$request->getAttribute('id'));
-        $categoriaRevendedora = new CategoriaRevendedora();
-        $categoriaRevendedora->setId($request->getParam('categoriaRevendedora')['id']);
-        $revendedora->setCategoriaRevendedora($categoriaRevendedora);
-        $revendedora->setActivo((bool)$request->getParam('activo'));
-        $persona = new Persona();
-        $persona->setId((int)$request->getParam('persona')['id']);
-        $revendedora->setPersona($persona);
         $usuario = new Usuario();
+        $usuario->setId((int)$request->getAttribute('id'));
         $perfil = new Perfil();
-        $perfil->setId($request->getParam('usuario')['perfil']['id']);
+        $perfil->setId($request->getParam('perfil')['id']);
         $usuario->setPerfil($perfil);
-        $revendedora->setUsuario($usuario);
+        $usuario->setClave($request->getParam('clave'));
 
-        return $revendedora;
+        return $usuario;
 
     }
 

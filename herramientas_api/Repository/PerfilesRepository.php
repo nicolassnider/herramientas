@@ -78,6 +78,31 @@ class PerfilesRepository extends AbstractRepository {
         return $perfiles;
     }
 
+    public function getAllActiveSorted(): Array
+    {
+        $sql = "SELECT * FROM perfil";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $perfiles = Array();
+        foreach ($items as $item) {
+            $perfil = new Perfil();
+            $perfil->setId($item->id);
+            $perfil->setDescripcion($item->descripcion);
+            array_push($perfiles, $perfil);
+        }
+
+        $this->disconnect();
+        return $perfiles;
+    }
+
     public function get($id): ?Perfil {
         $sql = "SELECT *
                 FROM perfil p

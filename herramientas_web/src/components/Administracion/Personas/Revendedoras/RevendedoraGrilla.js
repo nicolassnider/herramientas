@@ -7,6 +7,7 @@ const revendedoras = (props) => {
     const style = {
         textAlign: 'center'
     }
+    console.log(props);
 
     return (
         <Table size="sm" responsive>

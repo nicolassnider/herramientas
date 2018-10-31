@@ -1,9 +1,9 @@
 import React from 'react';
 import {Table} from 'reactstrap';
 
-import RevendedoraFila from './UsuarioFila';
+import UsuarioFila from './UsuarioFila';
 
-const revendedoras = (props) => {
+const usuarios = (props) => {
     const style = {
         textAlign: 'center'
     }
@@ -14,7 +14,6 @@ const revendedoras = (props) => {
             <tr>
                 <th>Id</th>
                 <th>Usuario</th>
-                <th>Nombre y Apellido</th>
                 <th>Perfil</th>
                 <th>Status</th>
                 <th style={style}></th>
@@ -22,9 +21,9 @@ const revendedoras = (props) => {
             </thead>
             <tbody>
             {
-                props.revendedoras.map((revendedora, index) => {
-                    return <RevendedoraFila key={index}
-                                            revendedora={revendedora}/>
+                props.usuarios.map((usuario, index) => {
+                    return <UsuarioFila key={index}
+                                        usuario={usuario}/>
                 })
             }
             </tbody>
@@ -32,4 +31,4 @@ const revendedoras = (props) => {
     )
 }
 
-export default revendedoras;
+export default usuarios;

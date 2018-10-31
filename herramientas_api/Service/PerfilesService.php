@@ -8,6 +8,11 @@ class PerfilesService {
         $this->repository = new PerfilesRepository();
     }
 
+    public function getAllActiveSorted(): Array
+    {
+        return $this->repository->getAllActiveSorted();
+    }
+
     public function getAll(): Array {
         return $this->repository->getAll();
     }

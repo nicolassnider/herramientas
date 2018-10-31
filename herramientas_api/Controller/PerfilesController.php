@@ -25,6 +25,19 @@ class PerfilesController {
                     'PERFILES_LISTAR'
                 ]));
 
+                $this->get('/select', function (Request $request, Response $response) {
+
+                    $items = (new PerfilesService())->getAllActiveSorted();
+
+                    array_walk($items, function (&$item) {
+                        $label = $item->getDescripcion();
+                        $item = new SelectOption($item->getId(), $label);
+                    });
+
+                    return $response->withJson($items, 200);
+
+                });
+
                 $this->get('/{id}', function(Request $request, Response $response) {
                     $id = $request->getAttribute('id');
                     $service = new PerfilesService();

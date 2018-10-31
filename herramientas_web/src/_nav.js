@@ -15,7 +15,7 @@ export default {
         },
         {
             name: 'Pedidos',
-            url: '/areadetrabajo/pedidos'
+            url: '/areatrabajo/pedidosanteriores/pedidosanteriores'
         },
         {
             title: true,

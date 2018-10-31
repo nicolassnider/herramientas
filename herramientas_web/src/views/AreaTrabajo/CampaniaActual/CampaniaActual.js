@@ -50,10 +50,7 @@ class CampaniaActual extends Component {
         },
 
 
-
-
-
-        this.urlCancelar = "/administracion/catalogos";
+            this.urlCancelar = "/administracion/catalogos";
 
 
         this.formValidation = new FormValidation({
@@ -68,8 +65,26 @@ class CampaniaActual extends Component {
     componentDidMount() {
 
         let component = this;
+        let arrayp = [];
         let arrayPromises = [];
         let p1 = getCampaniaActiva().then(result => result.json());
+        arrayp.push(p1);
+        Promise.all(arrayp)
+            .then(
+                (result) => {
+
+                    let miState = {...this.state};
+
+
+                    miState.loaded = true;
+                    miState.campaniaActual.id = result[0].id;
+                    component.setState(miState)
+                })
+
+            .catch(function (err) {
+                console.log(err);
+            });
+
         let p2 = pedidoPorCampaniaActual().then(result => result.json());
         let p3 = grillaPedidoProductoCatalogos(this.state.campaniaActual.idPedido ? this.state.campaniaActual.idPedido : 1).then(result => result.json());
 

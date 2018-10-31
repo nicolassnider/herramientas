@@ -238,8 +238,10 @@ class RevendedoraRepository extends AbstractRepository
 
     public function getAll(bool $full = true): Array
     {
-        $sql = "SELECT *
-                FROM revendedora";
+        $sql = "SELECT revendedora.*, usu.id as usu_id
+                FROM revendedora
+                LEFT JOIN persona per on revendedora.persona = per.id
+LEFT JOIN usuario usu on revendedora.id = usu.revendedora";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
@@ -264,8 +266,9 @@ class RevendedoraRepository extends AbstractRepository
 
     public function getAllActiveSorted(): Array
     {
-        $sql = "SELECT rev.id, per.nombre, per.apellido FROM revendedora rev
+        $sql = "SELECT rev.id, per.nombre, per.apellido, usu.id as usu_id FROM revendedora rev
 LEFT JOIN persona per on rev.persona = per.id
+LEFT JOIN usuario usu on rev.id = usu.revendedora
 WHERE per.activo=1";
 
         $db = $this->connect();

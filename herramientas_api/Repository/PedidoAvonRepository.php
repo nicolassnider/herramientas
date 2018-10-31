@@ -324,6 +324,7 @@ class PedidoAvonRepository extends AbstractRepository
         $item = new PedidoAvon();
         $item->setId((int)$result->id);
         $item->setFechaRecibido(new DateTime($result->fecha_recibido));
+
         $item->setRecibido((bool)$result->recibido);
         $item->setCobrado((bool)$result->entregado);
         $item->setCobrado((bool)$result->cobrado);

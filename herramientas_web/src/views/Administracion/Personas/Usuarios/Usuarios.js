@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaUsuarios} from '../../../../services/UsuarioServices';
+import {grillaPersonas} from '../../../services/PersonaServices';
 
-import UsuarioGrilla from '../../../../components/Administracion/Personas/Usuarios/UsuarioGrilla';
-import Paginador from '../../../../components/Paginador/Paginador';
+import PersonaGrilla from '../../../components/Administracion/Personas/PersonaGrilla';
+import Paginador from '../../../components/Paginador/Paginador';
 
 
-class Usuarios extends Component {
+class Personas extends Component {
     onPageChanged = data => {
         const {currentPage, totalPages, pageLimit} = data;
         const offset = (currentPage - 1) * pageLimit;
-        const usuarios = this.state.resultado.usuarios.slice(offset, offset + pageLimit);
+        const personas = this.state.resultado.personas.slice(offset, offset + pageLimit);
 
         let miState = {...this.state};
-        miState.usuariosPorPagina = usuarios;
+        miState.personasPorPagina = personas;
         miState.currentPage = currentPage;
         miState.totalPages = totalPages;
         this.setState(miState);
@@ -23,11 +23,11 @@ class Usuarios extends Component {
         super();
         this.state = {
             resultado: {
-                usuarios: [],
+                personas: [],
                 codigo: 0,
                 mensaje: ""
             },
-            usuariosPorPagina: [],
+            personasPorPagina: [],
             currentPage: null,
             totalPages: null
         }
@@ -35,13 +35,13 @@ class Usuarios extends Component {
 
     componentDidMount() {
         let miState = {...this.state};
-        grillaUsuarios()
+        grillaPersonas()
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
 
-                            miState.resultado.usuarios = response;
+                            miState.resultado.personas = response;
                             miState.resultado.codigo = 2000;
                             this.setState(miState);
 
@@ -51,7 +51,7 @@ class Usuarios extends Component {
                         this.setState({
                             resultado: {
                                 codigo: 5000,
-                                mensaje: "Error al listar las revendedoras disponibles."
+                                mensaje: "Error al listar los personas disponibles."
                             }
                         });
                     }
@@ -71,10 +71,10 @@ class Usuarios extends Component {
                     <Row>
                         <Col xs="12">
 
-                            <UsuarioGrilla clientes={this.state.usuariosPorPagina}/>
+                            <PersonaGrilla personas={this.state.personasPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.usuarios.length}
+                            <Paginador totalRecords={this.state.resultado.personas.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -97,7 +97,18 @@ class Usuarios extends Component {
             <div className="animated fadeIn">
                 <Card>
                     <CardHeader style={addBtn}>
-
+                        <Button color="primary"
+                                onClick={() => this.props.history.push('/administracion/personas/nuevo')}>
+                            Nueva <i className="fa fa-plus"></i>
+                        </Button>
+                        <Button color="info"
+                                onClick={() => this.props.history.push('/administracion/personas/revendedoras')}>
+                            Adm.Revendedoras <i className="fa fa-plus"></i>
+                        </Button>
+                        <Button color="warning"
+                                onClick={() => this.props.history.push('/administracion/personas/clientes')}>
+                            Adm.Clientes <i className="fa fa-plus"></i>
+                        </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>
                 </Card>
@@ -106,4 +117,4 @@ class Usuarios extends Component {
     };
 }
 
-export default Usuarios;
+export default Personas;

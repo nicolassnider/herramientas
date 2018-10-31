@@ -9,8 +9,9 @@ class UsuarioRepository extends AbstractRepository
 
     public function getAll(): Array
     {
-        $sql = "SELECT *
-                FROM usuario";
+        $sql = "SELECT usuario.*,revendedora.id as rev_id
+                FROM usuario
+                inner join revendedora on usuario.revendedora = revendedora.id";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
@@ -153,29 +154,29 @@ class UsuarioRepository extends AbstractRepository
 
     }
 
-    public function update($id, $usuario)
+    public function update(Usuario $usuario)
     {
 
         try {
-            $consulta = "UPDATE usuario SET usuario=:usuario, perfil=:perfil, notificaciones_activas=:notificacionesActivas, movil=:movil, gerenciador=:gerenciador WHERE persona=:persona";
+            $consulta = "UPDATE usuario SET clave=:clave, perfil=:perfil WHERE id=:id";
+
+
 
             $db = new Db();
             $db = $db->connect();
             $stmt = $db->prepare($consulta);
 
-            $usuarioN = $usuario->getUsuario();
-            $perfil = $usuario->getPerfil()->getId();
-            $notificacionesActivas = $usuario->getNotificacionesActivas();
-            $movil = $usuario->getMovil();
-            $gerenciador = $usuario->getGerenciador()->getId();
+            $usuarioTemp = $this->get($usuario->getId());
 
 
-            $stmt->bindParam(':persona', $id);
-            $stmt->bindParam(':usuario', $usuarioN);
-            $stmt->bindParam(':perfil', $perfil);
-            $stmt->bindParam(':notificacionesActivas', $notificacionesActivas);
-            $stmt->bindParam(':movil', $movil);
-            $stmt->bindParam(':gerenciador', $gerenciador);
+            $usuario->getClave() ? $clave = $usuario->getClave() : $clave = $usuarioTemp->getClave();
+            $id = $usuario->getId();
+            $usuario->getPerfil() ? $perfil = $usuario->getPerfil()->getId() : $clave = $usuarioTemp->getPerfil()->getId();
+            $id = $usuario->getId();
+
+            $stmt->bindParam(':clave', $clave);
+            $stmt->bindParam(':perfil', $perfil, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
             $stmt->execute();
         } catch (Exception $e) {

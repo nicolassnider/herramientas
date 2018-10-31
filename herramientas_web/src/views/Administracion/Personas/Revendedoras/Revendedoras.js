@@ -45,6 +45,7 @@ class Revendedoras extends Component {
                             miState.resultado.codigo = 2000;
                             this.setState(miState);
 
+
                         })
                 } else {
                     if (response.status === 500) {

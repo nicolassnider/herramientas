@@ -10,4 +10,8 @@ export const getUsuarioPorId = (id) => {
 
 };
 
+export const editarUsuario = (usuario) => {
+    return put("usuarios/" + usuario.id, usuario);
+};
+
 

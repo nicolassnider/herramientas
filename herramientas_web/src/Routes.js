@@ -103,6 +103,23 @@ const IncluirProductoEnPedido = Loadable({
     loading: Loading,
 });
 
+/***** Usuario *****/
+const Usuario = Loadable({
+    loader: () => import('./views/Administracion/Personas/Usuarios/Usuario'),
+    loading: Loading,
+});
+
+/***** PedidosAnteriores *****/
+const PedidoAnteriores = Loadable({
+    loader: () => import('./views/AreaTrabajo/PedidosAnteriores/PedidoAnteriores'),
+    loading: Loading,
+});
+/***** PedidoAnterior *****/
+const PedidoAnterior = Loadable({
+    loader: () => import('./views/AreaTrabajo/PedidosAnteriores/PedidoAnterior'),
+    loading: Loading,
+});
+
 
 
 
@@ -205,6 +222,13 @@ const routes = [
     },
 
     {
+        path: '/administracion/personas/revendedoras/usuarios/editar/:id',
+        exact: true,
+        name: 'Editar',
+        component: Usuario
+    },
+
+    {
         path: '/administracion/productos', exact: true, name: 'Personas', component: Productos
     },
     {
@@ -216,6 +240,20 @@ const routes = [
     {
         path: '/administracion/productos/desactivar/:id', exact: true, name: 'Desactivar', component: Producto
     },
+
+    {
+        path: '/areatrabajo/pedidosanteriores/pedidosanteriores',
+        exact: true,
+        name: 'PedidosAnteriores',
+        component: PedidoAnteriores
+    },
+    {
+        path: '/areatrabajo/pedidosanteriores/pedidosanteriores/:id',
+        exact: true,
+        name: 'PedidoAnterior',
+        component: PedidoAnterior
+    },
+
 
     {
         path: '/administracion/productos/catalogosenproducto/:id',

@@ -133,7 +133,6 @@ require_once '../Controller/ProvinciaController.php';
 require_once '../Controller/RevendedoraController.php';
 require_once '../Controller/TipoDocumentoController.php';
 require_once '../Controller/UnidadController.php';
-
 require_once '../Controller/UsuarioController.php';
 require_once '../Controller/MockController.php';
 require_once '../Controller/WidgetController.php';
@@ -161,7 +160,7 @@ require_once '../Controller/WidgetController.php';
 (new RevendedoraController($app))->init();
 (new TipoDocumentoController($app))->init();
 (new UnidadController($app))->init();
-
+(new UsuarioController($app))->init();
 
 
 

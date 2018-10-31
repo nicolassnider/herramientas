@@ -33,18 +33,7 @@ const persona = (props) => {
                 <Button size="sm"
                         onClick={() => props.history.push(`/administracion/personas/editar/${props.persona.id}`)}
                         className="btn-outline-secondary"
-                        title="Nuevo revendedora">
-                    <i className="fa fa-pencil-square-o"></i>
-                </Button>
-                <Button size="sm"
-                        onClick={() => props.history.push(`/administracion/personas/editar/${props.persona.id}`)}
-                        className="btn-outline-secondary"
-                        title="Nuevo cliente">
-                    <i className="fa fa-pencil-square"></i>
-                </Button>
-                <Button size="sm"
-                        onClick={() => props.history.push(`/administracion/personas/editar/${props.persona.id}`)}
-                        className="btn-outline-secondary">
+                        title="Editar Persona">
                     <i className="fa fa-pencil"></i>
                 </Button>
             </td>
