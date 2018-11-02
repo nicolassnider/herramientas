@@ -2,36 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f2446b9-8818-4249-a8f3-ce3293d6607b" name="Default" comment="preparacion de pedidos">
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorFila.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorGrilla.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/services/PerfilServices.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Usuarios/Usuario.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Usuarios/Usuarios.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidoAvon/PedidoAvon.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnterior.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnteriores.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Controller/PerfilesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Controller/PerfilesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Controller/UsuarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Controller/UsuarioController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Public/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Public/Index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/PedidoAvonRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/PedidoAvonRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/PerfilesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/PerfilesRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/RevendedoraRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/RevendedoraRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/UsuarioRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/UsuarioRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Service/PerfilesService.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Service/PerfilesService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Service/UsuariosService.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Service/UsuariosService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/Routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/_nav.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/_nav.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/PersonaFila.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/PersonaFila.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Revendedoras/RevendedoraFila.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Revendedoras/RevendedoraFila.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Revendedoras/RevendedoraGrilla.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Revendedoras/RevendedoraGrilla.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Usuarios/UsuarioFila.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Usuarios/UsuarioFila.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Usuarios/UsuarioGrilla.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Usuarios/UsuarioGrilla.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/scss/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/scss/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/services/UsuarioServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/services/UsuarioServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Revendedoras/Revendedoras.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Revendedoras/Revendedoras.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -115,7 +87,7 @@
         <counts>
           <entry key="css" value="331" />
           <entry key="html" value="374" />
-          <entry key="js" value="38032" />
+          <entry key="js" value="38724" />
           <entry key="json" value="193" />
           <entry key="php" value="44330" />
           <entry key="sql" value="659" />
@@ -129,7 +101,7 @@
           <entry key="cliente" value="1" />
           <entry key="css" value="14" />
           <entry key="html" value="9" />
-          <entry key="js" value="706" />
+          <entry key="js" value="707" />
           <entry key="json" value="22" />
           <entry key="php" value="502" />
           <entry key="revendedora" value="1" />
@@ -147,7 +119,7 @@
           <entry key="Database Element" value="2" />
           <entry key="HTML" value="9" />
           <entry key="JSON" value="22" />
-          <entry key="JavaScript" value="706" />
+          <entry key="JavaScript" value="707" />
           <entry key="PHP" value="502" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="RNG Compact" value="2" />
@@ -162,7 +134,7 @@
           <entry key="CSS" value="331" />
           <entry key="HTML" value="374" />
           <entry key="JSON" value="193" />
-          <entry key="JavaScript" value="38032" />
+          <entry key="JavaScript" value="38724" />
           <entry key="PHP" value="43810" />
           <entry key="PLAIN_TEXT" value="268" />
           <entry key="SQL" value="1021" />
@@ -182,14 +154,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="86" selection-start-line="86" selection-end-line="86" />
+            <state relative-caret-position="439">
+              <caret line="119" column="73" selection-start-line="119" selection-start-column="73" selection-end-line="119" selection-end-column="73" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -206,8 +187,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnterior.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="76" column="44" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="44" />
+            <state relative-caret-position="1826">
+              <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -224,7 +205,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorGrilla.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-58">
@@ -237,7 +218,7 @@
         <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorFila.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="132">
-              <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+              <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -249,7 +230,7 @@
         <entry file="file://$PROJECT_DIR$/herramientas_web/src/routes.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="307">
-              <caret line="244" column="66" lean-forward="true" selection-start-line="244" selection-start-column="66" selection-end-line="244" selection-end-column="66" />
+              <caret line="250" column="66" lean-forward="true" selection-start-line="250" selection-start-column="66" selection-end-line="250" selection-end-column="66" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -271,9 +252,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>idPedi</find>
-      <find>input</find>
-      <find>newData</find>
       <find>SUCCESS</find>
       <find />
       <find>home</find>
@@ -301,6 +279,9 @@
       <find>producto</find>
       <find>1</find>
       <find>console.log(result);</find>
+      <find>grillapedidos</find>
+      <find>console.log</find>
+      <find>idpedido</find>
     </findStrings>
     <replaceStrings>
       <replace>FacturaService</replace>
@@ -361,7 +342,6 @@
         <option value="$PROJECT_DIR$/herramientas_api/Repository/ProductoCatalogoRepository.php" />
         <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js" />
         <option value="$PROJECT_DIR$/herramientas_api/Model/Archivo.php" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js" />
         <option value="$PROJECT_DIR$/herramientas_api/Service/PedidoProductoCatalogoService.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Repository/PedidoProductoCatalogoRepository.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Controller/PedidoProductoCatalogoController.php" />
@@ -389,13 +369,14 @@
         <option value="$PROJECT_DIR$/herramientas_web/src/routes.js" />
         <option value="$PROJECT_DIR$/db/structure.sql" />
         <option value="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnteriores.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorGrilla.js" />
         <option value="$PROJECT_DIR$/herramientas_api/Model/PedidoAvon.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Repository/PedidoAvonRepository.php" />
         <option value="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidoAvon/PedidoAvon.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorFila.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnterior.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorGrilla.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js" />
       </list>
     </option>
@@ -708,14 +689,7 @@
       <workItem from="1540431583322" duration="5832000" />
       <workItem from="1540499924950" duration="76943000" />
       <workItem from="1540981726770" duration="3474000" />
-      <workItem from="1540996531009" duration="21060000" />
-    </task>
-    <task id="LOCAL-00012" summary="commit">
-      <created>1534188097354</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1534188097354</updated>
+      <workItem from="1540996531009" duration="26288000" />
     </task>
     <task id="LOCAL-00013" summary="commit">
       <created>1534189446790</created>
@@ -1053,14 +1027,21 @@
       <option name="project" value="LOCAL" />
       <updated>1540866845243</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="preparacion de pedidos">
+      <created>1541025874172</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1541025874172</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="637801000" />
+    <option name="totallyTimeSpent" value="643029000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1553" height="916" extended-state="7" />
+    <frame x="-8" y="-8" width="1553" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49875623" weight="0.21730644" />
@@ -1088,7 +1069,7 @@
       <window_info anchor="right" id="Database" order="3" weight="0.19429453" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49875623" visible="true" weight="0.21730644" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49875623" visible="true" weight="0.21730644" />
       <window_info id="Structure" order="1" sideWeight="0.50124377" side_tool="true" weight="0.14638907" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1178,16 +1159,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Usuarios/UsuarioFila.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Usuarios/UsuarioGrilla.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -1535,26 +1506,9 @@
     <entry file="file://$PROJECT_DIR$/herramientas_web/src/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="307">
-          <caret line="244" column="66" lean-forward="true" selection-start-line="244" selection-start-column="66" selection-end-line="244" selection-end-column="66" />
+          <caret line="250" column="66" lean-forward="true" selection-start-line="250" selection-start-column="66" selection-end-line="250" selection-end-column="66" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnterior.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="76" column="44" selection-start-line="76" selection-start-column="24" selection-end-line="76" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1566,20 +1520,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorFila.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
-          <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -1590,6 +1534,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-58">
           <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnterior.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1826">
+          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="119" column="73" selection-start-line="119" selection-start-column="73" selection-end-line="119" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

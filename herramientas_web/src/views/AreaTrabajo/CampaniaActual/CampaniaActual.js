@@ -36,9 +36,10 @@ class CampaniaActual extends Component {
                 fechaFin: "",
                 descripcion: "",
                 activo: false,
-                idPedido: null,
+
                 grillaPedidos: [],
             },
+            idPedido: null,
             error: {
                 codigo: null,
                 mensaje: "",
@@ -74,26 +75,7 @@ class CampaniaActual extends Component {
                 (result) => {
 
                     let miState = {...this.state};
-
-
-                    miState.loaded = true;
-                    miState.campaniaActual.id = result[0].id;
-                    component.setState(miState)
-                })
-
-            .catch(function (err) {
-                console.log(err);
-            });
-
-        let p2 = pedidoPorCampaniaActual().then(result => result.json());
-        let p3 = grillaPedidoProductoCatalogos(this.state.campaniaActual.idPedido ? this.state.campaniaActual.idPedido : 1).then(result => result.json());
-
-        arrayPromises.push(p1, p2, p3);
-        Promise.all(arrayPromises)
-            .then(
-                (result) => {
-
-                    let miState = {...this.state};
+                    console.log(result);
 
 
                     miState.loaded = true;
@@ -101,14 +83,55 @@ class CampaniaActual extends Component {
                     miState.campaniaActual.fechaInicio = result[0].fechaInicio;
                     miState.campaniaActual.fechaFin = result[0].fechaFin;
                     miState.campaniaActual.descripcion = result[0].descripcion;
-                    miState.campaniaActual.idPedido = result[1].id;
-                    miState.campaniaActual.grillaPedidos = result[2];
-
-
-                    component.setState(miState)
-
-
+                    component.setState(miState);
+                    console.log(this.state);
                 })
+
+            .catch(function (err) {
+                console.log(err);
+            });
+
+
+        let p2 = pedidoPorCampaniaActual().then(result => result.json());
+        let arrayp2 = [];
+        arrayp2.push(p1, p2);
+        Promise.all(arrayp2).then(
+            (result) => {
+
+                let miState = {...this.state};
+
+
+                miState.loaded = true;
+                miState.idPedido = result[1].id;
+                console.log(miState.idPedido);
+
+
+                component.setState(miState);
+                let p3 = grillaPedidoProductoCatalogos(miState.idPedido).then(result => result.json());
+
+                arrayPromises.push(p3);
+                Promise.all(arrayPromises)
+                    .then(
+                        (result) => {
+                            console.log(result);
+
+                            let miState = {...this.state};
+                            miState.campaniaActual.grillaPedidos = result[0];
+
+                            miState.loaded = true;
+
+
+                            component.setState(miState)
+
+
+                        })
+
+                    .catch(function (err) {
+                        console.log(err);
+                    })
+
+
+            })
 
             .catch(function (err) {
                 console.log(err);
@@ -126,6 +149,7 @@ class CampaniaActual extends Component {
 
 
         const currentState = {...this.state};
+        console.log(currentState);
 
 
         const divStyle = {

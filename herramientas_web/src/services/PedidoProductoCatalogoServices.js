@@ -2,6 +2,7 @@ import {get, getFile, post, put, remove} from './ApiServices';
 //import * as storage from '../utils/Storage';
 
 export const grillaPedidoProductoCatalogos = (id) => {
+    console.log(id);
     return get("pedidoproductocatalogo/pedido/" + id);
 };
 
