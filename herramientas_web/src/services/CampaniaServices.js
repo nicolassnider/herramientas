@@ -19,7 +19,6 @@ export const desactivarCampania = (id) => {
 
 };
 export const nuevaCampania = (campania) => {
-    console.log("post campania", campania);
     return post("campanias", campania);
 };
 
@@ -35,5 +34,9 @@ export const grillaCampanias = () => {
     return get("campanias");
 };
 
+export const getCampaniaPorPedido = (id) => {
+    return get("campanias/campania/pedido/" + id);
+
+};
 
 

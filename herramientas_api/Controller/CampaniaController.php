@@ -66,6 +66,16 @@ class CampaniaController
                     'CAMPANIA_VISUALIZAR'
                 ]));
 
+                $this->get('/campania/pedido/{id}', function (Request $request, Response $response) {
+                    $service = new CampaniaService();
+                    $id = $request->getAttribute('id');
+                    $items = $service->getCampaniaPorPedido($id);
+                    if ($items == null) {
+                        return $response->withJson($items, 400);
+                    }
+                    return $response->withJson($items, 200);
+                });
+
                 $this->put('/desactivar/{id}', function (Request $request, Response $response) {
                     $service = new CampaniaService();
                     $id = $request->getAttribute('id');

@@ -75,7 +75,6 @@ class CampaniaActual extends Component {
                 (result) => {
 
                     let miState = {...this.state};
-                    console.log(result);
 
 
                     miState.loaded = true;
@@ -84,7 +83,6 @@ class CampaniaActual extends Component {
                     miState.campaniaActual.fechaFin = result[0].fechaFin;
                     miState.campaniaActual.descripcion = result[0].descripcion;
                     component.setState(miState);
-                    console.log(this.state);
                 })
 
             .catch(function (err) {
@@ -103,7 +101,6 @@ class CampaniaActual extends Component {
 
                 miState.loaded = true;
                 miState.idPedido = result[1].id;
-                console.log(miState.idPedido);
 
 
                 component.setState(miState);
@@ -113,7 +110,6 @@ class CampaniaActual extends Component {
                 Promise.all(arrayPromises)
                     .then(
                         (result) => {
-                            console.log(result);
 
                             let miState = {...this.state};
                             miState.campaniaActual.grillaPedidos = result[0];
@@ -149,7 +145,6 @@ class CampaniaActual extends Component {
 
 
         const currentState = {...this.state};
-        console.log(currentState);
 
 
         const divStyle = {
@@ -188,7 +183,7 @@ class CampaniaActual extends Component {
                     </Row>
                     <Row>
                         <h1>
-                            <Label>Pedido:{currentState.campaniaActual.idPedido}</Label>
+                            <Label>Pedido:{currentState.idPedido}</Label>
 
                         </h1>
                     </Row>

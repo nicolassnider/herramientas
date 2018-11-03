@@ -293,6 +293,26 @@ class PedidoAvonRepository extends AbstractRepository
         return $cliente;
     }
 
+    public function getPedidoPorCampania(int $id, bool $full = true): ?PedidoAvon
+    {
+        $sqlGet = "SELECT ped.*  FROM pedido_avon ped                     
+                    WHERE ped.campania=:campaniaId
+                    ";
+        $db = $this->connect();
+        $stmtGet = $db->prepare($sqlGet);
+        $stmtGet->bindParam(':campaniaId', $id, PDO::PARAM_INT);
+        $stmtGet->execute();
+        $result = $stmtGet->fetchObject();
+
+        if ($result == null) {
+            return null;
+        }
+
+        $cliente = $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
+        $this->disconnect();
+        return $cliente;
+    }
+
     public function getPedidoPorCampaniaActual(bool $full = true): ?PedidoAvon
     {
         $sqlGet = "SELECT ped.*  FROM pedido_avon ped                     

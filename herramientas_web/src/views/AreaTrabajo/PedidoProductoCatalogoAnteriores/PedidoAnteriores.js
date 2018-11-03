@@ -12,7 +12,6 @@ class PedidoAnteriores extends Component {
         const offset = (currentPage - 1) * pageLimit;
         const pedidoAnteriores = this.state.resultado.pedidoAnteriores.slice(offset, offset + pageLimit);
 
-
         let miState = {...this.state};
         miState.pedidoAnterioresPorPagina = pedidoAnteriores;
         miState.currentPage = currentPage;
@@ -21,8 +20,6 @@ class PedidoAnteriores extends Component {
     }
 
     constructor() {
-        console.log("pedidoAnteriores.js");
-
         super();
         this.state = {
             resultado: {
@@ -37,6 +34,7 @@ class PedidoAnteriores extends Component {
     }
 
     componentDidMount() {
+        console.log(this.state)
         let miState = {...this.state};
         getPedidos()
             .then(response => {

@@ -42,7 +42,17 @@ class PedidoAvonController
                     return $response->withJson($items, 200);
                 });
 
-                $this->get('/campaniaactual/pedido', function (Request $request, Response $response) {
+                $this->get('/pedido/campania/{id}', function (Request $request, Response $response) {
+                    $service = new PedidoAvonService();
+                    $id = $request->getAttribute('id');
+                    $items = $service->getPedidoPorCampania($id);
+                    if ($items == null) {
+                        return $response->withJson($items, 400);
+                    }
+                    return $response->withJson($items, 200);
+                });
+
+                $this->get('/campania/pedido', function (Request $request, Response $response) {
                     $service = new PedidoAvonService();
                     $items = $service->getPedidoPorCampaniaActual();
                     if ($items == null) {

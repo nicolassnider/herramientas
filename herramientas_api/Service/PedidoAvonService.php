@@ -18,22 +18,28 @@ class PedidoAvonService
         $this->repository = new PedidoAvonRepository();
     }
 
-    public function create(PedidoAvon $pedidoAvon):?PedidoAvon
+    public function create(PedidoAvon $pedidoAvon): ?PedidoAvon
     {
         return $this->repository->create($pedidoAvon);
     }
 
-    public function get(int $id):?PedidoAvon
+    public function get(int $id): ?PedidoAvon
     {
         return $this->repository->get($id);
     }
+
+    public function getPedidoPorCampania(int $id): ?PedidoAvon
+    {
+        return $this->repository->getPedidoPorCampaniaActual($id);
+    }
+
 
     public function getPedidoPorCampaniaActual(): ?PedidoAvon
     {
         return $this->repository->getPedidoPorCampaniaActual();
     }
 
-    public function getAll():Array
+    public function getAll(): Array
     {
         return $this->repository->getAll();
     }
@@ -47,6 +53,7 @@ class PedidoAvonService
     {
         $this->repository->entregar($id);
     }
+
     public function cobrar(int $id)
     {
         $this->repository->cobrar($id);

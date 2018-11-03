@@ -1,41 +1,45 @@
 import React, {Component} from 'react';
 import {
+    Label,
     Input,
+    FormGroup,
+    Row,
     Col,
-    Alert,
     Card,
-    Form,
-    FormFeedback,
     CardHeader,
     CardBody,
+    TabContent,
+    TabPane,
+    ListGroup,
     CardFooter,
-    Button,
-    Row,
-    FormGroup,
-    Label
+    Button
 } from 'reactstrap';
-import {getPedidoPorId} from '../../../services/PedidoServices';
 
-
-import Select from 'react-select';
-import Validator from '../../../utils/Validator.js';
-import FormValidation from '../../../utils/FormValidation';
-import 'react-datepicker/dist/react-datepicker.css';
+import {getCampaniaPorPedido} from '../../../services/CampaniaServices';
+import FormValidation from "../../../utils/FormValidation";
+import {pedidoPorCampaniaActual} from "../../../services/PedidoServices";
+import {
+    getCsvProductoCatalogosPorPedido,
+    grillaPedidoProductoCatalogos
+} from "../../../services/PedidoProductoCatalogoServices";
+import PedidoProductoCatalogoGrilla
+    from '../../../components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla';
 
 class PedidoAnterior extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            pedidoAnterior: {
+            campania: {
                 id: null,
-                fechaRecibido: "",
-                recibido: false,
-                entregado: false,
-                cobrado: false,
-                campania: {id: null},
+                fechaInicio: "",
+                fechaFin: "",
+                descripcion: "",
+                activo: false,
 
+                grillaPedidos: [],
             },
-
+            idPedido: this.props.match.params.id,
             error: {
                 codigo: null,
                 mensaje: "",
@@ -44,14 +48,17 @@ class PedidoAnterior extends Component {
             modified: false,
             flagPrimeraVez: true,
             loaded: false
-        };
-        this.idPedido = props.match.params.id;
+        },
+
 
         this.urlCancelar = "/areatrabajo/pedidosanteriores/pedidosanteriores";
-        console.log(this);
 
 
-        this.submitForm = this.submitForm.bind(this);
+        this.formValidation = new FormValidation({
+            component: this,
+            validators: {}
+
+        });
 
 
     }
@@ -59,122 +66,145 @@ class PedidoAnterior extends Component {
     componentDidMount() {
 
         let component = this;
+        let arrayp = [];
         let arrayPromises = [];
-        if (component.idPedido) {
-            let p1 = getPedidoPorId(component.idPedido).then(result => result.json());
-            arrayPromises.push(p1);
-        }
-
-
-        Promise.all(arrayPromises)
+        let p1 = getCampaniaPorPedido(this.state.idPedido).then(result => result.json());
+        arrayp.push(p1);
+        Promise.all(arrayp)
             .then(
                 (result) => {
                     let miState = {...this.state};
-
-                    if (component.idPedido) {
-                        miState.pedido = result[0];
-                        console.log(result);
-
-                    }
-
                     miState.loaded = true;
-
+                    miState.campania.id = result[0].id;
+                    miState.campania.fechaInicio = result[0].fechaInicio;
+                    miState.campania.fechaFin = result[0].fechaFin;
+                    miState.campania.descripcion = result[0].descripcion;
                     component.setState(miState);
-
-
                 })
 
             .catch(function (err) {
                 console.log(err);
+            });
+
+
+        let p2 = grillaPedidoProductoCatalogos(this.state.idPedido).then(result => result.json());
+        let arrayp2 = [];
+        arrayp2.push(p1, p2);
+        Promise.all(arrayp2).then(
+            (result) => {
+                console.log(result[1]);
+
+                let miState = {...this.state};
+
+                miState.loaded = true;
+                miState.campania.grillaPedidos = result[1];
+                component.setState(miState);
             })
-        console.log(this.state.pedidoAnterior);
+
+
+            .catch(function (err) {
+                console.log(err);
+            })
+        console.log(this.state)
+
+
     }
 
-    submitForm(event) {
-        event.preventDefault();
-        let pedidoAnterior = this.state.pedidoAnterior;
-
-
-    }
-
-
-    newData(event) {
-        let newState = {...this.state};
-        newState.pedidoAnterior[event.target.name] = event.target.value;
-        this.setState(newState);
-    }
 
     render() {
+
+
         if (!this.state.loaded)
             return null;
 
-        const estilosFooter = {
-            textAlign: 'right',
-            button: {
-                margin: '5px'
-            }
-        }
 
-        let mensaje = null;
-        if (!this.state.flagPrimeraVez) {
-            mensaje =
-                !this.state.modified ?
-                    this.state.error.codigo === 4000 ?
-                        (<Alert color="danger">
-                            <strong> {this.state.error.mensaje} </strong> <br/>
-                            <ul>
-                                {this.state.error.detalle.map((detalle, index) => {
-                                    return <li key={index}>{detalle}</li>
-                                })}
-                            </ul>
-                        </Alert>)
-                        :
-                        (<Alert color="warning">
-                            <strong> {this.state.error.mensaje} </strong> <br/>
-                            {this.state.error.detalle}
-                        </Alert>)
-                    :
-                    this.state.error.codigo === 2001 || this.state.error.codigo === 2004 ?
-                        (<Alert color="success">
-                            <h6>{this.state.error.detalle}</h6>
-                        </Alert>)
-                        :
-                        (<Alert color="warning">
-                            <strong> {this.state.error.mensaje} </strong>
-                            {this.state.error.detalle}
-                        </Alert>)
-        }
+        const currentState = {...this.state};
+
+
+        const divStyle = {
+            border: 'blue',
+            bordered: true
+        };
+
 
         return (
             <Card>
-                <Form onSubmit={this.submitForm}>
-                    <CardHeader>
-                        {!this.idPersona ? "Pedido" : "Pedido"}
-                    </CardHeader>
-                    <CardBody>
+                <CardHeader>
+                    Campaña Actual
+                </CardHeader>
+                <CardBody>
+                    <Row>
+                        <Col xs="3">
 
-                        <Row xs={{size: 12, offset: 0}}>
+                            <h1>
+                                <Label>Id:</Label>
+                                <Label> {currentState.campania.id}</Label>
+                            </h1>
+                        </Col>
+                        <Col xs="3">
+                            <h1>
+                                <Label>Inicio:</Label>
+                                <Label> {currentState.campania.fechaInicio}</Label>
+                            </h1>
+                        </Col>
+                        <Col xs="3">
+                            <h1>
+                                <Label>Fin de Campaña:</Label>
+                                <Label> {currentState.campania.fechaFin}</Label>
+                            </h1>
+                        </Col>
 
+                    </Row>
+                    <Row>
+                        <h1>
+                            <Label>Pedido:{currentState.idPedido}</Label>
 
-                        </Row>
+                        </h1>
+                    </Row>
 
+                    <Row>
+                        <Col sm="4">
 
-                    </CardBody>
-                    <CardFooter style={estilosFooter}>
-                        <Button type="submit" color="success" size="xs"
-                        >
-                            {!this.idPedido ? "Crear" : "Modificar"}
-                        </Button>
-                        <Button type="submit" color="danger" size="xs"
-                                onClick={() => this.props.history.push(this.urlCancelar)}>
-                            Cancelar
-                        </Button>
-                    </CardFooter>
-                </Form>
+                            <Button color="primary"
+                                    onClick={() => this.props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/' + currentState.campaniaActual.idPedido)}>
+                                Cargar Item <i className="fa fa-plus"></i>
+                            </Button>
+                        </Col>
+                        <Col sm="4">
+
+                            <Button
+                                style={{marginLeft: "5px"}}
+                                color="success"
+                                onClick={() => this.props.history.push(getCsvProductoCatalogosPorPedido(currentState.campaniaActual.idPedido))}>
+
+                                Imprimir Pedido
+                            </Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm="12">
+                            <ListGroup id="list-tab" role="tablist">
+                                <PedidoProductoCatalogoGrilla
+                                    pedidoProductoCatalogos={currentState.campania.grillaPedidos}/>
+
+                            </ListGroup>
+                        </Col>
+                        <Col sm="9">
+
+                        </Col>
+                    </Row>
+
+                    <div style={divStyle}>
+
+                    </div>
+                </CardBody>
+                <CardFooter style={{textAlign: "right"}}>
+
+                </CardFooter>
             </Card>
-        )
-    }
 
+        );
+    }
 }
 
 export default PedidoAnterior;

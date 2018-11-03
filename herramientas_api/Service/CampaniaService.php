@@ -32,6 +32,13 @@ class CampaniaService
         return $this->repository->getCampaniaActiva();
     }
 
+    public function getCampaniaPorPedido(int $id)
+    {
+        return $this->repository->getCampaniaPorPedido($id);
+    }
+
+
+
     public function desactivarCampania(int $id)
     {
         $this->repository->desactivarCampania($id);

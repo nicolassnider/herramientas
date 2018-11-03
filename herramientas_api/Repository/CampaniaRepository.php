@@ -85,6 +85,7 @@ class CampaniaRepository extends AbstractRepository
             $db->beginTransaction();
             $sqlGetCampaniaActiva = " SELECT * FROM campania WHERE campania.activo= 1";
             $stmtGetCampaniaActiva = $db->prepare($sqlGetCampaniaActiva);
+
             $stmtGetCampaniaActiva->execute();
             $result = $stmtGetCampaniaActiva->fetchObject();
             $db->commit();
@@ -101,6 +102,34 @@ class CampaniaRepository extends AbstractRepository
             $this->disconnect();
         }
     }
+
+    public function getCampaniaPorPedido(int $id, bool $full = true): ?Campania
+    {
+        try {
+            $db = $this->connect();
+            $db->beginTransaction();
+            $sqlGetCampaniaActiva = "select campania.* from campania 
+                                      inner join pedido_avon on campania.id=pedido_avon.campania
+                                      where pedido_avon.id=:id";
+            $stmtGetCampaniaActiva = $db->prepare($sqlGetCampaniaActiva);
+            $stmtGetCampaniaActiva->bindParam(':id', $id);
+            $stmtGetCampaniaActiva->execute();
+            $result = $stmtGetCampaniaActiva->fetchObject();
+            $db->commit();
+            if ($result == null) return null;
+            return $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
+
+
+        } catch (PDOException $e) {
+            throw  $e;
+
+        } finally {
+            $stmtGetCampaniaActiva = null;
+            $db = null;
+            $this->disconnect();
+        }
+    }
+
 
     public function desactivarCampania(int $id, bool $full = true): void
     {
