@@ -16,6 +16,42 @@ class PedidoProductoCatalogo implements JsonSerializable
     private $recibido;
     private $cliente;
     private $revendedora;
+    private $precioUnitario;
+    private $precioTotal;
+
+    /**
+     * @return mixed
+     */
+    public function getPrecioUnitario()
+    {
+        return $this->precioUnitario;
+    }
+
+    /**
+     * @param mixed $precioUnitario
+     */
+    public function setPrecioUnitario($precioUnitario): void
+    {
+        $this->precioUnitario = $precioUnitario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrecioTotal()
+    {
+        return $this->precioTotal;
+    }
+
+    /**
+     * @param mixed $precioTotal
+     */
+    public function setPrecioTotal($precioTotal): void
+    {
+        $this->precioTotal = $precioTotal;
+    }
+
+
 
     /**
      * @return mixed

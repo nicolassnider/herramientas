@@ -39,7 +39,8 @@ CREATE TABLE herramientas.categoria_producto (
 CREATE TABLE herramientas.unidad (
   id          INT(30)     NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(30) NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  CONSTRAINT UNICO_UNIDAD_DESCRIPCION UNIQUE (descripcion)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -238,7 +239,8 @@ CREATE TABLE herramientas.producto (
   CONSTRAINT FK_CATEGORIA_PRODUCTO FOREIGN KEY (categoria)
   REFERENCES herramientas.categoria_producto (id),
   CONSTRAINT FK_UNIDAD_PRODUCTO FOREIGN KEY (unidad)
-  REFERENCES herramientas.unidad (id)
+  REFERENCES herramientas.unidad (id),
+  CONSTRAINT UNICO_CATEGORIA_PRODUCTO_DESCRIPCION UNIQUE (descripcion)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -299,7 +301,7 @@ CREATE TABLE herramientas.factura (
   total             DECIMAL(13, 3)   NOT NULL,
   fecha_vencimiento DATE             NOT NULL,
   campania          INT(30)          NOT NULL,
-  pagado           BIT(1) DEFAULT 0 NOT NULL,
+  pagado            BIT(1) DEFAULT 0 NOT NULL,
   nro_factura       VARCHAR(15)      NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_FACTURA_CAMPANIA FOREIGN KEY (campania)

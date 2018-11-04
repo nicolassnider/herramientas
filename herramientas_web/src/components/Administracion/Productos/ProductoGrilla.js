@@ -16,10 +16,6 @@ const productos = (props) => {
                 <th>Categoria</th>
                 <th>Descripción</th>
                 <th>Presentación</th>
-                <th>Apellido</th>
-                <th>Status</th>
-                <th>Tipo</th>
-                <th>Fecha Alta</th>
                 <th style={style}></th>
             </tr>
             </thead>

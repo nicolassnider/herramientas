@@ -25,7 +25,6 @@ const CampaniaActual = Loadable({
 });
 
 
-
 /***** Catalogos *****/
 const Catalogos = Loadable({
     loader: () => import('./views/Administracion/Catalogos/Catalogos'),
@@ -120,8 +119,27 @@ const PedidoAnterior = Loadable({
     loading: Loading,
 });
 
+/***** Unidades*****/
+const Unidades = Loadable({
+    loader: () => import('./views/Administracion/ProductoCatalogo/Unidades/Unidades'),
+    loading: Loading,
+});
+/***** Unidad *****/
+const Unidad = Loadable({
+    loader: () => import('./views/Administracion/ProductoCatalogo/Unidades/Unidad'),
+    loading: Loading,
+});
 
-
+/***** CategoriaProductos*****/
+const CategoriaProductos = Loadable({
+    loader: () => import('./views/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductos'),
+    loading: Loading,
+});
+/***** Unidad *****/
+const CategoriaProducto = Loadable({
+    loader: () => import('./views/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProducto'),
+    loading: Loading,
+});
 
 const Users = Loadable({
     loader: () => import('./views/Users/Users'),
@@ -280,6 +298,34 @@ const routes = [
     },
     {
         path: '/users/:id', exact: true, name: 'User Details', component: User
+    },
+
+    {
+        path: '/administracion/productocatalogo/unidades', exact: true, name: 'Unidades', component: Unidades
+    },
+    {
+        path: '/administracion/productocatalogo/unidades/nuevo', exact: true, name: 'Nueva Unidad', component: Unidad
+    },
+    {
+        path: '/administracion/productocatalogo/unidades/:id', exact: true, name: 'Editar Unidad', component: Unidad
+    },
+    {
+        path: '/administracion/productocatalogo/categoriaproductos',
+        exact: true,
+        name: 'CategoriaProductos',
+        component: CategoriaProductos
+    },
+    {
+        path: '/administracion/productocatalogo/categoriaproductos/nuevo',
+        exact: true,
+        name: 'Nueva CategoriaProducto',
+        component: CategoriaProducto
+    },
+    {
+        path: '/administracion/productocatalogo/categoriaproductos/:id',
+        exact: true,
+        name: 'Editar CategoriaProducto',
+        component: CategoriaProducto
     },
 
 

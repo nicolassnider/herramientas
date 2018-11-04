@@ -34,15 +34,19 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
             $db = $this->connect();
             $db->beginTransaction();
             $sqlCreate = "INSERT INTO herramientas.pedido_producto_catalogo
-                          (pedido_avon, producto_catalogo, cantidad, cliente, revendedora) 
+                          (pedido_avon, producto_catalogo, cantidad, cliente, revendedora,precio_unitario,precio_total) 
                       VALUES 
-                          (:pedido_avon, :producto_catalogo, :cantidad,:cliente, :revendedora)";
+                          (:pedido_avon, :producto_catalogo, :cantidad,:cliente, :revendedora,:precio_unitario,:precio_total)";
 
             $pedidoAvon = (int)$pedidoProductoCatalogo->getPedidoAvon()->getId();
-            $productoCatalogo = (int)$pedidoProductoCatalogo->getProductoCatalogo()->getId();
+            $productoCatalogoRepository = new ProductoCatalogoRepository();
+            $productoCatalogoObjeto = $productoCatalogoRepository->get((int)$pedidoProductoCatalogo->getProductoCatalogo()->getId());
+            $productoCatalogo = (int)$productoCatalogoObjeto->getId();
             $cantidad = (int)$pedidoProductoCatalogo->getCantidad();
             $cliente = $pedidoProductoCatalogo->getCliente() ? (int)$pedidoProductoCatalogo->getCliente()->getId() : null;
             $revendedora = $pedidoProductoCatalogo->getRevendedora() ? (int)$pedidoProductoCatalogo->getRevendedora()->getId() : null;
+            $precioUnitario = (float)$productoCatalogoObjeto->getPrecio();
+            $precioTotal = $precioUnitario * $cantidad;
 
             $stmtCreate = $db->prepare($sqlCreate);
             $stmtCreate->bindParam(':pedido_avon', $pedidoAvon, PDO::PARAM_INT);
@@ -50,6 +54,8 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
             $stmtCreate->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
             $stmtCreate->bindParam(':cliente', $cliente, PDO::PARAM_INT);
             $stmtCreate->bindParam(':revendedora', $revendedora, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':precio_unitario', $precioUnitario);
+            $stmtCreate->bindParam(':precio_total', $precioTotal);
             $stmtCreate->execute();
             $pedidoProductoCatalogo->setId($db->lastInsertId());
             $db->commit();
@@ -89,21 +95,29 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
                             producto_catalogo = :producto_catalogo, 
                             cantidad = :cantidad, 
                             cliente = :cliente, 
-                            revendedora = :revendedora 
+                            revendedora = :revendedora,
+                            precio_total=:precio_total,
+                            precio_unitario=:precio_unitario
                           WHERE 
                             (id = :id);";
-
-            $productoCatalogo = (int)$pedidoProductoCatalogo->getProductoCatalogo()->getId();
+            $productoCatalogoRepository = new ProductoCatalogoRepository();
+            $productoCatalogoObjeto = $productoCatalogoRepository->get((int)$pedidoProductoCatalogo->getProductoCatalogo()->getId());
+            $productoCatalogo = (int)$productoCatalogoObjeto->getId();
             $cantidad = (int)$pedidoProductoCatalogo->getCantidad();
             $cliente = $pedidoProductoCatalogo->getCliente() ? (int)$pedidoProductoCatalogo->getCliente()->getId() : null;
             $revendedora = $pedidoProductoCatalogo->getRevendedora() ? (int)$pedidoProductoCatalogo->getRevendedora()->getId() : null;
             $id = (int)$pedidoProductoCatalogo->getId();
+            $precioUnitario = (float)$productoCatalogoObjeto->getPrecio();
+            $precioTotal = $precioUnitario * $cantidad;
             $stmtCreate = $db->prepare($sqlCreate);
             $stmtCreate->bindParam(':producto_catalogo', $productoCatalogo, PDO::PARAM_INT);
             $stmtCreate->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
             $stmtCreate->bindParam(':cliente', $cliente, PDO::PARAM_INT);
             $stmtCreate->bindParam(':revendedora', $revendedora, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':precio_unitario', $precioUnitario);
+            $stmtCreate->bindParam(':precio_total', $precioTotal);
             $stmtCreate->bindParam(':id', $id, PDO::PARAM_INT);
+
             $stmtCreate->execute();
             $db->commit();
 
@@ -135,7 +149,7 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
 
         $datos = array();
         $datosPlanos = array();
-        $cabecera = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente');
+        $cabecera = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente', "Precio Unitario", "Total");
 
         // Datos de presentaciones
         $pedidoProductoCatalogosPorPedidos = $this->getAllProductosPorPedido($pedidoId);
@@ -148,7 +162,9 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
                 $pedidoProductoCatalogoPorPedido->getCantidad(),
                 $pedidoProductoCatalogoPorPedido->getCliente() ?
                     $pedidoProductoCatalogoPorPedido->getCliente()->getPersona()->getNombre() . ' ' . $pedidoProductoCatalogoPorPedido->getCliente()->getPersona()->getApellido() :
-                    $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getNombre() . ' ' . $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getApellido()
+                    $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getNombre() . ' ' . $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getApellido(),
+                $pedidoProductoCatalogoPorPedido->getPrecioUnitario(),
+                $pedidoProductoCatalogoPorPedido->getPrecioTotal(),
 
 
             ];
@@ -159,10 +175,10 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         $delimiter = ",";
         $filename = "pedido.csv";
 
-        $f = fopen('php://memory', 'w');
+        $f = fopen('php://memory', 'r+');
 
         //set column headers
-        $fields = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente');
+        $fields = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente', "Precio Unitario", "Total");
         fputcsv($f, $fields, $delimiter);
 
         //output each row of the data, format line as csv and write to file pointer
@@ -170,19 +186,20 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
 
         foreach ($datosPlanos as $filacsv) {
             fputcsv($f, $filacsv, $delimiter);
+
         }
 
-        //move back to beginning of file
-        fseek($f, 0);
+        rewind($f);
+        $contenido = rtrim(stream_get_contents($f));
 
-        //set headers to download file rather than displayed
-        header('Content-Type: text/csv');
-        header('Content-Disposition: attachment; filename="' . $filename . '";');
-
-        //output all remaining data on a file pointer
-        fpassthru($f);
-
+        $archivo = new Archivo();
+        $archivo->setNombre("Pedido.csv");
+        $archivo->setTipo("text/csv");
+        $archivo->setContenido($contenido);
+        return $archivo;
     }
+
+
 
     private function createFromResultset($result, array $fields, $db)
     {
@@ -195,6 +212,8 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         $item->setRecibido((bool)$result->recibido);
         if ($result->cliente) $item->setCliente((new ClienteRepository())->get($result->cliente));
         if ($result->revendedora) $item->setRevendedora((new RevendedoraRepository())->get($result->revendedora));
+        $item->setPrecioUnitario((float)$result->precio_unitario);
+        $item->setPrecioTotal((float)$result->precio_total);
 
         return $item;
     }
@@ -276,6 +295,46 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         $this->disconnect();
         return $productos;
     }
+
+    /**
+     * @param int $id
+     * @throws BadRequestException
+     */
+    public function delete(int $id): void
+    {
+        $db = $this->connect();
+        $db->beginTransaction();
+        try {
+            $sqlDelete = "DELETE FROM herramientas.pedido_producto_catalogo WHERE id=:id";
+            $stmtDelete = $db->prepare($sqlDelete);
+            $stmtDelete->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtDelete->execute();
+            $db->commit();
+
+        } catch (Exception $e) {
+            if ($db != null) $db->rollback();
+            if ($e instanceof PDOException && $stmtDelete->errorInfo()[0] == 23000 && $stmtDelete->errorInfo()[1] == 1451) {
+                $array = explode("`", $stmtDelete->errorInfo()[2]);
+
+                switch ($array[5]) {
+
+                    case 'PERSONA_REVENDEDORA':
+                        //TODO:verificar id de revendedora
+                        $personaRepository = new PersonaRepository($this->db);
+                        throw new BadRequestException("Existe una relación para la persona " . $personaRepository->get($id)->getNombre() . " " . $personaRepository->get($id)->getApellidoSegundo() . " con Revendedora id X");
+                        break;
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+
+            $stmtDelete = null;
+            $this->disconnect();
+
+        }
+    }
+
 
 
 }

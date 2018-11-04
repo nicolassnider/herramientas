@@ -23,3 +23,4 @@ export const getPedidos = () => {
 export const pedidoPorCampania = (id) => {
     return get("pedidos_avon/campania/pedido/" + id);
 };
+

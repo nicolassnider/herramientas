@@ -19,6 +19,7 @@ import {getCampaniaActiva} from '../../../services/CampaniaServices';
 import FormValidation from "../../../utils/FormValidation";
 import {pedidoPorCampaniaActual} from "../../../services/PedidoServices";
 import {
+    descargaProductoCatalogosPorPedido,
     getCsvProductoCatalogosPorPedido,
     grillaPedidoProductoCatalogos
 } from "../../../services/PedidoProductoCatalogoServices";
@@ -192,7 +193,7 @@ class CampaniaActual extends Component {
                         <Col sm="4">
 
                             <Button color="primary"
-                                    onClick={() => this.props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/' + currentState.campaniaActual.idPedido)}>
+                                    onClick={() => this.props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/' + currentState.idPedido)}>
                                 Cargar Item <i className="fa fa-plus"></i>
                             </Button>
                         </Col>
@@ -201,9 +202,19 @@ class CampaniaActual extends Component {
                             <Button
                                 style={{marginLeft: "5px"}}
                                 color="success"
-                                onClick={() => this.props.history.push(getCsvProductoCatalogosPorPedido(currentState.campaniaActual.idPedido))}>
+                                onClick={() => this.props.history.push(descargaProductoCatalogosPorPedido(currentState.idPedido))}>
 
                                 Imprimir Pedido
+                            </Button>
+                        </Col>
+                        <Col sm="4">
+
+                            <Button
+                                style={{marginLeft: "5px"}}
+                                color="warning"
+                                onClick={() => this.props.history.push(getCsvProductoCatalogosPorPedido(currentState.campaniaActual.idPedido))}>
+
+                                Recibir Pedido
                             </Button>
                         </Col>
                     </Row>

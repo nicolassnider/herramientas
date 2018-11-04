@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Badge} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
+import {removePedidoProductoCatalogo} from "../../../services/PedidoProductoCatalogoServices";
 
 const pedidoProductoCatalogo = (props) => {
     const style = {
@@ -11,7 +12,6 @@ const pedidoProductoCatalogo = (props) => {
 
     return (
         <tr>
-            <td>{props.pedidoProductoCatalogo.id}</td>
             <td>{props.pedidoProductoCatalogo.productoCatalogo.producto.id}</td>
             <td>{props.pedidoProductoCatalogo.productoCatalogo.producto.descripcion}</td>
             <td>{props.pedidoProductoCatalogo.productoCatalogo.precio}</td>
@@ -37,8 +37,17 @@ const pedidoProductoCatalogo = (props) => {
             <td style={style}>
                 <Button size="sm"
                         onClick={() => props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/editar/  ' + this.props.pedidoProductoCatalogo.pedidoAvon.id + "/" + this.props.pedidoProductoCatalogo.id)}
-                        className="btn-outline-secondary">
+                        className="btn-outline-secondary"
+                        title="editar pedido">
                     <i className="fa fa-pencil"></i>
+                </Button>
+            </td>
+            <td style={style}>
+                <Button size="sm"
+                        onClick={() => props.history.push(removePedidoProductoCatalogo(props.pedidoProductoCatalogo.id), document.location.reload())}
+                        className="btn-outline-secondary"
+                        title="quitar de pedido">
+                    <i className="fa fa-eraser"></i>
                 </Button>
             </td>
         </tr>

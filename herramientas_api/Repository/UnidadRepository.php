@@ -31,7 +31,7 @@ class UnidadRepository extends AbstractRepository
                               :descripcion)";
             $descripcion = $unidad->getDescripcion();
             $stmtCreate = $db->prepare($sqlCreate);
-            $stmtCreate->bindParam(':direccion_entrega', $descripcion);
+            $stmtCreate->bindParam(':descripcion', $descripcion);
             $stmtCreate->execute();
             $unidad->setId($db->lastInsertId());
             $db->commit();
@@ -42,8 +42,8 @@ class UnidadRepository extends AbstractRepository
                 //TODO: implementar ex
                 $array = explode("'", $stmtCreate->errorInfo()[2]);
                 switch ($array[3]) {
-                    case "persona_unique":
-                        throw new BadRequestException("existe una ocurrencia para la persona id: " . $array[1]);
+                    case "UNICO_CATEGORIA_PRODUCTO_DESCRIPCION":
+                        throw new BadRequestException("existe una ocurrencia para la unidad id: " . $array[1]);
                         break;
                     default:
                         die(print_r($array));

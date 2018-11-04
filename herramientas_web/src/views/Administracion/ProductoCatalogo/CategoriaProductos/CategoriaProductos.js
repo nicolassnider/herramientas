@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaProductos} from '../../../services/ProductoServices';
+import {getTotalCategoriaProductos} from '../../../../services/CategoriaProductoServices';
 
-import ProductoGrilla from '../../../components/Administracion/Productos/ProductoGrilla';
-import Paginador from '../../../components/Paginador/Paginador';
+import CategoriaProductosGrilla
+    from '../../../../components/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductosGrilla';
+import Paginador from '../../../../components/Paginador/Paginador';
 
 
-class Productos extends Component {
+class CategoriaProductos extends Component {
     onPageChanged = data => {
         const {currentPage, totalPages, pageLimit} = data;
         const offset = (currentPage - 1) * pageLimit;
-        const productos = this.state.resultado.productos.slice(offset, offset + pageLimit);
+        const categoriaProductos = this.state.resultado.categoriaProductos.slice(offset, offset + pageLimit);
 
         let miState = {...this.state};
-        miState.productosPorPagina = productos;
+        miState.categoriaProductosPorPagina = categoriaProductos;
         miState.currentPage = currentPage;
         miState.totalPages = totalPages;
         this.setState(miState);
@@ -23,11 +24,11 @@ class Productos extends Component {
         super();
         this.state = {
             resultado: {
-                productos: [],
+                categoriaProductos: [],
                 codigo: 0,
                 mensaje: ""
             },
-            productosPorPagina: [],
+            categoriaProductosPorPagina: [],
             currentPage: null,
             totalPages: null
         }
@@ -35,15 +36,17 @@ class Productos extends Component {
 
     componentDidMount() {
         let miState = {...this.state};
-        grillaProductos()
+        getTotalCategoriaProductos()
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
 
-                            miState.resultado.productos = response;
+
+                            miState.resultado.categoriaProductos = response;
                             miState.resultado.codigo = 2000;
                             this.setState(miState);
+
 
                         })
                 } else {
@@ -51,7 +54,7 @@ class Productos extends Component {
                         this.setState({
                             resultado: {
                                 codigo: 5000,
-                                mensaje: "Error al listar los personas disponibles."
+                                mensaje: "Error al listar los categoriaProductos disponibles."
                             }
                         });
                     }
@@ -71,10 +74,10 @@ class Productos extends Component {
                     <Row>
                         <Col xs="12">
 
-                            <ProductoGrilla productos={this.state.productosPorPagina}/>
+                            <CategoriaProductosGrilla categoriaProductos={this.state.categoriaProductosPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.productos.length}
+                            <Paginador totalRecords={this.state.resultado.categoriaProductos.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -98,16 +101,8 @@ class Productos extends Component {
                 <Card>
                     <CardHeader style={addBtn}>
                         <Button color="primary"
-                                onClick={() => this.props.history.push('/administracion/productos/nuevo')}>
-                            Nuevo Producto <i className="fa fa-plus"></i>
-                        </Button>
-                        <Button color="info"
-                                onClick={() => this.props.history.push('/administracion/productocatalogo/unidades')}>
-                            Adm.Presentaciones <i className="fa fa-plus"></i>
-                        </Button>
-                        <Button color="warning"
-                                onClick={() => this.props.history.push('/administracion/productocatalogo/categoriaproductos')}>
-                            Adm.Categorias <i className="fa fa-plus"></i>
+                                onClick={() => this.props.history.push('/administracion/productocatalogo/categoriaproductos/nuevo')}>
+                            Nueva Presentacion<i className="fa fa-plus"></i>
                         </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>
@@ -117,4 +112,4 @@ class Productos extends Component {
     };
 }
 
-export default Productos;
+export default CategoriaProductos;

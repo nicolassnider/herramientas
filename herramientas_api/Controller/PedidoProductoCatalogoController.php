@@ -36,8 +36,12 @@ class PedidoProductoCatalogoController
                     $pedidoId = (int)$request->getAttribute('id');
                     $service = new PedidoProductoCatalogoService();
 
+                    $archivo = $service->getCsvFile($pedidoId);
 
-                    return $service->getCsvFile($pedidoId);
+
+                    $response->write($archivo->getContenido());
+                    return $response->withHeader('Content-Type', $archivo->getTipo())
+                        ->withHeader('Content-Disposition', 'attachment; filename="' . $archivo->getNombre() . '"');
                 });
 
 
@@ -68,6 +72,14 @@ class PedidoProductoCatalogoController
                     $pedidoProductoCatalogoService->update($pedidoProductoCatalogo);
                     return $response->withJson("updated", 204);
                 });
+
+                $this->delete('/{id}', function (Request $request, Response $response) {
+                    $id = (int)$request->getAttribute('id');
+                    $service = new PedidoProductoCatalogoService();
+                    $service->delete($id);
+                    return $response->withJson("deleted", 204);
+                });
+
 
 
             });

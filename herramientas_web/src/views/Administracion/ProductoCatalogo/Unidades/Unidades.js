@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaProductos} from '../../../services/ProductoServices';
+import {getTotalUnidades} from '../../../../services/UnidadServices';
 
-import ProductoGrilla from '../../../components/Administracion/Productos/ProductoGrilla';
-import Paginador from '../../../components/Paginador/Paginador';
+import UnidadesGrilla from '../../../../components/Administracion/ProductoCatalogo/Unidades/UnidadesGrilla';
+import Paginador from '../../../../components/Paginador/Paginador';
 
 
-class Productos extends Component {
+class Unidades extends Component {
     onPageChanged = data => {
         const {currentPage, totalPages, pageLimit} = data;
         const offset = (currentPage - 1) * pageLimit;
-        const productos = this.state.resultado.productos.slice(offset, offset + pageLimit);
+        const unidades = this.state.resultado.unidades.slice(offset, offset + pageLimit);
 
         let miState = {...this.state};
-        miState.productosPorPagina = productos;
+        miState.unidadesPorPagina = unidades;
         miState.currentPage = currentPage;
         miState.totalPages = totalPages;
         this.setState(miState);
@@ -23,11 +23,11 @@ class Productos extends Component {
         super();
         this.state = {
             resultado: {
-                productos: [],
+                unidades: [],
                 codigo: 0,
                 mensaje: ""
             },
-            productosPorPagina: [],
+            unidadesPorPagina: [],
             currentPage: null,
             totalPages: null
         }
@@ -35,13 +35,13 @@ class Productos extends Component {
 
     componentDidMount() {
         let miState = {...this.state};
-        grillaProductos()
+        getTotalUnidades()
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
 
-                            miState.resultado.productos = response;
+                            miState.resultado.unidades = response;
                             miState.resultado.codigo = 2000;
                             this.setState(miState);
 
@@ -71,10 +71,10 @@ class Productos extends Component {
                     <Row>
                         <Col xs="12">
 
-                            <ProductoGrilla productos={this.state.productosPorPagina}/>
+                            <UnidadesGrilla unidades={this.state.unidadesPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.productos.length}
+                            <Paginador totalRecords={this.state.resultado.unidades.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -98,16 +98,8 @@ class Productos extends Component {
                 <Card>
                     <CardHeader style={addBtn}>
                         <Button color="primary"
-                                onClick={() => this.props.history.push('/administracion/productos/nuevo')}>
-                            Nuevo Producto <i className="fa fa-plus"></i>
-                        </Button>
-                        <Button color="info"
-                                onClick={() => this.props.history.push('/administracion/productocatalogo/unidades')}>
-                            Adm.Presentaciones <i className="fa fa-plus"></i>
-                        </Button>
-                        <Button color="warning"
-                                onClick={() => this.props.history.push('/administracion/productocatalogo/categoriaproductos')}>
-                            Adm.Categorias <i className="fa fa-plus"></i>
+                                onClick={() => this.props.history.push('/administracion/productocatalogo/unidades/nuevo')}>
+                            Nueva Presentacion<i className="fa fa-plus"></i>
                         </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>
@@ -117,4 +109,4 @@ class Productos extends Component {
     };
 }
 
-export default Productos;
+export default Unidades;

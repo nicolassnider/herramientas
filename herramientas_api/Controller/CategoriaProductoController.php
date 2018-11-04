@@ -37,7 +37,7 @@ class CategoriaProductoController
                 });
 
                 $this->get('/{categoriaproducto}', function (Request $request, Response $response) {
-                    $id = $request->getAttribute('categoriacliente');
+                    $id = $request->getAttribute('categoriaproducto');
                     $service = new CategoriaProductoService();
                     $id = $service->get($id);
                     if ($id == null) {

@@ -14,49 +14,22 @@ import {
     FormGroup,
     Label
 } from 'reactstrap';
-import {editarProductoCatalogo, getCatalogosPorProductoPorId} from '../../../services/ProductoCatalogoServices';
-import {selectCatalogosSinProducto} from '../../../services/CatalogoService';
-import {nuevaProductoCatalogo} from "../../../services/ProductoCatalogoServices";
-import FormValidation from "../../../utils/FormValidation";
-import Validator from "../../../utils/Validator";
+import {getUnidadPorId, editarUnidad, nuevoUnidad} from '../../../../services/UnidadServices';
+
 import Select from 'react-select';
+import Validator from '../../../../utils/Validator.js';
+import FormValidation from '../../../../utils/FormValidation';
+import 'react-datepicker/dist/react-datepicker.css';
 
-//import 'react-datepicker/dist/react-datepicker.css';
-
-class IncluirProductoEnCatalogo extends Component {
+class Unidad extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            productoCatalogo: {
+            unidad: {
                 id: null,
-                producto: {
-                    id: props.match.params.id,
-                    descripcion: "",
-                    categoria: {
-                        id: null,
-                        descripcion: ""
-                    },
-                    unidad: {
-                        id: null,
-                        descripcion: ""
-                    }
-                },
-                catalogo: {
-                    id: null,
-                    descripcion: "",
-                    observaciones: "",
-                    activo: true
-                },
-                catalogos: {
-                    id: null,
-                    descripcion: "",
-                    observaciones: "",
-                    activo: true
-                },
-                precio: null,
-                activo: true
-            },
+                descripcion: ""
 
+            },
 
             error: {
                 codigo: null,
@@ -67,37 +40,20 @@ class IncluirProductoEnCatalogo extends Component {
             flagPrimeraVez: true,
             loaded: false
         };
-        this.idProducto = props.match.params.id;
+        this.idUnidad = props.match.params.id;
 
-
-        this.urlCancelar = "/administracion/productocatalogos";
+        this.urlCancelar = "/administracion/productocatalogo/unidades";
 
 
         this.submitForm = this.submitForm.bind(this);
-        this.handleSelect = this.handleSelect.bind(this);
         this.newData = this.newData.bind(this);
 
         this.formValidation = new FormValidation({
             component: this,
             validators: {
-                'productoCatalogo.precio': (value) => Validator.floatIsGreaterThan(value, 0),
-
+                'unidad.descripcion': (value) => Validator.notEmpty(value)
             }
         });
-    }
-
-    handleSelect(name, object) {
-        let newState = {...this.state};
-
-        switch (name) {
-
-            case "catalogos":
-                newState.productoCatalogo.catalogo.id = object.value;
-                break;
-        }
-
-        this.setState(newState);
-
     }
 
 
@@ -105,8 +61,8 @@ class IncluirProductoEnCatalogo extends Component {
 
         let component = this;
         let arrayPromises = [];
-        if (component.idProducto) {
-            let p1 = selectCatalogosSinProducto(component.idProducto).then(result => result.json());
+        if (component.idUnidad) {
+            let p1 = getUnidadPorId(component.idUnidad).then(result => result.json());
             arrayPromises.push(p1);
         }
 
@@ -115,21 +71,8 @@ class IncluirProductoEnCatalogo extends Component {
                 (result) => {
                     let miState = {...this.state};
 
-                    if (component.idProducto) {
-                        miState.productoCatalogo.catalogos = result[0];
-                        miState.productoCatalogo.catalogos = result[0].map((catalogo, index) => {
-                            return (
-                                {value: catalogo.value, label: catalogo.label}
-                            )
-                        });
-
-                    } else {
-                        miState.productoCatalogo.catalogos = result[0].map((catalogo, index) => {
-                            return (
-                                {value: catalogo.value, label: catalogo.label}
-                            )
-                        })
-                        ;
+                    if (component.idUnidad) {
+                        miState.unidad = result[0]
                     }
 
                     miState.loaded = true;
@@ -146,9 +89,9 @@ class IncluirProductoEnCatalogo extends Component {
 
     submitForm(event) {
         event.preventDefault();
-        let productoCatalogo = this.state.productoCatalogo;
-        if (!this.idProducto) {
-            nuevaProductoCatalogo(productoCatalogo)
+        let unidad = this.state.unidad;
+        if (!this.idUnidad) {
+            nuevoUnidad(unidad)
                 .then(response => {
                     if (response.status === 400) {
 
@@ -170,13 +113,13 @@ class IncluirProductoEnCatalogo extends Component {
                                     codigo: 2001,
                                     mensaje: "",
                                     detalle: [
-                                        "Producto creado correctamente."
+                                        "Unidad creado correctamente."
                                     ]
                                 },
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/productos/productos");
+                                this.props.history.push("/administracion/productocatalogo/unidades");
                             }, 2500);
                         } else {
                             if (response.status === 400) {
@@ -194,7 +137,7 @@ class IncluirProductoEnCatalogo extends Component {
                     }
                 });
         } else {
-            nuevaProductoCatalogo(productoCatalogo)
+            editarUnidad(unidad)
                 .then(response => {
                     if (response.status === 400) {
                         response.json()
@@ -213,13 +156,13 @@ class IncluirProductoEnCatalogo extends Component {
                                     codigo: 2004,
                                     mensaje: "",
                                     detalle: [
-                                        "Producto modificado correctamente."
+                                        "Unidad modificado correctamente."
                                     ]
                                 },
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/productos");
+                                this.props.history.push("/administracion/productocatalogo/unidades");
                             }, 2500);
                         }
                     }
@@ -231,7 +174,7 @@ class IncluirProductoEnCatalogo extends Component {
 
     newData(event) {
         let newState = {...this.state};
-        newState.productoCatalogo[event.target.name] = event.target.value;
+        newState.unidad[event.target.name] = event.target.value;
         this.setState(newState);
     }
 
@@ -283,31 +226,22 @@ class IncluirProductoEnCatalogo extends Component {
             <Card>
                 <Form onSubmit={this.submitForm}>
                     <CardHeader>
-                        {!this.idPersona ? "Crear Persona" : "Modificar Persona"}
+                        {!this.idUnidad ? "Crear Presentacion" : "Modificar Presentacion"}
                     </CardHeader>
                     <CardBody>
 
                         <Row xs={{size: 12, offset: 0}}>
 
                             <Col xs={{size: 4, offset: 0}}>
-                                <Label htmlFor="catalogos">(*)Catálogos disponibles:</Label>
-                                <Select
-                                    name="catalogos" placeholder="Seleccionar una Catálogo..."
-                                    valueKey="value" labelKey="label"
-                                    options={this.state.productoCatalogo.catalogos}
-                                    value={this.state.productoCatalogo.catalogos.find(e => e.value === this.state.productoCatalogo.catalogos.id)}
-                                    onChange={(e) => this.handleSelect("catalogos", e)}
-                                />
-                            </Col>
-                            <Col xs={{size: 4, offset: 0}}>
-                                <Label htmlFor="precio">(*)Precio Unitario:</Label>
-                                <Input type="text" name="precio"
-                                       onChange={this.newData} placeholder="Precio"
-                                       value={this.state.productoCatalogo.precio}
-                                       invalid={!validationState.productoCatalogo.precio.pristine && !validationState.productoCatalogo.precio.valid}/>
+                                <Label htmlFor="descripcion">(*)Descripción:</Label>
+                                <Input type="text" name="descripcion"
+                                       onChange={this.newData} placeholder="Descripcion..."
+                                       value={this.state.unidad.descripcion}
+                                       invalid={!validationState.unidad.descripcion.pristine && !validationState.unidad.descripcion.valid}/>
                                 <FormFeedback
-                                    invalid={!validationState.productoCatalogo.pristine && !validationState.productoCatalogo.precio.valid}>{validationState.productoCatalogo.precio.message}</FormFeedback>
+                                    invalid={!validationState.unidad.pristine && !validationState.unidad.descripcion.valid}>{validationState.unidad.descripcion.message}</FormFeedback>
                             </Col>
+
 
                         </Row>
 
@@ -316,7 +250,7 @@ class IncluirProductoEnCatalogo extends Component {
                     <CardFooter style={estilosFooter}>
                         <Button type="submit" color="success" size="xs"
                                 disabled={!validationState.form.valid}>
-                            {!this.idProducto ? "Crear" : "Incluir"}
+                            {!this.idUnidad ? "Crear" : "Modificar"}
                         </Button>
                         <Button type="submit" color="danger" size="xs"
                                 onClick={() => this.props.history.push(this.urlCancelar)}>
@@ -330,4 +264,4 @@ class IncluirProductoEnCatalogo extends Component {
 
 }
 
-export default IncluirProductoEnCatalogo;
+export default Unidad;

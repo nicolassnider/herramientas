@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f2446b9-8818-4249-a8f3-ce3293d6607b" name="Default" comment="al cambiar de campania se actualiza el pedido actual">
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogoAnteriores/PedidoProductoCatalogoAnteriorFila.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogoAnteriores/PedidoProductoCatalogoAnteriorGrilla.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidoProductoCatalogoAnteriores/PedidoAnterior.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidoProductoCatalogoAnteriores/PedidoAnteriores.js" afterDir="false" />
+    <list default="true" id="2f2446b9-8818-4249-a8f3-ce3293d6607b" name="Default" comment="adjministrador pedidos anteriroes">
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Facturas/PersonaFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Facturas/PersonaGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductosFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductosGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/Unidades/UnidadesFila.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/Unidades/UnidadesGrilla.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProducto.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductos.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/Unidades/Unidad.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/Unidades/Unidades.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7a7a06df-07af-4835-b760-687b6718738c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7a7a06df-07af-4835-b760-687b6718738c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/nicol.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/nicol.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Controller/PedidoAvonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Controller/PedidoAvonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/PedidoAvonRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/PedidoAvonRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Service/CampaniaService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_api/Service/PedidoAvonService.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Service/PedidoAvonService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/scss/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/scss/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/services/CampaniaServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/services/CampaniaServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/structure.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/structure.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Controller/CategoriaProductoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Controller/CategoriaProductoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Controller/PedidoProductoCatalogoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Controller/PedidoProductoCatalogoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Model/PedidoProductoCatalogo.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Model/PedidoProductoCatalogo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/CategoriaProductoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/CategoriaProductoRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/PedidoProductoCatalogoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/PedidoProductoCatalogoRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_api/Repository/UnidadRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_api/Repository/UnidadRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Productos/ProductoGrilla.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Productos/ProductoGrilla.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoFila.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoFila.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/services/CategoriaProductoServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/services/CategoriaProductoServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/services/UnidadServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/services/UnidadServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Productos/Productos.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Productos/Productos.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnterior.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnterior.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnteriores.js" beforeDir="false" afterPath="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnteriores.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -102,12 +116,12 @@
         <counts>
           <entry key="css" value="331" />
           <entry key="html" value="374" />
-          <entry key="js" value="39448" />
+          <entry key="js" value="41633" />
           <entry key="json" value="193" />
-          <entry key="php" value="44524" />
-          <entry key="sql" value="659" />
+          <entry key="php" value="45406" />
+          <entry key="sql" value="685" />
           <entry key="svg" value="3" />
-          <entry key="txt" value="380" />
+          <entry key="txt" value="417" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.composer.command.options" />
@@ -116,13 +130,13 @@
           <entry key="cliente" value="1" />
           <entry key="css" value="14" />
           <entry key="html" value="9" />
-          <entry key="js" value="720" />
+          <entry key="js" value="754" />
           <entry key="json" value="22" />
-          <entry key="php" value="510" />
+          <entry key="php" value="525" />
           <entry key="revendedora" value="1" />
           <entry key="rnc" value="2" />
           <entry key="sample" value="1" />
-          <entry key="sql" value="24" />
+          <entry key="sql" value="26" />
           <entry key="svg" value="4" />
           <entry key="ts" value="4" />
         </counts>
@@ -134,11 +148,11 @@
           <entry key="Database Element" value="2" />
           <entry key="HTML" value="9" />
           <entry key="JSON" value="22" />
-          <entry key="JavaScript" value="720" />
-          <entry key="PHP" value="510" />
+          <entry key="JavaScript" value="754" />
+          <entry key="PHP" value="525" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="RNG Compact" value="2" />
-          <entry key="SQL" value="23" />
+          <entry key="SQL" value="25" />
           <entry key="SVG" value="4" />
           <entry key="Scratch" value="1" />
           <entry key="TypeScript" value="4" />
@@ -149,10 +163,10 @@
           <entry key="CSS" value="331" />
           <entry key="HTML" value="374" />
           <entry key="JSON" value="193" />
-          <entry key="JavaScript" value="39448" />
-          <entry key="PHP" value="43966" />
-          <entry key="PLAIN_TEXT" value="380" />
-          <entry key="SQL" value="1059" />
+          <entry key="JavaScript" value="41633" />
+          <entry key="PHP" value="44846" />
+          <entry key="PLAIN_TEXT" value="417" />
+          <entry key="SQL" value="1087" />
           <entry key="SVG" value="3" />
           <entry key="Scratch" value="158" />
         </counts>
@@ -170,40 +184,27 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnterior.js">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="99" column="46" selection-start-line="99" selection-start-column="46" selection-end-line="99" selection-end-column="46" />
+            <state relative-caret-position="-1738">
+              <caret line="221" column="82" lean-forward="true" selection-start-line="221" selection-start-column="82" selection-end-line="221" selection-end-column="82" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorFila.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-110">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Facturas/PersonaFila.js">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="81" column="12" lean-forward="true" selection-start-line="81" selection-start-column="12" selection-end-line="81" selection-end-column="12" />
+            <state relative-caret-position="544">
+              <caret line="195" column="153" selection-start-line="195" selection-start-column="153" selection-end-line="195" selection-end-column="153" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -212,10 +213,67 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/CampaniaServices.js">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnPedido.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+            <state relative-caret-position="286">
+              <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/Service/PedidoProductoCatalogoService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/structure.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="248" column="52" selection-start-line="248" selection-start-column="52" selection-end-line="248" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PedidoProductoCatalogoRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1320">
+              <caret line="200" lean-forward="true" selection-start-line="200" selection-end-line="200" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/Model/PedidoProductoCatalogo.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/Unidades/UnidadesGrilla.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="338">
+              <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/CategoriaProductoRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="549">
+              <caret line="118" column="9" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -234,28 +292,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getAll</find>
-      <find>rev.id</find>
-      <find>nuev</find>
-      <find>clientes</find>
-      <find>nuevo</find>
-      <find>clientesrevend</find>
-      <find>select</find>
-      <find>SELECT</find>
-      <find>update</find>
-      <find>activo</find>
-      <find>push</find>
-      <find>editar</find>
-      <find>usuario.usuario</find>
-      <find>submit</find>
-      <find>usuarioId</find>
-      <find>service</find>
-      <find>pedidosanteriores</find>
-      <find>pedidosanteriore</find>
-      <find>pedudi</find>
-      <find>producto</find>
-      <find>1</find>
-      <find>grillapedidos</find>
       <find>console.log(result);</find>
       <find>checkCampania</find>
       <find>idpedido</find>
@@ -264,6 +300,28 @@
       <find>Actual</find>
       <find>campaniaactual</find>
       <find>pedidos_avon/campaniaactual/pedido</find>
+      <find>imprimir</find>
+      <find>die</find>
+      <find>update</find>
+      <find>pedidoPRoductoC</find>
+      <find>delete</find>
+      <find>cerrar</find>
+      <find>form</find>
+      <find>formvalidation</find>
+      <find>prod</find>
+      <find>nueva</find>
+      <find>pedidopro</find>
+      <find>grilla</find>
+      <find>producto</find>
+      <find>productos</find>
+      <find>unida</find>
+      <find>unidades</find>
+      <find>unidad</find>
+      <find>categoria_produi</find>
+      <find>create</find>
+      <find>decima</find>
+      <find>incluir</find>
+      <find>CREATE</find>
     </findStrings>
     <replaceStrings>
       <replace>FacturaService</replace>
@@ -309,31 +367,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/herramientas_web/src/services/ProductoCatalogoServices.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/services/ClientesServices.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnPedido.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Clientes/Cliente.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoFila.js" />
-        <option value="$PROJECT_DIR$/herramientas_api/Repository/ProductoCatalogoRepository.php" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js" />
-        <option value="$PROJECT_DIR$/herramientas_api/Model/Archivo.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Service/PedidoProductoCatalogoService.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Repository/PedidoProductoCatalogoRepository.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Controller/PedidoProductoCatalogoController.php" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/services/ApiServices.js" />
-        <option value="$PROJECT_DIR$/herramientas_api/Controller/RevendedoraController.php" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Usuarios/UsuarioFila.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Usuarios/UsuarioGrilla.js" />
-        <option value="$PROJECT_DIR$/herramientas_api/Repository/RevendedoraRepository.php" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Revendedoras/Revendedoras.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Revendedoras/RevendedoraGrilla.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Usuarios/Persona.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Revendedoras/RevendedoraFila.js" />
-        <option value="$PROJECT_DIR$/herramientas_api/Controller/PerfilesController.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Service/PerfilesService.php" />
-        <option value="$PROJECT_DIR$/herramientas_api/Repository/PerfilesRepository.php" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/services/PerfilServices.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/services/UsuarioServices.js" />
         <option value="$PROJECT_DIR$/herramientas_api/Controller/UsuarioController.php" />
         <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/PersonaFila.js" />
         <option value="$PROJECT_DIR$/herramientas_api/Public/Index.php" />
@@ -341,12 +374,9 @@
         <option value="$PROJECT_DIR$/herramientas_api/Repository/UsuarioRepository.php" />
         <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Usuarios/Usuario.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/_nav.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/routes.js" />
-        <option value="$PROJECT_DIR$/db/structure.sql" />
         <option value="$PROJECT_DIR$/herramientas_api/Model/PedidoAvon.php" />
         <option value="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidoAvon/PedidoAvon.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorGrilla.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorFila.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogoAnteriores/PedidoProductoCatalogoAnteriorFila.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnteriores.js" />
@@ -356,10 +386,38 @@
         <option value="$PROJECT_DIR$/herramientas_api/Repository/CampaniaRepository.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Controller/CampaniaController.php" />
         <option value="$PROJECT_DIR$/herramientas_api/Controller/PedidoAvonController.php" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/services/CampaniaServices.js" />
-        <option value="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js" />
         <option value="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/PedidosAnteriores/PedidoAnterior.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js" />
+        <option value="$PROJECT_DIR$/herramientas_api/Service/PedidoProductoCatalogoService.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Controller/PedidoProductoCatalogoController.php" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoFila.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/Unidades/UnidadesGrilla.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Productos/Unidades/Unidad.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Productos/Unidades/Unidades.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/Unidades/Unidad.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/services/UnidadServices.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/Unidades/Unidades.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/services/CategoriaProductoServices.js" />
+        <option value="$PROJECT_DIR$/herramientas_api/Controller/CategoriaProductoController.php" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/Productos/ProductoGrilla.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/Unidades/UnidadesFila.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/routes.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/Productos/Productos.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProducto.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductosFila.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductos.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductosGrilla.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js" />
+        <option value="$PROJECT_DIR$/db/structure.sql" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/CategoriaProductoRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/UnidadRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Model/PedidoProductoCatalogo.php" />
+        <option value="$PROJECT_DIR$/herramientas_api/Repository/PedidoProductoCatalogoRepository.php" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js" />
+        <option value="$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnPedido.js" />
       </list>
     </option>
   </component>
@@ -457,13 +515,12 @@
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
-              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
               <item name="herramientas" type="462c0819:PsiDirectoryNode" />
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
@@ -492,7 +549,8 @@
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="AreaTrabajo" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="Personas" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
@@ -500,8 +558,8 @@
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="AreaTrabajo" type="462c0819:PsiDirectoryNode" />
-              <item name="PedidoProductoCatalogo" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="ProductoCatalogo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
@@ -509,8 +567,9 @@
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="AreaTrabajo" type="462c0819:PsiDirectoryNode" />
-              <item name="PedidoProductoCatalogoAnteriores" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="ProductoCatalogo" type="462c0819:PsiDirectoryNode" />
+              <item name="CategoriaProductos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
@@ -518,8 +577,18 @@
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="AreaTrabajo" type="462c0819:PsiDirectoryNode" />
-              <item name="PedidosAnteriores" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="ProductoCatalogo" type="462c0819:PsiDirectoryNode" />
+              <item name="Unidades" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="Productos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
@@ -541,7 +610,7 @@
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="AreaTrabajo" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
@@ -549,8 +618,8 @@
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="AreaTrabajo" type="462c0819:PsiDirectoryNode" />
-              <item name="CampaniaActual" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="ProductoCatalogo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
@@ -558,8 +627,28 @@
               <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="AreaTrabajo" type="462c0819:PsiDirectoryNode" />
-              <item name="PedidosAnteriores" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="ProductoCatalogo" type="462c0819:PsiDirectoryNode" />
+              <item name="CategoriaProductos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="ProductoCatalogo" type="462c0819:PsiDirectoryNode" />
+              <item name="Unidades" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="herramientas" type="b2602c69:ProjectViewProjectNode" />
+              <item name="herramientas" type="462c0819:PsiDirectoryNode" />
+              <item name="herramientas_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Administracion" type="462c0819:PsiDirectoryNode" />
+              <item name="Productos" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -570,7 +659,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="pedidoproductocata&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/services/PedidoProductoCatalogoServices.js&#10;pedidoAvonController&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PedidoAvonController.php&#10;pedidoca&#9;null&#9;null&#10;pedidoavoncontroller&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PedidoAvonController.php&#10;campaniaControl&#9;null&#9;null&#10;campania&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Repository/CampaniaRepository.php&#10;recordar contraeña&#9;null&#9;null&#10;inclui&#9;null&#9;null&#10;route&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/routes.js&#10;pedidoanteriores&#9;null&#9;null&#10;pedidoAnteriorFila&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorFila.js&#10;campaniare&#9;null&#9;null&#10;PedidoAvon&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Model/PedidoAvon.php&#10;pedidoAvonRE&#9;null&#9;null&#10;pedidoAvonC&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PedidoAvonController.php&#10;rou&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/routes.js&#10;stru&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/db/structure.sql&#10;pedidoac&#9;null&#9;null&#10;routes&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/routes.js&#10;pedido.php&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Model/PedidoAvon.php&#10;usuarioR&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Repository/UsuarioRepository.php&#10;usuarioservi&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/services/UsuarioServices.js&#10;usuarioRe&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Repository/UsuarioRepository.php&#10;usuarioCon&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/UsuarioController.php&#10;personaCon&#9;null&#9;null&#10;perfiles&#9;null&#9;null&#10;usuario.php&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Model/Usuario.php&#10;revendedoraFil&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/Administracion/Personas/Revendedoras/RevendedoraFila.js&#10;personaFi&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/Administracion/Personas/PersonaFila.js&#10;personas&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/Administracion/Personas/Personas.js&#10;revendedoraReposito&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Repository/RevendedoraRepository.php&#10;RevendedoraRe&#9;null&#9;null&#10;Usuario&#9;null&#9;null&#10;cont&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PedidoProductoCatalogoController.php&#10;in&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js&#10;incluirproductoencata&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js&#10;pedidoproduco&#9;null&#9;null&#10;PedidoPro&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoFila.js&#10;campaniaA&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js&#10;pedidoproductocatalogofi&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoFila.js&#10;pedidoproductocatalogo&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla.js&#10;cliente.js&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/Administracion/Personas/Clientes/Cliente.js&#10;clientes.js&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/Administracion/Personas/Clientes/Clientes.js&#10;PedidoProductoCatalogoController&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PedidoProductoCatalogoController.php&#10;clienteservices&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/services/ClientesServices.js&#10;productocatalogo.php&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Model/ProductoCatalogo.php&#10;productoCAtalogocontrol&#9;null&#9;null&#10;pedidoProd&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla.js&#10;Pedidos&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/services/PedidoServices.js&#10;_nav&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/_nav.js" />
+    <property name="SearchEverywhereHistoryKey" value="incluirenped&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnPedido.js&#10;campania&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js&#10;csv&#9;null&#9;null&#10;PRODUCTOCATALOGO&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Repository/PedidoProductoCatalogoRepository.php&#10;unidadRe&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Repository/UnidadRepository.php&#10;categoriaPRoductoR&#9;null&#9;null&#10;unidades&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/Administracion/ProductoCatalogo/Unidades/UnidadesFila.js&#10;categoriaProductoControl&#9;null&#9;null&#10;routes&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/routes.js&#10;rou&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/routes.js&#10;struc&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/db/structure.sql&#10;unidadCont&#9;null&#9;null&#10;campaniaActual&#9;null&#9;null&#10;personaRe&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Repository/PersonaRepository.php&#10;personaControl&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PersonaController.php&#10;pedidoProductoCatalogo&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PedidoProductoCatalogoController.php&#10;edidos&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/services/PedidoServices.js&#10;pedidoproductocata&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/services/PedidoProductoCatalogoServices.js&#10;pedidoAvonController&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PedidoAvonController.php&#10;pedidoca&#9;null&#9;null&#10;pedidoavoncontroller&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PedidoAvonController.php&#10;campaniaControl&#9;null&#9;null&#10;recordar contraeña&#9;null&#9;null&#10;inclui&#9;null&#9;null&#10;route&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/routes.js&#10;pedidoanteriores&#9;null&#9;null&#10;pedidoAnteriorFila&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorFila.js&#10;campaniare&#9;null&#9;null&#10;PedidoAvon&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Model/PedidoAvon.php&#10;pedidoAvonRE&#9;null&#9;null&#10;pedidoAvonC&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PedidoAvonController.php&#10;stru&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/db/structure.sql&#10;pedidoac&#9;null&#9;null&#10;pedido.php&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Model/PedidoAvon.php&#10;usuarioR&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Repository/UsuarioRepository.php&#10;usuarioservi&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/services/UsuarioServices.js&#10;usuarioRe&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Repository/UsuarioRepository.php&#10;usuarioCon&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/UsuarioController.php&#10;personaCon&#9;null&#9;null&#10;perfiles&#9;null&#9;null&#10;usuario.php&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Model/Usuario.php&#10;revendedoraFil&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/Administracion/Personas/Revendedoras/RevendedoraFila.js&#10;personaFi&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/components/Administracion/Personas/PersonaFila.js&#10;personas&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/Administracion/Personas/Personas.js&#10;revendedoraReposito&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Repository/RevendedoraRepository.php&#10;RevendedoraRe&#9;null&#9;null&#10;Usuario&#9;null&#9;null&#10;cont&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_api/Controller/PedidoProductoCatalogoController.php&#10;in&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js&#10;incluirproductoencata&#9;FILE&#9;file://C:/xampp/htdocs/herramientas/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MariaDB" />
     <property name="database.console.LAST_STATE" value="false" />
@@ -583,19 +672,19 @@
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.debug" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\Administracion\Facturas" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\Administracion\ProductoCatalogo\CategoriaProductos" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\Administracion\ProductoCatalogo\CategoriaProductos" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\Administracion\Productos\Unidades" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\Administracion\ProductoCatalogo\Presentaciones" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\Administracion\ProductoCatalogo" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\Administracion\ProductoCatalogo" />
+      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\Administracion" />
       <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\AreaTrabajo\PedidoProductoCatalogoAnterior" />
       <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\Administracion" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\Administracion\Personas\Revendedoras" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\Administracion\Personas" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\Components\Administracion\Productos" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\AreaTrabajo\PedidoProductoCatalogoAnteriores" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\AreaTrabajo\PedidoProductoCatalogoAnteriores" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\AreaTrabajo\PedidoProductoCatalogoAnterior" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\views\AreaTrabajo\PedidoAvon" />
-      <recent name="C:\xampp\htdocs\herramientas\herramientas_web\src\components\AreaTrabajo\PedidosAnteriores" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -693,14 +782,7 @@
       <workItem from="1540981726770" duration="3474000" />
       <workItem from="1540996531009" duration="30669000" />
       <workItem from="1541269121893" duration="220000" />
-      <workItem from="1541272936705" duration="4146000" />
-    </task>
-    <task id="LOCAL-00014" summary="commit">
-      <created>1535630339070</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1535630339070</updated>
+      <workItem from="1541272936705" duration="20198000" />
     </task>
     <task id="LOCAL-00015" summary="commit">
       <created>1535639529772</created>
@@ -1038,21 +1120,27 @@
       <option name="project" value="LOCAL" />
       <updated>1541197214469</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="adjministrador pedidos anteriroes">
+      <created>1541279223588</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1541279223588</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="651776000" />
+    <option name="totallyTimeSpent" value="667828000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1553" height="916" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49875623" visible="true" weight="0.22706571" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49875623" visible="true" weight="0.2088484" />
       <window_info id="Structure" order="1" sideWeight="0.50124377" side_tool="true" weight="0.14638907" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" visible="true" weight="0.3159204" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.3159204" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.26616916" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39897698" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -1070,7 +1158,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.19429453" />
+      <window_info anchor="right" id="Database" order="3" weight="0.1938842" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1104,7 +1192,8 @@
     <MESSAGE value="preparacion de web" />
     <MESSAGE value="preparacion de pedidos" />
     <MESSAGE value="al cambiar de campania se actualiza el pedido actual" />
-    <option name="LAST_COMMIT_MESSAGE" value="al cambiar de campania se actualiza el pedido actual" />
+    <MESSAGE value="adjministrador pedidos anteriroes" />
+    <option name="LAST_COMMIT_MESSAGE" value="adjministrador pedidos anteriroes" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1139,194 +1228,6 @@
     <select />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Personas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2266">
-          <caret line="108" column="105" selection-start-line="108" selection-start-column="97" selection-end-line="108" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Revendedoras/RevendedoraGrilla.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Usuario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="25" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="15" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/Revendedoras/RevendedoraFila.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="29" column="113" selection-start-line="29" selection-start-column="113" selection-end-line="29" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Persona.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="83" column="22" selection-start-line="83" selection-end-line="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/PerfilesService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/PersonaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="117" column="20" lean-forward="true" selection-start-line="107" selection-start-column="16" selection-end-line="117" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="210" column="26" selection-start-line="210" selection-start-column="20" selection-end-line="210" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/UsuarioServices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PerfilesRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="96" column="56" selection-start-line="96" selection-start-column="56" selection-end-line="96" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PerfilServices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Personas/Usuarios/Usuario.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3081">
-          <caret line="68" column="5" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/UsuariosService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/UsuarioRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1429">
-          <caret line="174" selection-start-line="174" selection-end-line="174" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Public/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="162" column="13" selection-start-line="162" selection-start-column="13" selection-end-line="162" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/UsuarioController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="38" column="48" lean-forward="true" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/PerfilesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Personas/PersonaFila.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/_nav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Catalogo.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/structure.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="27" lean-forward="true" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Revendedora.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/PersonaService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="30" column="49" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Persona.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/CatalogoService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="n#getAll#0;n#CatalogoService#0;n#!!top" />
-            <element signature="n#getAllActiveSorted#0;n#CatalogoService#0;n#!!top" />
-            <element signature="n#getAllActiveSortedSinProducto#0;n#CatalogoService#0;n#!!top" />
-            <element signature="n#get#0;n#CatalogoService#0;n#!!top" />
-            <element signature="n#create#0;n#CatalogoService#0;n#!!top" />
-            <element signature="n#update#0;n#CatalogoService#0;n#!!top" />
-            <element signature="n#delete#0;n#CatalogoService#0;n#!!top" />
-            <element signature="n#deactivate#0;n#CatalogoService#0;n#!!top" />
-            <element signature="n#activate#0;n#CatalogoService#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PersonaServices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" selection-start-line="7" selection-end-line="10" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/Campania.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="103" selection-start-line="102" selection-end-line="103" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_api/Model/PedidoAvon.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
@@ -1341,31 +1242,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoFila.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="47" column="50" lean-forward="true" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogoAnterior/PedidoProductoCatalogoAnteriorFila.js" />
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="250" column="66" lean-forward="true" selection-start-line="250" selection-start-column="66" selection-end-line="250" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnPedido.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="27" column="6" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorGrilla.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
@@ -1431,24 +1308,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/PedidoAvonController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="46" column="34" lean-forward="true" selection-start-line="46" selection-start-column="34" selection-end-line="46" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/PedidoProductoCatalogoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1459,13 +1322,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorFila.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="81" column="12" lean-forward="true" selection-start-line="81" selection-start-column="12" selection-end-line="81" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="22">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/ApiServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1479,19 +1346,287 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/PersonaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="2" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+        <state relative-caret-position="483">
+          <caret line="119" column="16" selection-start-line="119" selection-start-column="16" selection-end-line="126" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidosAnteriores/PedidoAnteriorFila.js">
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PersonaRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-110">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="571">
+          <caret line="321" column="5" lean-forward="true" selection-start-line="288" selection-start-column="4" selection-end-line="321" selection-end-column="5" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PedidoServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PedidoProductoCatalogoServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+          <folding>
+            <element signature="e#110#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/PedidoProductoCatalogoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="62" column="12" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="12" />
+          <folding>
+            <element signature="e#92#143#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoFila.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/PersonaServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/Unidades/Unidad.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3652">
+          <caret line="166" column="81" selection-start-line="166" selection-start-column="73" selection-end-line="166" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/UnidadController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/UnidadServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" selection-start-line="7" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/UnidadService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/services/CategoriaProductoServices.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Controller/CategoriaProductoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="39" column="67" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Productos/ProductoGrilla.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="309" column="90" selection-start-line="309" selection-start-column="90" selection-end-line="309" selection-end-column="90" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/Unidades/UnidadesFila.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="101" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="101" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProducto.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1035">
+          <caret line="178" column="26" lean-forward="true" selection-start-line="178" selection-start-column="26" selection-end-line="178" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/Productos/Productos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="109" column="42" selection-start-line="109" selection-start-column="42" selection-end-line="109" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductosFila.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/Unidades/Unidades.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1188">
+          <caret line="57" column="17" lean-forward="true" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductosGrilla.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="23" column="75" selection-start-line="23" selection-start-column="75" selection-end-line="23" selection-end-column="75" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/UnidadRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="44" column="62" selection-start-line="44" selection-start-column="62" selection-end-line="44" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/CategoriaProductoRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="118" column="9" selection-start-line="118" selection-start-column="9" selection-end-line="118" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/structure.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="248" column="52" selection-start-line="248" selection-start-column="52" selection-end-line="248" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Service/PedidoProductoCatalogoService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/AreaTrabajo/CampaniaActual/CampaniaActual.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="195" column="153" selection-start-line="195" selection-start-column="153" selection-end-line="195" selection-end-column="153" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnPedido.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Model/PedidoProductoCatalogo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/ProductoCatalogo/Unidades/UnidadesGrilla.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_api/Repository/PedidoProductoCatalogoRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="200" lean-forward="true" selection-start-line="200" selection-end-line="200" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/views/Administracion/ProductoCatalogo/IncluirProductoEnCatalogo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1738">
+          <caret line="221" column="82" lean-forward="true" selection-start-line="221" selection-start-column="82" selection-end-line="221" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/herramientas_web/src/components/Administracion/Facturas/PersonaFila.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

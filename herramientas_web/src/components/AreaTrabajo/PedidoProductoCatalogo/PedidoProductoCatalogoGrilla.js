@@ -15,7 +15,6 @@ const pedidoProductoCatalogos = (props) => {
         <Table size="sm" responsive>
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Id Producto</th>
                 <th>Producto</th>
                 <th>Precio</th>

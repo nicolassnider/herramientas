@@ -88,15 +88,36 @@ class CategoriaProductoRepository extends AbstractRepository
     public function create(CategoriaProducto $categoriaProducto): ?CategoriaProducto
     {
 
-        $db = $this->connect();
-        $db->beginTransaction();
+        try {
+            $db = $this->connect();
+            $db->beginTransaction();
         $sqlCreate = "INSERT INTO categoria_producto (descripcion) VALUES (:descripcion)";
         $descripcion = $categoriaProducto->getDescripcion();
         $stmtCreate = $db->prepare($sqlCreate);
         $stmtCreate->bindParam(':descripcion', $descripcion);
         $stmtCreate->execute();
         $categoriaProducto->setId($db->lastInsertId());
-        $db->commit();
+            $db->commit();
+        } catch (Exception $e) {
+            if ($db != null) $db->rollback();
+            if ($e instanceof PDOException && $stmtCreate->errorInfo()[0] == 23000 && $stmtCreate->errorInfo()[1] == 1062) {
+                //TODO: implementar ex
+                $array = explode("'", $stmtCreate->errorInfo()[2]);
+                switch ($array[3]) {
+                    case "UNICO_UNIDAD_DESCRIPCION":
+                        throw new BadRequestException("existe una ocurrencia para la unidad id: " . $array[1]);
+                        break;
+                    default:
+                        die(print_r($array));
+                        break;
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $this->disconnect();
+
+        }
         return $categoriaProducto;
     }
 
