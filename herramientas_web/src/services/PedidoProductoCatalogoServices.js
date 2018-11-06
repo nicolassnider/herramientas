@@ -8,6 +8,11 @@ export const grillaPedidoProductoCatalogos = (id) => {
     return get("pedidoproductocatalogo/pedido/" + id);
 };
 
+export const checkCampaniaPedidoProductoCatalogo = (id) => {
+
+    return get("pedidoproductocatalogo/checkcampaniaactiva/" + id);
+};
+
 export const nuevoPedidoProductoCatalogo = (pedidoProductoCatalogo) => {
     return post("pedidoproductocatalogo", pedidoProductoCatalogo);
 };

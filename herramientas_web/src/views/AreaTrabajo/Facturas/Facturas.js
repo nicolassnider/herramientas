@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaProductos} from '../../../services/ProductoServices';
+import {grillaFacturas} from '../../../services/FacturaServices';
 
-import ProductoGrilla from '../../../components/Administracion/Productos/ProductoGrilla';
+import FacturaGrilla from '../../../components/AreaTrabajo/Facturas/FacturaGrilla';
 import Paginador from '../../../components/Paginador/Paginador';
 
 
-class Productos extends Component {
+class Facturas extends Component {
     onPageChanged = data => {
         const {currentPage, totalPages, pageLimit} = data;
         const offset = (currentPage - 1) * pageLimit;
-        const productos = this.state.resultado.productos.slice(offset, offset + pageLimit);
+        const facturas = this.state.resultado.facturas.slice(offset, offset + pageLimit);
 
         let miState = {...this.state};
-        miState.productosPorPagina = productos;
+        miState.facturasPorPagina = facturas;
         miState.currentPage = currentPage;
         miState.totalPages = totalPages;
         this.setState(miState);
@@ -23,11 +23,11 @@ class Productos extends Component {
         super();
         this.state = {
             resultado: {
-                productos: [],
+                facturas: [],
                 codigo: 0,
                 mensaje: ""
             },
-            productosPorPagina: [],
+            facturasPorPagina: [],
             currentPage: null,
             totalPages: null
         }
@@ -35,13 +35,13 @@ class Productos extends Component {
 
     componentDidMount() {
         let miState = {...this.state};
-        grillaProductos()
+        grillaFacturas()
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
 
-                            miState.resultado.productos = response;
+                            miState.resultado.facturas = response;
                             miState.resultado.codigo = 2000;
                             this.setState(miState);
 
@@ -51,7 +51,7 @@ class Productos extends Component {
                         this.setState({
                             resultado: {
                                 codigo: 5000,
-                                mensaje: "Error al listar los productos disponibles."
+                                mensaje: "Error al listar los facturas disponibles."
                             }
                         });
                     }
@@ -71,10 +71,10 @@ class Productos extends Component {
                     <Row>
                         <Col xs="12">
 
-                            <ProductoGrilla productos={this.state.productosPorPagina}/>
+                            <FacturaGrilla facturas={this.state.facturasPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.productos.length}
+                            <Paginador totalRecords={this.state.resultado.facturas.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -98,16 +98,16 @@ class Productos extends Component {
                 <Card>
                     <CardHeader style={addBtn}>
                         <Button color="primary"
-                                onClick={() => this.props.history.push('/administracion/productos/nuevo')}>
-                            Nuevo Producto <i className="fa fa-plus"></i>
+                                onClick={() => this.props.history.push('/administracion/facturas/nuevo')}>
+                            Nueva <i className="fa fa-plus"></i>
                         </Button>
                         <Button color="info"
-                                onClick={() => this.props.history.push('/administracion/productocatalogo/unidades')}>
-                            Adm.Presentaciones <i className="fa fa-plus"></i>
+                                onClick={() => this.props.history.push('/administracion/facturas/revendedoras')}>
+                            Adm.Revendedoras <i className="fa fa-plus"></i>
                         </Button>
                         <Button color="warning"
-                                onClick={() => this.props.history.push('/administracion/productocatalogo/categoriaproductos')}>
-                            Adm.Categorias <i className="fa fa-plus"></i>
+                                onClick={() => this.props.history.push('/administracion/facturas/clientes')}>
+                            Adm.Clientes <i className="fa fa-plus"></i>
                         </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>
@@ -117,4 +117,4 @@ class Productos extends Component {
     };
 }
 
-export default Productos;
+export default Facturas;

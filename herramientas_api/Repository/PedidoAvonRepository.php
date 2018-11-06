@@ -249,7 +249,7 @@ class PedidoAvonRepository extends AbstractRepository
     public function getAll(bool $full = true): Array
     {
         $sql = "SELECT *
-                FROM pedido_avon";
+                FROM pedido_avon ORDER BY pedido_avon.id DESC";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);

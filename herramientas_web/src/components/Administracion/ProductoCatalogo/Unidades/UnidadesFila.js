@@ -2,7 +2,10 @@ import React from 'react';
 import {Button, Badge} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 
+
 const unidad = (props) => {
+
+
     const style = {
         textAlign: 'center'
     }

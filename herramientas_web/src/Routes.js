@@ -135,11 +135,23 @@ const CategoriaProductos = Loadable({
     loader: () => import('./views/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProductos'),
     loading: Loading,
 });
-/***** Unidad *****/
+/***** CategoriaProducto *****/
 const CategoriaProducto = Loadable({
     loader: () => import('./views/Administracion/ProductoCatalogo/CategoriaProductos/CategoriaProducto'),
     loading: Loading,
 });
+
+/***** Facturas*****/
+const Facturas = Loadable({
+    loader: () => import('./views/AreaTrabajo/Facturas/Facturas'),
+    loading: Loading,
+});
+/***** CategoriaProducto *****/
+const Factura = Loadable({
+    loader: () => import('./views/AreaTrabajo/Facturas/Factura'),
+    loading: Loading,
+});
+
 
 const Users = Loadable({
     loader: () => import('./views/Users/Users'),
@@ -270,6 +282,19 @@ const routes = [
         exact: true,
         name: 'PedidoAnterior',
         component: PedidoAnterior
+    },
+
+    {
+        path: '/areatrabajo/facturas/facturas', exact: true, name: 'Facturas', component: Facturas
+    },
+    {
+        path: '/areatrabajo/facturas/facturas/nueva/campania/:id',
+        exact: true,
+        name: 'Nueva Factura',
+        component: Factura
+    },
+    {
+        path: '/administracion/facturas/facturas/:id', exact: true, name: 'Editar Factura', component: Factura
     },
 
 

@@ -194,7 +194,8 @@ class IncluirProductoEnPedido extends Component {
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("areatrabajo/campania/campaniaactual" + this.idPedido);
+                                console.log("settimeout");
+                                this.props.history.push("/areatrabajo/campania/campaniaactual");
                             }, 2500);
                         } else {
                             if (response.status === 400) {
@@ -237,7 +238,7 @@ class IncluirProductoEnPedido extends Component {
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("areatrabajo/campania/campaniaactual" + this.idPedido);
+                                this.props.history.push("/areatrabajo/campania/campaniaactual");
                             }, 2500);
                         }
                     }

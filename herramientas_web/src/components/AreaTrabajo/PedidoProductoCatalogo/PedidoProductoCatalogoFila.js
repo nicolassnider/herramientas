@@ -1,18 +1,35 @@
 import React from 'react';
 import {Button, Badge} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
-import {removePedidoProductoCatalogo} from "../../../services/PedidoProductoCatalogoServices";
+import {
+    checkCampaniaPedidoProductoCatalogo,
+    removePedidoProductoCatalogo
+} from "../../../services/PedidoProductoCatalogoServices";
 
 const pedidoProductoCatalogo = (props) => {
     const style = {
         textAlign: 'center'
     }
 
-    console.log(props)
+
+    function checkCampania() {
+        if (props.pedidoProductoCatalogo.estadoCampania) {
+            console.log("estadoCampania");
+
+            props.history.push(removePedidoProductoCatalogo(props.pedidoProductoCatalogo.id));
+
+            document.location.reload();
+
+        } else {
+            alert("Campaña Cerrada, verificar");
+        }
+
+
+    }
 
     return (
         <tr>
-            <td>{props.pedidoProductoCatalogo.productoCatalogo.producto.id}</td>
+            <td>{props.pedidoProductoCatalogo.productoCatalogo.id}</td>
             <td>{props.pedidoProductoCatalogo.productoCatalogo.producto.descripcion}</td>
             <td>{props.pedidoProductoCatalogo.productoCatalogo.precio}</td>
             <td>{props.pedidoProductoCatalogo.cantidad}</td>
@@ -43,8 +60,9 @@ const pedidoProductoCatalogo = (props) => {
                 </Button>
             </td>
             <td style={style}>
+
                 <Button size="sm"
-                        onClick={() => props.history.push(removePedidoProductoCatalogo(props.pedidoProductoCatalogo.id), document.location.reload())}
+                        onClick={() => (checkCampania())}
                         className="btn-outline-secondary"
                         title="quitar de pedido">
                     <i className="fa fa-eraser"></i>

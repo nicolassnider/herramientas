@@ -63,4 +63,11 @@ class PedidoProductoCatalogoService
         return $this->repository->getCsvFile($pedidoId);
     }
 
+    public function checkCampaniaPedidoProductoCatalogo(int $id)
+    {
+        return $this->repository->checkCampaniaPedidoProductoCatalogo($id);
+    }
+
+
+
 }

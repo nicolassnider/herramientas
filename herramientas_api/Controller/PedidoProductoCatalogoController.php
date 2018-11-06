@@ -80,6 +80,19 @@ class PedidoProductoCatalogoController
                     return $response->withJson("deleted", 204);
                 });
 
+                $this->get('/checkcampaniaactiva/{id}', function (Request $request, Response $response) {
+                    $service = new PedidoProductoCatalogoService();
+                    $id = ((int)$request->getAttribute('id'));
+                    $campania = new Campania();
+
+                    $check = $service->checkCampaniaPedidoProductoCatalogo($id);
+
+                    $campania->setActivo($check);
+                    array_push($campanias, $campania);
+                    return $response->withJson($campania, 200);
+
+                });
+
 
 
             });

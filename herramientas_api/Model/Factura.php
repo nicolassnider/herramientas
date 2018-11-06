@@ -118,7 +118,7 @@ class Factura implements JsonSerializable
         $array = Array();
         if (isset($this->id)) $array['id'] = $this->id;
         if (isset($this->total)) $array['total'] = $this->total;
-        if (isset($this->fechaVencimiento)) $array['fechaVencimiento'] = $this->fechaVencimiento;
+        if (isset($this->fechaVencimiento)) $array['fechaVencimiento'] = $this->fechaVencimiento->format('Y-m-d');;
         if (isset($this->campania)) $array['campania'] = $this->campania;
         if (isset($this->pagado)) $array['pagado'] = $this->pagado;
         if (isset($this->nroFactura)) $array['nroFactura'] = $this->nroFactura;

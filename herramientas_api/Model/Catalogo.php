@@ -6,7 +6,7 @@
  * Time: 4:20 PM
  */
 
-class Catalogo
+class Catalogo implements JsonSerializable
 {
     public $id;
     public $descripcion;

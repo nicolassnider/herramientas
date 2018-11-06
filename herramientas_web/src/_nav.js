@@ -18,6 +18,10 @@ export default {
             url: '/areatrabajo/pedidosanteriores/pedidosanteriores'
         },
         {
+            name: 'Facturas',
+            url: '/areatrabajo/facturas/facturas'
+        },
+        {
             title: true,
             name: 'Administración',
             wrapper: {

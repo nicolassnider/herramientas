@@ -45,13 +45,14 @@ class FacturaRepository extends AbstractRepository
             $pagado=(bool)$factura->getPagado();
             $nroFactura=$factura->getNroFactura();
             $stmtCreate = $db->prepare($sqlCreate);
-            $stmtCreate->bindParam(':categoria_cliente', $total);
+            $stmtCreate->bindParam(':total', $total);
             $stmtCreate->bindParam(':fecha_vencimiento', $fechaVencimiento);
             $stmtCreate->bindParam(':campania', $campania,PDO::PARAM_INT);
             $stmtCreate->bindParam(':pagado', $pagado,PDO::PARAM_BOOL);
             $stmtCreate->bindParam(':nro_factura', $nroFactura);
             $stmtCreate->execute();
             $factura->setId($db->lastInsertId());
+
             $db->commit();
 
         } catch (Exception $e) {

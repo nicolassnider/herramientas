@@ -100,7 +100,7 @@ class FacturaController
         $factura = new Factura();
         $factura->setId((int)$request->getAttribute('id'));
         $factura->setTotal((float)$request->getParam('total'));
-        $factura->setFechaVencimiento(new DateTime($request->getParam('fechaVencimiento')['date']));
+        $factura->setFechaVencimiento(new DateTime($request->getParam('fechaVencimiento')));
         $campania = new Campania();
         $campania->setId($request->getParam('campania')['id']);
         $factura->setCampania($campania);

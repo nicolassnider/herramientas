@@ -212,9 +212,9 @@ class CampaniaActual extends Component {
                             <Button
                                 style={{marginLeft: "5px"}}
                                 color="warning"
-                                onClick={() => this.props.history.push(getCsvProductoCatalogosPorPedido(currentState.campaniaActual.idPedido))}>
+                                onClick={() => this.props.history.push('/areatrabajo/facturas/facturas/nueva/campania/' + currentState.campaniaActual.id)}>
 
-                                Recibir Pedido
+                                Recibir Factura
                             </Button>
                         </Col>
                     </Row>

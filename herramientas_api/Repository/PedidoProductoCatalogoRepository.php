@@ -200,7 +200,6 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
     }
 
 
-
     private function createFromResultset($result, array $fields, $db)
     {
 
@@ -214,6 +213,7 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         if ($result->revendedora) $item->setRevendedora((new RevendedoraRepository())->get($result->revendedora));
         $item->setPrecioUnitario((float)$result->precio_unitario);
         $item->setPrecioTotal((float)$result->precio_total);
+        $item->setEstadoCampania((bool)PedidoProductoCatalogoRepository::checkCampaniaPedidoProductoCatalogo($item->getId()));
 
         return $item;
     }
@@ -303,8 +303,10 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
     public function delete(int $id): void
     {
         $db = $this->connect();
+
         $db->beginTransaction();
         try {
+            PedidoProductoCatalogoRepository::checkCampaniaPedidoProductoCatalogo($id);
             $sqlDelete = "DELETE FROM herramientas.pedido_producto_catalogo WHERE id=:id";
             $stmtDelete = $db->prepare($sqlDelete);
             $stmtDelete->bindParam(':id', $id, PDO::PARAM_INT);
@@ -335,6 +337,36 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         }
     }
 
+    public function checkCampaniaPedidoProductoCatalogo(int $id)
+    {
+        try {
+
+            $db = $this->connect();
+            $sqlCheckCampaniaPedidoProductoCatalogo = "SELECT campania.activo as activo from herramientas.campania 
+INNER JOIN herramientas.pedido_avon on herramientas.pedido_avon.campania= campania.id
+INNER JOIN herramientas.pedido_producto_catalogo on herramientas.pedido_producto_catalogo.pedido_avon= pedido_avon.id 
+WHERE pedido_producto_catalogo.id=:id";
+            $stmtCheckCampaniaPedidoProductoCatalogo = $db->prepare($sqlCheckCampaniaPedidoProductoCatalogo);
+            $stmtCheckCampaniaPedidoProductoCatalogo->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtCheckCampaniaPedidoProductoCatalogo->execute();
+            $result = $stmtCheckCampaniaPedidoProductoCatalogo->fetchObject();
+            if ($result->activo == 0) {
+                return false;
+            } else {
+                return true;
+            }
+
+
+        } catch (PDOException $e) {
+            throw  $e;
+
+        } finally {
+            $result = null;
+            $sqlCheckCampaniaPedidoProductoCatalogo = null;
+            $stmtCheckCampaniaActivaCampaniaActiva = null;
+        }
+        return false;
+    }
 
 
 }
