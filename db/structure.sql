@@ -317,7 +317,8 @@ CREATE TABLE herramientas.remito (
   numero_remito INT(30) NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_REMITO_FACTURA FOREIGN KEY (factura)
-  REFERENCES herramientas.factura (id)
+  REFERENCES herramientas.factura (id),
+  CONSTRAINT NUMERO_REMITO_UNICO UNIQUE (numero_remito)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

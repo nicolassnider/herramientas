@@ -41,6 +41,7 @@
       <w>nacimiento</w>
       <w>nicolás</w>
       <w>nombre</w>
+      <w>numero</w>
       <w>observaciones</w>
       <w>pagado</w>
       <w>pais</w>
@@ -57,6 +58,7 @@
       <w>productos</w>
       <w>provincia</w>
       <w>recibido</w>
+      <w>remito</w>
       <w>resultset</w>
       <w>revendedora</w>
       <w>revendedoras</w>
