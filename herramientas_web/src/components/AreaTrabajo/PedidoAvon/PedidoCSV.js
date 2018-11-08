@@ -8,29 +8,25 @@ import {
     Card,
     CardHeader,
     CardBody,
-    Form,
     TabContent,
     TabPane,
     ListGroup,
     CardFooter,
-    Button,
-    Table
+    Button
 } from 'reactstrap';
 import {subirPedidoCSV} from '../../../services/PedidoServices';
 
-import Alerts from "../../Notifications/Alerts";
+console.log("pedidocsv");
 
-console.log("pedidoAvon");
+import Validator from '../../../utils/Validator.js';
+import FormValidation from '../../../utils/FormValidation';
+import {informeNuevo} from "../../../services/SeriesServices";
 
-class PedidoAvon extends Component {
-
-
+class PedidoCSV extends Component {
     onChange = (e) => {
         let miState = {...this.state};
-        miState.file = e.target.file;
-        console.log(e.target.files[0]);
+        miState.file = e.target.files[0];
         this.setState(miState);
-        console.log(this.state);
     }
 
     constructor(props) {
@@ -43,31 +39,38 @@ class PedidoAvon extends Component {
         this.onChange = this.onChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
 
-
+        this.formValidation = new FormValidation({
+            component: this,
+            validators: {
+                'file': (value) => Validator.notEmpty(value)
+            }
+        });
     }
 
     submitForm(event) {
         event.preventDefault();
+        let respuestaFileUpload = null;
         const miState = this.state;
         const formData = new FormData();
         formData.append('file', this.state.file);
-
+        const idPedido = this.props.match.params.id;
 
         subirPedidoCSV(formData)
             .then(
                 (result) => {
-
                     result.json();
                     miState.fileUploadedStatus = result.status;
                     this.setState(miState);
                     setTimeout(() => {
-                        this.props.history.push("/areatrabajo/campania/campaniaactual");
+                        this.props.history.push("/areatrabajo/pedidosanteriores/pedidosanteriores");
                     }, 2500);
                 })
     }
 
     render() {
 
+        this.formValidation.validate();
+        let validationState = this.formValidation.state;
 
         const estilosFooter = {
             textAlign: 'right'
@@ -76,27 +79,27 @@ class PedidoAvon extends Component {
         const msgFileUploaded = (
             this.state.fileUploadedStatus ?
                 <Col xs="12" lg="4" md="4" className="mt-1">
-                    <Alerts color={this.state.fileUploadedStatus == 200 ? "success" : "danger"}>
+                    <Alert color={this.state.fileUploadedStatus == 200 ? "success" : "danger"}>
                         {this.state.fileUploadedStatus = 200 ?
                             "Archivo subido correctamente."
                             :
                             "Error al subir archivo, intente nuevamente mas tarde por favor."}
-                    </Alerts>
+                    </Alert>
                 </Col> : null
         )
 
         return (
             <Card>
-                <Form onSubmit={this.submitForm}>
+                <Form onSubmit={this.submitForm}
+                >
                     <CardHeader>
-                        Nuevo Archivo
+                        Nuevo Informe
                     </CardHeader>
                     <CardBody>
                         <FormGroup row>
                             <Col xs="12" lg="12" md="12">
                                 <FormGroup>
-                                    <Input type="file" onChange={this.onChange}
-                                    />
+                                    <Input type="file" onChange={this.onChange}/>
                                 </FormGroup>
 
                             </Col>
@@ -106,18 +109,13 @@ class PedidoAvon extends Component {
                     <CardFooter style={estilosFooter}>
                         <Button type="submit" color="success" size="xs"
 
-
                         >
                             Subir
                         </Button> &nbsp;
                         <Button color="danger" size="xs"
-                                onClick={() => this.props.history.push(`/areatrabajo/campania/campaniaactual`)}>
+                                onClick={() => this.props.history.push(`/home`)}>
                             Cancelar
                         </Button>
-
-                        return(){
-
-                    }
                     </CardFooter>
                 </Form>
             </Card>
@@ -125,4 +123,4 @@ class PedidoAvon extends Component {
     }
 }
 
-export default PedidoAvon;
+export default PedidoCSV;

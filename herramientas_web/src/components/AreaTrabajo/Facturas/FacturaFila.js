@@ -37,6 +37,12 @@ const factura = (props) => {
                         title="Pagar Factura">
                     <i className="fa fa-money"></i>
                 </Button>
+                <Button size="sm"
+                        onClick={() => props.history.push(`/areatrabajo/facturas/remitos/factura/${props.factura.id}`)}
+                        className="btn-outline-secondary"
+                        title="Administrar Remitos">
+                    <i className="fa fa-file"></i>
+                </Button>
             </td>
         </tr>
     );

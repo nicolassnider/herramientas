@@ -40,6 +40,7 @@ $container['notFoundHandler'] = function($container) {
             ->withHeader('Access-Control-Allow-Origin', '*')
             ->withHeader('Access-Control-Allow-Headers', '*')
             ->withHeader('Access-Control-Allow-Methods', '*')
+
             ->write(json_encode(new ApiError(4040, null)));
     };
 };
@@ -131,6 +132,7 @@ require_once '../Controller/ProductoController.php';
 require_once '../Controller/ProductoCatalogoController.php';
 require_once '../Controller/ProvinciaController.php';
 require_once '../Controller/RevendedoraController.php';
+require_once '../Controller/RemitoController.php';
 require_once '../Controller/TipoDocumentoController.php';
 require_once '../Controller/UnidadController.php';
 require_once '../Controller/UsuarioController.php';
@@ -158,6 +160,7 @@ require_once '../Controller/WidgetController.php';
 (new ProductoCatalogoController($app))->init();
 (new ProvinciaController($app))->init();
 (new RevendedoraController($app))->init();
+(new RemitoController($app))->init();
 (new TipoDocumentoController($app))->init();
 (new UnidadController($app))->init();
 (new UsuarioController($app))->init();

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaFacturas} from '../../../services/FacturaServices';
+import {getRemitosPorFactura, grillaRemitos} from '../../../services/RemitoServices';
 
-import FacturaGrilla from '../../../components/AreaTrabajo/Facturas/FacturaGrilla';
+import RemitoGrilla from '../../../components/AreaTrabajo/Remitos/RemitoGrilla';
 import Paginador from '../../../components/Paginador/Paginador';
 
 
@@ -10,38 +10,41 @@ class Remitos extends Component {
     onPageChanged = data => {
         const {currentPage, totalPages, pageLimit} = data;
         const offset = (currentPage - 1) * pageLimit;
-        const facturas = this.state.resultado.facturas.slice(offset, offset + pageLimit);
+        const remitos = this.state.resultado.remitos.slice(offset, offset + pageLimit);
 
         let miState = {...this.state};
-        miState.facturasPorPagina = facturas;
+        miState.remitosPorPagina = remitos;
         miState.currentPage = currentPage;
         miState.totalPages = totalPages;
         this.setState(miState);
     }
 
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
             resultado: {
-                facturas: [],
+                remitos: [],
                 codigo: 0,
                 mensaje: ""
             },
-            facturasPorPagina: [],
+            remitosPorPagina: [],
             currentPage: null,
-            totalPages: null
+            totalPages: null,
+            facturaId: props.match.params.id,
+
         }
     }
 
     componentDidMount() {
         let miState = {...this.state};
-        grillaFacturas()
+        getRemitosPorFactura(miState.facturaId)
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
 
-                            miState.resultado.facturas = response;
+                            console.log(response);
+                            miState.resultado.remitos = response;
                             miState.resultado.codigo = 2000;
                             this.setState(miState);
 
@@ -51,7 +54,7 @@ class Remitos extends Component {
                         this.setState({
                             resultado: {
                                 codigo: 5000,
-                                mensaje: "Error al listar los facturas disponibles."
+                                mensaje: "Error al listar los remitos disponibles."
                             }
                         });
                     }
@@ -71,10 +74,10 @@ class Remitos extends Component {
                     <Row>
                         <Col xs="12">
 
-                            <FacturaGrilla facturas={this.state.facturasPorPagina}/>
+                            <RemitoGrilla remitos={this.state.remitosPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.facturas.length}
+                            <Paginador totalRecords={this.state.resultado.remitos.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -98,16 +101,8 @@ class Remitos extends Component {
                 <Card>
                     <CardHeader style={addBtn}>
                         <Button color="primary"
-                                onClick={() => this.props.history.push('/administracion/facturas/nuevo')}>
-                            Nueva <i className="fa fa-plus"></i>
-                        </Button>
-                        <Button color="info"
-                                onClick={() => this.props.history.push('/administracion/facturas/revendedoras')}>
-                            Adm.Revendedoras <i className="fa fa-plus"></i>
-                        </Button>
-                        <Button color="warning"
-                                onClick={() => this.props.history.push('/administracion/facturas/clientes')}>
-                            Adm.Clientes <i className="fa fa-plus"></i>
+                                onClick={() => this.props.history.push(`/areatrabajo/facturas/remitos/nueva/factura/${this.state.facturaId}`)}>
+                            Nuevo <i className="fa fa-plus"></i>
                         </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>

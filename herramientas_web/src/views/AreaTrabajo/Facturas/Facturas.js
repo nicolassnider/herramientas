@@ -96,20 +96,6 @@ class Facturas extends Component {
         return (
             <div className="animated fadeIn">
                 <Card>
-                    <CardHeader style={addBtn}>
-                        <Button color="primary"
-                                onClick={() => this.props.history.push('/administracion/facturas/nuevo')}>
-                            Nueva <i className="fa fa-plus"></i>
-                        </Button>
-                        <Button color="info"
-                                onClick={() => this.props.history.push('/administracion/facturas/revendedoras')}>
-                            Adm.Revendedoras <i className="fa fa-plus"></i>
-                        </Button>
-                        <Button color="warning"
-                                onClick={() => this.props.history.push('/administracion/facturas/clientes')}>
-                            Adm.Clientes <i className="fa fa-plus"></i>
-                        </Button>
-                    </CardHeader>
                     <CardBody>{content}</CardBody>
                 </Card>
             </div>

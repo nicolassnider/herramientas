@@ -4,7 +4,7 @@ import mimeTypes from 'mime-types';
 import downloadJs from 'downloadjs';
 
 export const grillaPedidoProductoCatalogos = (id) => {
-    console.log(id);
+
     return get("pedidoproductocatalogo/pedido/" + id);
 };
 

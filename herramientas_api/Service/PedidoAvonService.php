@@ -7,7 +7,9 @@
  */
 
 require_once '../Repository/PedidoAvonRepository.php';
+require_once '../Commons/Files/FileUtil.php';
 
+use Slim\Http\UploadedFile;
 
 class PedidoAvonService
 {
@@ -62,6 +64,13 @@ class PedidoAvonService
     public function delete(int $id)
     {
         $this->repository->delete($id);
+    }
+
+    public function saveFile(UploadedFile $file, int $id = 1): string
+    {
+        $directory = Config::get('storage.series.informe.path');
+        $filename = FileUtil::moveUploadedFile($directory, $file, $id);
+        return $filename;
     }
 
 

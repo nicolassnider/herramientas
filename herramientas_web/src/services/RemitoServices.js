@@ -1,49 +1,53 @@
 import {get, post, put, remove} from './ApiServices';
 //import * as storage from '../utils/Storage';
 
-export const getFacturas = () => {
-    return get("facturas/");
+export const getRemitos = () => {
+    return get("remitos/");
 };
 
-export const getFacturaPorId = (id) => {
-    return get("facturas/" + id);
+export const getRemitoPorId = (id) => {
+    return get("remitos/" + id);
 
 };
 
-export const desactivarFactura = (id) => {
-    return put("facturas/" + id);
+export const desactivarRemito = (id) => {
+    return put("remitos/" + id);
 
 };
-export const nuevoFactura = (factura) => {
-    return post("facturas", factura);
+export const nuevoRemito = (remito) => {
+    return post("remitos", remito);
 };
 
-export const editarFactura = (factura) => {
-    return put("facturas/" + factura.id, factura);
+export const editarRemito = (remito) => {
+    return put("remitos/" + remito.id, remito);
 };
 
-export const eliminarFactura = (id) => {
-    return remove("facturas/" + id);
+export const eliminarRemito = (id) => {
+    return remove("remitos/" + id);
 };
 
-export const grillaFacturas = () => {
-    return get("facturas");
+export const grillaRemitos = () => {
+    return get("remitos");
 };
 
-export const selectFacturas = () => {
-    return get("facturas/select");
+export const selectRemitos = () => {
+    return get("remitos/select");
 };
 
-export const selectFacturasSinCliente = () => {
-    return get("facturas/selectsincliente");
+export const selectRemitosSinCliente = () => {
+    return get("remitos/selectsincliente");
 };
 
-export const selectFacturasSinRevendedora = () => {
-    return get("facturas/selectsinrevendedora");
+export const selectRemitosSinRevendedora = () => {
+    return get("remitos/selectsinrevendedora");
 };
 
 export const pagar = (id) => {
     console.log("pagar");
     Promise.all();
-    return put("facturas/pagar/" + id);
+    return put("remitos/pagar/" + id);
+};
+
+export const getRemitosPorFactura = (id) => {
+    return get("remitos/factura/" + id);
 };

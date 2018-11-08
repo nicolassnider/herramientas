@@ -1,4 +1,4 @@
-import {get, post, put} from './ApiServices';
+import {get, post, put, postFile} from './ApiServices';
 //import * as storage from '../utils/Storage';
 
 export const pedidoPorCampaniaActual = () => {
@@ -24,3 +24,6 @@ export const pedidoPorCampania = (id) => {
     return get("pedidos_avon/campania/pedido/" + id);
 };
 
+export const subirPedidoCSV = (id, file) => {
+    return postFile("pedidos_avon/pedido/csv", file);
+}

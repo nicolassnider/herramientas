@@ -11,7 +11,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require_once "../Service/RemitoService.php";
 require_once "../Model/Remito.php";
-require_once "../Model/Factura.php.php";
+require_once "../Model/Factura.php";
 
 
 class RemitoController
@@ -48,6 +48,23 @@ class RemitoController
                     return $response->withJson($items, 200);
                 });
 
+                $this->get('/factura/{id}', function (Request $request, Response $response) {
+                    $service = new RemitoService();
+                    $id = $request->getAttribute('id');
+                    $items = $service->getRemitosPorFactura($id);
+                    if ($items == null) {
+                        return $response->withJson($items, 400);
+                    }
+                    return $response->withJson($items, 200);
+                });
+
+                $this->put('/{id}', function (Request $request, Response $response) {
+                    $remito = RemitoController::getInstanceFromRequest($request);
+                    $service = new RemitoService();
+                    $service->update($remito);
+                    return $response->withJson("updated", 204);
+                });
+
 
             });
 
@@ -61,8 +78,8 @@ class RemitoController
         $remito->setId((int)$request->getAttribute('id'));
         $factura = new Factura;
         $factura->setId($request->getParam('factura')['id']);
+        $remito->setFactura($factura);
         $remito->setNumeroRemito($request->getParam('numeroRemito'));
-
         return $remito;
     }
 

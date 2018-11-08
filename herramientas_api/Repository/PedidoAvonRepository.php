@@ -336,6 +336,16 @@ class PedidoAvonRepository extends AbstractRepository
         return $cliente;
     }
 
+    public function updateFile(int $id)
+    {
+        try {
+            return;
+        } finally {
+            return;
+        }
+    }
+
+
 
     private
     function createFromResultset($result, array $fields, $db)

@@ -33,12 +33,10 @@ export const getFile = (url) => {
 }
 
 export const postFile = (url, payload) => {
-    console.log("PAYLOAD", JSON.stringify(payload))
     return fetch(storage.getConfig().apiUrlBase + url, {
         method: 'POST',
         body: payload,
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization-Token': storage.getToken()
         }
     });

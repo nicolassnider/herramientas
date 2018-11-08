@@ -28,5 +28,15 @@ class RemitoService
         return $this->repository->get($id);
     }
 
+    public function update(Remito $remito)
+    {
+        $this->repository->update($remito);
+    }
+
+    public function getRemitosPorFactura(int $id)
+    {
+        return $this->repository->getRemitosPorFactura($id);
+    }
+
 
 }

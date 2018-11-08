@@ -119,6 +119,12 @@ const PedidoAnterior = Loadable({
     loading: Loading,
 });
 
+/***** PedidoCSV *****/
+const PedidoAvon = Loadable({
+    loader: () => import('./views/AreaTrabajo/PedidoAvon/PedidoAvon'),
+    loading: Loading,
+});
+
 /***** Unidades*****/
 const Unidades = Loadable({
     loader: () => import('./views/Administracion/ProductoCatalogo/Unidades/Unidades'),
@@ -146,9 +152,20 @@ const Facturas = Loadable({
     loader: () => import('./views/AreaTrabajo/Facturas/Facturas'),
     loading: Loading,
 });
-/***** CategoriaProducto *****/
+/***** Factura *****/
 const Factura = Loadable({
     loader: () => import('./views/AreaTrabajo/Facturas/Factura'),
+    loading: Loading,
+});
+
+/***** Remitos*****/
+const Remitos = Loadable({
+    loader: () => import('./views/AreaTrabajo/Remitos/Remitos'),
+    loading: Loading,
+});
+/***** Remito *****/
+const Remito = Loadable({
+    loader: () => import('./views/AreaTrabajo/Remitos/Remito'),
     loading: Loading,
 });
 
@@ -272,6 +289,13 @@ const routes = [
     },
 
     {
+        path: '/areatrabajo/pedidosanteriores/pedidoavon',
+        exact: true,
+        name: 'PedidoAvon',
+        component: PedidoAvon
+    },
+
+    {
         path: '/areatrabajo/pedidosanteriores/pedidosanteriores',
         exact: true,
         name: 'PedidosAnteriores',
@@ -295,6 +319,19 @@ const routes = [
     },
     {
         path: '/administracion/facturas/facturas/:id', exact: true, name: 'Editar Factura', component: Factura
+    },
+
+    {
+        path: '/areatrabajo/facturas/remitos/factura/:id', exact: true, name: 'Remitos', component: Remitos
+    },
+    {
+        path: '/areatrabajo/facturas/remitos/nueva/factura/:id',
+        exact: true,
+        name: 'Nuevo Remito',
+        component: Remito
+    },
+    {
+        path: '/administracion/facturas/remitos/:id', exact: true, name: 'Editar Remito', component: Remito
     },
 
 

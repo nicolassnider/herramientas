@@ -197,6 +197,7 @@ class CampaniaActual extends Component {
                                 Cargar Item <i className="fa fa-plus"></i>
                             </Button>
                         </Col>
+
                         <Col sm="4">
 
                             <Button

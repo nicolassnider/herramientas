@@ -104,6 +104,24 @@ class PedidoAvonController
 
                 });
 
+                $this->post('/pedido/csv', function (Request $request, Response $response) {
+                    $uploadedFiles = $request->getUploadedFiles();
+                    die(print_r($uploadedFiles));
+                    $uploadedFile = $uploadedFiles['file'];
+
+
+                    $service = new PedidoAvonService();
+
+
+                    /*if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
+
+                        $filename = $service->saveFile($uploadedFile);
+                        return $response->withJson([
+                            'pedido' => $filename
+                        ], 200);
+                    }*/
+                });
+
 
             });
 

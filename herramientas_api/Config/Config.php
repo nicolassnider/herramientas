@@ -35,14 +35,9 @@ return [
         ]
     ],
     'storage' => [
-        'personas' => [
-            'photo' => [
-                'path' => ''
-            ]
-        ],
-        'productos' => [
-            'photo' => [
-                'path' => ''
+        'series' => [
+            'informe' => [
+                'path' => 'C:\sandroUploadInformes'
             ]
         ]
     ]

@@ -14,7 +14,7 @@ import {
     FormGroup,
     Label
 } from 'reactstrap';
-import {getFacturaPorId, editarFactura, nuevoFactura} from '../../../services/FacturaServices';
+import {getRemitoPorId, editarRemito, nuevoRemito} from '../../../services/RemitoServices';
 import {getAllTipoDocumento} from '../../../services/TipoDocumentoServices';
 import {getAllLocalidades} from '../../../services/LocalidadesServices';
 
@@ -33,17 +33,15 @@ class Remito extends Component {
         super(props);
         console.log(props);
         this.state = {
-            factura: {
+            remito: {
                 id: null,
-                total: 0,
-                fechaVencimiento: null,
-                campania: {
+                factura: {
                     id: props.match.params.id,
                 },
-                pagado: false,
-                nroFactura: "",
+                numeroRemito: "",
 
             },
+            facturaId: props.match.params.id,
 
             error: {
                 codigo: null,
@@ -55,18 +53,16 @@ class Remito extends Component {
             loaded: false
         };
 
-        this.urlCancelar = "/administracion/facturas";
+        this.urlCancelar = "/administracion/remitos";
 
 
         this.submitForm = this.submitForm.bind(this);
-        this.newDate = this.newDate.bind(this);
         this.newData = this.newData.bind(this);
 
         this.formValidation = new FormValidation({
             component: this,
             validators: {
-                'factura.nroFactura': (value) => Validator.intNumber(value),
-                'factura.fechaVencimiento': (value) => Validator.notEmpty(value),
+                'remito.numeroRemito': (value) => Validator.intNumber(value),
 
             }
         });
@@ -79,29 +75,27 @@ class Remito extends Component {
 
         let miState = {...this.state};
         miState.loaded = true;
-        component.setState(miState)
+        component.setState(miState);
+        console.log(this.state);
 
 
     }
 
     submitForm(event) {
         event.preventDefault();
-        let factura = this.state.factura;
-        if (!this.idFactura) {
-            nuevoFactura(factura)
+        let remito = this.state.remito;
+        if (!this.idRemito) {
+            nuevoRemito(remito)
                 .then(response => {
                     if (response.status === 400) {
 
                         response.json()
-                        //console.log("Antes",response)
                             .then(response => {
-                                //console.log("Después",response)
                                 this.setState({
                                     error: response,
                                     modified: false,
                                     flagPrimeraVez: false
                                 });
-                                //alert(this.state.error.detalle[0]);
 
                             })
                     } else {
@@ -112,13 +106,13 @@ class Remito extends Component {
                                     codigo: 2001,
                                     mensaje: "",
                                     detalle: [
-                                        "Factura creado correctamente."
+                                        "Remito creado correctamente."
                                     ]
                                 },
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/facturas");
+                                this.props.history.push("/administracion/remitos");
                             }, 2500);
                         } else {
                             if (response.status === 400) {
@@ -136,7 +130,7 @@ class Remito extends Component {
                     }
                 });
         } else {
-            editarFactura(factura)
+            editarRemito(remito)
                 .then(response => {
                     if (response.status === 400) {
                         response.json()
@@ -155,13 +149,13 @@ class Remito extends Component {
                                     codigo: 2004,
                                     mensaje: "",
                                     detalle: [
-                                        "Factura modificado correctamente."
+                                        "Remito modificado correctamente."
                                     ]
                                 },
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/facturas");
+                                this.props.history.push(`/areatrabajo/facturas/remitos/nueva/factura/${this.state.facturaId}`);
                             }, 2500);
                         }
                     }
@@ -174,30 +168,17 @@ class Remito extends Component {
         //console.log(object);
         let newState = {...this.state};
         if(name === "tipoDocumento"){
-            newState.factura.tipoDocumentoId = object.value;
+            newState.remito.tipoDocumentoId = object.value;
         }
         if(name === "localidades"){
-            newState.factura.unidadId = object.value;
+            newState.remito.unidadId = object.value;
         }
         this.setState(newState);
     }*/
 
     newData(event) {
         let newState = {...this.state};
-        newState.factura[event.target.name] = event.target.value;
-        this.setState(newState);
-    }
-
-    newDate(name, event) {
-        let date = event ? event.format() : '';
-        let newState = {...this.state};
-
-        switch (name) {
-            case "fechaVencimiento":
-                newState.factura.fechaVencimiento = date;
-                break;
-        }
-
+        newState.remito[event.target.name] = event.target.value;
         this.setState(newState);
     }
 
@@ -249,43 +230,26 @@ class Remito extends Component {
             <Card>
                 <Form onSubmit={this.submitForm}>
                     <CardHeader>
-                        {!this.idFactura ? "Crear Factura" : "Modificar Factura"}
+                        <Col> {!this.idRemito ? "Crear Remito" : "Modificar Remito"}</Col>
+
                     </CardHeader>
                     <CardBody>
                         <FormGroup xs={{size: 12, offset: 0}}>
                             <Row>
 
-                                <Label htmlFor="fechaVencimiento">Fecha de Vencimiento:</Label>
-                                <Date placeholderText="Seleccionar fecha"
-                                      selected={!this.state.factura.fechaVencimiento || this.state.factura.fechaVencimiento === '0000-00-00' ? null : moment(this.state.factura.fechaVencimiento)}
-                                      dateFormat="DD/MM/YYYY"
-                                      className="form-control date-picker-placeholder"
-                                      onChange={(event) => this.newDate("fechaVencimiento", event)}
-
-                                      invalid={!validationState.factura.fechaVencimiento.pristine && !validationState.factura.fechaVencimiento.valid}/>
-                                <FormFeedback
-                                    invalid={!validationState.factura.fechaVencimiento.pristine && !validationState.factura.fechaVencimiento.valid}>{validationState.factura.fechaVencimiento.message}</FormFeedback>
                             </Row>
                             <Row xs={{size: 12, offset: 0}}>
                                 <Col xs={{size: 4, offset: 0}}>
-                                    <Label htmlFor="nroFactura">(*)N° Factura:</Label>
-                                    <Input type="text" name="nroFactura"
-                                           onChange={this.newData} placeholder="Ingresar numero de factura"
-                                           value={this.state.factura.nroFactura}
-                                           invalid={!validationState.factura.nroFactura.pristine && !validationState.factura.nroFactura.valid}/>
+                                    <Label htmlFor="numerRemito">(*)N° Remito:</Label>
+                                    <Input type="text" name="numeroRemito"
+                                           onChange={this.newData} placeholder="Ingresar numero de remito"
+                                           value={this.state.remito.numeroRemito}
+                                           invalid={!validationState.remito.numeroRemito.pristine && !validationState.remito.numeroRemito.valid}/>
                                     <FormFeedback
-                                        invalid={!validationState.factura.pristine && !validationState.factura.nroFactura.valid}>{validationState.factura.nroFactura.message}</FormFeedback>
+                                        invalid={!validationState.remito.pristine && !validationState.remito.numeroRemito.valid}>{validationState.remito.numeroRemito.message}</FormFeedback>
                                 </Col>
                             </Row>
-                            <Row xs={{size: 6, offset: 0}}>
-                                <Col xs={{size: 4, offset: 0}}>
-                                    <Label htmlFor="total">(*)Total:</Label>
-                                    <CurrencyFormat name="total"
-                                                    onChange={this.newData} placeholder="Ingresar numero de factura"
-                                                    value={this.state.factura.total}/>
 
-                                </Col>
-                            </Row>
                         </FormGroup>
 
 
@@ -293,7 +257,7 @@ class Remito extends Component {
                     <CardFooter style={estilosFooter}>
                         <Button type="submit" color="success" size="xs"
                                 disabled={!validationState.form.valid}>
-                            {!this.idFactura ? "Crear" : "Modificar"}
+                            {!this.idRemito ? "Crear" : "Modificar"}
                         </Button>
                         <Button type="submit" color="danger" size="xs"
                                 onClick={() => this.props.history.push(this.urlCancelar)}>

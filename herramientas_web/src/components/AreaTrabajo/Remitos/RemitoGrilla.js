@@ -1,9 +1,9 @@
 import React from 'react';
 import {Table} from 'reactstrap';
 
-import FacturaFila from './FacturaFila';
+import RemitoFila from './RemitoFila';
 
-const facturas = (props) => {
+const remitos = (props) => {
     const style = {
         textAlign: 'center'
     }
@@ -12,19 +12,15 @@ const facturas = (props) => {
         <Table size="sm" responsive>
             <thead>
             <tr>
-                <th>N°Factura</th>
-                <th>Total</th>
-                <th>F. Venc</th>
-                <th>Campaña</th>
-                <th>Pago</th>
+                <th>N°Remito</th>
                 <th style={style}></th>
             </tr>
             </thead>
             <tbody>
             {
-                props.facturas.map((factura, index) => {
-                    return <FacturaFila key={index}
-                                        factura={factura}/>
+                props.remitos.map((remito, index) => {
+                    return <RemitoFila key={index}
+                                       remito={remito}/>
                 })
             }
             </tbody>
@@ -32,4 +28,4 @@ const facturas = (props) => {
     )
 }
 
-export default facturas;
+export default remitos;
