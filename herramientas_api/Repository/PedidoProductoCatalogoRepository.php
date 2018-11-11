@@ -209,6 +209,7 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         $item->setProductoCatalogo((new ProductoCatalogoRepository($db))->get($result->producto_catalogo));
         $item->setCantidad((int)$result->cantidad);
         $item->setRecibido((bool)$result->recibido);
+        $item->setEntregado((bool)$result->entregado);
         if ($result->cliente) $item->setCliente((new ClienteRepository())->get($result->cliente));
         if ($result->revendedora) $item->setRevendedora((new RevendedoraRepository())->get($result->revendedora));
         $item->setPrecioUnitario((float)$result->precio_unitario);
@@ -248,8 +249,12 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
     public function getAllProductosPorPedido(int $id, bool $full = true): Array
     {
 
-        $sql = "SELECT *
-                FROM pedido_producto_catalogo WHERE pedido_avon=:id";
+        $sql = "SELECT pedido_producto_catalogo.*
+                FROM pedido_producto_catalogo 
+                INNER JOIN producto_catalogo catalogo on pedido_producto_catalogo.producto_catalogo = catalogo.id
+                INNER JOIN producto ON catalogo.producto = producto.id
+                WHERE pedido_avon=:id                
+                order by producto.id";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
@@ -366,6 +371,48 @@ WHERE pedido_producto_catalogo.id=:id";
             $stmtCheckCampaniaActivaCampaniaActiva = null;
         }
         return false;
+    }
+
+    public function recibir(int $id): void
+    {
+        $db = $this->connect();
+
+        try {
+            $sql = "UPDATE herramientas.pedido_producto_catalogo SET recibido = :recibido WHERE (id = :id)";
+            $recibido = true;
+
+
+            //prepara inserción base de datos
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':recibido', $recibido, PDO::PARAM_BOOL);
+            $stmt->execute();;
+
+        } catch (Exception $e) {
+            //TODO: implementar ex
+            if ($db != null) $db->rollback();
+
+            if ($e instanceof PDOException && $stmt->errorInfo()[0] == 23000 && $stmt->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmt->errorInfo()[2]);
+                switch ($array[3]) {
+
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
+                        break;
+                    default:
+                        die(print_r($array));
+
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $stmt = null;
+            $this->disconnect();
+        }
     }
 
 

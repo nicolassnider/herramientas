@@ -43,7 +43,6 @@ export const selectFacturasSinRevendedora = () => {
 };
 
 export const pagar = (id) => {
-    console.log("pagar");
-    Promise.all();
+    console.log(id);
     return put("facturas/pagar/" + id);
 };

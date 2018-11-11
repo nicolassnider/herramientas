@@ -324,17 +324,20 @@ CREATE TABLE herramientas.remito (
   DEFAULT CHARSET = utf8;
 #25
 CREATE TABLE herramientas.remito_producto (
-  id                INT(30)        NOT NULL AUTO_INCREMENT,
-  remito            INT(30)        NOT NULL,
-  producto_catalogo INT(30)        NOT NULL,
-  cantidad          INT(30)        NOT NULL,
-  precio_unitario   DECIMAL(13, 3) NULL,
+  id              INT(30)          NOT NULL AUTO_INCREMENT,
+  remito          INT(30)          NOT NULL,
+  producto        INT(30)          NOT NULL,
+  cantidad        INT(30)          NOT NULL,
+  precio_unitario DECIMAL(13, 3)   NULL,
+  recibido        BIT(1) DEFAULT 0 NOT NULL,
+  cobrado         BIT(1) DEFAULT 0 NOT NULL,
+
   PRIMARY KEY (id),
   CONSTRAINT FK_REMITO_REMITO FOREIGN KEY (remito)
   REFERENCES herramientas.remito (id),
-  CONSTRAINT FK_REMITO_PRODUCTO FOREIGN KEY (producto_catalogo)
-  REFERENCES herramientas.producto_catalogo (id),
-  CONSTRAINT REMITO_PRODUCTO_UNICO UNIQUE (remito, producto_catalogo)
+  CONSTRAINT FK_REMITO_PRODUCTO FOREIGN KEY (producto)
+  REFERENCES herramientas.producto (id),
+  CONSTRAINT REMITO_PRODUCTO_UNICO UNIQUE (remito, producto)
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;

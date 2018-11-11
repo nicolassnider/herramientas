@@ -15,8 +15,6 @@ import {
     Label
 } from 'reactstrap';
 import {getRemitoPorId, editarRemito, nuevoRemito} from '../../../services/RemitoServices';
-import {getAllTipoDocumento} from '../../../services/TipoDocumentoServices';
-import {getAllLocalidades} from '../../../services/LocalidadesServices';
 
 
 import Switch from 'react-switch';
@@ -27,21 +25,35 @@ import Date from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import CurrencyFormat from 'react-currency-format';
 import moment from 'moment';
+import {getPersonaPorId} from "../../../services/PersonaServices";
+import {getAllTipoDocumento} from "../../../services/TipoDocumentoServices";
+import {getAllLocalidades} from "../../../services/LocalidadesServices";
+import {getProductoPorId, selectProductos} from "../../../services/ProductoServices";
+import {editarRemitoProducto, nuevoRemitoProducto} from "../../../services/RemitoProductoServices";
+import {getAllCategoriaProductos} from "../../../services/CategoriaProductoServices";
+import {getAllUnidades} from "../../../services/UnidadServices";
+import remitoProductos from "../../../components/AreaTrabajo/RemitoProductos/RemitoProductoGrilla";
 
-class Remito extends Component {
+class RemitoProducto extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+
         this.state = {
-            remito: {
+            remitoProducto: {
                 id: null,
-                factura: {
+                remito: {
                     id: props.match.params.id,
                 },
-                numeroRemito: "",
+                productos: {
+                    id: null
+                },
+                producto: {
+                    id: null
+                },
+                cantidad: 0,
 
             },
-            facturaId: props.match.params.id,
+            idRemitoProducto: props.match.params.id,
 
             error: {
                 codigo: null,
@@ -53,16 +65,18 @@ class Remito extends Component {
             loaded: false
         };
 
-        this.urlCancelar = "/administracion/remitos";
+        this.urlCancelar = "/areatrabajo/facturas/";
 
 
         this.submitForm = this.submitForm.bind(this);
         this.newData = this.newData.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
 
         this.formValidation = new FormValidation({
             component: this,
             validators: {
-                'remito.numeroRemito': (value) => Validator.intNumber(value),
+                'remitoProducto.cantidad': (value) => Validator.intNumber(value),
+                'remitoProducto.producto': (value) => Validator.notEmpty(value),
 
             }
         });
@@ -71,21 +85,39 @@ class Remito extends Component {
     componentDidMount() {
 
         let component = this;
+        let arrayPromises = [];
+
+        let p1 = selectProductos().then(result => result.json());
+        arrayPromises.push(p1);
+
+        Promise.all(arrayPromises)
+            .then(
+                (result) => {
+                    let miState = {...this.state};
+
+                    miState.remitoProducto.productos = result[0].map((producto, index) => {
+                        return (
+                            {value: producto.value, label: producto.label}
+                        )
+                    })
 
 
-        let miState = {...this.state};
-        miState.loaded = true;
-        component.setState(miState);
-        console.log(this.state);
+                    miState.loaded = true;
+                    component.setState(miState);
 
 
+                })
+
+            .catch(function (err) {
+                console.log(err);
+            })
     }
 
     submitForm(event) {
         event.preventDefault();
-        let remito = this.state.remito;
-        if (!this.idRemito) {
-            nuevoRemito(remito)
+        let remitoProducto = this.state.remitoProducto;
+        if (!this.idRemitoProducto) {
+            nuevoRemitoProducto(remitoProducto)
                 .then(response => {
                     if (response.status === 400) {
 
@@ -96,6 +128,8 @@ class Remito extends Component {
                                     modified: false,
                                     flagPrimeraVez: false
                                 });
+                                alert(this.state.error.detalle[0])
+
 
                             })
                     } else {
@@ -106,13 +140,13 @@ class Remito extends Component {
                                     codigo: 2001,
                                     mensaje: "",
                                     detalle: [
-                                        "Remito creado correctamente."
+                                        "RemitoProducto creado correctamente."
                                     ]
                                 },
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/remitos");
+                                this.props.history.push("/areatrabajo/facturas/");
                             }, 2500);
                         } else {
                             if (response.status === 400) {
@@ -130,7 +164,7 @@ class Remito extends Component {
                     }
                 });
         } else {
-            editarRemito(remito)
+            editarRemitoProducto(remitoProducto)
                 .then(response => {
                     if (response.status === 400) {
                         response.json()
@@ -155,7 +189,7 @@ class Remito extends Component {
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push(`/areatrabajo/facturas/remitos/nueva/factura/${this.state.facturaId}`);
+                                this.props.history.push(`/areatrabajo/facturas/remitos/`);
                             }, 2500);
                         }
                     }
@@ -164,21 +198,18 @@ class Remito extends Component {
         //console.log("Submit", this.state);
     }
 
-    /*handleSelect(name, object){
-        //console.log(object);
+    handleSelect(name, object) {
         let newState = {...this.state};
-        if(name === "tipoDocumento"){
-            newState.remito.tipoDocumentoId = object.value;
-        }
-        if(name === "localidades"){
-            newState.remito.unidadId = object.value;
+        if (name === "productos") {
+            console.log("productos");
+            newState.remitoProducto.producto.id = object.value;
         }
         this.setState(newState);
-    }*/
+    }
 
     newData(event) {
         let newState = {...this.state};
-        newState.remito[event.target.name] = event.target.value;
+        newState.remitoProducto[event.target.name] = event.target.value;
         this.setState(newState);
     }
 
@@ -230,25 +261,30 @@ class Remito extends Component {
             <Card>
                 <Form onSubmit={this.submitForm}>
                     <CardHeader>
-                        <Col> {!this.idRemito ? "Crear Remito" : "Modificar Remito"}</Col>
+                        <Col> {!this.idRemito ? "Inluir" : "Modificar"}</Col>
 
                     </CardHeader>
                     <CardBody>
                         <FormGroup xs={{size: 12, offset: 0}}>
-                            <Row>
 
-                            </Row>
-                            <Row xs={{size: 12, offset: 0}}>
-                                <Col xs={{size: 4, offset: 0}}>
-                                    <Label htmlFor="numeroRemito">(*)N° Remito:</Label>
-                                    <Input type="text" name="numeroRemito"
-                                           onChange={this.newData} placeholder="Ingresar numero de remito"
-                                           value={this.state.remito.numeroRemito}
-                                           invalid={!validationState.remito.numeroRemito.pristine && !validationState.remito.numeroRemito.valid}/>
-                                    <FormFeedback
-                                        invalid={!validationState.remito.pristine && !validationState.remito.numeroRemito.valid}>{validationState.remito.numeroRemito.message}</FormFeedback>
-                                </Col>
-                            </Row>
+                            <Label htmlFor="productos">(*)Producto:</Label>
+                            <Select
+                                name="productos" placeholder="Producto..."
+                                valueKey="value" labelKey="label"
+                                options={this.state.remitoProducto.productos}
+                                value={this.state.remitoProducto.productos.find(e => e.value === this.state.remitoProducto.productos.id)}
+                                onChange={(e) => this.handleSelect("productos", e)}
+                            />
+
+
+                            <Label htmlFor="cantidad">(*)Cantidad:</Label>
+                            <Input type="text" name="cantidad"
+                                   onChange={this.newData} placeholder="Cantidad(entero)"
+                                   value={this.state.remitoProducto.cantidad}
+                                   invalid={!validationState.remitoProducto.cantidad.pristine && !validationState.remitoProducto.cantidad.valid}/>
+                            <FormFeedback
+                                invalid={!validationState.remitoProducto.pristine && !validationState.remitoProducto.cantidad.valid}>{validationState.remitoProducto.cantidad.message}</FormFeedback>
+
 
                         </FormGroup>
 
@@ -271,4 +307,4 @@ class Remito extends Component {
 
 }
 
-export default Remito;
+export default RemitoProducto;

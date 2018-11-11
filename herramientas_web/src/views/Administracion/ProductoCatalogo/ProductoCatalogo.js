@@ -11,7 +11,6 @@ import {
     CardFooter,
     Button,
     Row,
-    FormGroup,
     Label
 } from 'reactstrap';
 import {getCatalogosPorProductoPorId} from '../../../services/ProductoCatalogoServices';

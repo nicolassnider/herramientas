@@ -3,10 +3,21 @@ import {Button, Badge} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 import {pagar} from "../../../services/FacturaServices";
 import {removePedidoProductoCatalogo} from "../../../services/PedidoProductoCatalogoServices";
+import {recibir} from "../../../services/RemitoProductoServices";
 
 const factura = (props) => {
     const style = {
         textAlign: 'center'
+    }
+
+    function pagarFactura() {
+
+        pagar(props.factura.id);
+
+        setTimeout(2000);
+        document.location.reload();
+
+
     }
 
     return (
@@ -32,7 +43,7 @@ const factura = (props) => {
                     <i className="fa fa-pencil"></i>
                 </Button>
                 <Button size="sm"
-                        onClick={() => props.history.push(Promise.all(pagar(props.factura.id)), document.location.reload())}
+                        onClick={() => props.history.push(pagarFactura())}
                         className="btn-outline-secondary"
                         title="Pagar Factura">
                     <i className="fa fa-money"></i>

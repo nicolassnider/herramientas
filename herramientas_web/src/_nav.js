@@ -22,10 +22,6 @@ export default {
             url: '/areatrabajo/facturas/facturas'
         },
         {
-            name: 'Remitos',
-            url: '/areatrabajo/facturas/remitos'
-        },
-        {
             name: 'PedidoCSV',
             url: '/areatrabajo/pedidosanteriores/pedidocsv'
         },

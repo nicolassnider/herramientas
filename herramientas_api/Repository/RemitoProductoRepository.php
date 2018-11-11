@@ -12,6 +12,9 @@ require_once '../Model/Producto.php';
 require_once '../Model/Catalogo.php';
 require_once '../Model/PedidoProductoCatalogo.php';
 require_once '../Model/Archivo.php';
+require_once '../Model/RemitoProducto.php';
+require_once '../Model/ComparaPedidoRemito.php';
+
 require_once '../Repository/CatalogoRepository.php';
 require_once '../Repository/ProductoRepository.php';
 
@@ -33,16 +36,16 @@ class RemitoProductoRepository extends AbstractRepository
             $db = $this->connect();
             $db->beginTransaction();
             $sqlCreate = "INSERT INTO herramientas.remito_producto
-                        (remito, producto_catalogo, cantidad) 
-                        VALUES (:remito,:producto_catalogo,:cantidad)";
+                        (remito, producto, cantidad) 
+                        VALUES (:remito,:producto,:cantidad)";
 
             $remito = (int)$remitoProducto->getRemito()->getId();
-            $productoCatalogo = $remitoProducto->getProductoCatalogo()->getId();
+            $producto = $remitoProducto->getProducto()->getId();
             $cantidad = $remitoProducto->getCantidad();
 
             $stmtCreate = $db->prepare($sqlCreate);
             $stmtCreate->bindParam(':remito', $remito, PDO::PARAM_INT);
-            $stmtCreate->bindParam(':producto_catalogo', $productoCatalogo, PDO::PARAM_INT);
+            $stmtCreate->bindParam(':producto', $producto, PDO::PARAM_INT);
             $stmtCreate->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
             $stmtCreate->execute();
             $remitoProducto->setId($db->lastInsertId());
@@ -54,8 +57,8 @@ class RemitoProductoRepository extends AbstractRepository
                 //TODO: implementar ex
                 $array = explode("'", $stmtCreate->errorInfo()[2]);
                 switch ($array[3]) {
-                    case "persona_unique":
-                        throw new BadRequestException("existe una ocurrencia para la persona id: " . $array[1]);
+                    case "REMITO_PRODUCTO_UNICO":
+                        throw new BadRequestException("existe una ocurrencia para el item de producto: ");
                         break;
                     default:
                         die(print_r($array));
@@ -132,41 +135,98 @@ class RemitoProductoRepository extends AbstractRepository
 
     }
 
-    public function getCsvFile(int $pedidoId)
+    public function recibir(int $id): void
+    {
+        $db = $this->connect();
+        $db->beginTransaction();
+        try {
+            $sql = "UPDATE herramientas.remito_producto SET recibido = :recibido WHERE (id = :id)";
+
+            $recibido = true;
+
+
+            //prepara inserción base de datos
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':recibido', $recibido, PDO::PARAM_BOOL);
+            $stmt->execute();
+
+            $sqlRecibirEnPedido = ("SELECT pedido_producto_catalogo.id FROM herramientas.remito_producto
+inner join herramientas.remito on remito_producto.remito=remito.id
+inner join herramientas.factura on remito.factura=factura.id
+inner join herramientas.campania on factura.campania=campania.id
+inner join herramientas.pedido_avon on pedido_avon.campania=campania.id
+inner join herramientas.pedido_producto_catalogo on pedido_avon.id=pedido_producto_catalogo.pedido_avon 
+where remito_producto.id=:id
+;");
+
+            $stmtRecibirEnPedido = $db->prepare($sqlRecibirEnPedido);
+            $stmtRecibirEnPedido->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtRecibirEnPedido->execute();
+
+            $items = $stmtRecibirEnPedido->fetchAll(PDO::FETCH_OBJ);
+            foreach ($items as $item) {
+                $pedidoProductoCatalogoRepository = new PedidoProductoCatalogoRepository($this->db);
+                $pedidoProductoCatalogoRepository->recibir((int)$item->id);
+            }
+            $db->commit();
+
+        } catch (Exception $e) {
+            //TODO: implementar ex
+            if ($db != null) $db->rollback();
+
+            if ($e instanceof PDOException && $stmt->errorInfo()[0] == 23000 && $stmt->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmt->errorInfo()[2]);
+                switch ($array[3]) {
+
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
+                        break;
+                    default:
+                        die(print_r($array));
+
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $stmt = null;
+            $this->disconnect();
+        }
+    }
+
+    public function getCsvFile(int $remitoId)
     {
 
         $datos = array();
         $datosPlanos = array();
-        $cabecera = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente', "Precio Unitario", "Total");
+        $cabecera = array('Id', 'ProductoN', 'Descripcion', 'Cantidad');
 
         // Datos de presentaciones
-        $pedidoProductoCatalogosPorPedidos = $this->getAllProductosPorPedido($pedidoId);
-        foreach ($pedidoProductoCatalogosPorPedidos as $pedidoProductoCatalogoPorPedido) {
+        $remitoProductosPorRemito = $this->getAllRemitoProductoPorRemito($remitoId);
+        foreach ($remitoProductosPorRemito as $remitoProductoPorRemito) {
             $fila = [
-                $pedidoProductoCatalogoPorPedido->getId(),
-                $pedidoProductoCatalogoPorPedido->getProductoCatalogo()->getProducto()->getId(),
-                $pedidoProductoCatalogoPorPedido->getProductoCatalogo()->getProducto()->getDescripcion(),
-                $pedidoProductoCatalogoPorPedido->getProductoCatalogo()->getPrecio(),
-                $pedidoProductoCatalogoPorPedido->getCantidad(),
-                $pedidoProductoCatalogoPorPedido->getCliente() ?
-                    $pedidoProductoCatalogoPorPedido->getCliente()->getPersona()->getNombre() . ' ' . $pedidoProductoCatalogoPorPedido->getCliente()->getPersona()->getApellido() :
-                    $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getNombre() . ' ' . $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getApellido(),
-                $pedidoProductoCatalogoPorPedido->getPrecioUnitario(),
-                $pedidoProductoCatalogoPorPedido->getPrecioTotal(),
-
+                $remitoProductoPorRemito->getId(),
+                $remitoProductoPorRemito->getProducto()->getId(),
+                $remitoProductoPorRemito->getProducto()->getDescripcion(),
+                $remitoProductoPorRemito->getCantidad()
 
             ];
             array_push($datosPlanos, $fila);
 
         }
 
+
         $delimiter = ",";
-        $filename = "pedido.csv";
+        $filename = "remito" . $remitoId . ".csv";
 
         $f = fopen('php://memory', 'r+');
 
         //set column headers
-        $fields = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente', "Precio Unitario", "Total");
+        $fields = array('Id', 'ProductoN', 'Descripcion', 'Cantidad');
         fputcsv($f, $fields, $delimiter);
 
         //output each row of the data, format line as csv and write to file pointer
@@ -181,7 +241,7 @@ class RemitoProductoRepository extends AbstractRepository
         $contenido = rtrim(stream_get_contents($f));
 
         $archivo = new Archivo();
-        $archivo->setNombre("Pedido.csv");
+        $archivo->setNombre($filename);
         $archivo->setTipo("text/csv");
         $archivo->setContenido($contenido);
         return $archivo;
@@ -191,18 +251,13 @@ class RemitoProductoRepository extends AbstractRepository
     private function createFromResultset($result, array $fields, $db)
     {
 
-        $item = new PedidoProductoCatalogo();
+
+        $item = new RemitoProducto();
         $item->setId((int)$result->id);
-        $item->setPedidoAvon((new PedidoAvonRepository($db))->get($result->pedido_avon));
-        $item->setProductoCatalogo((new ProductoCatalogoRepository($db))->get($result->producto_catalogo));
+        $item->setRemito((new RemitoRepository($db))->get($result->remito));
+        $item->setProducto((new ProductoRepository($db))->get($result->producto));
         $item->setCantidad((int)$result->cantidad);
         $item->setRecibido((bool)$result->recibido);
-        if ($result->cliente) $item->setCliente((new ClienteRepository())->get($result->cliente));
-        if ($result->revendedora) $item->setRevendedora((new RevendedoraRepository())->get($result->revendedora));
-        $item->setPrecioUnitario((float)$result->precio_unitario);
-        $item->setPrecioTotal((float)$result->precio_total);
-        $item->setEstadoCampania((bool)PedidoProductoCatalogoRepository::checkCampaniaPedidoProductoCatalogo($item->getId()));
-
         return $item;
     }
 
@@ -256,6 +311,32 @@ class RemitoProductoRepository extends AbstractRepository
         }
         $this->disconnect();
         return $productosPorPedido;
+    }
+
+    public function getAllRemitoProductoPorRemito(int $id, bool $full = true): Array
+    {
+
+        $sql = "SELECT *
+                FROM remito_producto WHERE remito=:id 
+                ORDER BY producto";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $remitoProductosPorRemito = Array();
+        foreach ($items as $item) {
+            $item = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
+            array_push($remitoProductosPorRemito, $item);
+        }
+        $this->disconnect();
+        return $remitoProductosPorRemito;
     }
 
     public function getAllActiveSorted(): Array
@@ -339,8 +420,10 @@ WHERE pedido_producto_catalogo.id=:id";
             $stmtCheckCampaniaPedidoProductoCatalogo->execute();
             $result = $stmtCheckCampaniaPedidoProductoCatalogo->fetchObject();
             if ($result->activo == 0) {
+
                 return false;
             } else {
+
                 return true;
             }
 
@@ -354,6 +437,51 @@ WHERE pedido_producto_catalogo.id=:id";
             $stmtCheckCampaniaActivaCampaniaActiva = null;
         }
         return false;
+    }
+
+    public function compararPedidoRemito()
+    {
+
+
+        $sqlPedido = "select producto.id as producto, sum(pedido_producto_catalogo.cantidad) as cantidad from herramientas.pedido_producto_catalogo 
+inner join herramientas.producto_catalogo on pedido_producto_catalogo.producto_catalogo=producto_catalogo.id
+inner join herramientas.producto on producto_catalogo.producto=producto.id
+where pedido_producto_catalogo.pedido_avon=2 && producto.id=10
+order by producto.id";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sqlPedido);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $itemsPedido = Array();
+        foreach ($results as $result) {
+            $itemPedido = new ComparaPedidoRemito();
+            $itemPedido->setCantidad((int)$result->cantidad);
+            $itemPedido->setProductoId((int)$result->producto);
+            array_push($itemsPedido, $itemPedido);
+        }
+
+
+        $sqlRemito = "select remito_producto.producto as producto, remito_producto.cantidad as cantidad from remito_producto			
+			where remito_producto.remito=1";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sqlRemito);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $itemsRemito = Array();
+        foreach ($results as $result) {
+            $itemRemito = new ComparaPedidoRemito();
+            $itemRemito->setCantidad((int)$result->cantidad);
+            $itemRemito->setProductoId((int)$result->producto);
+            array_push($itemsRemito, $itemRemito);
+        }
+
+
+        die(print_r(Array($itemsPedido, $itemsRemito)));
+
+        $this->disconnect();
+
     }
 
 

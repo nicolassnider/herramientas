@@ -17,6 +17,7 @@ const pedidoAnteriores = (props) => {
                 <th>Recibido</th>
                 <th>Cobrado</th>
 
+
                 <th style={style}></th>
             </tr>
             </thead>

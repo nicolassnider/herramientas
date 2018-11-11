@@ -109,7 +109,11 @@ class Cliente extends Component {
             case "revendedoras":
                 newState.cliente.revendedora.id = object.value;
                 break;
+            default:
+                alert("error");
+                break;
         }
+
 
         this.setState(newState);
 

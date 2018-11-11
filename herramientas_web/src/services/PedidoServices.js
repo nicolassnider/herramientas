@@ -27,3 +27,8 @@ export const pedidoPorCampania = (id) => {
 export const subirPedidoCSV = (id, file) => {
     return postFile("pedidos_avon/pedido/csv", file);
 }
+
+export const recibir = (id) => {
+    console.log(id);
+    return put("pedidos_avon/recibir/" + id);
+};

@@ -35,4 +35,7 @@ export const grillaProductos = () => {
     return get("productos");
 };
 
+export const selectProductos = () => {
+    return get("productos/select");
+};
 

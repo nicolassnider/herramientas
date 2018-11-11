@@ -14,11 +14,30 @@ class PedidoProductoCatalogo implements JsonSerializable
     private $productoCatalogo;
     private $cantidad;
     private $recibido;
+    private $entregado;
     private $cliente;
     private $revendedora;
     private $precioUnitario;
     private $precioTotal;
     private $estadoCampania;
+
+    /**
+     * @return mixed
+     */
+    public function getEntregado(): ?bool
+    {
+        return $this->entregado;
+    }
+
+    /**
+     * @param mixed $entregado
+     */
+    public function setEntregado(?bool $entregado): void
+    {
+        $this->entregado = $entregado;
+    }
+
+
 
     /**
      * @return mixed
@@ -195,6 +214,7 @@ class PedidoProductoCatalogo implements JsonSerializable
         if (isset($this->productoCatalogo)) $array['productoCatalogo'] = $this->productoCatalogo;
         if (isset($this->cantidad)) $array['cantidad'] = $this->cantidad;
         if (isset($this->recibido)) $array['recibido'] = $this->recibido;
+        if (isset($this->entregado)) $array['entregado'] = $this->entregado;
         if (isset($this->cliente)) $array['cliente'] = $this->cliente;
         if (isset($this->cliente)) $array['revendedora'] = $this->revendedora;
         if (isset($this->estadoCampania)) $array['estadoCampania'] = $this->estadoCampania;

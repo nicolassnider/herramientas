@@ -11,9 +11,28 @@ class RemitoProducto implements JsonSerializable
 
     private $id;
     private $remito;
-    private $productoCatalogo;
+    private $producto;
     private $cantidad;
     private $precioUnitario;
+    private $recibido;
+
+    /**
+     * @return mixed
+     */
+    public function getRecibido()
+    {
+        return $this->recibido;
+    }
+
+    /**
+     * @param mixed $recibido
+     */
+    public function setRecibido($recibido): void
+    {
+        $this->recibido = $recibido;
+    }
+
+
 
     /**
      * @return mixed
@@ -50,17 +69,17 @@ class RemitoProducto implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getProductoCatalogo(): ?ProductoCatalogo
+    public function getProducto(): ?Producto
     {
-        return $this->productoCatalogo;
+        return $this->producto;
     }
 
     /**
      * @param mixed $productoCatalogo
      */
-    public function setProductoCatalogo(?ProductoCatalogo $productoCatalogo): void
+    public function setProducto(?Producto $producto): void
     {
-        $this->productoCatalogo = $productoCatalogo;
+        $this->producto = $producto;
     }
 
     /**
@@ -103,9 +122,11 @@ class RemitoProducto implements JsonSerializable
         $array = Array();
         if (isset($this->id)) $array['id'] = $this->id;
         if (isset($this->remito)) $array['remito'] = $this->remito;
-        if (isset($this->productoCatalogo)) $array['productoCatalogo'] = $this->productoCatalogo;
+        if (isset($this->producto)) $array['producto'] = $this->producto;
         if (isset($this->cantidad)) $array['cantidad'] = $this->cantidad;
         if (isset($this->precioUnitario)) $array['precioUnitario'] = $this->precioUnitario;
+        if (isset($this->recibido)) $array['recibido'] = $this->recibido;
+
         return $array;
     }
 }

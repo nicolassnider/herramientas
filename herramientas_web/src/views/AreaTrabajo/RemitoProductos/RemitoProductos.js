@@ -1,49 +1,49 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {getRemitosPorFactura, grillaRemitos} from '../../../services/RemitoServices';
+import {descargaRemitoProductosPorRemito, getAllRemitoPoductoPorRemito} from '../../../services/RemitoProductoServices';
 
-import RemitoGrilla from '../../../components/AreaTrabajo/Remitos/RemitoGrilla';
+import RemitoProductoGrilla from '../../../components/AreaTrabajo/RemitoProductos/RemitoProductoGrilla';
 import Paginador from '../../../components/Paginador/Paginador';
+import {descargaProductoCatalogosPorPedido} from "../../../services/PedidoProductoCatalogoServices";
 
 
-class Remitos extends Component {
+class RemitoProductos extends Component {
     onPageChanged = data => {
         const {currentPage, totalPages, pageLimit} = data;
         const offset = (currentPage - 1) * pageLimit;
-        const remitos = this.state.resultado.remitos.slice(offset, offset + pageLimit);
+        const remitoProductos = this.state.resultado.remitoProductos.slice(offset, offset + pageLimit);
 
         let miState = {...this.state};
-        miState.remitosPorPagina = remitos;
+        miState.remitoProductosPorPagina = remitoProductos;
         miState.currentPage = currentPage;
         miState.totalPages = totalPages;
         this.setState(miState);
     }
 
     constructor(props) {
-        console.log(props);
         super();
         this.state = {
             resultado: {
-                remitos: [],
+                remitoProductos: [],
                 codigo: 0,
                 mensaje: ""
             },
-            remitosPorPagina: [],
+            remitoProductosPorPagina: [],
             currentPage: null,
             totalPages: null,
-            facturaId: props.match.params.id,
+            remitoId: props.match.params.id,
 
         }
     }
 
     componentDidMount() {
         let miState = {...this.state};
-        getRemitosPorFactura(miState.facturaId)
+        getAllRemitoPoductoPorRemito(miState.remitoId)
             .then(response => {
                 if (response.status === 200) {
                     response.json()
                         .then(response => {
-                            miState.resultado.remitos = response;
+                            miState.resultado.remitoProductos = response;
                             miState.resultado.codigo = 2000;
                             this.setState(miState);
 
@@ -73,10 +73,10 @@ class Remitos extends Component {
                     <Row>
                         <Col xs="12">
 
-                            <RemitoGrilla remitos={this.state.remitosPorPagina}/>
+                            <RemitoProductoGrilla remitoProductos={this.state.remitoProductosPorPagina}/>
                         </Col>
                         <Col xs="12">
-                            <Paginador totalRecords={this.state.resultado.remitos.length}
+                            <Paginador totalRecords={this.state.resultado.remitoProductos.length}
                                        pageLimit={10}
                                        pageNeighbours={2}
                                        onPageChanged={this.onPageChanged}
@@ -100,12 +100,12 @@ class Remitos extends Component {
                 <Card>
                     <CardHeader style={addBtn}>
                         <Button color="primary"
-                                onClick={() => this.props.history.push(`/areatrabajo/facturas/remitos/nueva/factura/${this.state.facturaId}`)}>
+                                onClick={() => this.props.history.push(`/areatrabajo/facturass/remitos/incluirproductosenremito/${this.state.remitoId}`)}>
                             Nuevo <i className="fa fa-plus"></i>
                         </Button>
                         <Button color="primary"
-                                onClick={() => this.props.history.push(`/areatrabajo/facturas/remitos/nueva/factura/${this.state.facturaId}`)}>
-                            Recibido COmpleto <i className="fa fa-plus"></i>
+                                onClick={() => this.props.history.push(descargaRemitoProductosPorRemito(this.state.remitoId))}>
+                            Comparar con pedido <i className="fa fa-pencil"></i>
                         </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>
@@ -115,4 +115,4 @@ class Remitos extends Component {
     };
 }
 
-export default Remitos;
+export default RemitoProductos;

@@ -6,7 +6,7 @@
  * Time: 12:44 PM
  */
 
-require_once '../Repository/PedidoProductoCatalogoRepository.php';
+require_once '../Repository/RemitoProductoRepository.php';
 
 class RemitoProductoService
 {
@@ -15,7 +15,7 @@ class RemitoProductoService
 
     public function __construct()
     {
-        $this->repository = new PedidoProductoCatalogoRepository();
+        $this->repository = new RemitoProductoRepository();
     }
 
     public function getAllActiveSorted()
@@ -23,9 +23,9 @@ class RemitoProductoService
         return $this->repository->getAllActiveSorted();
     }
 
-    public function create(PedidoProductoCatalogo $pedidoProductoCatalogo)
+    public function create(RemitoProducto $remitoProducto)
     {
-        return $this->repository->create($pedidoProductoCatalogo);
+        return $this->repository->create($remitoProducto);
     }
 
     public function get($id)
@@ -33,24 +33,14 @@ class RemitoProductoService
         return $this->repository->get($id);
     }
 
-    public function getAll()
+    public function getAllRemitoProductoPorRemito(int $id)
     {
-        return $this->repository->getAll();
+        return $this->repository->getAllRemitoProductoPorRemito($id);
     }
 
-    public function getAllCatalogosPorProducto(int $id)
+    public function update(RemitoProducto $remitoProducto)
     {
-        return $this->repository->getAllCatalogoProductoPorProducto($id);
-    }
-
-    public function getAllProductosPorPedido(int $id)
-    {
-        return $this->repository->getAllProductosPorPedido($id);
-    }
-
-    public function update(PedidoProductoCatalogo $pedidoProductoCatalogo)
-    {
-        $this->repository->update($pedidoProductoCatalogo);
+        $this->repository->update($remitoProducto);
     }
 
     public function delete(int $id)
@@ -58,15 +48,25 @@ class RemitoProductoService
         $this->repository->delete($id);
     }
 
-    public function getCsvFile(int $pedidoId): ?Archivo
+    public function getCsvFile(int $remitoId): ?Archivo
     {
-        return $this->repository->getCsvFile($pedidoId);
+        return $this->repository->getCsvFile($remitoId);
     }
 
-    public function checkCampaniaPedidoProductoCatalogo(int $id)
+    public function checkCampaniaRemitoProducto(int $id)
     {
-        return $this->repository->checkCampaniaPedidoProductoCatalogo($id);
+        return $this->repository->checkCampaniaRemitoProducto($id);
     }
 
+    public function recibir(int $id)
+    {
+        $this->repository->recibir($id);
+    }
+
+
+    public function compararPedidoRemito()
+    {
+        $this->repository->compararPedidoRemito();
+    }
 
 }

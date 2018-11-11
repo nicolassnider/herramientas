@@ -32,11 +32,11 @@ class RemitoProductoController
             $this->group('/remitoproducto', function () {
 
 
-                $this->get('/pedido/archivo/{id}', function (Request $request, Response $response) {
-                    $pedidoId = (int)$request->getAttribute('id');
+                $this->get('/remito/archivo/{id}', function (Request $request, Response $response) {
+                    $remitoId = (int)$request->getAttribute('id');
                     $service = new RemitoProductoService();
 
-                    $archivo = $service->getCsvFile($pedidoId);
+                    $archivo = $service->getCsvFile($remitoId);
 
 
                     $response->write($archivo->getContenido());
@@ -79,6 +79,13 @@ class RemitoProductoController
                     return $response->withJson("updated", 204);
                 });
 
+                $this->put('/recibir/{id}', function (Request $request, Response $response) {
+                    $id = ((int)$request->getAttribute('id'));
+                    $service = new RemitoProductoService();
+                    $service->recibir($id);
+                    return $response->withJson("updated", 204);
+                });
+
                 $this->delete('/{id}', function (Request $request, Response $response) {
                     $id = (int)$request->getAttribute('id');
                     $service = new RemitoProductoService();
@@ -86,14 +93,12 @@ class RemitoProductoController
                     return $response->withJson("deleted", 204);
                 });
 
-                $this->get('/checkcampaniaactiva/{id}', function (Request $request, Response $response) {
+                $this->get('/comparar/compararpedidoremito', function (Request $request, Response $response) {
                     $service = new RemitoProductoService();
-                    $id = ((int)$request->getAttribute('id'));
-                    $campania = new Campania();
 
-                    $check = $service->checkCampaniaPedidoProductoCatalogo($id);
+                    $service->compararPedidoRemito();
 
-                    $campania->setActivo($check);
+
                     array_push($campanias, $campania);
                     return $response->withJson($campania, 200);
 
@@ -113,9 +118,9 @@ class RemitoProductoController
         $remito = new Remito();
         $remito->setId((int)$request->getParam('remito')['id']);
         $remitoProducto->setRemito($remito);
-        $productoCatalogo = new ProductoCatalogo;
-        $productoCatalogo->setId((int)$request->getParam('productoCatalogo')['id']);
-        $remitoProducto->setProductoCatalogo($productoCatalogo);
+        $producto = new Producto;
+        $producto->setId((int)$request->getParam('producto')['id']);
+        $remitoProducto->setProducto($producto);
         $remitoProducto->setCantidad((int)$request->getParam('cantidad'));
 
 

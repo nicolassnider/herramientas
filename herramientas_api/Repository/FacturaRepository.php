@@ -216,7 +216,7 @@ class FacturaRepository extends AbstractRepository
     public function getAll(bool $full = true): Array
     {
         $sql = "SELECT *
-                FROM factura";
+                FROM factura order by fecha_vencimiento";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);

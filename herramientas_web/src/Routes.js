@@ -169,6 +169,17 @@ const Remito = Loadable({
     loading: Loading,
 });
 
+/***** RemitoProductos*****/
+const RemitoProductos = Loadable({
+    loader: () => import('./views/AreaTrabajo/RemitoProductos/RemitoProductos'),
+    loading: Loading,
+});
+/***** RemitoProducto *****/
+const RemitoProducto = Loadable({
+    loader: () => import('./views/AreaTrabajo/RemitoProductos/RemitoProducto'),
+    loading: Loading,
+});
+
 
 const Users = Loadable({
     loader: () => import('./views/Users/Users'),
@@ -318,11 +329,20 @@ const routes = [
         component: Factura
     },
     {
-        path: '/administracion/facturas/facturas/:id', exact: true, name: 'Editar Factura', component: Factura
+        path: '/areatrabajo/facturas/facturas/:id', exact: true, name: 'Editar Factura', component: Factura
     },
 
     {
-        path: '/areatrabajo/facturas/remitos/factura/:id', exact: true, name: 'Remitos', component: Remitos
+        path: '/areatrabajo/facturass/remitos/incluirproductosenremito/:id',
+        exact: true,
+        name: 'Incluir Producto en Remito',
+        component: RemitoProducto
+    },
+    {
+        path: '/areatrabajo/facturass/remitos/remitoproductos/:id',
+        exact: true,
+        name: 'Productos por Remito',
+        component: RemitoProductos
     },
     {
         path: '/areatrabajo/facturas/remitos/nueva/factura/:id',
@@ -331,7 +351,14 @@ const routes = [
         component: Remito
     },
     {
-        path: '/administracion/facturas/remitos/:id', exact: true, name: 'Editar Remito', component: Remito
+        path: '/areatrabajo/facturas/remitos/factura/:id',
+        exact: true,
+        name: 'Remitos',
+        component: Remitos
+    },
+
+    {
+        path: '/areatrabajo/facturas/remitos/:id', exact: true, name: 'Editar Remito', component: Remito
     },
 
 

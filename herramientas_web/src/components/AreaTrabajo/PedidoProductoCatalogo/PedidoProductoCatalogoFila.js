@@ -7,6 +7,7 @@ import {
 } from "../../../services/PedidoProductoCatalogoServices";
 
 const pedidoProductoCatalogo = (props) => {
+    console.log(props);
     const style = {
         textAlign: 'center'
     }
@@ -29,7 +30,7 @@ const pedidoProductoCatalogo = (props) => {
 
     return (
         <tr>
-            <td>{props.pedidoProductoCatalogo.productoCatalogo.id}</td>
+            <td>{props.pedidoProductoCatalogo.productoCatalogo.producto.id}</td>
             <td>{props.pedidoProductoCatalogo.productoCatalogo.producto.descripcion}</td>
             <td>{props.pedidoProductoCatalogo.productoCatalogo.precio}</td>
             <td>{props.pedidoProductoCatalogo.cantidad}</td>
@@ -43,20 +44,41 @@ const pedidoProductoCatalogo = (props) => {
                 }
             </td>
             <td>
-                {props.pedidoProductoCatalogo.revendedora ?
-                    <h5><Badge
-                        color="success">{props.pedidoProductoCatalogo.revendedora.persona.nombre + " " + props.pedidoProductoCatalogo.revendedora.persona.apellido}</Badge>
-                    </h5>
+                {props.pedidoProductoCatalogo.recibido ?
+                    <h5><Badge color="success">Rec</Badge></h5>
                     :
-                    <h5><Badge color="danger">sin revendedora</Badge></h5>
+                    <h5><Badge color="danger">Pen</Badge></h5>
                 }
             </td>
+            <td>
+                {props.pedidoProductoCatalogo.entregado ?
+                    <h5><Badge color="success">Ent</Badge></h5>
+                    :
+                    <h5><Badge color="danger">Pen</Badge></h5>
+                }
+            </td>
+            <td>
+                {props.pedidoProductoCatalogo.cobrado ?
+                    <h5><Badge color="success">Cob</Badge></h5>
+                    :
+                    <h5><Badge color="danger">Pen</Badge></h5>
+                }
+            </td>
+
             <td style={style}>
                 <Button size="sm"
                         onClick={() => props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/editar/  ' + this.props.pedidoProductoCatalogo.pedidoAvon.id + "/" + this.props.pedidoProductoCatalogo.id)}
                         className="btn-outline-secondary"
                         title="editar pedido">
                     <i className="fa fa-pencil"></i>
+                </Button>
+            </td>
+            <td style={style}>
+                <Button size="sm"
+                        onClick={() => props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/editar/  ' + this.props.pedidoProductoCatalogo.pedidoAvon.id + "/" + this.props.pedidoProductoCatalogo.id)}
+                        className="btn-outline-secondary"
+                        title="cobrar pedido">
+                    <i className="fa fa-money"></i>
                 </Button>
             </td>
             <td style={style}>

@@ -31,7 +31,7 @@ class ProductoController
                     $service = new ProductoService();
                     $items = $service->getAllActiveSorted();
                     array_walk($items, function (&$item) {
-                        $item = new SelectOption($item->getId(), $item->getDescripcion()." [".$item->getCategpria()->GetDescripcion()."]");
+                        $item = new SelectOption($item->getId(), $item->getDescripcion() . " [" . $item->getCategoria()->GetDescripcion() . "]");
                     });
                     return $response->withJson($items, 200);
                 });

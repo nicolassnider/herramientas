@@ -22,10 +22,11 @@ const remito = (props) => {
                     <i className="fa fa-pencil"></i>
                 </Button>
                 <Button size="sm"
-                        onClick={() => props.history.push(Promise.all(pagar(props.remito.id)), document.location.reload())}
+                        onClick={() => props.history.push(`/areatrabajo/facturass/remitos/remitoproductos/${props.remito.id}`)}
+
                         className="btn-outline-secondary"
-                        title="Pagar Remito">
-                    <i className="fa fa-money"></i>
+                        title="Listar productos">
+                    <i className="fa fa-plus-square"></i>
                 </Button>
             </td>
         </tr>

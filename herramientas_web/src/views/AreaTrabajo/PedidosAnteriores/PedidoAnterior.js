@@ -24,6 +24,7 @@ import {
 } from "../../../services/PedidoProductoCatalogoServices";
 import PedidoProductoCatalogoGrilla
     from '../../../components/AreaTrabajo/PedidoProductoCatalogo/PedidoProductoCatalogoGrilla';
+import {recibir} from "../../../services/RemitoProductoServices";
 
 class PedidoAnterior extends Component {
 
@@ -126,6 +127,17 @@ class PedidoAnterior extends Component {
             bordered: true
         };
 
+        function recibirTotal() {
+
+
+            recibir(currentState.campaniaActual.idPedido);
+
+            setTimeout(2000);
+            document.location.reload();
+
+
+        }
+
 
         return (
             <Card>
@@ -165,9 +177,10 @@ class PedidoAnterior extends Component {
                     <Row>
                         <Col sm="4">
 
+
                             <Button color="primary"
-                                    onClick={() => this.props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/' + currentState.campaniaActual.idPedido)}>
-                                Cargar Item <i className="fa fa-plus"></i>
+                                    onClick={() => this.props.history.push(recibirTotal())}>
+                                Recibido Total <i className="fa fa-plus"></i>
                             </Button>
                         </Col>
                         <Col sm="4">
