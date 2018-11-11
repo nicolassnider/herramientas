@@ -2,9 +2,10 @@ import React from 'react';
 import {Button, Badge} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 import {
-    checkCampaniaPedidoProductoCatalogo,
+    checkCampaniaPedidoProductoCatalogo, cobrarPedidoProductoCatalogo, entregarProductoCatalogo,
     removePedidoProductoCatalogo
 } from "../../../services/PedidoProductoCatalogoServices";
+import {pagar} from "../../../services/FacturaServices";
 
 const pedidoProductoCatalogo = (props) => {
     console.log(props);
@@ -27,6 +28,27 @@ const pedidoProductoCatalogo = (props) => {
 
 
     }
+
+    function cobrarPedido() {
+
+        cobrarPedidoProductoCatalogo(props.pedidoProductoCatalogo.id);
+
+        setTimeout(4000);
+        document.location.reload();
+
+
+    }
+
+    function entregarPedido() {
+
+        entregarProductoCatalogo(props.pedidoProductoCatalogo.id);
+
+        setTimeout(4000);
+        document.location.reload();
+
+
+    }
+
 
     return (
         <tr>
@@ -75,10 +97,18 @@ const pedidoProductoCatalogo = (props) => {
             </td>
             <td style={style}>
                 <Button size="sm"
-                        onClick={() => props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/editar/  ' + this.props.pedidoProductoCatalogo.pedidoAvon.id + "/" + this.props.pedidoProductoCatalogo.id)}
+                        onClick={() => props.history.push(cobrarPedido())}
                         className="btn-outline-secondary"
                         title="cobrar pedido">
                     <i className="fa fa-money"></i>
+                </Button>
+            </td>
+            <td style={style}>
+                <Button size="sm"
+                        onClick={() => props.history.push(entregarPedido())}
+                        className="btn-outline-secondary"
+                        title="entregar pedido">
+                    <i className="fa fa-user"></i>
                 </Button>
             </td>
             <td style={style}>

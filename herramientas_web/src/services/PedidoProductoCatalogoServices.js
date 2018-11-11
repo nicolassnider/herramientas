@@ -25,6 +25,15 @@ export const removePedidoProductoCatalogo = (id) => {
     return remove("pedidoproductocatalogo/" + id);
 };
 
+export const cobrarPedidoProductoCatalogo = (id) => {
+    return put("pedidoproductocatalogo/cobrar/" + id);
+};
+
+export const entregarProductoCatalogo = (id) => {
+    return put("pedidoproductocatalogo/entregar/" + id);
+};
+
+
 export const getCsvProductoCatalogosPorPedido = (id) => {
     return getFile("pedidoproductocatalogo/pedido/archivo/" + id);
 };

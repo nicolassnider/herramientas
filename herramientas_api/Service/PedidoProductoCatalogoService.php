@@ -58,6 +58,16 @@ class PedidoProductoCatalogoService
         $this->repository->delete($id);
     }
 
+    public function cobrar(int $id)
+    {
+        $this->repository->cobrar($id);
+    }
+
+    public function entregar(int $id)
+    {
+        $this->repository->entregar($id);
+    }
+
     public function getCsvFile(int $pedidoId): ?Archivo
     {
         return $this->repository->getCsvFile($pedidoId);

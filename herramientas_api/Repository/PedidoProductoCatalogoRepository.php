@@ -342,6 +342,88 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         }
     }
 
+    public function cobrar(int $id): void
+    {
+        $db = $this->connect();
+
+        try {
+            $sql = "UPDATE herramientas.pedido_producto_catalogo SET cobrado = :cobrado WHERE (id = :id)";
+            $cobrado = true;
+
+            //prepara inserción base de datos
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':cobrado', $cobrado, PDO::PARAM_BOOL);
+            $stmt->execute();;
+
+        } catch (Exception $e) {
+            //TODO: implementar ex
+            if ($db != null) $db->rollback();
+
+            if ($e instanceof PDOException && $stmt->errorInfo()[0] == 23000 && $stmt->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmt->errorInfo()[2]);
+                switch ($array[3]) {
+
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
+                        break;
+                    default:
+                        die(print_r($array));
+
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $stmt = null;
+            $this->disconnect();
+        }
+    }
+
+    public function entregar(int $id): void
+    {
+        $db = $this->connect();
+
+        try {
+            $sql = "UPDATE herramientas.pedido_producto_catalogo SET entregado = :entregado WHERE (id = :id)";
+            $entregado = true;
+
+            //prepara inserción base de datos
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':entregado', $entregado, PDO::PARAM_BOOL);
+            $stmt->execute();
+
+        } catch (Exception $e) {
+            //TODO: implementar ex
+            if ($db != null) $db->rollback();
+
+            if ($e instanceof PDOException && $stmt->errorInfo()[0] == 23000 && $stmt->errorInfo()[1] == 1062) {
+                $array = explode("'", $stmt->errorInfo()[2]);
+                switch ($array[3]) {
+
+                    case 'documento_unico':
+                        $array2 = explode("-", $array[1]);
+                        $TipoDocumentoRepository = new TipoDocumentoRepository($this->db);
+                        $nombreDocumento = $TipoDocumentoRepository->get($array2[0])->getDescripcion();
+                        throw new BadRequestException("La combinación " . $nombreDocumento . " número " . $array2[1] . " ya existe");
+                        break;
+                    default:
+                        die(print_r($array));
+
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $stmt = null;
+            $this->disconnect();
+        }
+    }
+
     public function checkCampaniaPedidoProductoCatalogo(int $id)
     {
         try {

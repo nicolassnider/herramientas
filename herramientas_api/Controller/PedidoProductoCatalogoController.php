@@ -73,6 +73,20 @@ class PedidoProductoCatalogoController
                     return $response->withJson("updated", 204);
                 });
 
+                $this->put('/cobrar/{id}', function (Request $request, Response $response) {
+                    $id = (int)$request->getAttribute('id');
+                    $pedidoProductoCatalogoService = new PedidoProductoCatalogoService();
+                    $pedidoProductoCatalogoService->cobrar($id);
+                    return $response->withJson("updated", 204);
+                });
+
+                $this->put('/entregar/{id}', function (Request $request, Response $response) {
+                    $id = (int)$request->getAttribute('id');
+                    $pedidoProductoCatalogoService = new PedidoProductoCatalogoService();
+                    $pedidoProductoCatalogoService->entregar($id);
+                    return $response->withJson("updated", 204);
+                });
+
                 $this->delete('/{id}', function (Request $request, Response $response) {
                     $id = (int)$request->getAttribute('id');
                     $service = new PedidoProductoCatalogoService();
