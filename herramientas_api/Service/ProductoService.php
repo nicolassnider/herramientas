@@ -18,6 +18,11 @@ class ProductoService
         $this->repository = new ProductoRepository();
     }
 
+    public function getProductosMasVendidosCsvFile(): ?Archivo
+    {
+        return $this->repository->getProductosMasVendidosCsvFile();
+    }
+
     public function getAllActiveSorted()
     {
         return $this->repository->getAllActiveSorted();

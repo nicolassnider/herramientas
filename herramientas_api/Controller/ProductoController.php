@@ -27,6 +27,17 @@ class ProductoController
         $this->app->group('/api', function () {
             $this->group('/productos', function () {
 
+                $this->get('/masvendidos/archivo', function (Request $request, Response $response) {
+                    $service = new ProductoService();
+
+                    $archivo = $service->getProductosMasVendidosCsvFile();
+
+
+                    $response->write($archivo->getContenido());
+                    return $response->withHeader('Content-Type', $archivo->getTipo())
+                        ->withHeader('Content-Disposition', 'attachment; filename="' . $archivo->getNombre() . '"');
+                });
+
                 $this->get('/select', function (Request $request, Response $response) {
                     $service = new ProductoService();
                     $items = $service->getAllActiveSorted();

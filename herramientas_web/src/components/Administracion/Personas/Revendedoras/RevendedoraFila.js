@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Badge} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
+import {descargaClientesPorRevendedora} from "../../../../services/ClientesServices";
 
 const revendedora = (props) => {
     const style = {
@@ -31,6 +32,12 @@ const revendedora = (props) => {
                         className="btn-outline-secondary"
                         title="Editar Usuario">
                     <i className="fa fa-pencil-square"></i>
+                </Button>
+                <Button size="sm"
+                        onClick={() => props.history.push(descargaClientesPorRevendedora(props.revendedora.id))}
+                        className="btn-outline-secondary"
+                        title="Clientes por Revendedora">
+                    <i className="fa fa-smile-o"></i>
                 </Button>
 
             </td>

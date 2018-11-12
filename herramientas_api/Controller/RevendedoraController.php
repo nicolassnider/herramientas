@@ -80,8 +80,8 @@ class RevendedoraController
                 ]));
 
                 $this->delete('/{id}', function (Request $request, Response $response) {
-                    $id=(int)$request->getAttribute('id');
-                    $revendedoraService=new RevendedoraService();
+                    $id = (int)$request->getAttribute('id');
+                    $revendedoraService = new RevendedoraService();
                     $revendedoraService->delete($id);
                     return $response->withJson("deleted", 204);
                 })->add(new ValidatePermissionsMiddleware([
@@ -89,7 +89,7 @@ class RevendedoraController
                 ]));
 
                 $this->put('/desactivar/{id}', function (Request $request, Response $response) {
-                    $id=(int)$request->getAttribute('id');
+                    $id = (int)$request->getAttribute('id');
                     $revendedoraService = new RevendedoraService();
                     $revendedoraService->deactivate($id);
                     return $response->withJson("deactivated", 204);
@@ -98,7 +98,7 @@ class RevendedoraController
                 ]));
 
                 $this->put('/activar/{id}', function (Request $request, Response $response) {
-                    $id=(int)$request->getAttribute('id');
+                    $id = (int)$request->getAttribute('id');
                     $revendedoraService = new RevendedoraService();
                     $revendedoraService->activate($id);
                     return $response->withJson("activated", 204);
@@ -114,18 +114,18 @@ class RevendedoraController
         $revendedora = new Revendedora();
         $revendedora->setId((int)$request->getAttribute('id'));
         $categoriaRevendedora = new CategoriaRevendedora();
-        $categoriaRevendedora->setId($request->getParam('categoriaRevendedora')['id']);
+        $categoriaRevendedora->setId((int)$request->getParam('categoriaRevendedora')['id']);
         $revendedora->setCategoriaRevendedora($categoriaRevendedora);
         $revendedora->setActivo((bool)$request->getParam('activo'));
         $persona = new Persona();
         $persona->setId((int)$request->getParam('persona')['id']);
         $revendedora->setPersona($persona);
         $usuario = new Usuario();
-        $perfil= new Perfil();
-        $perfil->setId($request->getParam('usuario')['perfil']['id']);
+        $perfil = new Perfil();
+        $perfil->setId((int)$request->getParam('perfil')['id']);
         $usuario->setPerfil($perfil);
-        $revendedora->setUsuario($usuario);
 
+        $revendedora->setUsuario($usuario);
         return $revendedora;
 
     }

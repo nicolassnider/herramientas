@@ -9,10 +9,88 @@
 require_once 'Db.php';
 require_once 'AbstractRepository.php';
 require_once '../Model/Producto.php';
+require_once '../Model/ProductosMasVendidos.php';
+
 require_once '../Commons/Exceptions/BadRequestException.php';
 
 class ProductoRepository extends AbstractRepository
 {
+
+    public function getProductosMasVendidosCsvFile()
+    {
+
+        $datos = array();
+        $datosPlanos = array();
+
+        // Datos de presentaciones
+        $productosMasVendidos = $this->getProductosMasVendidos();
+        foreach ($productosMasVendidos as $productoMasVendido) {
+            $fila = [
+                $productoMasVendido->getProducto()->getId(),
+                $productoMasVendido->getProducto()->getDescripcion(),
+                $productoMasVendido->getProducto()->getCategoria()->getDescripcion(),
+                $productoMasVendido->getCantidad()
+            ];
+            array_push($datosPlanos, $fila);
+
+        }
+
+        $delimiter = ",";
+        $filename = "pedido.csv";
+
+        $f = fopen('php://memory', 'r+');
+
+        //set column headers
+        $fields = array('Id', 'Descripcion', 'Categoria', 'Cantidad');
+        fputcsv($f, $fields, $delimiter);
+
+        //output each row of the data, format line as csv and write to file pointer
+
+
+        foreach ($datosPlanos as $filacsv) {
+            fputcsv($f, $filacsv, $delimiter);
+
+        }
+
+        rewind($f);
+        $contenido = rtrim(stream_get_contents($f));
+
+        $archivo = new Archivo();
+        $archivo->setNombre("Clientes.csv");
+        $archivo->setTipo("text/csv");
+        $archivo->setContenido($contenido);
+        return $archivo;
+    }
+
+    public function getProductosMasVendidos(bool $full = true): Array
+    {
+        $sql = "select producto.id,producto.descripcion,sum(pedido_producto_catalogo.cantidad) cantidad from pedido_producto_catalogo 
+inner join producto_catalogo on pedido_producto_catalogo.producto_catalogo=producto_catalogo.id
+inner join producto on producto_catalogo.producto=producto.id
+group by producto.id
+order by cantidad desc";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $productosMasVendidos = Array();
+        foreach ($items as $item) {
+            $productoMasVendidos = new ProductosMasVendidos();
+            $productoMasVendidos->setProducto($this->get($item->id));
+            $productoMasVendidos->setCantidad($item->cantidad);
+            array_push($productosMasVendidos, $productoMasVendidos);
+        }
+
+
+        $this->disconnect();
+        return $productosMasVendidos;
+    }
 
     /**
      * @param Producto $producto

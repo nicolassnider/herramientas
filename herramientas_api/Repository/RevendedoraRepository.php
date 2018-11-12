@@ -35,7 +35,7 @@ class RevendedoraRepository extends AbstractRepository
             $activo = (bool)$revendedora->getActivo();
             $persona = (int)$revendedora->getPersona()->getId();
             $stmtCreateRevendedora = $db->prepare($sqlCreateRevendedora);
-            $stmtCreateRevendedora->bindParam(':categoria_revendedora', $categoriaRevendedora);
+            $stmtCreateRevendedora->bindParam(':categoria_revendedora', $categoriaRevendedora, PDO::PARAM_INT);
             $stmtCreateRevendedora->bindParam(':fecha_alta_revendedora', $fechaAltaRevendedora);
             $stmtCreateRevendedora->bindParam(':activo', $activo, PDO::PARAM_BOOL);
             $stmtCreateRevendedora->bindParam(':persona', $persona, PDO::PARAM_INT);

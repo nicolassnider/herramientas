@@ -28,6 +28,18 @@ class ClienteController
         $this->app->group('/api', function () {
             $this->group('/clientes', function () {
 
+                $this->get('/revendedora/archivo/{id}', function (Request $request, Response $response) {
+                    $pedidoId = (int)$request->getAttribute('id');
+                    $service = new ClienteService();
+
+                    $archivo = $service->getClientesporRevendedoraCsvFile($pedidoId);
+
+
+                    $response->write($archivo->getContenido());
+                    return $response->withHeader('Content-Type', $archivo->getTipo())
+                        ->withHeader('Content-Disposition', 'attachment; filename="' . $archivo->getNombre() . '"');
+                });
+
                 $this->get('/select', function (Request $request, Response $response) {
                     $service = new ClienteService();
                     $items = $service->getAllActiveSorted();

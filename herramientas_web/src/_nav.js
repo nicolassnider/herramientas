@@ -21,10 +21,6 @@ export default {
             name: 'Facturas',
             url: '/areatrabajo/facturas/facturas'
         },
-        {
-            name: 'Reportes',
-            url: '/administracion/reportes'
-        },
 
         {
             title: true,

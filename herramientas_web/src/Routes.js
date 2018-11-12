@@ -191,12 +191,12 @@ const User = Loadable({
     loading: Loading,
 });
 
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
     {
         path: '/', exact: true, name: 'Home', component: CampaniaActual
     },
-
 
     {
         path: '/administracion/campanias', exact: true, name: 'Campanias', component: Campanias

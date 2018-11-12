@@ -7,6 +7,7 @@
  */
 
 require_once '../Repository/ClienteRepository.php';
+require_once '../Model/Archivo.php';
 
 class ClienteService
 {
@@ -16,6 +17,11 @@ class ClienteService
     public function __construct()
     {
         $this->repository = new ClienteRepository();
+    }
+
+    public function getClientesporRevendedoraCsvFile(int $revendedoraId): ?Archivo
+    {
+        return $this->repository->getClientesporRevendedoraCsvFile($revendedoraId);
     }
 
     public function getAllActiveSorted()

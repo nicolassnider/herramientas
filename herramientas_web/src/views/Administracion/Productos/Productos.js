@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaProductos} from '../../../services/ProductoServices';
+import {descargaProductosMasVendidos, grillaProductos} from '../../../services/ProductoServices';
 
 import ProductoGrilla from '../../../components/Administracion/Productos/ProductoGrilla';
 import Paginador from '../../../components/Paginador/Paginador';
@@ -97,6 +97,10 @@ class Productos extends Component {
             <div className="animated fadeIn">
                 <Card>
                     <CardHeader style={addBtn}>
+                        <Button color="primary"
+                                onClick={() => this.props.history.push(descargaProductosMasVendidos())}>
+                            Mas Vendidos <i className="fa fa-plus"></i>
+                        </Button>
                         <Button color="primary"
                                 onClick={() => this.props.history.push('/administracion/productos/nuevo')}>
                             Nuevo Producto <i className="fa fa-plus"></i>

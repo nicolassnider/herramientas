@@ -1,5 +1,7 @@
-import {get, post, put, remove} from './ApiServices';
+import {get, getFile, post, put, remove} from './ApiServices';
+import downloadJs from "downloadjs";
 //import * as storage from '../utils/Storage';
+import mimeTypes from 'mime-types';
 
 export const getClientes = () => {
     return get("clientes/");
@@ -7,7 +9,6 @@ export const getClientes = () => {
 
 export const getClientePorId = (id) => {
     return get("clientes/" + id);
-
 };
 
 export const desactivarCliente = (id) => {
@@ -33,3 +34,21 @@ export const grillaClientes = () => {
 export const selectClientes = () => {
     return get("clientes/select");
 };
+
+export const getCsvClientesPorRevendedora = (id) => {
+    return getFile("clientes/revendedora/archivo/" + id);
+};
+
+export const descargaClientesPorRevendedora = (id) => {
+    getCsvClientesPorRevendedora(id)
+        .then(
+            (result) => {
+                return result.blob();
+            }
+        )
+        .then(
+            (result) => {
+                return downloadJs(result, "ClientesPorRevendedora_" + id + "." + mimeTypes.extension(result.type), result.type);
+            }
+        )
+}

@@ -8,6 +8,7 @@
 require_once 'Db.php';
 require_once 'AbstractRepository.php';
 require_once '../Model/Cliente.php';
+require_once '../Model/Archivo.php';
 require_once '../Repository/PersonaRepository.php';
 require_once '../Repository/CategoriaClienteRepository.php';
 require_once '../Repository/RevendedoraRepository.php';
@@ -16,6 +17,82 @@ require_once '../Commons/Exceptions/BadRequestException.php';
 
 class ClienteRepository extends AbstractRepository
 {
+
+    public function getClientesporRevendedoraCsvFile(int $revendedoraId)
+    {
+
+        $datos = array();
+        $datosPlanos = array();
+
+        // Datos de presentaciones
+        $clientesPorRevendedora = $this->getClientesporRevendedora($revendedoraId);
+        foreach ($clientesPorRevendedora as $clientePorRevendedora) {
+            $fila = [
+                $clientePorRevendedora->getId(),
+                $clientePorRevendedora->getPersona()->getNombre(),
+                $clientePorRevendedora->getPersona()->getApellido(),
+                $clientePorRevendedora->getPersona()->getTipoDocumento()->getDescripcion(),
+                $clientePorRevendedora->getPersona()->getDocumento(),
+
+            ];
+            array_push($datosPlanos, $fila);
+
+        }
+
+        $delimiter = ",";
+        $filename = "pedido.csv";
+
+        $f = fopen('php://memory', 'r+');
+
+        //set column headers
+        $fields = array('Id', 'Nombre', 'Apellido', 'T.Doc', 'Doc');
+        fputcsv($f, $fields, $delimiter);
+
+        //output each row of the data, format line as csv and write to file pointer
+
+
+        foreach ($datosPlanos as $filacsv) {
+            fputcsv($f, $filacsv, $delimiter);
+
+        }
+
+        rewind($f);
+        $contenido = rtrim(stream_get_contents($f));
+
+        $archivo = new Archivo();
+        $archivo->setNombre("Clientes.csv");
+        $archivo->setTipo("text/csv");
+        $archivo->setContenido($contenido);
+        return $archivo;
+    }
+
+    public function getClientesPorRevendedora(int $revendedoraId, bool $full = true): Array
+    {
+        $sql = "SELECT *
+                FROM cliente WHERE cliente.revendedora=:revendedora_id";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':revendedora_id', $revendedoraId, PDO::PARAM_INT);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $clientes = Array();
+        foreach ($items as $item) {
+            $item = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
+            array_push($clientes, $item);
+        }
+
+
+        $this->disconnect();
+        return $clientes;
+    }
+
+
 
     /**
      * @param Cliente $cliente

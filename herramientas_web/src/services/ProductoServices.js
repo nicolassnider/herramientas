@@ -1,4 +1,7 @@
-import {get, post, put, remove} from './ApiServices';
+import {get, getFile, post, put, remove} from './ApiServices';
+import downloadJs from "downloadjs";
+import mimeTypes from 'mime-types';
+
 //import * as storage from '../utils/Storage';
 
 export const getProductos = () => {
@@ -39,3 +42,20 @@ export const selectProductos = () => {
     return get("productos/select");
 };
 
+export const getCsvProductosMasVendidos = () => {
+    return getFile("productos/masvendidos/archivo");
+};
+
+export const descargaProductosMasVendidos = () => {
+    getCsvProductosMasVendidos()
+        .then(
+            (result) => {
+                return result.blob();
+            }
+        )
+        .then(
+            (result) => {
+                return downloadJs(result, "ProductosMasVendidos" + "." + mimeTypes.extension(result.type), result.type);
+            }
+        )
+}

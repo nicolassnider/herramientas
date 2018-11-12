@@ -13,10 +13,12 @@ import FormValidation from '../../../../utils/FormValidation';
 import Date from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
+import {selectPerfiles} from "../../../../services/PerfilServices";
 
 class Revendedora extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             revendedora: {
                 id: null,
@@ -33,9 +35,14 @@ class Revendedora extends Component {
                 personas: {
                     id: ''
                 },
-                usuario: {
-                    id: null
+
+                perfil: {
+                    id: ''
+                },
+                perfiles: {
+                    id: '',
                 }
+
             },
 
             error: {
@@ -61,7 +68,8 @@ class Revendedora extends Component {
             component: this,
             validators: {
                 'revendedora.categoriaRevendedora': (value) => Validator.notEmpty(value),
-                'revendedora.persona': (value) => Validator.notEmpty(value)
+                'revendedora.persona': (value) => Validator.notEmpty(value),
+                'revendedora.perfil': (value) => Validator.notEmpty(value),
             }
         });
     }
@@ -74,6 +82,7 @@ class Revendedora extends Component {
 
     handleSelect(name, object) {
         let newState = {...this.state};
+        console.log(object);
 
         switch (name) {
 
@@ -82,6 +91,9 @@ class Revendedora extends Component {
                 break;
             case "personas":
                 newState.revendedora.persona.id = object.value;
+                break;
+            case "perfiles":
+                newState.revendedora.perfil.id = object.value;
                 break;
         }
 
@@ -102,11 +114,14 @@ class Revendedora extends Component {
 
         let p3 = selectPersonasSinRevendedora().then(result => result.json());
 
-        arrayPromises.push(p2, p3);
+        let p4 = selectPerfiles().then(result => result.json());
+
+        arrayPromises.push(p2, p3, p4);
 
         Promise.all(arrayPromises)
             .then(
                 (result) => {
+                    console.log(result);
                     let miState = {...this.state};
 
                     if (component.idRevendedora) {
@@ -120,6 +135,11 @@ class Revendedora extends Component {
                             return (
                                 {value: persona.value, label: persona.label}
                             )
+                        })
+                        miState.revendedora.perfiles = result[2].map((perfil, index) => {
+                            return (
+                                {value: perfil.value, label: perfil.label}
+                            )
                         });
                     } else {
                         miState.revendedora.categoriaRevendedoras = result[0].map((categoriaRevendedora, index) => {
@@ -131,8 +151,14 @@ class Revendedora extends Component {
                             return (
                                 {value: persona.value, label: persona.label}
                             )
+                        })
+                        miState.revendedora.perfiles = result[2].map((perfil, index) => {
+                            return (
+                                {value: perfil.value, label: perfil.label}
+                            )
                         });
                     }
+                    console.log(miState);
 
                     miState.loaded = true;
                     component.setState(miState)
@@ -176,7 +202,7 @@ class Revendedora extends Component {
                                 flagPrimeraVez: false
                             });
                             setTimeout(() => {
-                                this.props.history.push("/administracion/personas/revendedorass");
+                                this.props.history.push("/administracion/personas/revendedoras");
                             }, 2500);
                         } else {
                             if (response.status === 400) {
@@ -310,6 +336,20 @@ class Revendedora extends Component {
                                     options={this.state.revendedora.categoriaRevendedoras}
                                     value={this.state.revendedora.categoriaRevendedoras.find(e => e.value === this.state.revendedora.categoriaRevendedoras.id)}
                                     onChange={(e) => this.handleSelect("categoriaRevendedoras", e)}
+                                />
+                            </Col>
+                        </Row>
+
+                        <Row xs={{size: 12, offset: 0}}>
+
+                            <Col xs={{size: 2, offset: 0}}>
+                                <Label htmlFor="perfiles">(*)Perfil Usuario:</Label>
+                                <Select
+                                    name="perfiles" placeholder="Perfil..."
+                                    valueKey="value" labelKey="label"
+                                    options={this.state.revendedora.perfiles}
+                                    value={this.state.revendedora.perfiles.find(e => e.value === this.state.revendedora.perfiles.id)}
+                                    onChange={(e) => this.handleSelect("perfiles", e)}
                                 />
                             </Col>
                         </Row>
