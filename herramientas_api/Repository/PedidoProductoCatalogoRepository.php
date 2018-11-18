@@ -210,11 +210,13 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         $item->setCantidad((int)$result->cantidad);
         $item->setRecibido((bool)$result->recibido);
         $item->setEntregado((bool)$result->entregado);
+        $item->setCobrado((bool)$result->cobrado);
         if ($result->cliente) $item->setCliente((new ClienteRepository())->get($result->cliente));
         if ($result->revendedora) $item->setRevendedora((new RevendedoraRepository())->get($result->revendedora));
         $item->setPrecioUnitario((float)$result->precio_unitario);
         $item->setPrecioTotal((float)$result->precio_total);
         $item->setEstadoCampania((bool)PedidoProductoCatalogoRepository::checkCampaniaPedidoProductoCatalogo($item->getId()));
+        $item->setSaldo((float)$result->saldo);
 
         return $item;
     }

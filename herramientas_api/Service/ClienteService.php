@@ -24,6 +24,11 @@ class ClienteService
         return $this->repository->getClientesporRevendedoraCsvFile($revendedoraId);
     }
 
+    public function getClientesMasDeudores(): ?Archivo
+    {
+        return $this->repository->getClientesMasDeudoresCsvFile();
+    }
+
     public function getAllActiveSorted()
     {
         return $this->repository->getAllActiveSorted();

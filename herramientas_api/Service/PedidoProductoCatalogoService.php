@@ -63,6 +63,7 @@ class PedidoProductoCatalogoService
         $this->repository->cobrar($id);
     }
 
+
     public function entregar(int $id)
     {
         $this->repository->entregar($id);

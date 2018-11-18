@@ -67,11 +67,23 @@ class PedidoAvonController
                     $service->recibir($id);
                     return $response->withJson("recibido", 200);
                 });
+                $this->put('/recibir/check/{id}', function (Request $request, Response $response) {
+                    $service = new PedidoAvonService();
+                    $id = $request->getAttribute('id');
+                    $service->checkRecibido($id);
+                    return $response->withJson("recibido", 200);
+                });
                 $this->put('/entregar/{id}', function (Request $request, Response $response) {
                     $service = new PedidoAvonService();
                     $id = $request->getAttribute('id');
                     $service->entregar($id);
-                    return $response->withJson("entregado", 200);
+                    return $response->withJson("entregadototal", 200);
+                });
+                $this->put('/entregar/check/{id}', function (Request $request, Response $response) {
+                    $service = new PedidoAvonService();
+                    $id = $request->getAttribute('id');
+                    $service->checkEntregado($id);
+                    return $response->withJson("entregadototal", 200);
                 });
                 $this->put('/cobrar/{id}', function (Request $request, Response $response) {
                     $service = new PedidoAvonService();
@@ -79,6 +91,13 @@ class PedidoAvonController
                     $service->cobrar($id);
                     return $response->withJson("entregado", 200);
                 });
+                $this->put('/cobrar/check/{id}', function (Request $request, Response $response) {
+                    $service = new PedidoAvonService();
+                    $id = $request->getAttribute('id');
+                    $service->checkCobrado($id);
+                    return $response->withJson("cobradototal", 200);
+                });
+
 
                 $this->post('', function (Request $request, Response $response) {
                     $service = new PedidoAvonService();

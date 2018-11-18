@@ -15,7 +15,7 @@ export const getCampaniaActiva = () => {
 };
 
 export const desactivarCampania = (id) => {
-    return put("campanias/" + id);
+    return put("campanias/desactivar/" + id);
 
 };
 export const nuevaCampania = (campania) => {

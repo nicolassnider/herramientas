@@ -1,10 +1,22 @@
 import React from 'react';
 import {Button, Badge} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
+import {entregarProductoCatalogo} from "../../../services/PedidoProductoCatalogoServices";
+import {desactivarCampania} from "../../../services/CampaniaServices";
 
 const campania = (props) => {
     const style = {
         textAlign: 'center'
+    }
+
+    async function desactivarIdCampania() {
+
+
+        await desactivarCampania(props.campania.id)
+
+        window.location.reload();
+
+
     }
 
     return (
@@ -19,6 +31,13 @@ const campania = (props) => {
                     :
                     <h5><Badge color="danger">Inactivo</Badge></h5>
                 }
+            </td>
+            <td>
+                <Button size="sm"
+                        onClick={() => props.history.push(desactivarIdCampania())}
+                        className="btn-outline-secondary">
+                    <i className="fa fa-ban"></i>
+                </Button>
             </td>
             <td style={style}>
                 <Button size="sm"

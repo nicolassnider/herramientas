@@ -51,4 +51,22 @@ export const descargaClientesPorRevendedora = (id) => {
                 return downloadJs(result, "ClientesPorRevendedora_" + id + "." + mimeTypes.extension(result.type), result.type);
             }
         )
+};
+
+export const getCsvClientesMasDeudores = () => {
+    return getFile("clientes/deudores/archivo");
+};
+
+export const descargaClientesMasDeudores = () => {
+    getCsvClientesMasDeudores()
+        .then(
+            (result) => {
+                return result.blob();
+            }
+        )
+        .then(
+            (result) => {
+                return downloadJs(result, "ClientesMasDeudores" + "." + mimeTypes.extension(result.type), result.type);
+            }
+        )
 }

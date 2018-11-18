@@ -61,6 +61,21 @@ class PedidoAvonService
         $this->repository->cobrar($id);
     }
 
+    public function checkRecibido(int $id)
+    {
+        $this->repository->checkPendenciasRecibido($id);
+    }
+
+    public function checkCobrado(int $id)
+    {
+        $this->repository->checkPendenciasCobrado($id);
+    }
+
+    public function checkEntregado(int $id)
+    {
+        $this->repository->checkPendenciasEntregado($id);
+    }
+
     public function delete(int $id)
     {
         $this->repository->delete($id);

@@ -114,6 +114,10 @@ class PedidoAvonRepository extends AbstractRepository
         }
     }
 
+    /**
+     * @param int $id
+     * @throws BadRequestException
+     */
     public function recibir(int $id): void
     {
         $db = $this->connect();
@@ -202,6 +206,10 @@ class PedidoAvonRepository extends AbstractRepository
         }
     }
 
+    /**
+     * @param int $id
+     * @throws BadRequestException
+     */
     public function cobrar(int $id): void
     {
         $db = $this->connect();
@@ -331,9 +339,106 @@ class PedidoAvonRepository extends AbstractRepository
             return null;
         }
 
-        $cliente = $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
+        $pedido = $this->createFromResultset($result, $full ? ['*'] : [], $this->db);
         $this->disconnect();
-        return $cliente;
+        return $pedido;
+    }
+
+    /**
+     * @param int $id
+     * @return null|void
+     * @throws BadRequestException
+     */
+    public function checkPendenciasRecibido(int $id)
+    {
+        $sqlGet = "SELECT *  FROM pedido_producto_catalogo                      
+                    WHERE pedido_avon=:id
+                    ";
+
+        $db = $this->connect();
+        $stmtGet = $db->prepare($sqlGet);
+        $stmtGet->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmtGet->execute();
+        $results = $stmtGet->fetchAll(PDO::FETCH_OBJ);
+
+        if ($results == null) {
+            return null;
+        }
+
+
+        foreach ($results as $result) {
+            if ((bool)$result->recibido) {
+                throw new BadRequestException("existen items pendientes para recibir");
+            }
+        }
+        PedidoAvonRepository::recibir($id);
+
+        $this->disconnect();
+        return;
+    }
+
+    /**
+     * @param int $id
+     * @return null|void
+     * @throws BadRequestException
+     */
+    public function checkPendenciasCobrado(int $id)
+    {
+        $sqlGet = "SELECT *  FROM pedido_producto_catalogo                      
+                    WHERE pedido_avon=:id
+                    ";
+
+        $db = $this->connect();
+        $stmtGet = $db->prepare($sqlGet);
+        $stmtGet->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmtGet->execute();
+        $results = $stmtGet->fetchAll(PDO::FETCH_OBJ);
+
+        if ($results == null) {
+            return null;
+        }
+
+        foreach ($results as $result) {
+            if ($result->cobrado) {
+                throw new BadRequestException("existen items pendientes para cobrar");
+            }
+        }
+        PedidoAvonRepository::cobrar($id);
+
+        $this->disconnect();
+        return;
+    }
+
+    /**
+     * @param int $id
+     * @return null|void
+     * @throws BadRequestException
+     */
+    public function checkPendenciasEntregado(int $id)
+    {
+        $sqlGet = "SELECT *  FROM pedido_producto_catalogo                      
+                    WHERE pedido_avon=:id
+                    ";
+
+        $db = $this->connect();
+        $stmtGet = $db->prepare($sqlGet);
+        $stmtGet->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmtGet->execute();
+        $results = $stmtGet->fetchAll(PDO::FETCH_OBJ);
+
+        if ($results == null) {
+            return null;
+        }
+
+        foreach ($results as $result) {
+            if ($result->entregado) {
+                throw new BadRequestException("existen items pendientes para entregar");
+            }
+        }
+        PedidoAvonRepository::entregar($id);
+
+        $this->disconnect();
+        return;
     }
 
     public function updateFile(int $id)

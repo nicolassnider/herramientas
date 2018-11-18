@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaClientes} from '../../../../services/ClientesServices';
+import {descargaClientesMasDeudores, grillaClientes} from '../../../../services/ClientesServices';
 
 import ClienteGrilla from '../../../../components/Administracion/Personas/Clientes/ClienteGrilla';
 import Paginador from '../../../../components/Paginador/Paginador';
@@ -100,6 +100,10 @@ class Clientes extends Component {
                         <Button color="primary"
                                 onClick={() => this.props.history.push('/administracion/personas/clientes/nuevo')}>
                             Nuevo Cliente <i className="fa fa-plus"></i>
+                        </Button>
+                        <Button color="primary"
+                                onClick={() => this.props.history.push(descargaClientesMasDeudores())}>
+                            Deudores <i className="fa fa-plus"></i>
                         </Button>
                     </CardHeader>
                     <CardBody>{content}</CardBody>

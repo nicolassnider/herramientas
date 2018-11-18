@@ -20,7 +20,7 @@ const personas = (props) => {
                 <th>Status</th>
                 <th>Tipo</th>
                 <th>Fecha Alta</th>
-                <th style={style}></th>
+                <th style={style}>Acciones</th>
             </tr>
             </thead>
             <tbody>

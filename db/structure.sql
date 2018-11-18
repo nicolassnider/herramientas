@@ -275,13 +275,14 @@ CREATE TABLE herramientas.pedido_avon (
   DEFAULT CHARSET = utf8;
 #22
 CREATE TABLE herramientas.pedido_producto_catalogo (
-  id                INT(30)          NOT NULL AUTO_INCREMENT,
-  pedido_avon       INT(30)          NOT NULL,
-  producto_catalogo INT(30)          NOT NULL,
-  cantidad          INT(30)          NOT NULL,
-  recibido          BIT(1) DEFAULT 0 NOT NULL,
-  cliente           INT(30)          NULL,
-  revendedora       INT(30)          NULL,
+  id                INT(30)                   NOT NULL AUTO_INCREMENT,
+  pedido_avon       INT(30)                   NOT NULL,
+  producto_catalogo INT(30)                   NOT NULL,
+  cantidad          INT(30)                   NOT NULL,
+  recibido          BIT(1) DEFAULT 0          NOT NULL,
+  cliente           INT(30)                   NULL,
+  revendedora       INT(30)                   NULL,
+  saldo             DECIMAL(13, 3) DEFAULT 0  NOT NULL,
   PRIMARY KEY (id),
   CONSTRAINT FK_PEDIDO_AVON_CAMPANIA FOREIGN KEY (pedido_avon)
   REFERENCES herramientas.pedido_avon (id),

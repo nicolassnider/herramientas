@@ -17,7 +17,8 @@ const campanias = (props) => {
                 <th>Fecha Fin</th>
                 <th>Descripcion</th>
                 <th>Estado</th>
-                <th style={style}></th>
+                <th>Desactivar</th>
+                <th style={style}>Acciones</th>
             </tr>
             </thead>
             <tbody>

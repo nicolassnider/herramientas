@@ -7,14 +7,16 @@ import {
 } from "../../../services/PedidoProductoCatalogoServices";
 import {pagar} from "../../../services/FacturaServices";
 
+
 const pedidoProductoCatalogo = (props) => {
     console.log(props);
+
     const style = {
         textAlign: 'center'
     }
 
 
-    function checkCampania() {
+    function checkCampaniaForRemove() {
         if (props.pedidoProductoCatalogo.estadoCampania) {
             console.log("estadoCampania");
 
@@ -29,22 +31,35 @@ const pedidoProductoCatalogo = (props) => {
 
     }
 
-    function cobrarPedido() {
+    function checkCampaniaForUpdate() {
+        if (props.pedidoProductoCatalogo.estadoCampania) {
+            console.log("estadoCampania");
 
-        cobrarPedidoProductoCatalogo(props.pedidoProductoCatalogo.id);
+            document.location.reload();
 
-        setTimeout(4000);
-        document.location.reload();
+        } else {
+            alert("Campaña Cerrada, verificar");
+        }
 
 
     }
 
-    function entregarPedido() {
+    async function cobrarPedido() {
 
-        entregarProductoCatalogo(props.pedidoProductoCatalogo.id);
+        await cobrarPedidoProductoCatalogo(props.pedidoProductoCatalogo.id);
 
-        setTimeout(4000);
-        document.location.reload();
+
+        window.location.reload();
+
+
+    }
+
+    async function entregarPedido() {
+
+
+        await entregarProductoCatalogo(props.pedidoProductoCatalogo.id)
+
+        window.location.reload();
 
 
     }
@@ -95,14 +110,7 @@ const pedidoProductoCatalogo = (props) => {
                     <i className="fa fa-pencil"></i>
                 </Button>
             </td>
-            <td style={style}>
-                <Button size="sm"
-                        onClick={() => props.history.push(cobrarPedido())}
-                        className="btn-outline-secondary"
-                        title="cobrar pedido">
-                    <i className="fa fa-money"></i>
-                </Button>
-            </td>
+
             <td style={style}>
                 <Button size="sm"
                         onClick={() => props.history.push(entregarPedido())}
@@ -112,9 +120,17 @@ const pedidoProductoCatalogo = (props) => {
                 </Button>
             </td>
             <td style={style}>
+                <Button size="sm"
+                        onClick={() => props.history.push(cobrarPedido())}
+                        className="btn-outline-secondary"
+                        title="cobrar pedido">
+                    <i className="fa fa-money"></i>
+                </Button>
+            </td>
+            <td style={style}>
 
                 <Button size="sm"
-                        onClick={() => (checkCampania())}
+                        onClick={() => (checkCampaniaForRemove())}
                         className="btn-outline-secondary"
                         title="quitar de pedido">
                     <i className="fa fa-eraser"></i>

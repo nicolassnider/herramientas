@@ -9,6 +9,8 @@ require_once 'Db.php';
 require_once 'AbstractRepository.php';
 require_once '../Model/Cliente.php';
 require_once '../Model/Archivo.php';
+require_once '../Model/ClientesMasDeudores.php';
+
 require_once '../Repository/PersonaRepository.php';
 require_once '../Repository/CategoriaClienteRepository.php';
 require_once '../Repository/RevendedoraRepository.php';
@@ -92,6 +94,78 @@ class ClienteRepository extends AbstractRepository
         return $clientes;
     }
 
+    public function getClientesMasDeudoresCsvFile()
+    {
+
+        $datos = array();
+        $datosPlanos = array();
+
+        // Datos de presentaciones
+        $clientesMasDeudores = $this->getClientesMasDeudores();
+        foreach ($clientesMasDeudores as $clienteMasDeudor) {
+            $fila = [
+                $clienteMasDeudor->getNombre(),
+                $clienteMasDeudor->getApellido(),
+                $clienteMasDeudor->getDeuda()
+
+            ];
+            array_push($datosPlanos, $fila);
+
+        }
+
+        $delimiter = ",";
+        $filename = "clientesMasDeudores.csv";
+
+        $f = fopen('php://memory', 'r+');
+
+        //set column headers
+        $fields = array('Nombre', 'Apellido', 'Deuda');
+        fputcsv($f, $fields, $delimiter);
+
+        //output each row of the data, format line as csv and write to file pointer
+
+
+        foreach ($datosPlanos as $filacsv) {
+            fputcsv($f, $filacsv, $delimiter);
+
+        }
+
+        rewind($f);
+        $contenido = rtrim(stream_get_contents($f));
+
+        $archivo = new Archivo();
+        $archivo->setNombre("ClientesMasDeudores.csv");
+        $archivo->setTipo("text/csv");
+        $archivo->setContenido($contenido);
+        return $archivo;
+    }
+
+    public function getClientesMasDeudores(): Array
+    {
+        $sql = "Select persona.nombre, persona.apellido, sum(pedido_producto_catalogo.precio_total) deuda from pedido_producto_catalogo 
+inner join cliente on pedido_producto_catalogo.cliente=cliente.id 
+inner join persona on cliente.persona=persona.id 
+where cobrado=0 GROUP by cliente.id ORDER BY deuda DESC,persona.apellido";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($items == null) {
+            return Array();
+        }
+        $clientesMasDeudores = Array();
+        foreach ($items as $item) {
+            $clienteMasDeudor = new ClientesMasDeudores();
+            $clienteMasDeudor->setNombre($item->nombre);
+            $clienteMasDeudor->setApellido($item->apellido);
+            $clienteMasDeudor->setDeuda((float)$item->deuda);
+            array_push($clientesMasDeudores, $clienteMasDeudor);
+        }
+        $this->disconnect();
+        return $clientesMasDeudores;
+    }
 
 
     /**
@@ -202,7 +276,7 @@ class ClienteRepository extends AbstractRepository
             $madre = $cliente->getMadre();
             $apodo = $cliente->getApodo();
             $revendedora = (int)$cliente->getRevendedora()->getId();
-            $id=$cliente->getId();
+            $id = $cliente->getId();
             $stmtUpdate = $db->prepare($sqlUpdate);
             $stmtUpdate->bindParam(':categoria_cliente', $categoriaCliente, PDO::PARAM_INT);
             $stmtUpdate->bindParam(':direccion_entrega', $direccionEntrega);
@@ -415,7 +489,6 @@ WHERE cli.activo=1";
         $this->disconnect();
         return $clientes;
     }
-
 
 
     public function get(int $id, bool $full = true): ?Cliente

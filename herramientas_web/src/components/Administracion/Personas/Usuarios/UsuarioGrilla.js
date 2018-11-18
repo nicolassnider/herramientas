@@ -16,7 +16,7 @@ const usuarios = (props) => {
                 <th>Usuario</th>
                 <th>Perfil</th>
                 <th>Status</th>
-                <th style={style}></th>
+                <th style={style}>Acciones</th>
             </tr>
             </thead>
             <tbody>

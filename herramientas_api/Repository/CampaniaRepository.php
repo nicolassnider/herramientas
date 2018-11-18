@@ -160,7 +160,7 @@ class CampaniaRepository extends AbstractRepository
     {
 
         $db = $this->connect();
-        CampaniaRepository::checkCampaniaActiva();
+        CampaniaRepository::checkCampaniaActiva($campania->getFechaInicio());
         $db->beginTransaction();
         $sqlCreate = "INSERT INTO campania (fecha_inicio, fecha_fin, descripcion, activo) VALUES (:fechaInicio,:fechaFin,:descripcion,:activo)";
         $fechaInicio = (string)$campania->getFechaInicio()->format("Y-m-d");
@@ -210,9 +210,10 @@ class CampaniaRepository extends AbstractRepository
     /**
      * @throws BadRequestException
      */
-    public function checkCampaniaActiva()
+    public function checkCampaniaActiva($fecha)
     {
         try {
+
             $db = $this->connect();
             $sqlCheckCampaniaActiva = " SELECT COUNT(id)AS campanias_activas FROM herramientas.campania 
                                         WHERE campania.activo=1";
@@ -221,6 +222,20 @@ class CampaniaRepository extends AbstractRepository
             $result = $stmtCheckCampaniaActiva->fetchObject();
             if ($result->campanias_activas != 0) {
                 throw new BadRequestException("Existe una Campania activa, por favor verificar");
+            }
+            $sqlCheckCampaniaActiva = null;
+            $stmtCheckCampaniaActivaCampaniaActiva = null;
+
+            $sqlCheckUltimaFecha = " SELECT fecha_fin FROM campania";
+            $stmtCheckUltimaFecha = $db->prepare($sqlCheckUltimaFecha);
+            $stmtCheckUltimaFecha->execute();
+
+            $resultsFechas = $stmtCheckUltimaFecha->fetchAll(PDO::FETCH_OBJ);
+            foreach ($resultsFechas as $resultFecha) {
+                $fechaFin = $resultFecha->fecha_fin;
+                if ($fecha->format("Y-m-d") <= $fechaFin) {
+                    throw new BadRequestException("Verificar el inicio de campania");
+                }
             }
 
 

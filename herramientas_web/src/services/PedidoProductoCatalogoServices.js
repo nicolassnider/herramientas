@@ -29,6 +29,20 @@ export const cobrarPedidoProductoCatalogo = (id) => {
     return put("pedidoproductocatalogo/cobrar/" + id);
 };
 
+
+export const checkCobrarPedidoAvon = (id) => {
+    return put("pedidos_avon/cobrar/check/" + id);
+};
+
+export const checkRecibirPedidoAvon = (id) => {
+    return put("pedidos_avon/recibir/check/" + id);
+};
+
+export const checkEntregarPedidoAvon = (id) => {
+    return put("pedidos_avon/entregar/check/" + id);
+};
+
+
 export const entregarProductoCatalogo = (id) => {
     return put("pedidoproductocatalogo/entregar/" + id);
 };
