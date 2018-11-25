@@ -106,6 +106,7 @@ class CampaniaActual extends Component {
 
                 component.setState(miState);
                 let p3 = grillaPedidoProductoCatalogos(miState.idPedido).then(result => result.json());
+                console.log(p3);
 
                 arrayPromises.push(p3);
                 Promise.all(arrayPromises)
@@ -117,9 +118,7 @@ class CampaniaActual extends Component {
 
                             miState.loaded = true;
 
-
                             component.setState(miState)
-
 
                         })
 
@@ -195,6 +194,13 @@ class CampaniaActual extends Component {
                             <Button color="primary"
                                     onClick={() => this.props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/' + currentState.idPedido)}>
                                 Cargar Item <i className="fa fa-plus"></i>
+                            </Button>
+                        </Col>
+                        <Col sm="4">
+
+                            <Button color="primary"
+                                    onClick={() => this.props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedidorevendedora/' + currentState.idPedido)}>
+                                Pedido Revendora <i className="fa fa-plus"></i>
                             </Button>
                         </Col>
 

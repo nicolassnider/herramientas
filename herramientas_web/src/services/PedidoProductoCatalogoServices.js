@@ -47,6 +47,16 @@ export const entregarProductoCatalogo = (id) => {
     return put("pedidoproductocatalogo/entregar/" + id);
 };
 
+export const getPedidoProductoCatalogoPorId = (id) => {
+    return get("pedidoproductocatalogo/getporid/" + id);
+};
+
+export const saldarPedidoProductoCatalogo = (pedidoProductoCatalogo) => {
+    console.log(pedidoProductoCatalogo);
+    return put("pedidoproductocatalogo/saldar/" + pedidoProductoCatalogo.id, pedidoProductoCatalogo);
+};
+
+
 
 export const getCsvProductoCatalogosPorPedido = (id) => {
     return getFile("pedidoproductocatalogo/pedido/archivo/" + id);

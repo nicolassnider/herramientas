@@ -23,6 +23,11 @@ class ProductoCatalogoService
         return $this->repository->getAllActiveSorted();
     }
 
+    public function getAllActiveSortedByCatalogoRevendedora()
+    {
+        return $this->repository->getAllActiveSortedByCatalogoRevendedora();
+    }
+
     public function create(ProductoCatalogo $productoCatalogo)
     {
         return $this->repository->create($productoCatalogo);

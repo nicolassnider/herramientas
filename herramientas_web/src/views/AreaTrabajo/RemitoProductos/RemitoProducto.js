@@ -261,7 +261,7 @@ class RemitoProducto extends Component {
             <Card>
                 <Form onSubmit={this.submitForm}>
                     <CardHeader>
-                        <Col> {!this.idRemito ? "Inluir" : "Modificar"}</Col>
+                        <Col> {!this.idRemito ? "Incluir" : "Modificar"}</Col>
 
                     </CardHeader>
                     <CardBody>

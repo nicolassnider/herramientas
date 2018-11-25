@@ -97,6 +97,12 @@ const IncluirProductoEnCatalogo = Loadable({
 });
 
 /***** IncluirProductoEnPedido *****/
+const IncluirProductoEnPedidoRevendedora = Loadable({
+    loader: () => import('./views/Administracion/ProductoCatalogo/IncluirProductoEnPedidoRevendedora'),
+    loading: Loading,
+});
+
+/***** IncluirProductoEnPedido *****/
 const IncluirProductoEnPedido = Loadable({
     loader: () => import('./views/Administracion/ProductoCatalogo/IncluirProductoEnPedido'),
     loading: Loading,
@@ -122,6 +128,12 @@ const PedidoAnterior = Loadable({
 /***** PedidoCSV *****/
 const PedidoAvon = Loadable({
     loader: () => import('./views/AreaTrabajo/PedidoAvon/PedidoAvon'),
+    loading: Loading,
+});
+
+/***** SaldarPedidoProductoCatalogo*****/
+const SaldarPedidoProductoCatalogo = Loadable({
+    loader: () => import('./views/Administracion/ProductoCatalogo/SaldarPedidoProductoCatalogo'),
     loading: Loading,
 });
 
@@ -197,6 +209,12 @@ const routes = [
     {
         path: '/', exact: true, name: 'Home', component: CampaniaActual
     },
+    {
+        path: '/administracion/pedido/saldar/:id',
+        exact: true,
+        name: 'Campanias',
+        component: SaldarPedidoProductoCatalogo
+    },
 
     {
         path: '/administracion/campanias', exact: true, name: 'Campanias', component: Campanias
@@ -216,6 +234,12 @@ const routes = [
         exact: true,
         name: 'Incluir producto en Pedido',
         component: IncluirProductoEnPedido
+    },
+    {
+        path: '/areatrabajo/campania/campaniaactual/pedido/incluirenpedidorevendedora/:id',
+        exact: true,
+        name: 'Incluir producto en Pedido',
+        component: IncluirProductoEnPedidoRevendedora
     },
     {
         path: '/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/editar/:id/:pedidoproductocatalogo',

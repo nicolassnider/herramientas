@@ -199,7 +199,7 @@ class ProductoCatalogoRepository extends AbstractRepository
 
     public function getAllActiveSorted(): Array
     {
-        $sql = "SELECT * FROM producto_catalogo";
+        $sql = "SELECT * FROM producto_catalogo where producto_catalogo.catalogo!=2";
 
         $db = $this->connect();
         $stmt = $db->prepare($sql);
@@ -221,5 +221,28 @@ class ProductoCatalogoRepository extends AbstractRepository
         return $productoCatalogos;
     }
 
+    public function getAllActiveSortedByCatalogoRevendedora(): Array
+    {
+        $sql = "SELECT * FROM producto_catalogo where producto_catalogo.catalogo=2";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+
+        if ($items == null) {
+            return Array();
+        }
+
+        $productoCatalogos = Array();
+        foreach ($items as $item) {
+            $productoCatalogo = $this->createFromResultset($item, ['*'], $db);
+            array_push($productoCatalogos, $productoCatalogo);
+        }
+
+        $this->disconnect();
+        return $productoCatalogos;
+    }
 
 }

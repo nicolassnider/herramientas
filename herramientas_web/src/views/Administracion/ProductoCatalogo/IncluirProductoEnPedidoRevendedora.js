@@ -19,9 +19,13 @@ import {nuevoPedidoProductoCatalogo} from "../../../services/PedidoProductoCatal
 import FormValidation from "../../../utils/FormValidation";
 import Validator from "../../../utils/Validator";
 import Select from 'react-select';
-import {selectProductoCatalogos} from "../../../services/ProductoCatalogoServices";
+import {
+    selectProductoCatalogos,
+    selectProductoCatalogosParaRevendedora
+} from "../../../services/ProductoCatalogoServices";
 import * as NumericInput from "react-numeric-input";
 import {selectClientes} from "../../../services/ClientesServices";
+import {selectRevendedoras} from "../../../services/RevendedorasServices";
 
 //import 'react-datepicker/dist/react-datepicker.css';
 
@@ -100,6 +104,7 @@ class IncluirProductoEnPedido extends Component {
                 newState.pedidoProductoCatalogo.cliente.id = object.value;
                 break;
             case "revendedoras":
+                console.log("case revendedoras")
                 newState.pedidoProductoCatalogo.revendedora.id = object.value;
                 break;
         }
@@ -114,8 +119,8 @@ class IncluirProductoEnPedido extends Component {
 
         let component = this;
         let arrayPromises = [];
-        let p1 = selectProductoCatalogos().then(result => result.json());
-        let p2 = selectClientes().then(result => result.json());
+        let p1 = selectProductoCatalogosParaRevendedora().then(result => result.json());
+        let p2 = selectRevendedoras().then(result => result.json());
         arrayPromises.push(p1, p2);
 
         Promise.all(arrayPromises)
@@ -132,9 +137,9 @@ class IncluirProductoEnPedido extends Component {
                                 {value: productoCatalogo.value, label: productoCatalogo.label}
                             )
                         })
-                        miState.pedidoProductoCatalogo.clientes = result[2].map((cliente, index) => {
+                        miState.pedidoProductoCatalogo.clientes = result[2].map((revendedora, index) => {
                             return (
-                                {value: cliente.value, label: cliente.label}
+                                {value: revendedora.value, label: revendedora.label}
                             )
                         });
                     } else {
@@ -143,9 +148,9 @@ class IncluirProductoEnPedido extends Component {
                                 {value: productoCatalogo.value, label: productoCatalogo.label}
                             )
                         })
-                        miState.pedidoProductoCatalogo.clientes = result[1].map((cliente, index) => {
+                        miState.pedidoProductoCatalogo.revendedoras = result[1].map((revendedora, index) => {
                             return (
-                                {value: cliente.value, label: cliente.label}
+                                {value: revendedora.value, label: revendedora.label}
                             )
                         });
                     }
@@ -335,13 +340,13 @@ class IncluirProductoEnPedido extends Component {
 
                         <Row>
                             <Col xs={{size: 4, offset: 0}}>
-                                <Label htmlFor="clientes">(*)Cliente:</Label>
+                                <Label htmlFor="revendedoras">(*)Revendedora:</Label>
                                 <Select
-                                    name="clientes" placeholder="Seleccionar un Cliente..."
+                                    name="revendedoras" placeholder="Seleccionar una Revendedora..."
                                     valueKey="value" labelKey="label"
-                                    options={this.state.pedidoProductoCatalogo.clientes}
-                                    value={this.state.pedidoProductoCatalogo.clientes.find(e => e.value === this.state.pedidoProductoCatalogo.clientes.id)}
-                                    onChange={(e) => this.handleSelect("clientes", e)}
+                                    options={this.state.pedidoProductoCatalogo.revendedoras}
+                                    value={this.state.pedidoProductoCatalogo.revendedoras.find(e => e.value === this.state.pedidoProductoCatalogo.revendedoras.id)}
+                                    onChange={(e) => this.handleSelect("revendedoras", e)}
                                 />
                             </Col>
                         </Row>

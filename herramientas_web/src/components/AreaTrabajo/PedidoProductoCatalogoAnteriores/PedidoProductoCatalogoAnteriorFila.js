@@ -22,16 +22,9 @@ const pedidoProductoCatalogo = (props) => {
                         color="success">{props.pedidoProductoCatalogo.cliente.persona.nombre + " " + props.pedidoProductoCatalogo.cliente.persona.apellido}</Badge>
                     </h5>
                     :
-                    <h5><Badge color="danger">sin cliente</Badge></h5>
-                }
-            </td>
-            <td>
-                {props.pedidoProductoCatalogo.revendedora ?
                     <h5><Badge
-                        color="success">{props.pedidoProductoCatalogo.revendedora.persona.nombre + " " + props.pedidoProductoCatalogo.revendedora.persona.apellido}</Badge>
+                        color="danger">{props.pedidoProductoCatalogo.revendedora.persona.nombre + " " + props.pedidoProductoCatalogo.revendedora.persona.apellido}</Badge>
                     </h5>
-                    :
-                    <h5><Badge color="danger">sin revendedora</Badge></h5>
                 }
             </td>
             <td style={style}>

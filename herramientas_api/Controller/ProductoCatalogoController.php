@@ -57,6 +57,18 @@ class ProductoCatalogoController
                     return $response->withJson($items, 200);
                 });
 
+                $this->get('/select/catalogorevendedora', function (Request $request, Response $response) {
+
+                    $items = (new ProductoCatalogoService())->getAllActiveSortedByCatalogoRevendedora();
+
+                    array_walk($items, function (&$item) {
+                        $label = $item->getProducto()->getDescripcion() . ' (' . $item->getCatalogo()->getDescripcion() . ')';
+                        $item = new SelectOption($item->getId(), $label);
+                    });
+
+                    return $response->withJson($items, 200);
+                });
+
 
             });
 

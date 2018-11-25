@@ -63,6 +63,11 @@ class PedidoProductoCatalogoService
         $this->repository->cobrar($id);
     }
 
+    public function saldar(int $id, float $saldo)
+    {
+        $this->repository->saldar($id, $saldo);
+    }
+
 
     public function entregar(int $id)
     {

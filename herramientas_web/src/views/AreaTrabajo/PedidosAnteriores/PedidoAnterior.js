@@ -99,6 +99,7 @@ class PedidoAnterior extends Component {
 
                 miState.loaded = true;
                 miState.campania.grillaPedidos = result[1];
+                console.log(miState.campania.grillaPedidos);
                 component.setState(miState);
             })
 

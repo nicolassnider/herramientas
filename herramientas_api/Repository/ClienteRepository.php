@@ -142,7 +142,7 @@ class ClienteRepository extends AbstractRepository
 
     public function getClientesMasDeudores(): Array
     {
-        $sql = "Select persona.nombre, persona.apellido, sum(pedido_producto_catalogo.precio_total) deuda from pedido_producto_catalogo 
+        $sql = "Select persona.nombre, persona.apellido, sum(pedido_producto_catalogo.saldo) deuda from pedido_producto_catalogo 
 inner join cliente on pedido_producto_catalogo.cliente=cliente.id 
 inner join persona on cliente.persona=persona.id 
 where cobrado=0 GROUP by cliente.id ORDER BY deuda DESC,persona.apellido";

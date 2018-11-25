@@ -48,7 +48,10 @@ export const put = (url, payload) => {
         body: JSON.stringify(payload),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization-Token': storage.getToken()
+            'Authorization-Token': storage.getToken(),
+            "Access-Control-Allow-Origin": "*",
+
+
         }
     });
 }

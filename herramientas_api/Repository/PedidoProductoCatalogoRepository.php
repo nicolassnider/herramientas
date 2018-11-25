@@ -15,6 +15,7 @@ require_once '../Model/Archivo.php';
 
 require_once '../Repository/CatalogoRepository.php';
 require_once '../Repository/ProductoRepository.php';
+require_once '../Repository/RevendedoraRepository.php';
 
 
 require_once '../Commons/Exceptions/BadRequestException.php';
@@ -34,9 +35,9 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
             $db = $this->connect();
             $db->beginTransaction();
             $sqlCreate = "INSERT INTO herramientas.pedido_producto_catalogo
-                          (pedido_avon, producto_catalogo, cantidad, cliente, revendedora,precio_unitario,precio_total) 
+                          (pedido_avon, producto_catalogo, cantidad, cliente, revendedora,precio_unitario,precio_total,saldo) 
                       VALUES 
-                          (:pedido_avon, :producto_catalogo, :cantidad,:cliente, :revendedora,:precio_unitario,:precio_total)";
+                          (:pedido_avon, :producto_catalogo, :cantidad,:cliente, :revendedora,:precio_unitario,:precio_total,:saldo)";
 
             $pedidoAvon = (int)$pedidoProductoCatalogo->getPedidoAvon()->getId();
             $productoCatalogoRepository = new ProductoCatalogoRepository();
@@ -47,6 +48,7 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
             $revendedora = $pedidoProductoCatalogo->getRevendedora() ? (int)$pedidoProductoCatalogo->getRevendedora()->getId() : null;
             $precioUnitario = (float)$productoCatalogoObjeto->getPrecio();
             $precioTotal = $precioUnitario * $cantidad;
+            $saldo = $precioTotal;
 
             $stmtCreate = $db->prepare($sqlCreate);
             $stmtCreate->bindParam(':pedido_avon', $pedidoAvon, PDO::PARAM_INT);
@@ -56,6 +58,7 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
             $stmtCreate->bindParam(':revendedora', $revendedora, PDO::PARAM_INT);
             $stmtCreate->bindParam(':precio_unitario', $precioUnitario);
             $stmtCreate->bindParam(':precio_total', $precioTotal);
+            $stmtCreate->bindParam(':saldo', $saldo);
             $stmtCreate->execute();
             $pedidoProductoCatalogo->setId($db->lastInsertId());
             $db->commit();
@@ -144,12 +147,72 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
 
     }
 
+    public function saldar(int $id, float $saldoNuevo, bool $full = true)
+    {
+
+        try {
+            $db = $this->connect();
+            $db->beginTransaction();
+            $sqlGetSaldoAnterior = "SELECT * FROM pedido_producto_catalogo WHERE id=:id";
+            $stmtGetSaldoAnterior = $db->prepare($sqlGetSaldoAnterior);
+            $stmtGetSaldoAnterior->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmtGetSaldoAnterior->execute();
+            $item = $stmtGetSaldoAnterior->fetchObject();
+            $pedidoProductoCatalogoAnterior = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
+            $saldoAnterior = (float)$pedidoProductoCatalogoAnterior->getSaldo();
+            $saldoActual = $saldoAnterior - $saldoNuevo;
+            //die(print_r($saldoActual));
+
+            if ($saldoActual > 0) {
+                $sqlSaldar = "UPDATE 
+                            herramientas.pedido_producto_catalogo
+                          SET 
+                            saldo = :saldo
+                          WHERE 
+                            (id = :id);";
+                $stmtSaldar = $db->prepare($sqlSaldar);
+                $stmtSaldar->bindParam(':saldo', $saldoActual);
+                $stmtSaldar->bindParam(':id', $id, PDO::PARAM_INT);
+
+                $stmtSaldar->execute();
+            }
+            if ($saldoActual == 0) {
+                $this->cobrar($id);
+            }
+            if ($saldoActual < 0) {
+                throw new BadRequestException("Verificar el Monto ingresado");
+            }
+            $db->commit();
+
+        } catch (Exception $e) {
+            if ($db != null) $db->rollback();
+            if ($e instanceof PDOException && $stmtSaldar->errorInfo()[0] == 23000 && $stmtSaldar->errorInfo()[1] == 1062) {
+                //TODO: implementar ex
+                $array = explode("'", $stmtSaldar->errorInfo()[2]);
+                switch ($array[3]) {
+                    case "persona_unique":
+                        throw new BadRequestException("existe una ocurrencia para la persona id: " . $array[1]);
+                        break;
+                    default:
+                        die(print_r($array));
+                        break;
+                }
+            } else {
+                throw $e;
+            }
+        } finally {
+            $this->disconnect();
+
+        }
+
+    }
+
     public function getCsvFile(int $pedidoId)
     {
 
         $datos = array();
         $datosPlanos = array();
-        $cabecera = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente', "Precio Unitario", "Total");
+        $cabecera = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente/Revendedora', "Precio Unitario", "Total");
 
         // Datos de presentaciones
         $pedidoProductoCatalogosPorPedidos = $this->getAllProductosPorPedido($pedidoId);
@@ -162,7 +225,7 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
                 $pedidoProductoCatalogoPorPedido->getCantidad(),
                 $pedidoProductoCatalogoPorPedido->getCliente() ?
                     $pedidoProductoCatalogoPorPedido->getCliente()->getPersona()->getNombre() . ' ' . $pedidoProductoCatalogoPorPedido->getCliente()->getPersona()->getApellido() :
-                    $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getNombre() . ' ' . $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getApellido(),
+                    $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getNombre() . ' ' . $pedidoProductoCatalogoPorPedido->getRevendedora()->getPersona()->getApellido() . " (R)",
                 $pedidoProductoCatalogoPorPedido->getPrecioUnitario(),
                 $pedidoProductoCatalogoPorPedido->getPrecioTotal(),
 
@@ -178,7 +241,7 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         $f = fopen('php://memory', 'r+');
 
         //set column headers
-        $fields = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente', "Precio Unitario", "Total");
+        $fields = array('Id', 'ProductoN', 'Descripcion', 'Precio', 'Cantidad', 'Cliente-Reven', "Precio Unitario", "Total");
         fputcsv($f, $fields, $delimiter);
 
         //output each row of the data, format line as csv and write to file pointer
@@ -203,9 +266,10 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
     private function createFromResultset($result, array $fields, $db)
     {
 
+        //die(print_r($result));
         $item = new PedidoProductoCatalogo();
         $item->setId((int)$result->id);
-        $item->setPedidoAvon((new PedidoAvonRepository($db))->get($result->pedido_avon));
+        $item->setPedidoAvon((new PedidoAvonRepository($db))->get((int)$result->pedido_avon));
         $item->setProductoCatalogo((new ProductoCatalogoRepository($db))->get($result->producto_catalogo));
         $item->setCantidad((int)$result->cantidad);
         $item->setRecibido((bool)$result->recibido);
@@ -246,6 +310,26 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
 
         $this->disconnect();
         return $productoCatalogos;
+    }
+
+    public function get(int $id, bool $full = true): ?PedidoProductoCatalogo
+    {
+        $sql = "SELECT *
+                FROM pedido_producto_catalogo WHERE id=:id";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $item = $stmt->fetchObject();
+
+        if ($item == null) {
+            return null;
+        }
+
+        $pedidoProductoCatalogo = $this->createFromResultset($item, $full ? ['*'] : [], $this->db);
+        $this->disconnect();
+        return $pedidoProductoCatalogo;
     }
 
     public function getAllProductosPorPedido(int $id, bool $full = true): Array
@@ -349,13 +433,16 @@ class PedidoProductoCatalogoRepository extends AbstractRepository
         $db = $this->connect();
 
         try {
-            $sql = "UPDATE herramientas.pedido_producto_catalogo SET cobrado = :cobrado WHERE (id = :id)";
+            $sql = "UPDATE herramientas.pedido_producto_catalogo SET cobrado = :cobrado,saldo=:saldo WHERE (id = :id)";
             $cobrado = true;
+            $saldo = 0;
 
             //prepara inserción base de datos
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->bindParam(':cobrado', $cobrado, PDO::PARAM_BOOL);
+            $stmt->bindParam(':saldo', $saldo);
+
             $stmt->execute();;
 
         } catch (Exception $e) {

@@ -9,7 +9,7 @@ import {pagar} from "../../../services/FacturaServices";
 
 
 const pedidoProductoCatalogo = (props) => {
-    console.log(props);
+    console.log(props.pedidoProductoCatalogo.revendedora);
 
     const style = {
         textAlign: 'center'
@@ -77,9 +77,12 @@ const pedidoProductoCatalogo = (props) => {
                         color="success">{props.pedidoProductoCatalogo.cliente.persona.nombre + " " + props.pedidoProductoCatalogo.cliente.persona.apellido}</Badge>
                     </h5>
                     :
-                    <h5><Badge color="danger">sin cliente</Badge></h5>
+                    <h5><Badge
+                        color="danger">{props.pedidoProductoCatalogo.revendedora.persona.nombre + " " + props.pedidoProductoCatalogo.revendedora.persona.apellido}</Badge>
+                    </h5>
                 }
             </td>
+            <td>{props.pedidoProductoCatalogo.saldo}</td>
             <td>
                 {props.pedidoProductoCatalogo.recibido ?
                     <h5><Badge color="success">Rec</Badge></h5>
@@ -104,9 +107,9 @@ const pedidoProductoCatalogo = (props) => {
 
             <td style={style}>
                 <Button size="sm"
-                        onClick={() => props.history.push('/areatrabajo/campania/campaniaactual/pedido/incluirenpedido/editar/  ' + this.props.pedidoProductoCatalogo.pedidoAvon.id + "/" + this.props.pedidoProductoCatalogo.id)}
+                        onClick={() => props.history.push('/administracion/pedido/saldar/' + props.pedidoProductoCatalogo.id)}
                         className="btn-outline-secondary"
-                        title="editar pedido">
+                        title="Saldo Parcial">
                     <i className="fa fa-pencil"></i>
                 </Button>
             </td>

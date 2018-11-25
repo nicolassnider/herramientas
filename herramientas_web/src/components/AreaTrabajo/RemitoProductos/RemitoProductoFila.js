@@ -7,7 +7,6 @@ import {recibir} from "../../../services/RemitoProductoServices";
 import {selectProductos} from "../../../services/ProductoServices";
 
 const remito = (props) => {
-    console.log(props.remitoProducto.id)
     const style = {
         textAlign: 'center'
     }
@@ -15,9 +14,7 @@ const remito = (props) => {
     function recibirItem() {
 
         recibir(props.remitoProducto.id);
-
-        setTimeout(4000);
-        document.location.reload();
+        window.location.reload();
 
 
     }

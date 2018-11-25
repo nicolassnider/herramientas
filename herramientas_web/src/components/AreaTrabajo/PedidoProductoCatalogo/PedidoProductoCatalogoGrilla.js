@@ -20,12 +20,13 @@ const pedidoProductoCatalogos = (props) => {
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Cliente</th>
+                <th>Saldo</th>
                 <th>Rec</th>
                 <th>Ent</th>
                 <th>Cob</th>
 
 
-                <th style={style}></th>
+                <th style={style}>Acciones</th>
             </tr>
             </thead>
             <tbody>

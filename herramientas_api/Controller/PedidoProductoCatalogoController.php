@@ -44,6 +44,13 @@ class PedidoProductoCatalogoController
                         ->withHeader('Content-Disposition', 'attachment; filename="' . $archivo->getNombre() . '"');
                 });
 
+                $this->get('/getporid/{id}', function (Request $request, Response $response) {
+                    $service = new PedidoProductoCatalogoService();
+                    $id = ((int)$request->getAttribute('id'));
+                    $items = $service->get($id);
+                    return $response->withJson($items, 200);
+                });
+
 
                 $this->get('/{id}', function (Request $request, Response $response) {
                     $service = new PedidoProductoCatalogoService();
@@ -70,6 +77,15 @@ class PedidoProductoCatalogoController
                     $pedidoProductoCatalogo = PedidoProductoCatalogoController::getInstanceFromRequest($request);
                     $pedidoProductoCatalogoService = new PedidoProductoCatalogoService();
                     $pedidoProductoCatalogoService->update($pedidoProductoCatalogo);
+                    return $response->withJson("updated", 204);
+                });
+
+                $this->put('/saldar/{id}', function (Request $request, Response $response) {
+                    $id = (int)$request->getAttribute('id');
+
+                    $saldo = (int)$request->getParam('saldo');
+                    $pedidoProductoCatalogoService = new PedidoProductoCatalogoService();
+                    $pedidoProductoCatalogoService->saldar($id, $saldo);
                     return $response->withJson("updated", 204);
                 });
 

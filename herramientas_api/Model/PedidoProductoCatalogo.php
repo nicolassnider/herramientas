@@ -57,7 +57,6 @@ class PedidoProductoCatalogo implements JsonSerializable
     }
 
 
-
     /**
      * @return mixed
      */
@@ -75,7 +74,6 @@ class PedidoProductoCatalogo implements JsonSerializable
     }
 
 
-
     /**
      * @return mixed
      */
@@ -91,7 +89,6 @@ class PedidoProductoCatalogo implements JsonSerializable
     {
         $this->estadoCampania = $estadoCampania;
     }
-
 
 
     /**
@@ -125,7 +122,6 @@ class PedidoProductoCatalogo implements JsonSerializable
     {
         $this->precioTotal = $precioTotal;
     }
-
 
 
     /**
@@ -164,7 +160,7 @@ class PedidoProductoCatalogo implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getId():?int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -180,7 +176,7 @@ class PedidoProductoCatalogo implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getPedidoAvon():?PedidoAvon
+    public function getPedidoAvon(): ?PedidoAvon
     {
         return $this->pedidoAvon;
     }
@@ -196,7 +192,7 @@ class PedidoProductoCatalogo implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getProductoCatalogo():?ProductoCatalogo
+    public function getProductoCatalogo(): ?ProductoCatalogo
     {
         return $this->productoCatalogo;
     }
@@ -212,7 +208,7 @@ class PedidoProductoCatalogo implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getCantidad():?int
+    public function getCantidad(): ?int
     {
         return $this->cantidad;
     }
@@ -228,7 +224,7 @@ class PedidoProductoCatalogo implements JsonSerializable
     /**
      * @return mixed
      */
-    public function getRecibido():?bool
+    public function getRecibido(): ?bool
     {
         return $this->recibido;
     }
@@ -242,7 +238,6 @@ class PedidoProductoCatalogo implements JsonSerializable
     }
 
 
-
     public function jsonSerialize()
     {
         $array = Array();
@@ -253,11 +248,10 @@ class PedidoProductoCatalogo implements JsonSerializable
         if (isset($this->recibido)) $array['recibido'] = $this->recibido;
         if (isset($this->entregado)) $array['entregado'] = $this->entregado;
         if (isset($this->cobrado)) $array['cobrado'] = $this->cobrado;
-
         if (isset($this->cliente)) $array['cliente'] = $this->cliente;
-        if (isset($this->cliente)) $array['revendedora'] = $this->revendedora;
+        if (isset($this->revendedora)) $array['revendedora'] = $this->revendedora;
         if (isset($this->estadoCampania)) $array['estadoCampania'] = $this->estadoCampania;
-
+        if (isset($this->saldo)) $array['saldo'] = $this->saldo;
 
 
         return $array;

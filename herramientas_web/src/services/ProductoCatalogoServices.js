@@ -9,6 +9,10 @@ export const selectProductoCatalogos = () => {
     return get("productocatalogos/select");
 };
 
+export const selectProductoCatalogosParaRevendedora = () => {
+    return get("productocatalogos/select/catalogorevendedora");
+};
+
 export const nuevaProductoCatalogo = (productoCatalogo) => {
     return post("productocatalogos", productoCatalogo);
 };
