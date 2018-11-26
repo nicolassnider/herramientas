@@ -10,6 +10,7 @@ require_once 'AbstractRepository.php';
 require_once '../Model/Cliente.php';
 require_once '../Model/Archivo.php';
 require_once '../Model/ClientesMasDeudores.php';
+require_once '../Model/ConsumoClientes.php';
 
 require_once '../Repository/PersonaRepository.php';
 require_once '../Repository/CategoriaClienteRepository.php';
@@ -165,6 +166,91 @@ where cobrado=0 GROUP by cliente.id ORDER BY deuda DESC,persona.apellido";
         }
         $this->disconnect();
         return $clientesMasDeudores;
+    }
+
+    public function getConsumoClientesCsvFile(int $id)
+    {
+
+        $datos = array();
+        $datosPlanos = array();
+
+        // Datos de presentaciones
+        $consumoClientes = $this->getConsumoClientes($id);
+        foreach ($consumoClientes as $consumoCliente) {
+            $fila = [
+                $consumoCliente->getPedidoAvon(),
+                $consumoCliente->getIdCliente(),
+                $consumoCliente->getNombre(),
+                $consumoCliente->getApellido(),
+                $consumoCliente->getIdProducto(),
+                $consumoCliente->getDescripcion(),
+                $consumoCliente->getConsumo()
+            ];
+            array_push($datosPlanos, $fila);
+
+        }
+
+        $delimiter = ",";
+        $filename = "consumoClientes.csv";
+
+        $f = fopen('php://memory', 'r+');
+
+        //set column headers
+        $fields = array('Pedido', 'Id Cliente', 'Nombre', 'Apellido', 'Id Producto', 'Descripcion', 'Consumo');
+        fputcsv($f, $fields, $delimiter);
+
+        //output each row of the data, format line as csv and write to file pointer
+
+
+        foreach ($datosPlanos as $filacsv) {
+            fputcsv($f, $filacsv, $delimiter);
+
+        }
+
+        rewind($f);
+        $contenido = rtrim(stream_get_contents($f));
+
+        $archivo = new Archivo();
+        $archivo->setNombre("consumoCliente_" . $id . ".csv");
+        $archivo->setTipo("text/csv");
+        $archivo->setContenido($contenido);
+        return $archivo;
+    }
+
+    public function getConsumoClientes(int $id): Array
+    {
+        $sql = "SELECT pedido_avon, cliente.id cliente_id, persona.nombre, persona.apellido, producto.id producto_id,producto.descripcion, sum(cantidad) consumo  FROM herramientas.pedido_producto_catalogo
+inner join cliente on pedido_producto_catalogo.cliente=cliente.id
+inner join persona on cliente.persona=persona.id
+inner join producto_catalogo on pedido_producto_catalogo.producto_catalogo=producto_catalogo.id
+inner join producto on producto_catalogo.producto=producto.id
+where cliente.id=:id
+group by producto.id,pedido_producto_catalogo.pedido_avon
+order by producto.id";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($items == null) {
+            return Array();
+        }
+        $consumoClientes = Array();
+        foreach ($items as $item) {
+            $consumoCliente = new ConsumoClientes();
+            $consumoCliente->setPedidoAvon($item->pedido_avon);
+            $consumoCliente->setIdCliente($item->cliente_id);
+            $consumoCliente->setNombre($item->nombre);
+            $consumoCliente->setApellido($item->apellido);
+            $consumoCliente->setIdProducto($item->producto_id);
+            $consumoCliente->setDescripcion($item->descripcion);
+            $consumoCliente->setConsumo($item->consumo);
+            array_push($consumoClientes, $consumoCliente);
+        }
+        $this->disconnect();
+        return $consumoClientes;
     }
 
 

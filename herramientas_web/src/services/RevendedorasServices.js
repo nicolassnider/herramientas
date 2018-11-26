@@ -1,5 +1,7 @@
-import {get, post, put, remove} from './ApiServices';
+import {get, getFile, post, put, remove} from './ApiServices';
+import downloadJs from "downloadjs";
 //import * as storage from '../utils/Storage';
+import mimeTypes from 'mime-types';
 
 export const getRevendedoras = () => {
     return get("revendedoras/");
@@ -33,3 +35,21 @@ export const grillaRevendedoras = () => {
 export const selectRevendedoras = () => {
     return get("revendedoras/select");
 };
+
+export const getCsvRevendedorasMasDeudores = () => {
+    return getFile("revendedoras/deudores/archivo");
+};
+
+export const descargaRevendedorasMasDeudores = () => {
+    getCsvRevendedorasMasDeudores()
+        .then(
+            (result) => {
+                return result.blob();
+            }
+        )
+        .then(
+            (result) => {
+                return downloadJs(result, "RevendedorasMasDeudores" + "." + mimeTypes.extension(result.type), result.type);
+            }
+        )
+}

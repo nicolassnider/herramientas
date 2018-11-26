@@ -78,7 +78,7 @@ const pedidoProductoCatalogo = (props) => {
                     </h5>
                     :
                     <h5><Badge
-                        color="danger">{props.pedidoProductoCatalogo.revendedora.persona.nombre + " " + props.pedidoProductoCatalogo.revendedora.persona.apellido}</Badge>
+                        color="danger">{props.pedidoProductoCatalogo.revendedora.persona.nombre + " " + props.pedidoProductoCatalogo.revendedora.persona.apellido + " (R)"}</Badge>
                     </h5>
                 }
             </td>

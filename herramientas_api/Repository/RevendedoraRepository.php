@@ -9,6 +9,8 @@ require_once 'Db.php';
 require_once 'AbstractRepository.php';
 require_once '../Model/Revendedora.php';
 require_once '../Model/Usuario.php';
+require_once '../Model/Archivo.php';
+require_once '../Model/RevendedorasMasDeudores.php';
 require_once '../Repository/PersonaRepository.php';
 require_once '../Repository/CategoriaRevendedoraRepository.php';
 require_once '../Repository/UsuarioRepository.php';
@@ -16,6 +18,79 @@ require_once '../Commons/Exceptions/BadRequestException.php';
 
 class RevendedoraRepository extends AbstractRepository
 {
+
+    public function getRevendedorasMasDeudoresCsvFile()
+    {
+
+        $datos = array();
+        $datosPlanos = array();
+
+        // Datos de presentaciones
+        $revendedorasMasDeudores = $this->getRevendedorasMasDeudores();
+        foreach ($revendedorasMasDeudores as $revendedoraMasDeudor) {
+            $fila = [
+                $revendedoraMasDeudor->getNombre(),
+                $revendedoraMasDeudor->getApellido(),
+                $revendedoraMasDeudor->getDeuda()
+
+            ];
+            array_push($datosPlanos, $fila);
+
+        }
+
+        $delimiter = ",";
+        $filename = "revendedorasMasDeudores.csv";
+
+        $f = fopen('php://memory', 'r+');
+
+        //set column headers
+        $fields = array('Nombre', 'Apellido', 'Deuda');
+        fputcsv($f, $fields, $delimiter);
+
+        //output each row of the data, format line as csv and write to file pointer
+
+
+        foreach ($datosPlanos as $filacsv) {
+            fputcsv($f, $filacsv, $delimiter);
+
+        }
+
+        rewind($f);
+        $contenido = rtrim(stream_get_contents($f));
+
+        $archivo = new Archivo();
+        $archivo->setNombre("RevendedoasMasDeudores.csv");
+        $archivo->setTipo("text/csv");
+        $archivo->setContenido($contenido);
+        return $archivo;
+    }
+
+    public function getRevendedorasMasDeudores(): Array
+    {
+        $sql = "Select persona.nombre, persona.apellido, sum(pedido_producto_catalogo.saldo) deuda from pedido_producto_catalogo 
+inner join revendedora on pedido_producto_catalogo.revendedora=revendedora.id 
+inner join persona on revendedora.persona=persona.id 
+where cobrado=0 GROUP by revendedora.id ORDER BY deuda DESC,persona.apellido";
+
+        $db = $this->connect();
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        $items = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if ($items == null) {
+            return Array();
+        }
+        $revendedorasMasDeudores = Array();
+        foreach ($items as $item) {
+            $revendedorasMasDeudor = new RevendedorasMasDeudores();
+            $revendedorasMasDeudor->setNombre($item->nombre);
+            $revendedorasMasDeudor->setApellido($item->apellido);
+            $revendedorasMasDeudor->setDeuda((float)$item->deuda);
+            array_push($revendedorasMasDeudores, $revendedorasMasDeudor);
+        }
+        $this->disconnect();
+        return $revendedorasMasDeudores;
+    }
 
     /**
      * @param Revendedora $revendedora

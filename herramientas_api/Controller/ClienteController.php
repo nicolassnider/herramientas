@@ -40,6 +40,18 @@ class ClienteController
                         ->withHeader('Content-Disposition', 'attachment; filename="' . $archivo->getNombre() . '"');
                 });
 
+                $this->get('/consumo/archivo/pedido/{id}', function (Request $request, Response $response) {
+                    $clienteId = (int)$request->getAttribute('id');
+                    $service = new ClienteService();
+
+                    $archivo = $service->getConsumoClientesCsvFile($clienteId);
+
+
+                    $response->write($archivo->getContenido());
+                    return $response->withHeader('Content-Type', $archivo->getTipo())
+                        ->withHeader('Content-Disposition', 'attachment; filename="' . $archivo->getNombre() . '"');
+                });
+
                 $this->get('/deudores/archivo', function (Request $request, Response $response) {
                     $service = new ClienteService();
                     $archivo = $service->getClientesMasDeudores();

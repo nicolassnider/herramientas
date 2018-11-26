@@ -16,6 +16,11 @@ class RevendedoraService
         $this->repository = new RevendedoraRepository();
     }
 
+    public function getRevendedorasMasDeudores(): ?Archivo
+    {
+        return $this->repository->getRevendedorasMasDeudoresCsvFile();
+    }
+
     public function get(int $idRevendedora): ?Revendedora
     {
 

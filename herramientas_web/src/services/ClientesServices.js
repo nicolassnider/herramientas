@@ -70,3 +70,21 @@ export const descargaClientesMasDeudores = () => {
             }
         )
 }
+
+export const getCsvConsumoClientes = (id) => {
+    return getFile("clientes/consumo/archivo/pedido/" + id);
+};
+
+export const descargaConsumoClientes = (id) => {
+    getCsvConsumoClientes(id)
+        .then(
+            (result) => {
+                return result.blob();
+            }
+        )
+        .then(
+            (result) => {
+                return downloadJs(result, "ConsumoCliente_" + id + "." + mimeTypes.extension(result.type), result.type);
+            }
+        )
+};

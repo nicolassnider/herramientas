@@ -29,6 +29,12 @@ class ClienteService
         return $this->repository->getClientesMasDeudoresCsvFile();
     }
 
+    public function getConsumoClientesCsvFile(int $id): ?Archivo
+    {
+        return $this->repository->getConsumoClientesCsvFile($id);
+    }
+
+
     public function getAllActiveSorted()
     {
         return $this->repository->getAllActiveSorted();
@@ -58,6 +64,7 @@ class ClienteService
     {
         $this->repository->activate($id);
     }
+
     public function deactivate(int $id)
     {
         $this->repository->deactivate($id);

@@ -25,6 +25,15 @@ class RevendedoraController
         $this->app->group('/api', function () {
             $this->group('/revendedoras', function () {
 
+                $this->get('/deudores/archivo', function (Request $request, Response $response) {
+                    $service = new RevendedoraService();
+                    $archivo = $service->getRevendedorasMasDeudores();
+
+                    $response->write($archivo->getContenido());
+                    return $response->withHeader('Content-Type', $archivo->getTipo())
+                        ->withHeader('Content-Disposition', 'attachment; filename="' . $archivo->getNombre() . '"');
+                });
+
                 $this->get('/select', function (Request $request, Response $response) {
 
                     $items = (new RevendedoraService())->getAllActiveSorted();

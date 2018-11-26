@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {Row, Col, Alert, Card, CardHeader, Button, CardBody} from 'reactstrap';
-import {grillaRevendedoras} from '../../../../services/RevendedorasServices';
+import {descargaRevendedorasMasDeudores, grillaRevendedoras} from '../../../../services/RevendedorasServices';
 
 import RevendedoraGrilla from '../../../../components/Administracion/Personas/Revendedoras/RevendedoraGrilla';
 import Paginador from '../../../../components/Paginador/Paginador';
+import {descargaClientesMasDeudores} from "../../../../services/ClientesServices";
+
 
 
 class Revendedoras extends Component {
@@ -32,6 +34,7 @@ class Revendedoras extends Component {
             totalPages: null
         }
     }
+
 
     componentDidMount() {
         let miState = {...this.state};
@@ -98,6 +101,10 @@ class Revendedoras extends Component {
             <div className="animated fadeIn">
                 <Card>
                     <CardHeader style={addBtn}>
+                        <Button color="primary"
+                                onClick={() => this.props.history.push(descargaRevendedorasMasDeudores())}>
+                            Deudores <i className="fa fa-plus"></i>
+                        </Button>
                         <Button color="primary"
                                 onClick={() => this.props.history.push('/administracion/personas/revendedoras/nuevo')}>
                             Nueva Revendedora <i className="fa fa-plus"></i>
